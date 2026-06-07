@@ -9,6 +9,7 @@ import {
 } from "react";
 
 import { AIDraftWorkbench } from "@/components/admin/AIDraftWorkbench";
+import { ContentManager } from "@/components/admin/ContentManager";
 import { ApiError, apiFetch } from "@/lib/http";
 
 type SessionData = {
@@ -54,9 +55,19 @@ function updateCsrf(token: string | null) {
 }
 
 export function AdminConsole() {
-  const csrf = useSyncExternalStore(subscribeToCsrf, getCsrfSnapshot, () => null);
+  const storedCsrf = useSyncExternalStore(
+    subscribeToCsrf,
+    getCsrfSnapshot,
+    () => null,
+  );
+  const [activeCsrf, setActiveCsrf] = useState<string | null>(null);
+  const csrf = activeCsrf ?? storedCsrf;
   const [message, setMessage] = useState<string>("");
   const [loading, setLoading] = useState(false);
+  const endSession = useCallback(() => {
+    updateCsrf(null);
+    setActiveCsrf(null);
+  }, []);
 
   async function login(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -73,6 +84,7 @@ export function AdminConsole() {
       const token = response.data?.csrf_token;
       if (!token) throw new Error("服务器未返回 CSRF Token。");
       updateCsrf(token);
+      setActiveCsrf(token);
       setMessage("管理员会话已建立。");
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "登录失败。");
@@ -115,15 +127,23 @@ export function AdminConsole() {
     );
   }
 
-  return <ReviewDashboard csrf={csrf} initialMessage={message} />;
+  return (
+    <ReviewDashboard
+      csrf={csrf}
+      initialMessage={message}
+      onSessionEnd={endSession}
+    />
+  );
 }
 
 function ReviewDashboard({
   csrf,
   initialMessage,
+  onSessionEnd,
 }: {
   csrf: string;
   initialMessage: string;
+  onSessionEnd: () => void;
 }) {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [message, setMessage] = useState(initialMessage);
@@ -140,12 +160,12 @@ function ReviewDashboard({
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "读取投稿失败。");
       if (error instanceof ApiError && error.status === 401) {
-        updateCsrf(null);
+        onSessionEnd();
       }
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [onSessionEnd]);
 
   useEffect(() => {
     let active = true;
@@ -160,7 +180,7 @@ function ReviewDashboard({
         if (!active) return;
         setMessage(error instanceof Error ? error.message : "读取投稿失败。");
         if (error instanceof ApiError && error.status === 401) {
-          updateCsrf(null);
+          onSessionEnd();
         }
       })
       .finally(() => {
@@ -169,7 +189,7 @@ function ReviewDashboard({
     return () => {
       active = false;
     };
-  }, []);
+  }, [onSessionEnd]);
 
   async function review(
     submission: Submission,
@@ -197,7 +217,7 @@ function ReviewDashboard({
       method: "DELETE",
       headers: { "X-CSRF-Token": csrf },
     });
-    updateCsrf(null);
+    onSessionEnd();
   }
 
   return (
@@ -230,6 +250,7 @@ function ReviewDashboard({
           </div>
         )}
       </div>
+      <ContentManager csrf={csrf} />
       <AIDraftWorkbench csrf={csrf} />
     </section>
   );

@@ -147,7 +147,11 @@ def list_chapters(
     cursor: str | None = None,
     limit: int = 20,
 ) -> tuple[list[Chapter], str | None]:
-    stmt = select(Chapter).order_by(Chapter.created_at, Chapter.id)
+    stmt = (
+        select(Chapter)
+        .where(Chapter.status == ContentStatus.PUBLISHED)
+        .order_by(Chapter.created_at, Chapter.id)
+    )
     return _visible_page(
         db,
         stmt=stmt,
@@ -163,7 +167,12 @@ def get_chapter_by_slug(
     *,
     context: SpoilerContext,
 ) -> Chapter | None:
-    chapter = db.scalar(select(Chapter).where(Chapter.slug == slug))
+    chapter = db.scalar(
+        select(Chapter).where(
+            Chapter.slug == slug,
+            Chapter.status == ContentStatus.PUBLISHED,
+        )
+    )
     if chapter is None or chapter.progress_rank > context.progress_rank:
         return None
     return chapter

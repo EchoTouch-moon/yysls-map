@@ -345,6 +345,210 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/admin/content/bootstrap": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Bootstrap */
+        get: operations["get_bootstrap_api_v1_admin_content_bootstrap_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/content/chapters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Chapter */
+        post: operations["create_chapter_api_v1_admin_content_chapters_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/content/chapters/{row_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update Chapter */
+        patch: operations["update_chapter_api_v1_admin_content_chapters__row_id__patch"];
+        trace?: never;
+    };
+    "/api/v1/admin/content/factions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Faction */
+        post: operations["create_faction_api_v1_admin_content_factions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/content/factions/{row_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update Faction */
+        patch: operations["update_faction_api_v1_admin_content_factions__row_id__patch"];
+        trace?: never;
+    };
+    "/api/v1/admin/content/characters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Character */
+        post: operations["create_character_api_v1_admin_content_characters_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/content/characters/{row_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update Character */
+        patch: operations["update_character_api_v1_admin_content_characters__row_id__patch"];
+        trace?: never;
+    };
+    "/api/v1/admin/content/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Event */
+        post: operations["create_event_api_v1_admin_content_events_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/content/events/{row_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update Event */
+        patch: operations["update_event_api_v1_admin_content_events__row_id__patch"];
+        trace?: never;
+    };
+    "/api/v1/admin/content/relationships": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Relationship */
+        post: operations["create_relationship_api_v1_admin_content_relationships_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/content/relationships/{row_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update Relationship */
+        patch: operations["update_relationship_api_v1_admin_content_relationships__row_id__patch"];
+        trace?: never;
+    };
+    "/api/v1/admin/content/{resource}/{row_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Archive Content */
+        delete: operations["archive_content_api_v1_admin_content__resource___row_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/admin/ai/extract": {
         parameters: {
             query?: never;
@@ -421,6 +625,211 @@ export interface components {
             /** Warnings */
             warnings?: string[];
         };
+        /** AdminChapterRead */
+        AdminChapterRead: {
+            /** Slug */
+            slug: string;
+            /** Title */
+            title: string;
+            /** Region */
+            region?: string | null;
+            /** Sort Order */
+            sort_order: number;
+            progress_key: components["schemas"]["ProgressKey"];
+            /** Progress Rank */
+            progress_rank: number;
+            /** @default draft */
+            status: components["schemas"]["ContentStatus"];
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+        };
+        /** AdminChapterWrite */
+        AdminChapterWrite: {
+            /** Slug */
+            slug: string;
+            /** Title */
+            title: string;
+            /** Region */
+            region?: string | null;
+            /** Sort Order */
+            sort_order: number;
+            progress_key: components["schemas"]["ProgressKey"];
+            /** Progress Rank */
+            progress_rank: number;
+            /** @default draft */
+            status: components["schemas"]["ContentStatus"];
+        };
+        /** AdminCharacterRead */
+        AdminCharacterRead: {
+            /** Slug */
+            slug: string;
+            /** Name */
+            name: string;
+            /** Summary */
+            summary: string;
+            /** Interpretation */
+            interpretation?: string | null;
+            /** Identity Tags */
+            identity_tags?: string[];
+            /** Faction Id */
+            faction_id?: string | null;
+            /** Importance */
+            importance: number;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** First Appear Chapter Id */
+            first_appear_chapter_id?: string | null;
+            /** Visible After Chapter Id */
+            visible_after_chapter_id?: string | null;
+            /** @default draft */
+            status: components["schemas"]["ContentStatus"];
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+        };
+        /** AdminCharacterWrite */
+        AdminCharacterWrite: {
+            /** Slug */
+            slug: string;
+            /** Name */
+            name: string;
+            /** Summary */
+            summary: string;
+            /** Interpretation */
+            interpretation?: string | null;
+            /** Identity Tags */
+            identity_tags?: string[];
+            /** Faction Id */
+            faction_id?: string | null;
+            /** Importance */
+            importance: number;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** First Appear Chapter Id */
+            first_appear_chapter_id?: string | null;
+            /** Visible After Chapter Id */
+            visible_after_chapter_id?: string | null;
+            /** @default draft */
+            status: components["schemas"]["ContentStatus"];
+        };
+        /** AdminContentBootstrap */
+        AdminContentBootstrap: {
+            /** Chapters */
+            chapters: components["schemas"]["AdminChapterRead"][];
+            /** Factions */
+            factions: components["schemas"]["AdminFactionRead"][];
+            /** Characters */
+            characters: components["schemas"]["AdminCharacterRead"][];
+            /** Events */
+            events: components["schemas"]["AdminEventRead"][];
+            /** Relationships */
+            relationships: components["schemas"]["AdminRelationshipRead"][];
+        };
+        /** AdminEventRead */
+        AdminEventRead: {
+            /** Slug */
+            slug: string;
+            /** Title */
+            title: string;
+            /** Summary */
+            summary: string;
+            /** Impact */
+            impact?: string | null;
+            /**
+             * Chapter Id
+             * Format: uuid
+             */
+            chapter_id: string;
+            /** Sort Order */
+            sort_order: number;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** Visible After Chapter Id */
+            visible_after_chapter_id?: string | null;
+            /** @default draft */
+            status: components["schemas"]["ContentStatus"];
+            /** Character Ids */
+            character_ids?: string[];
+            /** Faction Ids */
+            faction_ids?: string[];
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+        };
+        /** AdminEventWrite */
+        AdminEventWrite: {
+            /** Slug */
+            slug: string;
+            /** Title */
+            title: string;
+            /** Summary */
+            summary: string;
+            /** Impact */
+            impact?: string | null;
+            /**
+             * Chapter Id
+             * Format: uuid
+             */
+            chapter_id: string;
+            /** Sort Order */
+            sort_order: number;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** Visible After Chapter Id */
+            visible_after_chapter_id?: string | null;
+            /** @default draft */
+            status: components["schemas"]["ContentStatus"];
+            /** Character Ids */
+            character_ids?: string[];
+            /** Faction Ids */
+            faction_ids?: string[];
+        };
+        /** AdminFactionRead */
+        AdminFactionRead: {
+            /** Slug */
+            slug: string;
+            /** Name */
+            name: string;
+            /** Faction Type */
+            faction_type: string;
+            /** Summary */
+            summary: string;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** Visible After Chapter Id */
+            visible_after_chapter_id?: string | null;
+            /** @default draft */
+            status: components["schemas"]["ContentStatus"];
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+        };
+        /** AdminFactionWrite */
+        AdminFactionWrite: {
+            /** Slug */
+            slug: string;
+            /** Name */
+            name: string;
+            /** Faction Type */
+            faction_type: string;
+            /** Summary */
+            summary: string;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** Visible After Chapter Id */
+            visible_after_chapter_id?: string | null;
+            /** @default draft */
+            status: components["schemas"]["ContentStatus"];
+        };
         /** AdminLogin */
         AdminLogin: {
             /** Username */
@@ -428,9 +837,130 @@ export interface components {
             /** Password */
             password: string;
         };
+        /** AdminRelationshipRead */
+        AdminRelationshipRead: {
+            /**
+             * Source Character Id
+             * Format: uuid
+             */
+            source_character_id: string;
+            /**
+             * Target Character Id
+             * Format: uuid
+             */
+            target_character_id: string;
+            relation_type: components["schemas"]["RelationType"];
+            /** Label */
+            label: string;
+            /** Summary */
+            summary: string;
+            /** Stage */
+            stage?: string | null;
+            /**
+             * Is Directional
+             * @default true
+             */
+            is_directional: boolean;
+            /** Chapter Id */
+            chapter_id?: string | null;
+            /** Visible After Chapter Id */
+            visible_after_chapter_id?: string | null;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** Confidence */
+            confidence: number;
+            /** @default draft */
+            status: components["schemas"]["ContentStatus"];
+            /** Event Ids */
+            event_ids?: string[];
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+        };
+        /** AdminRelationshipWrite */
+        AdminRelationshipWrite: {
+            /**
+             * Source Character Id
+             * Format: uuid
+             */
+            source_character_id: string;
+            /**
+             * Target Character Id
+             * Format: uuid
+             */
+            target_character_id: string;
+            relation_type: components["schemas"]["RelationType"];
+            /** Label */
+            label: string;
+            /** Summary */
+            summary: string;
+            /** Stage */
+            stage?: string | null;
+            /**
+             * Is Directional
+             * @default true
+             */
+            is_directional: boolean;
+            /** Chapter Id */
+            chapter_id?: string | null;
+            /** Visible After Chapter Id */
+            visible_after_chapter_id?: string | null;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** Confidence */
+            confidence: number;
+            /** @default draft */
+            status: components["schemas"]["ContentStatus"];
+            /** Event Ids */
+            event_ids?: string[];
+        };
         /** ApiResponse[AIExtractionResult] */
         ApiResponse_AIExtractionResult_: {
             data?: components["schemas"]["AIExtractionResult"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[AdminChapterRead] */
+        ApiResponse_AdminChapterRead_: {
+            data?: components["schemas"]["AdminChapterRead"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[AdminCharacterRead] */
+        ApiResponse_AdminCharacterRead_: {
+            data?: components["schemas"]["AdminCharacterRead"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[AdminContentBootstrap] */
+        ApiResponse_AdminContentBootstrap_: {
+            data?: components["schemas"]["AdminContentBootstrap"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[AdminEventRead] */
+        ApiResponse_AdminEventRead_: {
+            data?: components["schemas"]["AdminEventRead"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[AdminFactionRead] */
+        ApiResponse_AdminFactionRead_: {
+            data?: components["schemas"]["AdminFactionRead"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[AdminRelationshipRead] */
+        ApiResponse_AdminRelationshipRead_: {
+            data?: components["schemas"]["AdminRelationshipRead"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[ArchiveResult] */
+        ApiResponse_ArchiveResult_: {
+            data?: components["schemas"]["ArchiveResult"] | null;
             error?: components["schemas"]["ErrorDetail"] | null;
             meta?: components["schemas"]["ResponseMeta"];
         };
@@ -570,6 +1100,15 @@ export interface components {
             error?: components["schemas"]["ErrorDetail"] | null;
             meta?: components["schemas"]["ResponseMeta"];
         };
+        /** ArchiveResult */
+        ArchiveResult: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            status: components["schemas"]["ContentStatus"];
+        };
         /** ChapterRead */
         ChapterRead: {
             /**
@@ -702,6 +1241,11 @@ export interface components {
             /** Aliases */
             aliases?: components["schemas"]["CharacterAliasRead"][];
         };
+        /**
+         * ContentStatus
+         * @enum {string}
+         */
+        ContentStatus: "draft" | "published" | "archived";
         /** ErrorDetail */
         ErrorDetail: {
             /** Code */
@@ -1834,6 +2378,455 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ApiResponse_dict_str__bool__"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_bootstrap_api_v1_admin_content_bootstrap_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path?: never;
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_AdminContentBootstrap_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_chapter_api_v1_admin_content_chapters_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path?: never;
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminChapterWrite"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_AdminChapterRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_chapter_api_v1_admin_content_chapters__row_id__patch: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path: {
+                row_id: string;
+            };
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminChapterWrite"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_AdminChapterRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_faction_api_v1_admin_content_factions_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path?: never;
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminFactionWrite"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_AdminFactionRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_faction_api_v1_admin_content_factions__row_id__patch: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path: {
+                row_id: string;
+            };
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminFactionWrite"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_AdminFactionRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_character_api_v1_admin_content_characters_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path?: never;
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminCharacterWrite"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_AdminCharacterRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_character_api_v1_admin_content_characters__row_id__patch: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path: {
+                row_id: string;
+            };
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminCharacterWrite"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_AdminCharacterRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_event_api_v1_admin_content_events_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path?: never;
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminEventWrite"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_AdminEventRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_event_api_v1_admin_content_events__row_id__patch: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path: {
+                row_id: string;
+            };
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminEventWrite"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_AdminEventRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_relationship_api_v1_admin_content_relationships_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path?: never;
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminRelationshipWrite"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_AdminRelationshipRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_relationship_api_v1_admin_content_relationships__row_id__patch: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path: {
+                row_id: string;
+            };
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminRelationshipWrite"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_AdminRelationshipRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    archive_content_api_v1_admin_content__resource___row_id__delete: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path: {
+                resource: string;
+                row_id: string;
+            };
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_ArchiveResult_"];
                 };
             };
             /** @description Validation Error */

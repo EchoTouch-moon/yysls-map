@@ -35,28 +35,51 @@ def get_graph(
 
     character_query = (
         select(Character, Faction.name)
-        .outerjoin(Faction, Character.faction_id == Faction.id)
+        .outerjoin(
+            Faction,
+            (Character.faction_id == Faction.id) & (Faction.status == ContentStatus.PUBLISHED),
+        )
         .where(Character.status == ContentStatus.PUBLISHED)
     )
     if chapter:
         character_query = character_query.join(
             Chapter, Character.first_appear_chapter_id == Chapter.id
-        ).where(Chapter.slug == chapter)
+        ).where(
+            Chapter.slug == chapter,
+            Chapter.status == ContentStatus.PUBLISHED,
+        )
     if faction:
         character_query = character_query.where(Faction.slug == faction)
     if focus:
-        focus_id = db.scalar(select(Character.id).where(Character.slug == focus))
+        focus_id = db.scalar(
+            select(Character.id).where(
+                Character.slug == focus,
+                Character.status == ContentStatus.PUBLISHED,
+            )
+        )
         if focus_id is None:
             return ApiResponse(data=GraphData(nodes=[], edges=[], progress=progress))
         endpoints = db.execute(
-            select(Relationship.source_character_id, Relationship.target_character_id).where(
+            select(
+                Relationship.source_character_id,
+                Relationship.target_character_id,
+                Relationship.visible_after_chapter_id,
+                Relationship.chapter_id,
+                Relationship.spoiler_level,
+            ).where(
+                Relationship.status == ContentStatus.PUBLISHED,
                 (Relationship.source_character_id == focus_id)
-                | (Relationship.target_character_id == focus_id)
+                | (Relationship.target_character_id == focus_id),
             )
         ).all()
         visible_ids = {focus_id}
-        for source_id, target_id in endpoints:
-            visible_ids.update((source_id, target_id))
+        for source_id, target_id, visible_after_id, chapter_id, spoiler_level in endpoints:
+            if is_visible(
+                context=context,
+                required_progress_rank=ranks.get(visible_after_id or chapter_id),
+                spoiler_level=spoiler_level,
+            ):
+                visible_ids.update((source_id, target_id))
         character_query = character_query.where(Character.id.in_(visible_ids))
 
     nodes: list[GraphNode] = []

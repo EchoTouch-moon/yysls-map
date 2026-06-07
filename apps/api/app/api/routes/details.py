@@ -28,8 +28,15 @@ def character_detail(
 ) -> ApiResponse[CharacterDetail | RestrictedData]:
     row = db.execute(
         select(Character, Faction.name, Chapter)
-        .outerjoin(Faction, Character.faction_id == Faction.id)
-        .outerjoin(Chapter, Character.first_appear_chapter_id == Chapter.id)
+        .outerjoin(
+            Faction,
+            (Character.faction_id == Faction.id) & (Faction.status == ContentStatus.PUBLISHED),
+        )
+        .outerjoin(
+            Chapter,
+            (Character.first_appear_chapter_id == Chapter.id)
+            & (Chapter.status == ContentStatus.PUBLISHED),
+        )
         .where(Character.slug == slug, Character.status == ContentStatus.PUBLISHED)
     ).one_or_none()
     if row is None:
@@ -74,7 +81,12 @@ def relationship_detail(
     reveal: bool = Query(default=False),
 ) -> ApiResponse[RelationshipDetail | RestrictedData]:
     relationship = db.get(Relationship, relationship_id)
-    if relationship is None or relationship.status is not ContentStatus.PUBLISHED:
+    if (
+        relationship is None
+        or relationship.status is not ContentStatus.PUBLISHED
+        or relationship.source.status is not ContentStatus.PUBLISHED
+        or relationship.target.status is not ContentStatus.PUBLISHED
+    ):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="关系不存在。")
     required_chapter = db.get(
         Chapter, relationship.visible_after_chapter_id or relationship.chapter_id

@@ -100,6 +100,11 @@ class Chapter(Base, TimestampMixin):
         Enum(ProgressKey, name="progress_key"), index=True
     )
     progress_rank: Mapped[int] = mapped_column(Integer, index=True)
+    status: Mapped[ContentStatus] = mapped_column(
+        Enum(ContentStatus, name="content_status", create_type=False),
+        default=ContentStatus.DRAFT,
+        index=True,
+    )
 
     __table_args__ = (
         CheckConstraint("sort_order >= 0", name="sort_order_nonnegative"),

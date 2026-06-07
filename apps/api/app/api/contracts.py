@@ -2,14 +2,129 @@ import uuid
 from datetime import datetime
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, ValidationInfo, field_validator
 
 from app.domain import (
+    ContentStatus,
     ProgressKey,
     RelationType,
     SubmissionStatus,
     SubmissionType,
 )
+
+
+class AdminChapterWrite(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
+
+    slug: str = Field(min_length=1, max_length=80, pattern=r"^[a-z0-9-]+$")
+    title: str = Field(min_length=1, max_length=120)
+    region: str | None = Field(default=None, max_length=120)
+    sort_order: int = Field(ge=0)
+    progress_key: ProgressKey
+    progress_rank: int = Field(ge=0, le=100)
+    status: ContentStatus = ContentStatus.DRAFT
+
+
+class AdminFactionWrite(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
+
+    slug: str = Field(min_length=1, max_length=100, pattern=r"^[a-z0-9-]+$")
+    name: str = Field(min_length=1, max_length=120)
+    faction_type: str = Field(min_length=1, max_length=80)
+    summary: str = Field(min_length=1, max_length=4000)
+    spoiler_level: int = Field(ge=0, le=3)
+    visible_after_chapter_id: uuid.UUID | None = None
+    status: ContentStatus = ContentStatus.DRAFT
+
+
+class AdminCharacterWrite(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
+
+    slug: str = Field(min_length=1, max_length=100, pattern=r"^[a-z0-9-]+$")
+    name: str = Field(min_length=1, max_length=120)
+    summary: str = Field(min_length=1, max_length=4000)
+    interpretation: str | None = Field(default=None, max_length=4000)
+    identity_tags: list[str] = Field(default_factory=list, max_length=30)
+    faction_id: uuid.UUID | None = None
+    importance: int = Field(ge=1, le=5)
+    spoiler_level: int = Field(ge=0, le=3)
+    first_appear_chapter_id: uuid.UUID | None = None
+    visible_after_chapter_id: uuid.UUID | None = None
+    status: ContentStatus = ContentStatus.DRAFT
+
+
+class AdminEventWrite(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
+
+    slug: str = Field(min_length=1, max_length=120, pattern=r"^[a-z0-9-]+$")
+    title: str = Field(min_length=1, max_length=160)
+    summary: str = Field(min_length=1, max_length=4000)
+    impact: str | None = Field(default=None, max_length=4000)
+    chapter_id: uuid.UUID
+    sort_order: int = Field(ge=0)
+    spoiler_level: int = Field(ge=0, le=3)
+    visible_after_chapter_id: uuid.UUID | None = None
+    status: ContentStatus = ContentStatus.DRAFT
+    character_ids: list[uuid.UUID] = Field(default_factory=list, max_length=100)
+    faction_ids: list[uuid.UUID] = Field(default_factory=list, max_length=100)
+
+
+class AdminRelationshipWrite(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
+
+    source_character_id: uuid.UUID
+    target_character_id: uuid.UUID
+    relation_type: RelationType
+    label: str = Field(min_length=1, max_length=120)
+    summary: str = Field(min_length=1, max_length=4000)
+    stage: str | None = Field(default=None, max_length=120)
+    is_directional: bool = True
+    chapter_id: uuid.UUID | None = None
+    visible_after_chapter_id: uuid.UUID | None = None
+    spoiler_level: int = Field(ge=0, le=3)
+    confidence: float = Field(ge=0, le=1)
+    status: ContentStatus = ContentStatus.DRAFT
+    event_ids: list[uuid.UUID] = Field(default_factory=list, max_length=100)
+
+    @field_validator("target_character_id")
+    @classmethod
+    def characters_must_differ(cls, value: uuid.UUID, info: ValidationInfo) -> uuid.UUID:
+        if value == info.data.get("source_character_id"):
+            raise ValueError("关系起点和终点不能相同")
+        return value
+
+
+class AdminChapterRead(AdminChapterWrite):
+    id: uuid.UUID
+
+
+class AdminFactionRead(AdminFactionWrite):
+    id: uuid.UUID
+
+
+class AdminCharacterRead(AdminCharacterWrite):
+    id: uuid.UUID
+
+
+class AdminEventRead(AdminEventWrite):
+    id: uuid.UUID
+
+
+class AdminRelationshipRead(AdminRelationshipWrite):
+    id: uuid.UUID
+
+
+class AdminContentBootstrap(BaseModel):
+    chapters: list[AdminChapterRead]
+    factions: list[AdminFactionRead]
+    characters: list[AdminCharacterRead]
+    events: list[AdminEventRead]
+    relationships: list[AdminRelationshipRead]
+
+
+class ArchiveResult(BaseModel):
+    id: uuid.UUID
+    status: ContentStatus
 
 
 class AdminLogin(BaseModel):

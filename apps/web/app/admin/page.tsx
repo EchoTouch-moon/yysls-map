@@ -2,7 +2,7 @@ import { AdminConsole } from "@/components/admin/AdminConsole";
 
 export default function AdminPage() {
   return (
-    <main className="mx-auto max-w-5xl px-5 py-16">
+    <main className="mx-auto max-w-7xl px-5 py-16">
       <p className="text-xs tracking-[0.3em] text-[var(--cinnabar-bright)]">
         内部校订
       </p>
@@ -14,4 +14,3 @@ export default function AdminPage() {
     </main>
   );
 }
-

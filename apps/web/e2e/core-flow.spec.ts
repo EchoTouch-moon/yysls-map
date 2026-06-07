@@ -3,6 +3,8 @@ import { expect, test } from "@playwright/test";
 test("explores visible content, submits a clue, and moderates it", async ({
   page,
 }) => {
+  const submissionTitle = `E2E 审核线索 ${Date.now()}`;
+
   await page.goto("/");
   await expect(
     page.getByRole("heading", { name: /看不懂燕云剧情/ }),
@@ -17,7 +19,7 @@ test("explores visible content, submits a clue, and moderates it", async ({
   await expect(page.getByText(/演示卷五：终局事件1/)).not.toBeVisible();
 
   await page.goto("/submit");
-  await page.getByLabel("线索标题").fill("E2E 审核线索");
+  await page.getByLabel("线索标题").fill(submissionTitle);
   await page.getByLabel("起点角色 slug").fill("demo-character-01-01");
   await page.getByLabel("终点角色 slug").fill("demo-character-01-02");
   await page.getByLabel("内容摘要").fill("这是一段用于端到端审核流程的原创关系摘要。");
@@ -31,8 +33,19 @@ test("explores visible content, submits a clue, and moderates it", async ({
   await page.getByLabel("管理员账号").fill("admin");
   await page.getByLabel("密码").fill("ci-admin-password");
   await page.getByRole("button", { name: "进入审核台" }).click();
-  await expect(page.getByRole("heading", { name: "E2E 审核线索" })).toBeVisible();
-  await page.getByPlaceholder("填写审核说明（至少 2 个字）").fill("端到端验证后拒绝");
-  await page.getByRole("button", { name: "拒绝" }).click();
+  const submissionHeading = page.getByRole("heading", {
+    name: submissionTitle,
+  });
+  await expect(submissionHeading).toBeVisible();
+  await expect(page.getByRole("heading", { name: "内容管理" })).toBeVisible();
+  await page.getByRole("tab", { name: "关系" }).click();
+  await expect(page.getByRole("form", { name: "新建关系" })).toBeVisible();
+  const submissionCard = page.getByRole("article").filter({
+    has: submissionHeading,
+  });
+  await submissionCard
+    .getByPlaceholder("填写审核说明（至少 2 个字）")
+    .fill("端到端验证后拒绝");
+  await submissionCard.getByRole("button", { name: "拒绝" }).click();
   await expect(page.getByText("投稿已拒绝。")).toBeVisible();
 });

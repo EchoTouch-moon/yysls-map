@@ -277,6 +277,7 @@ def seed_demo(db: Session) -> SeedStats:
                 sort_order=order,
                 progress_key=chapter_seed.progress,
                 progress_rank=chapter_seed.rank,
+                status=ContentStatus.PUBLISHED,
             )
             db.add(chapter)
             chapters[chapter_seed.slug] = chapter
