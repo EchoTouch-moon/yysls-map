@@ -118,3 +118,35 @@ class RelationshipDetail(BaseModel):
     stage: str | None
     confidence: float
 
+
+class SearchResult(BaseModel):
+    kind: Literal["character", "faction", "event"]
+    slug: str
+    title: str
+    summary: str
+    score: float
+
+
+class SearchData(BaseModel):
+    query: str
+    results: list[SearchResult]
+
+
+class PathNode(BaseModel):
+    id: uuid.UUID
+    slug: str
+    name: str
+
+
+class PathEdge(BaseModel):
+    id: uuid.UUID
+    source: uuid.UUID
+    target: uuid.UUID
+    label: str
+    relation_type: RelationType
+
+
+class RelationshipPathData(BaseModel):
+    found: bool
+    nodes: list[PathNode]
+    edges: list[PathEdge]
