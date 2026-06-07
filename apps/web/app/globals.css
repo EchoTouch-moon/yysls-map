@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@import "@xyflow/react/dist/style.css";
+
+:root {
+  --ink: #131512;
+  --ink-soft: #20231f;
+  --paper: #e8dfc6;
+  --paper-light: #f5efd9;
+  --cinnabar: #9d2e25;
+  --cinnabar-bright: #cb4a37;
+  --moss: #66705a;
+  --fog: #a9a68e;
+  --line: rgba(232, 223, 198, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  background: var(--ink);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--paper-light);
+  background:
+    radial-gradient(circle at 80% 5%, rgba(157, 46, 37, 0.16), transparent 30rem),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    var(--ink);
+  background-size: auto, 42px 42px, 42px 42px, auto;
+  font-family: "Noto Serif SC", "Songti SC", serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+

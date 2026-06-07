@@ -1,0 +1,14 @@
+{
+  "name": "@yysls/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "uv run fastapi dev app/main.py --host 127.0.0.1 --port 8000",
+    "lint": "uv run ruff check .",
+    "format": "uv run ruff format .",
+    "typecheck": "uv run mypy app",
+    "test": "uv run pytest",
+    "build": "uv build"
+  }
+}
+

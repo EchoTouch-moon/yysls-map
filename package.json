@@ -1,0 +1,25 @@
+{
+  "name": "yysls-map",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "workspaces": [
+    "apps/web",
+    "apps/api",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev --workspace @yysls/web",
+    "dev:api": "npm run dev --workspace @yysls/api",
+    "build": "npm run build --workspace @yysls/web && npm run build --workspace @yysls/api-client",
+    "lint": "npm run lint --workspace @yysls/web && npm run lint --workspace @yysls/api",
+    "typecheck": "npm run typecheck --workspace @yysls/web && npm run typecheck --workspace @yysls/api",
+    "test": "npm run test --workspace @yysls/web && npm run test --workspace @yysls/api",
+    "test:e2e": "npm run test:e2e --workspace @yysls/web",
+    "api:generate": "npm run generate --workspace @yysls/api-client",
+    "verify": "npm run lint && npm run typecheck && npm run test && npm run build"
+  }
+}
+
