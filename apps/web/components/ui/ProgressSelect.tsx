@@ -70,6 +70,14 @@ function getProgressSnapshot(): ProgressKey {
   return readStoredProgress() ?? DEFAULT_PROGRESS;
 }
 
+export function useProgress(): ProgressKey {
+  return useSyncExternalStore(
+    subscribeProgress,
+    getProgressSnapshot,
+    () => DEFAULT_PROGRESS,
+  );
+}
+
 interface ProgressSelectProps {
   /** Additional class names on the outer wrapper. */
   className?: string;
@@ -95,11 +103,7 @@ export function ProgressSelect({
   variant = "compact",
 }: ProgressSelectProps) {
   const selectId = useId();
-  const progress = useSyncExternalStore(
-    subscribeProgress,
-    getProgressSnapshot,
-    () => DEFAULT_PROGRESS,
-  );
+  const progress = useProgress();
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const next = e.target.value as ProgressKey;

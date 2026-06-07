@@ -23,8 +23,11 @@ jobs:
           --health-retries 5
     env:
       DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/yysls_map_test
+      WEB_ORIGIN: http://127.0.0.1:3000
+      NEXT_PUBLIC_API_URL: http://127.0.0.1:8000/api/v1
       SESSION_SECRET: ci-session-secret-at-least-32-characters
-      ADMIN_PASSWORD_HASH: ci-placeholder
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD_HASH: $argon2id$v=19$m=65536,t=3,p=4$Op34vwy8RoT/3xsXipNpZg$Nxm3mLCqxHC6u5mLA+6zXd73kbgl6YiqNqtCDoXfyIc
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -38,4 +41,6 @@ jobs:
       - run: uv sync --project apps/api --frozen
       - run: uv run --project apps/api alembic upgrade head
       - run: npm run verify
-
+      - run: uv run --project apps/api python -m app.seed
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e

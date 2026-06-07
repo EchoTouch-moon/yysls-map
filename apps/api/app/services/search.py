@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 
-from sqlalchemy import func, or_, select
+from sqlalchemy import ColumnExpressionArgument, func, or_, select
 from sqlalchemy.orm import Session
+from sqlalchemy.sql.elements import ColumnElement
 
 from app.api.contracts import SearchResult
 from app.domain import ContentStatus, ProgressKey
@@ -16,7 +17,9 @@ class RankedItem:
     spoiler_level: int
 
 
-def _score(column: object, query: str):
+def _score(
+    column: ColumnExpressionArgument[str], query: str
+) -> ColumnElement[float]:
     return func.greatest(func.similarity(column, query), 0.1)
 
 
@@ -133,4 +136,3 @@ def search_visible_content(
         )
     ]
     return sorted(results, key=lambda item: (-item.score, item.kind, item.slug))[:limit]
-

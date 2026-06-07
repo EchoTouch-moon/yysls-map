@@ -10,6 +10,7 @@ const NAV_LINKS: ReadonlyArray<{ href: string; label: string }> = [
   { href: "/graph", label: "关系图谱" },
   { href: "/timeline", label: "剧情时间线" },
   { href: "/characters", label: "人物卷宗" },
+  { href: "/search", label: "搜索路径" },
   { href: "/submit", label: "补充线索" },
 ];
 

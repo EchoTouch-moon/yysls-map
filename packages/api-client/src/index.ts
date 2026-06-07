@@ -1,3 +1,5 @@
+export type { components, operations, paths } from "./schema";
+
 export type ApiEnvelope<T> = {
   data: T | null;
   error: {
@@ -10,4 +12,3 @@ export type ApiEnvelope<T> = {
     next_cursor?: string;
   };
 };
-

@@ -1,8 +1,15 @@
 from datetime import timedelta
 
 from fastapi import HTTPException
+from fastapi.testclient import TestClient
 
-from app.core.security import create_session_token, decode_session_token
+from app.core.config import settings
+from app.core.security import (
+    create_session_token,
+    decode_session_token,
+    password_hasher,
+)
+from app.main import app
 from app.services.rate_limit import SlidingWindowLimiter
 
 
@@ -28,3 +35,36 @@ def test_rate_limiter_blocks_after_limit() -> None:
     assert limiter.allow("client")
     assert not limiter.allow("client")
 
+
+def test_admin_session_requires_origin_and_csrf(
+    monkeypatch,
+) -> None:
+    monkeypatch.setattr(settings, "admin_password_hash", password_hasher.hash("test-password"))
+    client = TestClient(app)
+
+    rejected = client.post(
+        "/api/v1/admin/session",
+        json={"username": settings.admin_username, "password": "test-password"},
+    )
+    assert rejected.status_code == 403
+
+    login = client.post(
+        "/api/v1/admin/session",
+        headers={"Origin": settings.web_origin},
+        json={"username": settings.admin_username, "password": "test-password"},
+    )
+    assert login.status_code == 200
+    assert "HttpOnly" in login.headers["set-cookie"]
+    csrf = login.json()["data"]["csrf_token"]
+
+    rejected_logout = client.delete(
+        "/api/v1/admin/session",
+        headers={"X-CSRF-Token": csrf},
+    )
+    assert rejected_logout.status_code == 403
+
+    logout = client.delete(
+        "/api/v1/admin/session",
+        headers={"Origin": settings.web_origin, "X-CSRF-Token": csrf},
+    )
+    assert logout.status_code == 200

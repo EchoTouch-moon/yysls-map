@@ -15,9 +15,19 @@
 3. 复制 `.env.example` 为 `.env`，设置管理员密码哈希和会话密钥。
 4. 安装依赖：`npm install` 与 `cd apps/api && uv sync`
 5. 执行迁移：`cd apps/api && uv run alembic upgrade head`
-6. 分别运行 `npm run dev:api` 和 `npm run dev:web`
+6. 可选导入演示数据：`cd apps/api && uv run python -m app.seed`
+7. 分别运行 `npm run dev:api` 和 `npm run dev:web`
+
+## 验证
+
+```bash
+npm run verify
+npm run test:e2e
+```
+
+生产发布与备份恢复步骤见 `docs/DEPLOYMENT.md`。演示数据均带有
+`[DEMO FICTION]` 标记，不得直接用于生产内容。
 
 ## 内容边界
 
 本站只收录原创剧情摘要、关系分析和必要的事实索引，不建设完整任务文本、对话、书信、语音、视频或拆包数据库。
-

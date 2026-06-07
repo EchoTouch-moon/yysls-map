@@ -8,6 +8,7 @@ const entries = [
   { title: "关系图谱", description: "从人物之间的线索进入，观察合作、旧识、敌对与隐藏关联。", href: "/graph" },
   { title: "剧情时间线", description: "按章节重新排列事件，理解关系如何发生变化。", href: "/timeline" },
   { title: "人物卷宗", description: "聚焦一个角色，查看其所在势力与局部关系网。", href: "/characters" },
+  { title: "搜索路径", description: "检索角色、势力与事件，寻找两名角色之间的最短可见关系链。", href: "/search" },
 ];
 
 export default function Home() {

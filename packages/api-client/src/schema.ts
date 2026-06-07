@@ -38,10 +38,420 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/resources/chapters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Chapters */
+        get: operations["list_chapters_api_v1_resources_chapters_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/resources/chapters/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Chapter */
+        get: operations["get_chapter_api_v1_resources_chapters__slug__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/resources/factions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Factions */
+        get: operations["list_factions_api_v1_resources_factions_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/resources/factions/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Faction */
+        get: operations["get_faction_api_v1_resources_factions__slug__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/resources/characters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Characters */
+        get: operations["list_characters_api_v1_resources_characters_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/resources/characters/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Character */
+        get: operations["get_character_api_v1_resources_characters__slug__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/resources/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Events */
+        get: operations["list_events_api_v1_resources_events_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/resources/events/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Event */
+        get: operations["get_event_api_v1_resources_events__slug__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/resources/sources/{source_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Source */
+        get: operations["get_source_api_v1_resources_sources__source_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/timeline": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Timeline */
+        get: operations["get_timeline_api_v1_timeline_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/characters/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Character Detail */
+        get: operations["character_detail_api_v1_characters__slug__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/relationships/{relationship_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Relationship Detail */
+        get: operations["relationship_detail_api_v1_relationships__relationship_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Search */
+        get: operations["search_api_v1_search_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/relationships/path": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Relationship Path */
+        get: operations["relationship_path_api_v1_relationships_path_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/submissions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Submit Content */
+        post: operations["submit_content_api_v1_submissions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/submissions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Submissions */
+        get: operations["list_submissions_api_v1_admin_submissions_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/submissions/{submission_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Review Submission Route */
+        patch: operations["review_submission_route_api_v1_admin_submissions__submission_id__patch"];
+        trace?: never;
+    };
+    "/api/v1/admin/session": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Admin Session */
+        post: operations["create_admin_session_api_v1_admin_session_post"];
+        /** Delete Admin Session */
+        delete: operations["delete_admin_session_api_v1_admin_session_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/ai/extract": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Extract Story Note */
+        post: operations["extract_story_note_api_v1_admin_ai_extract_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** AIEventCandidate */
+        AIEventCandidate: {
+            /** Title */
+            title: string;
+            /** Summary */
+            summary: string;
+            /** Character Names */
+            character_names?: string[];
+            /** Chapter Slug */
+            chapter_slug?: string | null;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** Confidence */
+            confidence: number;
+            /** Warnings */
+            warnings?: string[];
+        };
+        /** AIExtractionRequest */
+        AIExtractionRequest: {
+            /** Note */
+            note: string;
+        };
+        /** AIExtractionResult */
+        AIExtractionResult: {
+            /** Run Id */
+            run_id?: string | null;
+            /** Characters */
+            characters?: string[];
+            /** Relationships */
+            relationships?: components["schemas"]["AIRelationshipCandidate"][];
+            /** Events */
+            events?: components["schemas"]["AIEventCandidate"][];
+            /** Model */
+            model: string;
+            /** Prompt Version */
+            prompt_version: string;
+        };
+        /** AIRelationshipCandidate */
+        AIRelationshipCandidate: {
+            /** Source */
+            source: string;
+            /** Target */
+            target: string;
+            relation_type: components["schemas"]["RelationType"];
+            /** Summary */
+            summary: string;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** Chapter Slug */
+            chapter_slug?: string | null;
+            /** Confidence */
+            confidence: number;
+            /** Warnings */
+            warnings?: string[];
+        };
+        /** AdminLogin */
+        AdminLogin: {
+            /** Username */
+            username: string;
+            /** Password */
+            password: string;
+        };
+        /** ApiResponse[AIExtractionResult] */
+        ApiResponse_AIExtractionResult_: {
+            data?: components["schemas"]["AIExtractionResult"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[ChapterRead] */
+        ApiResponse_ChapterRead_: {
+            data?: components["schemas"]["ChapterRead"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[CharacterRead] */
+        ApiResponse_CharacterRead_: {
+            data?: components["schemas"]["CharacterRead"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[FactionRead] */
+        ApiResponse_FactionRead_: {
+            data?: components["schemas"]["FactionRead"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
         /** ApiResponse[GraphData] */
         ApiResponse_GraphData_: {
             data?: components["schemas"]["GraphData"] | null;
@@ -54,6 +464,244 @@ export interface components {
             error?: components["schemas"]["ErrorDetail"] | null;
             meta?: components["schemas"]["ResponseMeta"];
         };
+        /** ApiResponse[RelationshipPathData] */
+        ApiResponse_RelationshipPathData_: {
+            data?: components["schemas"]["RelationshipPathData"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[SearchData] */
+        ApiResponse_SearchData_: {
+            data?: components["schemas"]["SearchData"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[SessionData] */
+        ApiResponse_SessionData_: {
+            data?: components["schemas"]["SessionData"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[SourceRead] */
+        ApiResponse_SourceRead_: {
+            data?: components["schemas"]["SourceRead"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[StoryEventRead] */
+        ApiResponse_StoryEventRead_: {
+            data?: components["schemas"]["StoryEventRead"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[SubmissionAdminRead] */
+        ApiResponse_SubmissionAdminRead_: {
+            data?: components["schemas"]["SubmissionAdminRead"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[SubmissionPublicReceipt] */
+        ApiResponse_SubmissionPublicReceipt_: {
+            data?: components["schemas"]["SubmissionPublicReceipt"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[TimelineData] */
+        ApiResponse_TimelineData_: {
+            data?: components["schemas"]["TimelineData"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[Union[CharacterDetail, RestrictedData]] */
+        ApiResponse_Union_CharacterDetail__RestrictedData__: {
+            /** Data */
+            data?: components["schemas"]["CharacterDetail"] | components["schemas"]["RestrictedData"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[Union[RelationshipDetail, RestrictedData]] */
+        ApiResponse_Union_RelationshipDetail__RestrictedData__: {
+            /** Data */
+            data?: components["schemas"]["RelationshipDetail"] | components["schemas"]["RestrictedData"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[dict[str, bool]] */
+        ApiResponse_dict_str__bool__: {
+            /** Data */
+            data?: {
+                [key: string]: boolean;
+            } | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[list[ChapterRead]] */
+        ApiResponse_list_ChapterRead__: {
+            /** Data */
+            data?: components["schemas"]["ChapterRead"][] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[list[CharacterListItem]] */
+        ApiResponse_list_CharacterListItem__: {
+            /** Data */
+            data?: components["schemas"]["CharacterListItem"][] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[list[FactionRead]] */
+        ApiResponse_list_FactionRead__: {
+            /** Data */
+            data?: components["schemas"]["FactionRead"][] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[list[StoryEventRead]] */
+        ApiResponse_list_StoryEventRead__: {
+            /** Data */
+            data?: components["schemas"]["StoryEventRead"][] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[list[SubmissionAdminRead]] */
+        ApiResponse_list_SubmissionAdminRead__: {
+            /** Data */
+            data?: components["schemas"]["SubmissionAdminRead"][] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ChapterRead */
+        ChapterRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Slug */
+            slug: string;
+            /** Title */
+            title: string;
+            /** Region */
+            region: string | null;
+            /** Sort Order */
+            sort_order: number;
+            progress_key: components["schemas"]["ProgressKey"];
+            /** Progress Rank */
+            progress_rank: number;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /** CharacterAliasRead */
+        CharacterAliasRead: {
+            /** Alias */
+            alias: string;
+        };
+        /** CharacterDetail */
+        CharacterDetail: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Slug */
+            slug: string;
+            /** Name */
+            name: string;
+            /** Summary */
+            summary: string;
+            /** Interpretation */
+            interpretation: string | null;
+            /** Identity Tags */
+            identity_tags: string[];
+            /** Faction Name */
+            faction_name: string | null;
+            /** First Appear Chapter */
+            first_appear_chapter: string | null;
+        };
+        /** CharacterListItem */
+        CharacterListItem: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Slug */
+            slug: string;
+            /** Name */
+            name: string;
+            /** Summary */
+            summary: string;
+            /** Identity Tags */
+            identity_tags: string[];
+            /** Faction Id */
+            faction_id: string | null;
+            /** Importance */
+            importance: number;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** First Appear Chapter Id */
+            first_appear_chapter_id: string | null;
+            /** Visible After Chapter Id */
+            visible_after_chapter_id: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /** CharacterRead */
+        CharacterRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Slug */
+            slug: string;
+            /** Name */
+            name: string;
+            /** Summary */
+            summary: string;
+            /** Interpretation */
+            interpretation: string | null;
+            /** Identity Tags */
+            identity_tags: string[];
+            /** Faction Id */
+            faction_id: string | null;
+            /** Importance */
+            importance: number;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** First Appear Chapter Id */
+            first_appear_chapter_id: string | null;
+            /** Visible After Chapter Id */
+            visible_after_chapter_id: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+            /** Aliases */
+            aliases?: components["schemas"]["CharacterAliasRead"][];
+        };
         /** ErrorDetail */
         ErrorDetail: {
             /** Code */
@@ -64,6 +712,36 @@ export interface components {
             fields?: {
                 [key: string]: string[];
             } | null;
+        };
+        /** FactionRead */
+        FactionRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Slug */
+            slug: string;
+            /** Name */
+            name: string;
+            /** Faction Type */
+            faction_type: string;
+            /** Summary */
+            summary: string;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** Visible After Chapter Id */
+            visible_after_chapter_id: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
         };
         /** GraphData */
         GraphData: {
@@ -130,22 +808,332 @@ export interface components {
             /** Environment */
             environment: string;
         };
+        /** PathEdge */
+        PathEdge: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Source
+             * Format: uuid
+             */
+            source: string;
+            /**
+             * Target
+             * Format: uuid
+             */
+            target: string;
+            /** Label */
+            label: string;
+            relation_type: components["schemas"]["RelationType"];
+        };
+        /** PathNode */
+        PathNode: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Slug */
+            slug: string;
+            /** Name */
+            name: string;
+        };
         /**
          * ProgressKey
          * @enum {string}
          */
         ProgressKey: "start" | "qinghe" | "kaifeng" | "current" | "unrestricted";
+        /** PublicSubmissionCreate */
+        PublicSubmissionCreate: {
+            submission_type: components["schemas"]["SubmissionType"];
+            payload: components["schemas"]["SubmissionPayload"];
+            /** Source Note */
+            source_note: string;
+            /** Contact */
+            contact?: string | null;
+            /**
+             * Website
+             * @default
+             */
+            website: string;
+        };
         /**
          * RelationType
          * @enum {string}
          */
         RelationType: "mentor" | "family" | "enemy" | "ally" | "old_acquaintance" | "exploitation" | "hierarchy" | "same_sect" | "interest" | "hidden";
+        /** RelationshipDetail */
+        RelationshipDetail: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Source Name */
+            source_name: string;
+            /** Target Name */
+            target_name: string;
+            relation_type: components["schemas"]["RelationType"];
+            /** Label */
+            label: string;
+            /** Summary */
+            summary: string;
+            /** Stage */
+            stage: string | null;
+            /** Confidence */
+            confidence: number;
+        };
+        /** RelationshipPathData */
+        RelationshipPathData: {
+            /** Found */
+            found: boolean;
+            /** Nodes */
+            nodes: components["schemas"]["PathNode"][];
+            /** Edges */
+            edges: components["schemas"]["PathEdge"][];
+        };
         /** ResponseMeta */
         ResponseMeta: {
             /** Request Id */
             request_id?: string | null;
             /** Next Cursor */
             next_cursor?: string | null;
+        };
+        /** RestrictedData */
+        RestrictedData: {
+            /**
+             * Restricted
+             * @default true
+             */
+            restricted: boolean;
+            required_progress?: components["schemas"]["ProgressKey"] | null;
+            /**
+             * Message
+             * @default 该内容涉及后续剧情，已隐藏。
+             */
+            message: string;
+        };
+        /** ReviewSubmission */
+        ReviewSubmission: {
+            /**
+             * Action
+             * @enum {string}
+             */
+            action: "approve" | "reject";
+            /** Review Note */
+            review_note: string;
+        };
+        /** SearchData */
+        SearchData: {
+            /** Query */
+            query: string;
+            /** Results */
+            results: components["schemas"]["SearchResult"][];
+        };
+        /** SearchResult */
+        SearchResult: {
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "character" | "faction" | "event";
+            /** Slug */
+            slug: string;
+            /** Title */
+            title: string;
+            /** Summary */
+            summary: string;
+            /** Score */
+            score: number;
+        };
+        /** SessionData */
+        SessionData: {
+            /** Username */
+            username: string;
+            /** Csrf Token */
+            csrf_token: string;
+            /** Expires In Minutes */
+            expires_in_minutes: number;
+        };
+        /** SourceRead */
+        SourceRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            source_type: components["schemas"]["SourceType"];
+            /** Title */
+            title: string;
+            /** Reference */
+            reference: string | null;
+            /** Note */
+            note: string | null;
+            /** Character Id */
+            character_id: string | null;
+            /** Event Id */
+            event_id: string | null;
+            /** Relationship Id */
+            relationship_id: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /**
+         * SourceType
+         * @enum {string}
+         */
+        SourceType: "player_note" | "quest_reference" | "official_reference" | "community_analysis";
+        /** StoryEventRead */
+        StoryEventRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Slug */
+            slug: string;
+            /** Title */
+            title: string;
+            /** Summary */
+            summary: string;
+            /** Impact */
+            impact: string | null;
+            /**
+             * Chapter Id
+             * Format: uuid
+             */
+            chapter_id: string;
+            /** Sort Order */
+            sort_order: number;
+            /** Spoiler Level */
+            spoiler_level: number;
+            /** Visible After Chapter Id */
+            visible_after_chapter_id: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /** SubmissionAdminRead */
+        SubmissionAdminRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            submission_type: components["schemas"]["SubmissionType"];
+            /** Payload */
+            payload: {
+                [key: string]: unknown;
+            };
+            /** Source Note */
+            source_note: string;
+            /** Contact */
+            contact: string | null;
+            status: components["schemas"]["SubmissionStatus"];
+            /** Review Note */
+            review_note: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /** SubmissionPayload */
+        SubmissionPayload: {
+            /** Title */
+            title: string;
+            /** Summary */
+            summary: string;
+            /** Source Character Slug */
+            source_character_slug?: string | null;
+            /** Target Character Slug */
+            target_character_slug?: string | null;
+            /** Character Slug */
+            character_slug?: string | null;
+            /** Chapter Slug */
+            chapter_slug?: string | null;
+            relation_type?: components["schemas"]["RelationType"] | null;
+            /**
+             * Spoiler Level
+             * @default 0
+             */
+            spoiler_level: number;
+        };
+        /** SubmissionPublicReceipt */
+        SubmissionPublicReceipt: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            status: components["schemas"]["SubmissionStatus"];
+            /** Message */
+            message: string;
+        };
+        /**
+         * SubmissionStatus
+         * @enum {string}
+         */
+        SubmissionStatus: "pending" | "approved" | "rejected";
+        /**
+         * SubmissionType
+         * @enum {string}
+         */
+        SubmissionType: "relationship" | "event" | "interpretation" | "correction";
+        /** TimelineCharacter */
+        TimelineCharacter: {
+            /** Slug */
+            slug: string;
+            /** Name */
+            name: string;
+        };
+        /** TimelineData */
+        TimelineData: {
+            progress: components["schemas"]["ProgressKey"];
+            /** Events */
+            events: components["schemas"]["TimelineEvent"][];
+        };
+        /** TimelineEvent */
+        TimelineEvent: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Slug */
+            slug: string;
+            /** Title */
+            title: string;
+            /** Summary */
+            summary: string;
+            /** Impact */
+            impact: string | null;
+            /** Chapter Slug */
+            chapter_slug: string;
+            /** Chapter Title */
+            chapter_title: string;
+            /** Sort Order */
+            sort_order: number;
+            /** Characters */
+            characters: components["schemas"]["TimelineCharacter"][];
         };
         /** ValidationError */
         ValidationError: {
@@ -211,6 +1199,678 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ApiResponse_GraphData_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_chapters_api_v1_resources_chapters_get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+                cursor?: string | null;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_list_ChapterRead__"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_chapter_api_v1_resources_chapters__slug__get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+            };
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_ChapterRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_factions_api_v1_resources_factions_get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+                cursor?: string | null;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_list_FactionRead__"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_faction_api_v1_resources_factions__slug__get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+            };
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_FactionRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_characters_api_v1_resources_characters_get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+                cursor?: string | null;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_list_CharacterListItem__"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_character_api_v1_resources_characters__slug__get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+            };
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_CharacterRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_events_api_v1_resources_events_get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+                cursor?: string | null;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_list_StoryEventRead__"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_event_api_v1_resources_events__slug__get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+            };
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_StoryEventRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_source_api_v1_resources_sources__source_id__get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+            };
+            header?: never;
+            path: {
+                source_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_SourceRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_timeline_api_v1_timeline_get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+                chapter?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_TimelineData_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    character_detail_api_v1_characters__slug__get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+                reveal?: boolean;
+            };
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_Union_CharacterDetail__RestrictedData__"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    relationship_detail_api_v1_relationships__relationship_id__get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+                reveal?: boolean;
+            };
+            header?: never;
+            path: {
+                relationship_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_Union_RelationshipDetail__RestrictedData__"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    search_api_v1_search_get: {
+        parameters: {
+            query: {
+                q: string;
+                progress?: components["schemas"]["ProgressKey"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_SearchData_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    relationship_path_api_v1_relationships_path_get: {
+        parameters: {
+            query: {
+                from: string;
+                to: string;
+                progress?: components["schemas"]["ProgressKey"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_RelationshipPathData_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    submit_content_api_v1_submissions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PublicSubmissionCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_SubmissionPublicReceipt_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_submissions_api_v1_admin_submissions_get: {
+        parameters: {
+            query?: {
+                status?: components["schemas"]["SubmissionStatus"];
+            };
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path?: never;
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_list_SubmissionAdminRead__"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    review_submission_route_api_v1_admin_submissions__submission_id__patch: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path: {
+                submission_id: string;
+            };
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReviewSubmission"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_SubmissionAdminRead_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_admin_session_api_v1_admin_session_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AdminLogin"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_SessionData_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_admin_session_api_v1_admin_session_delete: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path?: never;
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_dict_str__bool__"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    extract_story_note_api_v1_admin_ai_extract_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                "X-CSRF-Token"?: string | null;
+            };
+            path?: never;
+            cookie?: {
+                yysls_admin_session?: string | null;
+            };
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AIExtractionRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_AIExtractionResult_"];
                 };
             };
             /** @description Validation Error */
