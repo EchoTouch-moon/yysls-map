@@ -1,10 +1,12 @@
 import uuid
+from datetime import datetime
 from typing import Any
 
 from sqlalchemy import (
     JSON,
     CheckConstraint,
     Column,
+    DateTime,
     Enum,
     ForeignKey,
     Index,
@@ -14,6 +16,7 @@ from sqlalchemy import (
     Table,
     Text,
     UniqueConstraint,
+    func,
 )
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, MappedColumn, mapped_column, relationship
@@ -122,6 +125,12 @@ class Faction(Base, TimestampMixin):
 
     __table_args__ = (
         CheckConstraint("spoiler_level >= 0 AND spoiler_level <= 3", name="spoiler_level_range"),
+        Index(
+            "ix_factions_name_trgm",
+            "name",
+            postgresql_using="gin",
+            postgresql_ops={"name": "gin_trgm_ops"},
+        ),
     )
 
 
@@ -159,6 +168,12 @@ class Character(Base, TimestampMixin):
     __table_args__ = (
         CheckConstraint("importance >= 1 AND importance <= 5", name="importance_range"),
         CheckConstraint("spoiler_level >= 0 AND spoiler_level <= 3", name="spoiler_level_range"),
+        Index(
+            "ix_characters_name_trgm",
+            "name",
+            postgresql_using="gin",
+            postgresql_ops={"name": "gin_trgm_ops"},
+        ),
     )
 
 
@@ -205,6 +220,12 @@ class StoryEvent(Base, TimestampMixin):
         UniqueConstraint("chapter_id", "sort_order"),
         CheckConstraint("sort_order >= 0", name="sort_order_nonnegative"),
         CheckConstraint("spoiler_level >= 0 AND spoiler_level <= 3", name="spoiler_level_range"),
+        Index(
+            "ix_story_events_title_trgm",
+            "title",
+            postgresql_using="gin",
+            postgresql_ops={"title": "gin_trgm_ops"},
+        ),
     )
 
 
@@ -301,3 +322,21 @@ class Submission(Base, TimestampMixin):
     )
     review_note: Mapped[str | None] = mapped_column(Text)
     reviewed_by: Mapped[str | None] = mapped_column(String(120))
+
+
+class AIDraftRun(Base):
+    __tablename__ = "ai_draft_runs"
+
+    id: Mapped[uuid.UUID] = uuid_pk()
+    input_hash: Mapped[str] = mapped_column(String(64), index=True)
+    model: Mapped[str] = mapped_column(String(120))
+    prompt_version: Mapped[str] = mapped_column(String(40))
+    output: Mapped[dict[str, Any]] = mapped_column(JSON)
+    duration_ms: Mapped[int] = mapped_column(Integer)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+
+    __table_args__ = (
+        CheckConstraint("duration_ms >= 0", name="duration_nonnegative"),
+    )

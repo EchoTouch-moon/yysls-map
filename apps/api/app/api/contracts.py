@@ -150,3 +150,37 @@ class RelationshipPathData(BaseModel):
     found: bool
     nodes: list[PathNode]
     edges: list[PathEdge]
+
+
+class AIExtractionRequest(BaseModel):
+    note: str = Field(min_length=20, max_length=20000)
+
+
+class AIRelationshipCandidate(BaseModel):
+    source: str = Field(min_length=1, max_length=120)
+    target: str = Field(min_length=1, max_length=120)
+    relation_type: RelationType
+    summary: str = Field(min_length=5, max_length=1000)
+    spoiler_level: int = Field(ge=0, le=3)
+    chapter_slug: str | None = Field(default=None, max_length=80)
+    confidence: float = Field(ge=0, le=1)
+    warnings: list[str] = Field(default_factory=list)
+
+
+class AIEventCandidate(BaseModel):
+    title: str = Field(min_length=1, max_length=160)
+    summary: str = Field(min_length=5, max_length=2000)
+    character_names: list[str] = Field(default_factory=list, max_length=30)
+    chapter_slug: str | None = Field(default=None, max_length=80)
+    spoiler_level: int = Field(ge=0, le=3)
+    confidence: float = Field(ge=0, le=1)
+    warnings: list[str] = Field(default_factory=list)
+
+
+class AIExtractionResult(BaseModel):
+    run_id: uuid.UUID | None = None
+    characters: list[str] = Field(default_factory=list, max_length=100)
+    relationships: list[AIRelationshipCandidate] = Field(default_factory=list, max_length=100)
+    events: list[AIEventCandidate] = Field(default_factory=list, max_length=100)
+    model: str
+    prompt_version: str
