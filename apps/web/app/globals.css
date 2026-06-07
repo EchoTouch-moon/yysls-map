@@ -47,3 +47,16 @@ textarea {
   font: inherit;
 }
 
+/* ---- <dialog> backdrop (Drawer) ---- */
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Remove default dialog border / padding — the component sets its own. */
+dialog[open] {
+  border: none;
+  padding: 0;
+}
