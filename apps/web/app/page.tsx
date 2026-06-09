@@ -13,70 +13,105 @@ const entries = [
 
 export default function Home() {
   return (
-    <main>
+    <main className="archive-page">
+      {/* Decorative background annotations/colophons */}
+      <div className="absolute right-6 top-24 hidden lg:block" aria-hidden="true">
+        <div className="marginalia-note h-48">
+          <span>清河卷 · 人物牵系</span>
+        </div>
+      </div>
+
       {/* Hero */}
-      <section className="mx-auto grid min-h-[72vh] max-w-[1500px] items-center gap-16 px-5 py-20 lg:grid-cols-[1.05fr_.95fr] lg:px-10">
-        <div>
+      <section className="mx-auto grid min-h-[76vh] max-w-[1500px] items-center gap-16 px-5 py-20 lg:grid-cols-[1.05fr_.95fr] lg:px-10">
+        <div className="animate-text-fade-in">
           <SectionHeading
             eyebrow="江湖人物关系检索卷"
             level={1}
             description="选择自己的剧情进度，在不被剧透的前提下探索角色、势力、事件与隐藏关系。这里不是原文数据库，而是一份由玩家共同校订的江湖卷宗。"
+            headingClassName="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl text-balance text-wrap"
           >
             <>
-              看不懂燕云剧情？
-              <span className="mt-3 block text-[var(--paper)]">沿着一条线，找到暗处的人。</span>
+              <span className="block">
+                <span className="inline-block">看不懂</span>
+                <span className="inline-block">燕云剧情？</span>
+              </span>
+              <span className="mt-3 block text-[var(--paper)]">
+                <span className="inline-block">沿着一条线，</span>
+                <span className="inline-block">找到暗处的人。</span>
+              </span>
             </>
           </SectionHeading>
 
           {/* CTA row */}
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-10 flex flex-wrap gap-5">
             <Link
               href="/graph"
-              className="bg-[var(--cinnabar)] px-7 py-4 text-sm tracking-[0.16em] transition hover:bg-[var(--cinnabar-bright)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cinnabar-bright)]"
+              className="bg-[var(--cinnabar)] px-8 py-4 text-sm font-medium tracking-[0.2em] shadow-[0_10px_30px_rgba(143,47,37,.22)] transition-[background-color,transform,box-shadow] duration-300 hover:bg-[var(--cinnabar-bright)] hover:translate-y-[-1px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cinnabar-bright)]"
             >
               展开关系图
             </Link>
             <Link
               href="/timeline"
-              className="border border-[var(--line)] px-7 py-4 text-sm tracking-[0.16em] transition hover:border-[var(--paper)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cinnabar-bright)]"
+              className="border border-[var(--line-strong)] px-8 py-4 text-sm font-medium tracking-[0.2em] transition-[border-color,background-color,transform] duration-300 hover:border-[var(--paper)] hover:bg-[rgba(217,201,164,.06)] hover:translate-y-[-1px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cinnabar-bright)]"
             >
               查看时间线
             </Link>
           </div>
 
           {/* Progress selector — card variant for hero context */}
-          <ProgressSelect variant="card" className="mt-12 max-w-sm" />
+          <ProgressSelect variant="card" className="mt-14 max-w-sm" />
         </div>
 
-        {/* Decorative dossier card */}
-        <div className="relative min-h-[480px] overflow-hidden border border-[var(--line)] bg-[rgba(32,35,31,.58)] p-6 shadow-2xl shadow-black/30">
-          <div className="absolute inset-0 opacity-30 [background-image:radial-gradient(circle,var(--paper)_1px,transparent_1px)] [background-size:26px_26px]" />
+        {/* Decorative dossier card with traditional binding threads and stamps */}
+        <div className="archive-frame relative min-h-[500px] overflow-hidden p-8 pl-16 animate-dossier-unfold shadow-[0_30px_60px_rgba(0,0,0,0.45)]">
+          {/* Traditional Book Spine/Binding thread decoration */}
+          <div className="archive-frame-binding" />
+          <div className="archive-frame-thread top-[12%]" />
+          <div className="archive-frame-thread top-[38%]" />
+          <div className="archive-frame-thread top-[62%]" />
+          <div className="archive-frame-thread bottom-[12%]" />
+
+          <div className="absolute inset-0 opacity-[0.18] [background-image:repeating-linear-gradient(3deg,rgba(217,201,164,.14)_0_1px,transparent_1px_8px)] pointer-events-none" />
+
+          {/* Subtle ink halo bleed effect in the background */}
+          <div className="absolute left-[25%] top-[35%] -z-10 size-48 rounded-full bg-[var(--cinnabar)] opacity-[0.035] blur-[80px] pointer-events-none" />
+
           <div className="relative flex items-center justify-between border-b border-[var(--line)] pb-4 text-xs tracking-[0.2em] text-[var(--fog)]">
             <span>卷一 · 关系摘录</span>
             <span>防剧透：初入江湖</span>
           </div>
-          <div className="relative mt-14 grid grid-cols-3 gap-8">
+
+          <div className="relative mt-14 grid grid-cols-3 gap-6">
             {["旧识", "主角", "引路人", "疑点", "清河", "故人"].map((label, index) => (
               <div
                 key={label}
-                className={`grid min-h-24 place-items-center border bg-[var(--paper)] p-3 text-center text-sm text-[var(--ink)] shadow-xl ${
+                className={`character-slip grid min-h-24 place-items-center p-3 text-center text-sm transition-[transform,border-color,box-shadow] duration-300 hover:scale-105 hover:rotate-1 ${
                   index === 1
-                    ? "border-[var(--cinnabar)] outline outline-4 outline-[rgba(157,46,37,.18)]"
-                    : "border-black/20"
+                    ? "character-slip-center character-slip-selected"
+                    : ""
                 }`}
               >
                 {label}
               </div>
             ))}
           </div>
-          <p className="absolute bottom-6 left-6 right-6 border-l-2 border-[var(--cinnabar)] pl-4 text-xs leading-6 text-[var(--fog)]">
+
+          <p className="absolute bottom-8 left-16 right-8 border-l-2 border-[var(--cinnabar)] pl-4 text-xs leading-6 text-[var(--fog)]">
             部分关系涉及后续章节，已按当前进度隐藏。
           </p>
+
+          {/* Decorative stamp on dossier card */}
+          <div className="absolute bottom-6 right-8 cinnabar-seal-large pointer-events-none z-10" aria-hidden="true">
+            <span>燕云</span>
+            <span>秘卷</span>
+          </div>
         </div>
       </section>
 
       {/* Feature cards */}
-      <ArchiveCardList entries={entries} />
+      <div className="animate-card-slide-in">
+        <ArchiveCardList entries={entries} />
+      </div>
 
       {/* Disclaimer footer */}
       <footer className="mx-auto max-w-[1500px] px-5 py-12 text-xs leading-6 text-[var(--fog)] lg:px-10">

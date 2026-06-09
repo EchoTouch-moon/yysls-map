@@ -30,6 +30,7 @@ export type GraphEdge = {
   label: string;
   summary: string;
   directional: boolean;
+  confidence: number;
 };
 
 export type GraphData = {

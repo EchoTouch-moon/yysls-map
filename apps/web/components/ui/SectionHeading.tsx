@@ -11,6 +11,8 @@ interface SectionHeadingProps {
   level?: 1 | 2 | 3;
   /** Additional class names applied to the outer wrapper. */
   className?: string;
+  /** Custom class name applied to the heading element. */
+  headingClassName?: string;
 }
 
 /**
@@ -25,6 +27,7 @@ export function SectionHeading({
   description,
   level = 2,
   className = "",
+  headingClassName = "",
 }: SectionHeadingProps) {
   const Tag = `h${level}` as const;
 
@@ -35,7 +38,7 @@ export function SectionHeading({
           {eyebrow}
         </p>
       )}
-      <Tag className="max-w-3xl text-5xl font-semibold leading-[1.22] tracking-[0.04em] md:text-7xl">
+      <Tag className={`max-w-3xl font-semibold leading-[1.22] tracking-[0.04em] ${headingClassName || "text-5xl md:text-7xl"}`}>
         {children}
       </Tag>
       {description && (

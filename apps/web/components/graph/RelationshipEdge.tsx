@@ -12,6 +12,7 @@ import type { RelationType } from "@/lib/graph";
 export type RelationshipEdgeData = Record<string, unknown> & {
   label: string;
   relationType: RelationType;
+  confidence: number;
 };
 
 export type RelationshipFlowEdge = Edge<
@@ -20,16 +21,16 @@ export type RelationshipFlowEdge = Edge<
 >;
 
 const COLORS: Record<RelationType, string> = {
-  mentor: "#66705a",
-  family: "#cb4a37",
-  enemy: "#b91c1c",
-  ally: "#3b82f6",
-  old_acquaintance: "#a9a68e",
-  exploitation: "#d97706",
-  hierarchy: "#8b5cf6",
-  same_sect: "#2dd4bf",
-  interest: "#ec4899",
-  hidden: "#6b7280",
+  mentor: "#7f8a6b",
+  family: "#c04a36",
+  enemy: "#9f322b",
+  ally: "#78908a",
+  old_acquaintance: "#a99c7d",
+  exploitation: "#a26b35",
+  hierarchy: "#786b58",
+  same_sect: "#607d6a",
+  interest: "#9a7258",
+  hidden: "#746f64",
 };
 
 function RelationshipEdgeInner({
@@ -54,8 +55,26 @@ function RelationshipEdgeInner({
     borderRadius: 12,
   });
   const color = COLORS[data?.relationType ?? "hidden"];
+  const confidence = data?.confidence ?? 1;
+
+  const labelClassName = selected
+    ? "pointer-events-none absolute border border-[var(--cinnabar-bright)] bg-[var(--cinnabar)] px-2.5 py-0.5 text-[10px] tracking-[0.08em] text-white shadow-xl rounded-sm transition-[border-color,background-color,color,box-shadow] duration-200"
+    : "pointer-events-none absolute border border-[rgba(217,201,164,.28)] bg-[rgba(28,25,20,.94)] px-2 py-0.5 text-[9px] tracking-[0.08em] text-[var(--paper-deep)] shadow-lg rounded-sm transition-[border-color,background-color,color,box-shadow] duration-200";
+
   return (
     <>
+      {/* Background shadow glow line when selected */}
+      {selected && (
+        <BaseEdge
+          id={`${id}-glow`}
+          path={path}
+          style={{
+            stroke: color,
+            strokeOpacity: 0.35,
+            strokeWidth: 6,
+          }}
+        />
+      )}
       <BaseEdge
         id={id}
         path={path}
@@ -64,11 +83,12 @@ function RelationshipEdgeInner({
           stroke: color,
           strokeOpacity: selected ? 1 : 0.72,
           strokeWidth: selected ? 2.5 : 1.5,
+          strokeDasharray: confidence < 0.7 ? "4 5" : undefined,
         }}
       />
       <EdgeLabelRenderer>
         <span
-          className="pointer-events-none absolute border border-[var(--line)] bg-[var(--ink)] px-1.5 py-0.5 text-[9px] text-[var(--fog)]"
+          className={labelClassName}
           style={{
             transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px)`,
           }}

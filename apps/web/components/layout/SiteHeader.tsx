@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useState } from "react";
 
 import { Drawer } from "@/components/ui/Drawer";
@@ -24,23 +25,24 @@ const NAV_LINKS: ReadonlyArray<{ href: string; label: string }> = [
  */
 export function SiteHeader() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const pathname = usePathname();
 
   const openDrawer = useCallback(() => setDrawerOpen(true), []);
   const closeDrawer = useCallback(() => setDrawerOpen(false), []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[rgba(19,21,18,.84)] backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[rgba(21,19,15,.94)] shadow-[0_10px_35px_rgba(0,0,0,.22)] backdrop-blur-md">
       <div className="mx-auto flex max-w-[1500px] items-center justify-between px-5 py-4 lg:px-10">
         {/* Logo */}
         <Link
           href="/"
           className="flex items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cinnabar-bright)]"
         >
-          <span className="grid size-9 place-items-center border border-[var(--cinnabar-bright)] text-sm text-[var(--cinnabar-bright)]">
+          <span className="seal-mark !size-9 text-sm">
             燕
           </span>
           <span>
-            <strong className="block tracking-[0.24em]">燕云卷宗</strong>
+            <strong className="block tracking-[0.28em] text-[var(--paper-light)]">燕云卷宗</strong>
             <small className="text-[10px] tracking-[0.18em] text-[var(--fog)]">
               非官方剧情关系图谱
             </small>
@@ -49,15 +51,28 @@ export function SiteHeader() {
 
         {/* Desktop nav */}
         <nav aria-label="主导航" className="hidden items-center gap-7 text-sm text-[var(--paper)] md:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cinnabar-bright)]"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(link.href));
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`relative py-2 tracking-[0.08em] transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cinnabar-bright)] ${
+                  isActive
+                    ? "nav-bookmark-active font-medium"
+                    : "after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-0 after:bg-[var(--cinnabar-bright)] after:transition-[left,width] hover:after:left-0 hover:after:w-full"
+                }`}
+              >
+                {link.label}
+                {isActive && (
+                  <span
+                    className="absolute bottom-[-17px] left-1/2 -translate-x-1/2 w-3.5 h-4 bg-[var(--cinnabar)] clip-bookmark-tail shadow-md pointer-events-none"
+                    aria-hidden="true"
+                  />
+                )}
+              </Link>
+            );
+          })}
           <ProgressSelect variant="compact" />
         </nav>
 
@@ -128,16 +143,23 @@ export function SiteHeader() {
         </div>
 
         <nav aria-label="移动端导航" className="flex flex-col gap-1">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={closeDrawer}
-              className="border-b border-[var(--line)] py-3 text-sm tracking-wide text-[var(--paper)] transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--cinnabar-bright)]"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(link.href));
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={closeDrawer}
+                className={`py-3 text-sm tracking-wide transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--cinnabar-bright)] ${
+                  isActive
+                    ? "border-b border-[var(--cinnabar)] text-[var(--cinnabar-bright)] font-semibold pl-2"
+                    : "border-b border-[var(--line)] text-[var(--paper)] hover:text-white"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="mt-auto border-t border-[var(--line)] pt-6">

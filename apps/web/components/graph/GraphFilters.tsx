@@ -53,7 +53,7 @@ export function GraphFilters({
   );
 
   const fieldClass =
-    "border border-[var(--line)] bg-[var(--ink)] px-3 py-2 text-xs text-[var(--paper)]";
+    "border border-[var(--line)] bg-[rgba(21,19,15,.78)] px-3 py-2 text-xs text-[var(--paper)] outline-none transition focus:border-[var(--paper-deep)]";
 
   return (
     <div className="flex flex-wrap gap-3">
@@ -68,11 +68,11 @@ export function GraphFilters({
           }}
           onFocus={() => setOpen(true)}
           onBlur={() => window.setTimeout(() => setOpen(false), 120)}
-          className={`w-48 ${fieldClass}`}
+          className={`w-44 ${fieldClass}`}
           placeholder="搜索角色…"
         />
         {open && results.length > 0 && (
-          <ul className="absolute z-50 mt-1 w-64 border border-[var(--line)] bg-[var(--ink)] shadow-xl">
+          <ul className="absolute z-50 mt-1 w-64 border border-[var(--line-strong)] bg-[var(--ink)] shadow-2xl">
             {results.map((node) => (
               <li key={node.id}>
                 <button

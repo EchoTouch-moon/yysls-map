@@ -2,15 +2,19 @@
 @import "@xyflow/react/dist/style.css";
 
 :root {
-  --ink: #131512;
-  --ink-soft: #20231f;
-  --paper: #e8dfc6;
-  --paper-light: #f5efd9;
-  --cinnabar: #9d2e25;
-  --cinnabar-bright: #cb4a37;
-  --moss: #66705a;
-  --fog: #a9a68e;
-  --line: rgba(232, 223, 198, 0.18);
+  --ink: #15130f;
+  --ink-soft: #211e18;
+  --ink-raised: #29251d;
+  --paper: #d9c9a4;
+  --paper-light: #eee2c5;
+  --paper-deep: #b9a77f;
+  --cinnabar: #8f2f25;
+  --cinnabar-bright: #c04a36;
+  --moss: #64705b;
+  --fog: #9f967f;
+  --line: rgba(217, 201, 164, 0.2);
+  --line-strong: rgba(217, 201, 164, 0.36);
+  --shadow-ink: rgba(3, 3, 2, 0.58);
 }
 
 * {
@@ -27,12 +31,24 @@ body {
   margin: 0;
   color: var(--paper-light);
   background:
-    radial-gradient(circle at 80% 5%, rgba(157, 46, 37, 0.16), transparent 30rem),
-    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    radial-gradient(circle at 78% 3%, rgba(143, 47, 37, 0.17), transparent 31rem),
+    radial-gradient(circle at 8% 62%, rgba(100, 112, 91, 0.08), transparent 28rem),
+    repeating-linear-gradient(3deg, rgba(238, 226, 197, 0.012) 0 1px, transparent 1px 6px),
     var(--ink);
-  background-size: auto, 42px 42px, 42px 42px, auto;
   font-family: "Noto Serif SC", "Songti SC", serif;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  opacity: 0.34;
+  background:
+    linear-gradient(90deg, transparent 0 5%, rgba(217, 201, 164, 0.025) 5.1%, transparent 5.3%),
+    repeating-radial-gradient(circle at 20% 30%, rgba(217, 201, 164, 0.055) 0 0.5px, transparent 0.8px 5px);
+  mix-blend-mode: screen;
 }
 
 a {
@@ -47,16 +63,507 @@ textarea {
   font: inherit;
 }
 
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  color: var(--paper-light);
+  background: rgba(143, 47, 37, 0.72);
+}
+
+.archive-page {
+  position: relative;
+}
+
+.archive-page::before {
+  position: absolute;
+  top: 2.75rem;
+  right: 3rem;
+  width: 5.5rem;
+  height: 5.5rem;
+  border: 1px solid rgba(192, 74, 54, 0.24);
+  content: "";
+  transform: rotate(8deg);
+  pointer-events: none;
+}
+
+.archive-kicker {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--cinnabar-bright);
+}
+
+.archive-frame {
+  border: 1px solid var(--line-strong);
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.34), transparent 1.1rem, transparent calc(100% - 1.1rem), rgba(0, 0, 0, 0.34)),
+    linear-gradient(rgba(217, 201, 164, 0.025), rgba(217, 201, 164, 0.01)),
+    var(--ink-soft);
+  box-shadow:
+    0 28px 70px var(--shadow-ink),
+    inset 0 0 0 4px rgba(21, 19, 15, 0.9),
+    inset 0 0 0 5px rgba(217, 201, 164, 0.1);
+}
+
+.archive-frame::before,
+.archive-frame::after {
+  position: absolute;
+  top: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+  width: 1px;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(transparent, var(--line-strong), transparent);
+}
+
+.archive-frame::before {
+  left: 0.9rem;
+}
+
+.archive-frame::after {
+  right: 0.9rem;
+}
+
+.seal-mark {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid var(--cinnabar-bright);
+  color: var(--cinnabar-bright);
+  font-size: 0.85rem;
+  transform: rotate(-4deg);
+  box-shadow: inset 0 0 0 3px rgba(143, 47, 37, 0.12);
+}
+
+.archive-button {
+  border: 1px solid rgba(192, 74, 54, 0.55);
+  padding: 0.65rem 0.9rem;
+  color: var(--paper);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.archive-button:hover {
+  border-color: var(--cinnabar-bright);
+  color: var(--paper-light);
+  background: rgba(143, 47, 37, 0.12);
+}
+
+.graph-toolbar {
+  display: flex;
+  min-height: 6.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--line);
+  padding: 1.25rem 2rem;
+  background:
+    linear-gradient(90deg, rgba(143, 47, 37, 0.08), transparent 26%),
+    rgba(21, 19, 15, 0.52);
+}
+
+
+
+.graph-canvas {
+  position: relative;
+  height: 70vh;
+  min-height: 630px;
+  background:
+    radial-gradient(circle at center, rgba(217, 201, 164, 0.07), transparent 44%),
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(217, 201, 164, 0.018) 32px),
+    #1c1914;
+}
+
+.graph-status,
+.graph-mobile-notice {
+  display: grid;
+  min-height: 68vh;
+  place-items: center;
+  align-content: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  color: var(--fog);
+  text-align: center;
+}
+
+@media (min-width: 48rem) {
+  .graph-mobile-notice {
+    display: none !important;
+  }
+}
+
+.character-slip {
+  position: relative;
+  border: 1px solid rgba(80, 67, 45, 0.68);
+  color: #2a241b;
+  background:
+    linear-gradient(96deg, rgba(96, 69, 38, 0.08), transparent 18%, transparent 82%, rgba(96, 69, 38, 0.1)),
+    repeating-linear-gradient(2deg, rgba(70, 50, 30, 0.035) 0 1px, transparent 1px 5px),
+    #d5c49e;
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.34),
+    inset 0 0 0 3px rgba(239, 224, 188, 0.34);
+}
+
+.character-slip::before {
+  position: absolute;
+  top: 0.38rem;
+  bottom: 0.38rem;
+  left: 0.38rem;
+  width: 2px;
+  content: "";
+  background: rgba(143, 47, 37, 0.48);
+}
+
+.character-slip:hover {
+  transform: translateY(-3px);
+  border-color: var(--paper-deep);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.42);
+}
+
+.character-slip-center {
+  border-color: rgba(192, 74, 54, 0.8);
+  color: var(--paper-light);
+  background:
+    linear-gradient(105deg, rgba(192, 74, 54, 0.22), transparent 38%),
+    repeating-linear-gradient(2deg, rgba(238, 226, 197, 0.025) 0 1px, transparent 1px 5px),
+    #272119;
+  box-shadow:
+    0 18px 46px rgba(0, 0, 0, 0.55),
+    0 0 0 5px rgba(143, 47, 37, 0.11),
+    inset 0 0 0 3px rgba(217, 201, 164, 0.08);
+}
+
+.character-slip-selected {
+  outline: 1px solid var(--cinnabar-bright);
+  outline-offset: 5px;
+}
+
+.archive-minimap {
+  border: 1px solid var(--line) !important;
+  background: rgba(21, 19, 15, 0.86) !important;
+}
+
+.react-flow__controls {
+  overflow: hidden;
+  border: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.react-flow__controls-button {
+  border-bottom-color: var(--line) !important;
+  color: var(--paper) !important;
+  background: rgba(21, 19, 15, 0.9) !important;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--ink-raised) !important;
+}
+
+.react-flow__controls-button svg {
+  fill: currentColor !important;
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
+    transition-delay: 0s !important;
+    transition-duration: 0s !important;
+  }
+
+  .animate-dossier-unfold,
+  .animate-text-fade-in,
+  .animate-card-slide-in {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .book-stage::before,
+  .book-stage::after {
+    display: none !important;
+  }
+}
+
 /* ---- <dialog> backdrop (Drawer) ---- */
 
 dialog::backdrop {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 /* Remove default dialog border / padding — the component sets its own. */
 dialog[open] {
   border: none;
   padding: 0;
+}
+
+/* ==========================================
+   燕云卷宗 Premium Visual Upgrade Classes
+   ========================================== */
+
+/* Xuan Paper Texture using inline high-performance SVG paths of organic fibers */
+.xuan-paper {
+  background-color: var(--ink-soft);
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(217, 201, 164, 0.04), transparent 85%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M10,25 Q18,20 25,32 T45,18 T70,30' fill='none' stroke='rgba%28217,201,164,0.045%29' stroke-width='0.6'/%3E%3Cpath d='M70,85 Q82,75 90,92 T110,80' fill='none' stroke='rgba%28217,201,164,0.035%29' stroke-width='0.5'/%3E%3Cpath d='M5,70 Q15,75 22,65 T40,70' fill='none' stroke='rgba%28217,201,164,0.04%29' stroke-width='0.5'/%3E%3Cpath d='M95,20 Q105,30 115,25' fill='none' stroke='rgba%28217,201,164,0.05%29' stroke-width='0.6'/%3E%3C/svg%3E");
+}
+
+/* Large Traditional Cinnabar Seal Stamp */
+.cinnabar-seal-large {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border: 2px solid var(--cinnabar-bright);
+  color: var(--cinnabar-bright);
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 0.95rem;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: 0.05em;
+  transform: rotate(-6deg);
+  opacity: 0.85;
+  padding: 4px;
+  background: radial-gradient(circle at center, rgba(192, 74, 54, 0.08) 0%, transparent 100%);
+  box-shadow:
+    0 0 0 4px rgba(33, 30, 24, 0.95),
+    inset 0 0 0 2px var(--cinnabar-bright),
+    inset 0 0 0 4px rgba(33, 30, 24, 0.95);
+  text-shadow: 0 0 1px rgba(192, 74, 54, 0.3);
+  user-select: none;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.archive-frame:hover .cinnabar-seal-large {
+  transform: rotate(-3deg) scale(1.06);
+}
+
+/* Book binding spine effect */
+.archive-frame-binding {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 28px;
+  border-right: 1px solid var(--line-strong);
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.1) 40%, transparent 100%),
+    rgba(21, 19, 15, 0.28);
+  pointer-events: none;
+  z-index: 25;
+}
+
+.archive-frame-binding::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 13px;
+  width: 1px;
+  background: rgba(217, 201, 164, 0.16);
+  border-left: 1px dashed rgba(217, 201, 164, 0.08);
+}
+
+.archive-frame-thread {
+  position: absolute;
+  left: 6px;
+  width: 15px;
+  height: 2px;
+  background: var(--paper-deep);
+  opacity: 0.72;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 1px;
+}
+
+/* Bookmark tail ribbon for site navigation */
+.clip-bookmark-tail {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 78%, 0% 100%);
+}
+
+a.nav-bookmark-active {
+  color: #ffffff;
+}
+
+/* Elegant Unfolding entry animations for page load */
+@keyframes dossier-unfold {
+  0% {
+    transform: scaleX(0.96) translateY(8px);
+    opacity: 0;
+    clip-path: inset(0 48% 0 48%);
+  }
+  65% {
+    transform: scaleX(1.01) translateY(2px);
+    opacity: 0.95;
+    clip-path: inset(0 6% 0 6%);
+  }
+  100% {
+    transform: scaleX(1) translateY(0);
+    opacity: 1;
+    clip-path: inset(0 0% 0 0%);
+  }
+}
+
+.animate-dossier-unfold {
+  opacity: 0;
+  animation: dossier-unfold 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes text-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-text-fade-in {
+  opacity: 0;
+  animation: text-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+
+.animate-card-slide-in {
+  opacity: 0;
+  animation: text-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+}
+
+/* Protagonist / main node breathing animations */
+@keyframes seal-breath {
+  0%, 100% {
+    opacity: 0.06;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.13;
+    transform: scale(1.04);
+  }
+}
+
+.animate-seal-breath {
+  animation: seal-breath 4s ease-in-out infinite;
+}
+
+/* Hand-written marginal annotations */
+.marginalia-note {
+  writing-mode: vertical-rl;
+  font-family: "Songti SC", "SimSun", serif;
+  color: var(--cinnabar-bright);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  opacity: 0.76;
+  line-height: 1.5;
+  user-select: none;
+  border-right: 1px dashed rgba(192, 74, 54, 0.24);
+  padding-right: 0.35rem;
+}
+
+/* 3D Page Turn fold & shadow improvements */
+.book-stage {
+  position: relative;
+  overflow: hidden;
+  perspective: 1600px;
+  transform-style: preserve-3d;
+}
+
+.book-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 35;
+  pointer-events: none;
+  background: linear-gradient(to right, rgba(21, 19, 15, 0.58) 0%, rgba(217, 201, 164, 0.06) 50%, rgba(21, 19, 15, 0.82) 100%);
+  opacity: 0;
+  transition: opacity 0.26s cubic-bezier(0.25, 1, 0.3, 1);
+}
+
+.book-stage-turning::before {
+  opacity: 1;
+}
+
+.book-stage::after {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  content: "";
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: left center;
+  background:
+    linear-gradient(90deg, rgba(21, 19, 15, 0.95) 0%, rgba(217, 201, 164, 0.22) 50%, rgba(21, 19, 15, 0.95) 100%),
+    var(--ink-soft);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.85);
+}
+
+.book-stage-turning::after {
+  animation: turn-archive-page 480ms cubic-bezier(.4, 0, .2, 1) forwards;
+}
+
+@keyframes turn-archive-page {
+  0% {
+    opacity: 0;
+    transform: rotateY(-95deg);
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotateY(95deg);
+  }
+}
+
+.book-stage .graph-canvas {
+  transition: opacity 0.24s ease, transform 0.24s ease;
+}
+
+.book-stage-turning .graph-canvas {
+  opacity: 0.15;
+  transform: scale(0.975) rotateY(1.5deg);
+}
+
+/* React Flow custom styling overrides */
+.react-flow__controls {
+  backdrop-filter: blur(4px) !important;
+  background: rgba(28, 25, 20, 0.85) !important;
+  border-radius: 2px !important;
+}
+
+.react-flow__controls-button {
+  width: 28px !important;
+  height: 28px !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: none !important;
+}
+
+.archive-minimap {
+  border: 1px solid var(--line-strong) !important;
+  border-radius: 2px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
 }

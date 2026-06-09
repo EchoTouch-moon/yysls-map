@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { useProgress } from "@/components/ui/ProgressSelect";
@@ -73,6 +74,14 @@ function ProfileForProgress({
     <article className="mt-10 grid gap-8 border border-[var(--line)] bg-[rgba(32,35,31,.52)] p-8 md:grid-cols-[1fr_16rem]">
       <div>
         <h1 className="text-4xl">{detail.name}</h1>
+        {detail.slug && (
+          <Link
+            href={`/graph?focus=${encodeURIComponent(detail.slug)}`}
+            className="archive-button mt-5 inline-block"
+          >
+            以此人为中心展开关系
+          </Link>
+        )}
         <p className="mt-6 leading-8 text-[var(--paper)]">{detail.summary}</p>
         {detail.interpretation && (
           <section className="mt-8 border-l-2 border-[var(--cinnabar)] pl-5">
