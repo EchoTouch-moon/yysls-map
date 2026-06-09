@@ -140,6 +140,7 @@ def get_graph(
                 label=relationship.label,
                 summary=relationship.summary,
                 directional=relationship.is_directional,
+                confidence=float(relationship.confidence),
             )
         )
 

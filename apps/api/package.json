@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "uv run --no-sync --cache-dir /tmp/yysls-map-uv-cache fastapi dev app/main.py --host 127.0.0.1 --port 8000",
+    "import:content": "uv run --no-sync --cache-dir /tmp/yysls-map-uv-cache python -m app.content_import ../../docs/yysls-qinghe-v4.json --replace-existing",
     "lint": "uv run --no-sync --cache-dir /tmp/yysls-map-uv-cache ruff check .",
     "format": "uv run --no-sync --cache-dir /tmp/yysls-map-uv-cache ruff format .",
     "typecheck": "uv run --no-sync --cache-dir /tmp/yysls-map-uv-cache mypy app",

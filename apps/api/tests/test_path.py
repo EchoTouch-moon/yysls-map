@@ -3,6 +3,7 @@ from types import SimpleNamespace
 from uuid import uuid4
 
 from app.domain import ProgressKey, RelationType
+from app.schemas import GraphEdge
 
 
 @dataclass
@@ -28,3 +29,17 @@ def test_path_contract_shape() -> None:
     assert ProgressKey.QINGHE.value == "qinghe"
     assert SimpleNamespace(found=True).found
 
+
+def test_graph_edge_exposes_confidence() -> None:
+    edge = GraphEdge(
+        id=uuid4(),
+        source=uuid4(),
+        target=uuid4(),
+        relation_type=RelationType.HIDDEN,
+        label="待考关系",
+        summary="玩家根据任务细节整理出的关系。",
+        directional=False,
+        confidence=0.6,
+    )
+
+    assert edge.confidence == 0.6
