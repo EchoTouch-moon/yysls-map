@@ -66,6 +66,7 @@ class GraphEdge(BaseModel):
     label: str
     summary: str
     directional: bool
+    confidence: float = Field(ge=0, le=1)
 
 
 class GraphData(BaseModel):

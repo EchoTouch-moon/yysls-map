@@ -1319,6 +1319,8 @@ export interface components {
             summary: string;
             /** Directional */
             directional: boolean;
+            /** Confidence */
+            confidence: number;
         };
         /** GraphNode */
         GraphNode: {
