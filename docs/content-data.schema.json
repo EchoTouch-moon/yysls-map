@@ -1,0 +1,520 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yysls-map.local/schemas/content-data.schema.json",
+  "title": "YYSLS normalized content dataset",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset",
+    "chapters",
+    "factions",
+    "characters",
+    "events",
+    "relationships",
+    "sources"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "dataset": {
+      "$ref": "#/$defs/dataset"
+    },
+    "chapters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/chapter"
+      }
+    },
+    "factions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/faction"
+      }
+    },
+    "characters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/character"
+      }
+    },
+    "events": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationship"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    }
+  },
+  "$defs": {
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/slug"
+      }
+    },
+    "progressKey": {
+      "enum": [
+        "start",
+        "qinghe",
+        "kaifeng",
+        "current",
+        "unrestricted"
+      ]
+    },
+    "spoilerLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3
+    },
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "game",
+        "language",
+        "collected_at",
+        "content_scope",
+        "disclaimer"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "game": {
+          "const": "燕云十六声"
+        },
+        "language": {
+          "const": "zh-CN"
+        },
+        "collected_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "content_scope": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "disclaimer": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      }
+    },
+    "chapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "slug",
+        "title",
+        "region",
+        "sort_order",
+        "progress_key",
+        "progress_rank",
+        "summary",
+        "source_ids"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "slug": {
+          "$ref": "#/$defs/slug"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "region": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sort_order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "progress_key": {
+          "$ref": "#/$defs/progressKey"
+        },
+        "progress_rank": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "source_ids": {
+          "$ref": "#/$defs/sourceIds"
+        }
+      }
+    },
+    "faction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "slug",
+        "name",
+        "faction_type",
+        "summary",
+        "spoiler_level",
+        "visible_after_progress",
+        "source_ids"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "slug": {
+          "$ref": "#/$defs/slug"
+        },
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "faction_type": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "spoiler_level": {
+          "$ref": "#/$defs/spoilerLevel"
+        },
+        "visible_after_progress": {
+          "$ref": "#/$defs/progressKey"
+        },
+        "source_ids": {
+          "$ref": "#/$defs/sourceIds"
+        }
+      }
+    },
+    "character": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "slug",
+        "name",
+        "aliases",
+        "summary",
+        "identity_tags",
+        "faction_id",
+        "importance",
+        "spoiler_level",
+        "first_appear_chapter_id",
+        "visible_after_progress",
+        "source_ids"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "slug": {
+          "$ref": "#/$defs/slug"
+        },
+        "name": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "aliases": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "interpretation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "identity_tags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonEmptyString"
+          }
+        },
+        "faction_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/slug"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "importance": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "spoiler_level": {
+          "$ref": "#/$defs/spoilerLevel"
+        },
+        "first_appear_chapter_id": {
+          "$ref": "#/$defs/slug"
+        },
+        "visible_after_progress": {
+          "$ref": "#/$defs/progressKey"
+        },
+        "source_ids": {
+          "$ref": "#/$defs/sourceIds"
+        },
+        "review_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "slug",
+        "title",
+        "summary",
+        "impact",
+        "chapter_id",
+        "part",
+        "sort_order",
+        "spoiler_level",
+        "visible_after_progress",
+        "character_ids",
+        "faction_ids",
+        "source_ids"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "slug": {
+          "$ref": "#/$defs/slug"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "impact": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "chapter_id": {
+          "$ref": "#/$defs/slug"
+        },
+        "part": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sort_order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "spoiler_level": {
+          "$ref": "#/$defs/spoilerLevel"
+        },
+        "visible_after_progress": {
+          "$ref": "#/$defs/progressKey"
+        },
+        "character_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/slug"
+          }
+        },
+        "faction_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/slug"
+          }
+        },
+        "source_ids": {
+          "$ref": "#/$defs/sourceIds"
+        }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source_character_id",
+        "target_character_id",
+        "relation_type",
+        "label",
+        "summary",
+        "stage",
+        "directional",
+        "chapter_id",
+        "event_ids",
+        "spoiler_level",
+        "visible_after_progress",
+        "confidence",
+        "source_ids"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "source_character_id": {
+          "$ref": "#/$defs/slug"
+        },
+        "target_character_id": {
+          "$ref": "#/$defs/slug"
+        },
+        "relation_type": {
+          "enum": [
+            "mentor",
+            "family",
+            "enemy",
+            "ally",
+            "old_acquaintance",
+            "exploitation",
+            "hierarchy",
+            "same_sect",
+            "interest",
+            "hidden"
+          ]
+        },
+        "label": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "stage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "directional": {
+          "type": "boolean"
+        },
+        "chapter_id": {
+          "$ref": "#/$defs/slug"
+        },
+        "event_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/slug"
+          }
+        },
+        "spoiler_level": {
+          "$ref": "#/$defs/spoilerLevel"
+        },
+        "visible_after_progress": {
+          "$ref": "#/$defs/progressKey"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "source_ids": {
+          "$ref": "#/$defs/sourceIds"
+        },
+        "review_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source_type",
+        "title",
+        "reference",
+        "locator",
+        "accessed_at",
+        "note"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slug"
+        },
+        "source_type": {
+          "enum": [
+            "player_note",
+            "quest_reference",
+            "official_reference",
+            "community_analysis"
+          ]
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "reference": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "locator": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "accessed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}
