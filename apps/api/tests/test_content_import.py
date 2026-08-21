@@ -401,7 +401,10 @@ def test_content_import_postgresql_lifecycle() -> None:
                 update={"event_historical_links": dataset.event_historical_links[:-1]}
             )
             import_dataset(db, dataset_without_link)
-            assert db.scalar(select(func.count()).select_from(EventHistoricalLink)) == total_links - 1
+            assert (
+                db.scalar(select(func.count()).select_from(EventHistoricalLink))
+                == total_links - 1
+            )
             assert (
                 db.get(
                     EventHistoricalLink,
