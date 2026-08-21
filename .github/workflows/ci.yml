@@ -45,8 +45,6 @@ jobs:
         working-directory: apps/api
       - run: npm run verify
       - run: npm run test:api:db
-      - run: uv run --no-sync python -m app.seed
-        working-directory: apps/api
       - run: npm run import:content --workspace @yysls/api
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
