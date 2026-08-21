@@ -12,11 +12,15 @@
     "characters",
     "events",
     "relationships",
-    "sources"
+    "sources",
+    "story_arcs",
+    "historical_references",
+    "historical_contexts",
+    "event_historical_links"
   ],
   "properties": {
     "schema_version": {
-      "const": "1.0"
+      "const": "1.1"
     },
     "dataset": {
       "$ref": "#/$defs/dataset"
@@ -59,6 +63,31 @@
       "minItems": 1,
       "items": {
         "$ref": "#/$defs/source"
+      }
+    },
+    "story_arcs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/storyArc"
+      }
+    },
+    "historical_references": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/historicalReference"
+      }
+    },
+    "historical_contexts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/historicalContext"
+      }
+    },
+    "event_historical_links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/eventHistoricalLink"
       }
     }
   },
@@ -469,6 +498,95 @@
             "null"
           ]
         }
+      }
+    },
+    "storyArc": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "slug", "title", "summary", "core_question", "estimated_minutes", "spoiler_level", "visible_after_progress", "beats"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "slug": { "$ref": "#/$defs/slug" },
+        "title": { "$ref": "#/$defs/nonEmptyString" },
+        "summary": { "$ref": "#/$defs/nonEmptyString" },
+        "core_question": { "$ref": "#/$defs/nonEmptyString" },
+        "estimated_minutes": { "type": "integer", "minimum": 1, "maximum": 60 },
+        "spoiler_level": { "$ref": "#/$defs/spoilerLevel" },
+        "visible_after_progress": { "$ref": "#/$defs/progressKey" },
+        "beats": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/storyArcBeat" }
+        }
+      }
+    },
+    "storyArcBeat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "event_id", "sort_order", "role", "guide", "why_it_matters", "bridge", "next_question", "spoiler_level", "visible_after_progress"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "event_id": { "$ref": "#/$defs/slug" },
+        "sort_order": { "type": "integer", "minimum": 0 },
+        "role": { "enum": ["setup", "clue", "escalation", "turning_point", "consequence", "resolution"] },
+        "guide": { "$ref": "#/$defs/nonEmptyString" },
+        "why_it_matters": { "$ref": "#/$defs/nonEmptyString" },
+        "bridge": { "$ref": "#/$defs/nonEmptyString" },
+        "next_question": { "$ref": "#/$defs/nonEmptyString" },
+        "spoiler_level": { "$ref": "#/$defs/spoilerLevel" },
+        "visible_after_progress": { "$ref": "#/$defs/progressKey" }
+      }
+    },
+    "historicalReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "slug", "reference_type", "title", "publisher", "url", "locator", "accessed_at"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "slug": { "$ref": "#/$defs/slug" },
+        "reference_type": { "enum": ["primary_source", "scholarly_research", "institutional_reference"] },
+        "title": { "$ref": "#/$defs/nonEmptyString" },
+        "publisher": { "$ref": "#/$defs/nonEmptyString" },
+        "url": { "type": "string", "pattern": "^https?://[^\\s/:?#]+(?::[0-9]+)?(?:[/?#].*)?$", "minLength": 1 },
+        "locator": { "type": ["string", "null"] },
+        "accessed_at": { "type": "string", "format": "date" }
+      }
+    },
+    "historicalContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "slug", "title", "period_label", "summary", "fact_kind", "boundary_note", "spoiler_level", "visible_after_progress", "reference_ids"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "slug": { "$ref": "#/$defs/slug" },
+        "title": { "$ref": "#/$defs/nonEmptyString" },
+        "period_label": { "$ref": "#/$defs/nonEmptyString" },
+        "summary": { "$ref": "#/$defs/nonEmptyString" },
+        "fact_kind": { "enum": ["work_fact", "historical_fact", "credible_parallel", "editorial_inference"] },
+        "boundary_note": { "$ref": "#/$defs/nonEmptyString" },
+        "spoiler_level": { "$ref": "#/$defs/spoilerLevel" },
+        "visible_after_progress": { "$ref": "#/$defs/progressKey" },
+        "reference_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/slug" }
+        }
+      }
+    },
+    "eventHistoricalLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "event_id", "historical_context_id", "relation_kind", "editorial_note", "sort_order", "spoiler_level", "visible_after_progress"],
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "event_id": { "$ref": "#/$defs/slug" },
+        "historical_context_id": { "$ref": "#/$defs/slug" },
+        "relation_kind": { "enum": ["setting", "inspired_by", "parallel", "contrast", "fictionalized"] },
+        "editorial_note": { "$ref": "#/$defs/nonEmptyString" },
+        "sort_order": { "type": "integer", "minimum": 0 },
+        "spoiler_level": { "$ref": "#/$defs/spoilerLevel" },
+        "visible_after_progress": { "$ref": "#/$defs/progressKey" }
       }
     },
     "source": {

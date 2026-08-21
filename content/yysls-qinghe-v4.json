@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
 
   "dataset": {
     "id": "qinghe-chapter-1-v4",
@@ -7,7 +7,7 @@
     "game": "燕云十六声",
     "language": "zh-CN",
     "collected_at": "2026-06-08",
-    "content_scope": "第一章·神仙不渡（清河区域）四篇主线剧情：又见新来燕、匹马映林嘶、菱花尘满、为谁归去。含序章回忆、清河暗线（田英）、支线奇遇扩展、势力背景补充。spoiler_level≥2 的内容仅对已完成全章的玩家可见。",
+    "content_scope": "第一章·神仙不渡（清河区域）四篇主线剧情：又见新燕来、匹马映林嘶、菱花尘满、为谁归去。含序章回忆、清河暗线（田英）、支线奇遇扩展、势力背景补充。spoiler_level≥2 的内容仅对已完成全章的玩家可见。",
     "disclaimer": "本数据集为非官方整理的剧情资料，仅供剧情梳理参考，不代表官方设定。部分信息基于社区分析（含抖音、B站等平台讨论），已标注置信度。"
   },
 
@@ -21,7 +21,7 @@
       "progress_key": "qinghe",
       "progress_rank": 10,
       "summary": "主角是养父江晏保护下长大的遗孤。遭黑衣人袭击夺走玉佩后，在周红线陪伴下踏上追寻真相之路。主角在清河学武、寻亲、回到神仙渡与养母寒香寻重逢，经历不羡仙大火后与侠客伊刀并肩救人，最终告别清河前往开封。明线为主角寻亲与成长，暗线为绣金楼追杀、田英抗辽与各方势力角力。",
-      "source_ids": ["src-3dm-qinghe", "src-ali213-all", "src-toutiao-qinghe-full"]
+      "source_ids": ["src-3dm-qinghe", "src-ali213-all", "src-toutiao-qinghe-full", "src-official-narrative-interview"]
     }
   ],
 
@@ -71,7 +71,7 @@
       "slug": "hou-jin",
       "name": "后晋军队",
       "faction_type": "历史势力",
-      "summary": "五代十国时期后晋王朝的军队。将军王清在公元945年中渡桥之战中遭叛徒杜重威出卖身亡，是序章的历史背景。",
+      "summary": "五代十国时期后晋王朝的军队。作品借用了开运三年（946）后晋与契丹交战、王清力战而亡及杜重威随后投降等史事，并加入主角身世与梦傀等虚构情节。",
       "spoiler_level": 0,
       "visible_after_progress": "start",
       "source_ids": ["src-17173-analysis"]
@@ -111,7 +111,7 @@
       "slug": "yan-bei-meng",
       "name": "燕北盟",
       "faction_type": "义军组织",
-      "summary": "王清将军创建的抗辽义军组织。王清为盟主，收养了许多孤儿，江晏为其义子之一。中渡桥之战后燕北盟遭受重创。",
+      "summary": "作品设定中，燕北盟是王清创建的抗辽义军组织。王清为盟主，收养了许多孤儿，江晏为其义子之一。中渡桥之战后燕北盟遭受重创。",
       "spoiler_level": 1,
       "visible_after_progress": "qinghe",
       "source_ids": ["src-toutiao-wangqing", "src-toutiao-main-story"]
@@ -438,15 +438,15 @@
       "slug": "wang-qing",
       "name": "王清",
       "aliases": [],
-      "summary": "后晋将军，燕北盟创始人。公元945年中渡桥之战中率两千精锐夺桥，遭叛徒杜重威出卖，全军覆没。是主角生父，江晏的义父。",
-      "interpretation": "王清的悲剧映射了'乱世忠义'主题，为序章的历史背景提供情感厚度。'侠之大者，为国为民'是其人生信条。",
-      "identity_tags": ["历史人物", "将军", "主角生父", "燕北盟主"],
+      "summary": "作品中的后晋将军、燕北盟创始人，也是主角生父与江晏义父。其战场经历取材于史载开运三年（946）奉国都指挥使王清率两千步卒争夺中度桥、未获援助而战死的事件；亲属关系属于作品设定。",
+      "interpretation": "王清的悲剧映射了'乱世忠义'主题，为序章的历史背景提供情感厚度。作品将'侠之大者，为国为民'设为其人生信条。",
+      "identity_tags": ["历史人物", "将军", "作品设定·主角生父", "作品设定·燕北盟主"],
       "faction_id": "yan-bei-meng",
       "importance": 4,
       "spoiler_level": 2,
       "first_appear_chapter_id": "chapter-qinghe",
       "visible_after_progress": "qinghe",
-      "source_ids": ["src-17173-analysis", "src-toutiao-wangqing"]
+      "source_ids": ["src-17173-analysis", "src-toutiao-wangqing", "src-official-narrative-interview"]
     },
     {
       "id": "tian-ying",
@@ -634,10 +634,10 @@
       "id": "du-chongwei",
       "slug": "du-chongwei",
       "name": "杜重威",
-      "aliases": [],
-      "summary": "后晋主将，中渡桥之战中暗中与契丹勾结，拒绝支援王清，导致王清全军覆没。",
-      "interpretation": "杜重威的背叛是王清悲剧的直接原因，也是主角身世的转折点。",
-      "identity_tags": ["历史人物", "叛徒"],
+      "aliases": ["杜威"],
+      "summary": "作品中的后晋主将。杜重威曾因避后晋出帝石重贵名讳改名杜威，后晋亡后复名。史籍记载其在中度桥战事中未增援王清，随后与李守贞等谋划投降；史料不能证明他事先蓄意害死王清。",
+      "interpretation": "作品将杜重威的选择处理为王清悲剧和主角身世线的转折，但这层因果强化应视为叙事改写。",
+      "identity_tags": ["历史人物", "后晋主将", "降将"],
       "faction_id": "hou-jin",
       "importance": 2,
       "spoiler_level": 1,
@@ -1101,9 +1101,9 @@
     {
       "id": "evt-wangqing-battle",
       "slug": "wangqing-battle",
-      "title": "中渡桥之战",
-      "summary": "公元945年，后晋主将杜重威率20万大军守中渡桥。王清率两千精锐夺桥成功，但杜重威暗中降敌拒绝支援。王清全军覆没，力战而亡。江晏赶到时王清已中梦傀之毒，江晏含泪将其击杀。",
-      "impact": "中渡桥之战是主角身世的起源，也是理解全剧历史背景的关键。王清的忠义与杜重威的背叛形成强烈对比。",
+      "title": "作品中的中渡桥之战",
+      "summary": "作品以开运三年（946）的中度桥战事为背景：王清率两千步卒争桥、杜重威未予增援，王清力战而亡，杜重威随后谋降。在此历史骨架上，作品加入王清与主角、江晏的亲属关系，以及梦傀之毒和江晏亲手了结王清等虚构情节。",
+      "impact": "这段作品叙述把主角身世接入五代乱世，但阅读时应区分可由史籍核验的战事与服务人物弧线的虚构改写。",
       "chapter_id": "chapter-qinghe",
       "part": 0,
       "sort_order": 25,
@@ -1111,7 +1111,7 @@
       "visible_after_progress": "qinghe",
       "character_ids": ["wang-qing", "jiang-yan", "du-chongwei"],
       "faction_ids": ["hou-jin", "yan-bei-meng"],
-      "source_ids": ["src-toutiao-wangqing"]
+      "source_ids": ["src-toutiao-wangqing", "src-official-narrative-interview", "src-official-zhongdu-zhenshou"]
     },
     {
       "id": "evt-lizuo-origin",
@@ -1459,7 +1459,7 @@
       "target_character_id": "jiang-yan",
       "relation_type": "family",
       "label": "义父子",
-      "summary": "王清收养江晏为义子，悉心教导。中渡桥之战中设计调离江晏以保护其安全。",
+      "summary": "作品设定中，王清收养江晏为义子，悉心教导，并在中渡桥之战中设计调离江晏以保护其安全。",
       "stage": "序章背景",
       "directional": true,
       "chapter_id": "chapter-qinghe",
@@ -1475,7 +1475,7 @@
       "target_character_id": "protagonist",
       "relation_type": "family",
       "label": "生父子",
-      "summary": "王清是主角的生父。中渡桥之战前将婴儿（主角）和镇冠珏托付给江晏。",
+      "summary": "作品设定中，王清是主角的生父，并在中渡桥之战前将婴儿（主角）和镇冠珏托付给江晏。",
       "stage": "序章背景",
       "directional": true,
       "chapter_id": "chapter-qinghe",
@@ -1554,8 +1554,8 @@
       "source_character_id": "du-chongwei",
       "target_character_id": "wang-qing",
       "relation_type": "enemy",
-      "label": "背叛",
-      "summary": "杜重威在中渡桥之战中暗中降敌，拒绝支援王清，导致王清全军覆没。",
+      "label": "拒援",
+      "summary": "中度桥战事中，杜重威未予增援，王清力战而死；杜重威随后与李守贞等谋降。史料不能证明其事先蓄意害死王清。",
       "stage": "序章背景",
       "directional": true,
       "chapter_id": "chapter-qinghe",
@@ -1788,6 +1788,303 @@
       "locator": "神仙渡元咸咸、元甜甜等NPC位置",
       "accessed_at": "2026-06-08",
       "note": "今日头条美食奇遇攻略，含神仙渡厨师NPC信息。"
+    },
+    {
+      "id": "src-official-narrative-interview",
+      "source_type": "official_reference",
+      "title": "大剧透！燕云没有主线剧情？体验式碎片化叙事是个啥",
+      "reference": "https://www.yysls.cn/news/official/20230112/37780_1063057.html",
+      "locator": "开发组访谈：主角身世与历史知名的『中渡桥之战』有关",
+      "accessed_at": "2026-08-21",
+      "note": "官方开发组访谈，明确确认主角身世与中渡桥之战相关。作为主角身世线与王清事件的一手官方依据。"
+    },
+    {
+      "id": "src-official-hutuo-region",
+      "source_type": "official_reference",
+      "title": "周年前瞻丨前尘旧事如梦，将见「滹沱」奔流",
+      "reference": "https://www.yysls.cn/news/official/20251227/37780_1278965.html",
+      "locator": "不见山第三区域「滹沱」上线；侠迹「奉敕不杀」；『骨添蓟垣沙，血涨滹沱浪』",
+      "accessed_at": "2026-08-21",
+      "note": "官方对滹沱河战事叙事的区域公告，采用跨十六年回望结构。供后续章节扩展与历史卡关联参考。"
+    },
+    {
+      "id": "src-official-zhongdu-zhenshou",
+      "source_type": "official_reference",
+      "title": "春入万家，侠游宫阙！新春版本下周相见",
+      "reference": "https://www.yysls.cn/news/official/20260201/37780_1284890.html",
+      "locator": "官宣新镇守「中渡桥之战」与「封龙书院」",
+      "accessed_at": "2026-08-21",
+      "note": "官方以史实事件命名镇守玩法，是作品正面呈现中渡桥之战的直接证据。"
+    }
+  ],
+
+  "story_arcs": [
+    {
+      "id": "arc-qinghe-main-journey",
+      "slug": "qinghe-main-journey",
+      "title": "清河主线：从失玉到离乡",
+      "summary": "沿十个转折点回看主角如何从被袭击的少年，逐渐成为主动追索身世、保护同伴并独立作出选择的侠客。",
+      "core_question": "当熟悉的家园与亲人都显出秘密，主角凭什么决定自己要成为怎样的人？",
+      "estimated_minutes": 12,
+      "spoiler_level": 0,
+      "visible_after_progress": "start",
+      "beats": [
+        {
+          "id": "beat-prologue-attack",
+          "event_id": "evt-prologue-attack",
+          "sort_order": 1,
+          "role": "setup",
+          "guide": "先记住黑衣人的反常：他夺走镇冠珏，却没有取主角性命。故事真正抛出的不是“谁来袭击”，而是“他为什么只为这块玉而来”。",
+          "why_it_matters": "失玉把主角从受保护的日常中推出去，也把养父失踪、身世秘密与追兵连成同一个问题。",
+          "bridge": "主角昏迷后，能提供答案的人都不在场，只留下可以被追查的物件和痕迹。",
+          "next_question": "醒来之后，主角最先能抓住哪条线索？",
+          "spoiler_level": 0,
+          "visible_after_progress": "start"
+        },
+        {
+          "id": "beat-p1-awaken",
+          "event_id": "evt-p1-awaken",
+          "sort_order": 2,
+          "role": "clue",
+          "guide": "红线把主角从昏迷中唤回现实；罐中信件与灵位则第一次让“江叔失踪”变成可以行动的线索。",
+          "why_it_matters": "这一刻确立了清河篇的行动目标：主角不是漫无目的远行，而是在寻找养父并理解他留下的信息。",
+          "bridge": "有了方向还不等于有能力，主角需要先走进清河的人群与规则。",
+          "next_question": "一个初出家门的少年怎样获得继续追查的立足点？",
+          "spoiler_level": 0,
+          "visible_after_progress": "qinghe"
+        },
+        {
+          "id": "beat-p1-arena",
+          "event_id": "evt-p1-arena",
+          "sort_order": 3,
+          "role": "escalation",
+          "guide": "将军祠擂台看似是一次比武，其实让主角第一次以自己的能力被清河众人认识，也让红线从同行者逐渐成为可信赖的伙伴。",
+          "why_it_matters": "主角开始拥有自己的名声和关系网，后续的寻人与救援不再只是一个人的冒险。",
+          "bridge": "名声带来新朋友，却没有直接带来江叔的下落；主角只能回到最熟悉的地方继续问。",
+          "next_question": "家乡会给主角答案，还是暴露更多被隐瞒的事？",
+          "spoiler_level": 0,
+          "visible_after_progress": "qinghe"
+        },
+        {
+          "id": "beat-p2-return-home",
+          "event_id": "evt-p2-return-home",
+          "sort_order": 4,
+          "role": "clue",
+          "guide": "主角从将军祠问回神仙渡，线索却再次中断。注意这里的失落：越接近“家”，江叔的缺席反而越明显。",
+          "why_it_matters": "寻亲从简单的找人转为对旧日生活的怀疑，主角开始意识到大人们共同守着秘密。",
+          "bridge": "江叔没有出现，但另一个最亲近的家人就在不羡仙。",
+          "next_question": "与寒姨重逢能否让主角重新获得安全感？",
+          "spoiler_level": 0,
+          "visible_after_progress": "qinghe"
+        },
+        {
+          "id": "beat-p2-reunion",
+          "event_id": "evt-p2-reunion",
+          "sort_order": 5,
+          "role": "turning_point",
+          "guide": "酒馆里的烟火气暂时恢复了“回家”的感觉；地下仓库的救人经历却在这份安稳下面打开一道裂缝。",
+          "why_it_matters": "重逢没有结束悬念，而是把寒姨与不羡仙本身也纳入谜团，主角再也不能把家当成与危险无关的避风港。",
+          "bridge": "疑点把主角引向活人医馆，也让黑衣人的踪迹第二次出现。",
+          "next_question": "黑衣人与寒姨的秘密究竟有多近？",
+          "spoiler_level": 0,
+          "visible_after_progress": "qinghe"
+        },
+        {
+          "id": "beat-p2-hospital",
+          "event_id": "evt-p2-hospital",
+          "sort_order": 6,
+          "role": "escalation",
+          "guide": "暗道、信件与刺杀把此前零散的不安变成迫近的威胁。伊刀的出现也提示主角：这场追查牵涉的不只是家庭秘密。",
+          "why_it_matters": "主角第一次在真相尚不明朗时选择与新同伴共同冒险，行动方式从被保护转为主动应对。",
+          "bridge": "秘密尚未说破，敌人已经先一步把冲突带到不羡仙。",
+          "next_question": "当家园遭到攻击，主角最想守住的究竟是什么？",
+          "spoiler_level": 1,
+          "visible_after_progress": "qinghe"
+        },
+        {
+          "id": "beat-p3-aftermath",
+          "event_id": "evt-p3-aftermath",
+          "sort_order": 7,
+          "role": "consequence",
+          "guide": "大火后的对话不是剧情停顿，而是一次清点：谁活下来、谁准备离开、谁仍有所隐瞒，以及主角失去了怎样的日常。",
+          "why_it_matters": "不羡仙被毁使主角无法退回原点；他接下来的选择必须由自己承担。",
+          "bridge": "眼前的灾难也唤醒更久远的乱世记忆，王清的旧战成为理解主角身世的一把钥匙。",
+          "next_question": "个人身世为什么会与一场数十年前的战争相连？",
+          "spoiler_level": 1,
+          "visible_after_progress": "qinghe"
+        },
+        {
+          "id": "beat-wangqing-battle",
+          "event_id": "evt-wangqing-battle",
+          "sort_order": 8,
+          "role": "turning_point",
+          "guide": "把这一段分成两层阅读：史籍中的王清争桥与杜重威谋降，是时代背景；主角血缘、梦傀与江晏的选择，则是作品用来承接人物命运的虚构改写。",
+          "why_it_matters": "身世线由私人秘密扩展为乱世遗留的后果，也让“忠义、背叛与保护”成为主角必须重新判断的价值问题。",
+          "bridge": "理解过去不能替代眼前的行动，仍有人困在被毁的家园里。",
+          "next_question": "知道自己承接了怎样的过去后，主角会如何选择当下？",
+          "spoiler_level": 2,
+          "visible_after_progress": "qinghe"
+        },
+        {
+          "id": "beat-p4-rescue",
+          "event_id": "evt-p4-rescue",
+          "sort_order": 9,
+          "role": "resolution",
+          "guide": "主角回到不羡仙不是为了找回旧日生活，而是为了救出仍能被救的人。这个方向变化比战斗本身更重要。",
+          "why_it_matters": "他开始以自己的判断承担侠客责任，与同伴的关系也从结识转为共同经历生死。",
+          "bridge": "救援保住了同伴，却没有解除清河最后的威胁。",
+          "next_question": "主角能否在告别清河之前，真正完成一次由自己主导的决断？",
+          "spoiler_level": 1,
+          "visible_after_progress": "qinghe"
+        },
+        {
+          "id": "beat-p4-tower-battle",
+          "event_id": "evt-p4-tower-battle",
+          "sort_order": 10,
+          "role": "resolution",
+          "guide": "酒香塔之战把伙伴再次聚到一起，但结尾的重点不是“打败强敌”，而是主角已能主动选择战斗、保护谁以及下一步去哪里。",
+          "why_it_matters": "清河篇完成了从失去保护到建立自我方向的成长闭环，同时保留身世与绣金楼两条未解线索。",
+          "bridge": "清河给了主角同行者、创伤与选择，新的旅途将检验这些选择能否坚持。",
+          "next_question": "离开清河后，主角会追到怎样的真相，又愿意为此付出什么？",
+          "spoiler_level": 1,
+          "visible_after_progress": "qinghe"
+        }
+      ]
+    }
+  ],
+
+  "historical_references": [
+    {
+      "id": "hist-ref-zztj-285",
+      "slug": "zizhi-tongjian-285",
+      "reference_type": "primary_source",
+      "title": "《资治通鉴》卷二百八十五",
+      "publisher": "维基文库",
+      "url": "https://zh.wikisource.org/zh-hans/资治通鑑/卷285",
+      "locator": "后晋开运三年十一月：王清争中度桥、杜威不救及随后谋降",
+      "accessed_at": "2026-08-20"
+    },
+    {
+      "id": "hist-ref-jwds-95",
+      "slug": "jiu-wudai-shi-95",
+      "reference_type": "primary_source",
+      "title": "《旧五代史》卷九十五",
+      "publisher": "维基文库",
+      "url": "https://zh.wikisource.org/zh-hans/舊五代史/卷95",
+      "locator": "王清传：奉国都指挥使王清率步卒争桥及战死",
+      "accessed_at": "2026-08-20"
+    },
+    {
+      "id": "hist-ref-jwds-85",
+      "slug": "jiu-wudai-shi-85",
+      "reference_type": "primary_source",
+      "title": "《旧五代史》卷八十五",
+      "publisher": "维基文库",
+      "url": "https://zh.wikisource.org/zh-hans/舊五代史/卷85",
+      "locator": "少帝纪五：开运三年北伐、杜重威等降契丹；降表称十万师徒",
+      "accessed_at": "2026-08-20"
+    },
+    {
+      "id": "hist-ref-liaoshi-4",
+      "slug": "liao-shi-4",
+      "reference_type": "primary_source",
+      "title": "《辽史》卷四",
+      "publisher": "维基文库",
+      "url": "https://zh.wikisource.org/zh/遼史/卷4",
+      "locator": "太宗纪下：会同九年十一月至十二月，记后晋二十万军来降",
+      "accessed_at": "2026-08-20"
+    },
+    {
+      "id": "hist-ref-ruzhou-history",
+      "slug": "ruzhou-administrative-history",
+      "reference_type": "institutional_reference",
+      "title": "汝州建置沿革",
+      "publisher": "汝州市人民政府",
+      "url": "https://www.ruzhou.gov.cn/contents/37757/502020.html",
+      "locator": "五代时期政权更迭与地方建置",
+      "accessed_at": "2026-08-20"
+    },
+    {
+      "id": "hist-ref-miyun-history",
+      "slug": "miyun-administrative-history",
+      "reference_type": "institutional_reference",
+      "title": "密云建置沿革",
+      "publisher": "北京市密云区人民政府",
+      "url": "https://www.bjmy.gov.cn/stmy/zjmy/mysz/202001/t20200106_97415.html",
+      "locator": "五代时期燕云地区建置沿革",
+      "accessed_at": "2026-08-20"
+    }
+  ],
+
+  "historical_contexts": [
+    {
+      "id": "hist-five-dynasties-transition",
+      "slug": "five-dynasties-transition",
+      "title": "五代十国：短命政权与频繁更迭",
+      "period_label": "907—960（北方五代）；后晋 936—947",
+      "summary": "十世纪前半叶，中原王朝更替频繁，军人集团、地方势力与北方政权共同影响政治秩序。后晋只是这一连续变局中的一朝，人物效忠对象与生存选择因而常处在剧烈变化中。",
+      "fact_kind": "historical_fact",
+      "boundary_note": "本卡只说明时代结构，不证明作品中任何虚构组织或人物关系真实存在。",
+      "spoiler_level": 2,
+      "visible_after_progress": "qinghe",
+      "reference_ids": ["hist-ref-ruzhou-history"]
+    },
+    {
+      "id": "hist-later-jin-khitan-yanyun",
+      "slug": "later-jin-khitan-yanyun",
+      "title": "后晋、契丹与燕云地区",
+      "period_label": "936—947（后晋）；燕云割让始于 936",
+      "summary": "后晋的建立及其与契丹的关系深刻影响燕云地区。到开运末年双方转为战争，后晋主力北上后集体投降，王朝随之覆亡；燕云的军事与交通地位使这里长期成为多方争夺之地。",
+      "fact_kind": "historical_fact",
+      "boundary_note": "不同史籍对杜重威所部降军规模有十万、二十万等记载差异，因此正文不采用单一总兵力数字。",
+      "spoiler_level": 2,
+      "visible_after_progress": "qinghe",
+      "reference_ids": ["hist-ref-jwds-85", "hist-ref-liaoshi-4", "hist-ref-miyun-history"]
+    },
+    {
+      "id": "hist-zhongdu-bridge-wangqing",
+      "slug": "zhongdu-bridge-wangqing-duwei",
+      "title": "史籍中的中度桥、王清与杜威",
+      "period_label": "后晋开运三年（946）",
+      "summary": "《资治通鉴》记载，开运三年（946），奉国都指挥使王清请求率两千步卒争夺中度桥（《旧五代史》另作中渡桥）；契丹军迎战时，杜威没有出兵援救，王清力战而死。杜重威曾因避后晋出帝石重贵名讳改名杜威，后晋亡后复名；战后他与李守贞等谋划投降。",
+      "fact_kind": "historical_fact",
+      "boundary_note": "中度桥与中渡桥是史籍中的异写。史籍可支持战事顺序，但不能证明杜重威事先勾结并蓄意害死王清。作品中的主角血缘、燕北盟、梦傀之毒和江晏亲手了结王清均属虚构改写。",
+      "spoiler_level": 2,
+      "visible_after_progress": "qinghe",
+      "reference_ids": ["hist-ref-zztj-285", "hist-ref-jwds-95", "hist-ref-jwds-85"]
+    }
+  ],
+
+  "event_historical_links": [
+    {
+      "id": "link-wangqing-five-dynasties",
+      "event_id": "evt-wangqing-battle",
+      "historical_context_id": "hist-five-dynasties-transition",
+      "relation_kind": "setting",
+      "editorial_note": "用于解释人物为何处在忠诚对象和政治秩序不断变化的乱世。",
+      "sort_order": 1,
+      "spoiler_level": 2,
+      "visible_after_progress": "qinghe"
+    },
+    {
+      "id": "link-wangqing-later-jin",
+      "event_id": "evt-wangqing-battle",
+      "historical_context_id": "hist-later-jin-khitan-yanyun",
+      "relation_kind": "setting",
+      "editorial_note": "作品把人物命运放入后晋与契丹冲突及燕云争夺的背景中。",
+      "sort_order": 2,
+      "spoiler_level": 2,
+      "visible_after_progress": "qinghe"
+    },
+    {
+      "id": "link-wangqing-zhongdu",
+      "event_id": "evt-wangqing-battle",
+      "historical_context_id": "hist-zhongdu-bridge-wangqing",
+      "relation_kind": "fictionalized",
+      "editorial_note": "事件保留了王清争桥、未获增援而战死及杜威随后谋降的史事骨架，再用虚构亲属关系与梦傀设定接入主角身世。",
+      "sort_order": 3,
+      "spoiler_level": 2,
+      "visible_after_progress": "qinghe"
     }
   ]
 }
