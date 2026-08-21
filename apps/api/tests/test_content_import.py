@@ -8,7 +8,7 @@ from pydantic import ValidationError
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-import app.content_import as import_module
+import app.content_import.runner as import_module
 from app.api.contracts import CharacterDetail, RelationshipDetail
 from app.api.routes.details import character_detail, relationship_detail
 from app.api.routes.graph import get_graph
