@@ -267,6 +267,7 @@ def seed_demo(db: Session) -> SeedStats:
     chapters = _existing_by_slug(
         db, Chapter, Chapter.slug, {item.slug for item in CHAPTERS}
     )
+    DEMO_SORT_ORDER_BASE = 1_000
     for order, chapter_seed in enumerate(CHAPTERS):
         if chapter_seed.slug not in chapters:
             chapter = Chapter(
@@ -274,7 +275,7 @@ def seed_demo(db: Session) -> SeedStats:
                 slug=chapter_seed.slug,
                 title=f"{DEMO_PREFIX} {chapter_seed.title}",
                 region=chapter_seed.region,
-                sort_order=order,
+                sort_order=DEMO_SORT_ORDER_BASE + order,
                 progress_key=chapter_seed.progress,
                 progress_rank=chapter_seed.rank,
                 status=ContentStatus.PUBLISHED,
