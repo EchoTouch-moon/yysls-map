@@ -2033,6 +2033,26 @@
       "url": "http://www.yuanshi.gov.cn/columns/6cc90287-efb7-48ef-a4a6-fa9ef9d35e36/202406/18/1e7e4229-425d-40e8-8bdf-a7165bb9b377.html",
       "locator": "书院沿革：东汉发端结庐授业；唐五代以后书院形式兴盛；北宋河北见诸记载的三处书院全在封龙山",
       "accessed_at": "2026-08-21"
+    },
+    {
+      "id": "hist-ref-liaoshi-37",
+      "slug": "liaoshi-37-geography",
+      "reference_type": "primary_source",
+      "title": "《辽史》卷三十七（地理志一）",
+      "publisher": "维基文库",
+      "url": "https://zh.wikisource.org/zh-hans/遼史/卷37",
+      "locator": "永州木叶山条：神人乘白马、天女驾青牛相配生八子；每行军及春秋时祭必用白马青牛",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "id": "hist-ref-zztj-283",
+      "slug": "zizhi-tongjian-283",
+      "reference_type": "primary_source",
+      "title": "《资治通鉴》卷二百八十三",
+      "publisher": "维基文库",
+      "url": "https://zh.wikisource.org/zh-hans/資治通鑑/卷283",
+      "locator": "景延广对契丹使者语：为邻称孙足矣，无称臣之理；孙有十万横磨剑足以相待；契丹主大怒，入寇之志始决",
+      "accessed_at": "2026-08-21"
     }
   ],
 
@@ -2096,6 +2116,30 @@
       "spoiler_level": 2,
       "visible_after_progress": "qinghe",
       "reference_ids": ["hist-ref-yuanshi-fenglong"]
+    },
+    {
+      "id": "hist-khitan-white-horse",
+      "slug": "khitan-white-horse-origin-myth",
+      "title": "青牛白马：契丹始祖神话与战祭",
+      "period_label": "契丹建国传说（辽史追记）",
+      "summary": "《辽史·地理志》载永州木叶山上有契丹始祖庙，相传有神人乘白马自马盂山浮土河而东，有天女驾青牛车由平地松林泛潢河而下，二水合流处相遇为配偶，生八子，后族属渐盛分为八部；每行军及春秋时祭，必用白马青牛，示不忘本。",
+      "fact_kind": "historical_fact",
+      "boundary_note": "始祖神话与以白马青牛行军祭祀的习俗见于《辽史》追记。游戏中自称「先祖座下白马转世」的契丹萨满角色及其燔柴告天的战前仪式，是以这一神话—祭祀框架为底本的虚构人物演绎；角色本身于史无征。",
+      "spoiler_level": 2,
+      "visible_after_progress": "qinghe",
+      "reference_ids": ["hist-ref-liaoshi-37"]
+    },
+    {
+      "id": "hist-hengmo-sword-quote",
+      "slug": "hengmo-sword-jing-yanguang",
+      "title": "十万横磨剑：后晋决裂契丹之言",
+      "period_label": "后晋天福年间（开运前夕）",
+      "summary": "《资治通鉴》载，景延广对契丹使者放言：先帝为北朝所立故称臣奉表，今上乃中国所立，「为邻称孙，足矣，无称臣之理」；并称「翁怒则来战，孙有十万横磨剑，足以相待」。契丹主闻之大怒，「入寇之志始决」，此语被视为后晋与契丹全面战争的导火索之一。",
+      "fact_kind": "historical_fact",
+      "boundary_note": "景延广之言史有明文；官方公告歌谣「十万横磨剑，碧血平滹沱」化用此典，属作品文本的文学表达，不改变史实中后晋最终败亡的结局。本卡仅说明典故出处。",
+      "spoiler_level": 2,
+      "visible_after_progress": "qinghe",
+      "reference_ids": ["hist-ref-zztj-283"]
     }
   ],
 

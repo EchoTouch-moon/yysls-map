@@ -59,8 +59,8 @@ def test_qinghe_dataset_matches_extended_release_contract() -> None:
     assert len(dataset.story_arcs) == 1
     assert len(dataset.story_arcs[0].beats) == 10
     assert dataset.story_arcs[0].estimated_minutes == 12
-    assert len(dataset.historical_references) == 8
-    assert len(dataset.historical_contexts) == 5
+    assert len(dataset.historical_references) == 10
+    assert len(dataset.historical_contexts) == 7
     assert len(dataset.event_historical_links) == 4
     assert all(context.reference_ids for context in dataset.historical_contexts)
 
