@@ -2,6 +2,12 @@
 
 面向《燕云十六声》玩家的非官方剧情理解工具，通过角色关系图、时间线与分级防剧透帮助玩家梳理复杂叙事。
 
+> **非官方声明**：本项目与网易/Everstone Studio 无任何隶属或背书关系。
+> 游戏相关名称与内容的权利归其权利方所有；详见 [NOTICE.md](NOTICE.md)。
+>
+> **许可**：源代码 [MIT](LICENSE)；`content/` 剧情数据集
+> [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)。
+
 ## 技术栈
 
 - Web：Next.js 16、TypeScript、Tailwind CSS 4、React Flow
