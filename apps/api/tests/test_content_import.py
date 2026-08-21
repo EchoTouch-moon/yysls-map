@@ -42,7 +42,7 @@ from app.models import (
 from app.services.content import get_source_by_id_published
 from app.services.spoiler import context_for
 
-DATASET_PATH = Path(__file__).parents[3] / "content" / "yysls-qinghe-v4.json"
+DATASET_PATH = Path(__file__).parents[3] / "content" / "yysls-qinghe-v5.json"
 
 
 def test_qinghe_dataset_matches_extended_release_contract() -> None:

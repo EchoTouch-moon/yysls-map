@@ -20,7 +20,7 @@ import time
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-DEFAULT_DATASET = REPO / "content" / "yysls-qinghe-v4.json"
+DEFAULT_DATASET = REPO / "content" / "yysls-qinghe-v5.json"
 CHECKLIST_PATH = REPO / "docs" / "editorial-signoff-qinghe.md"
 MANIFEST_PATH = REPO / "content" / "release-manifest.json"
 
