@@ -23,6 +23,7 @@ jobs:
           --health-retries 5
     env:
       DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/yysls_map_test
+      RUN_DB_TESTS: "1"
       WEB_ORIGIN: http://localhost:3000
       NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1
       SESSION_SECRET: ci-session-secret-at-least-32-characters
@@ -39,8 +40,10 @@ jobs:
           python-version: "3.13"
       - run: npm ci
       - run: uv sync --project apps/api --frozen
+      - run: npm run import:content:validate --workspace @yysls/api
       - run: uv run --project apps/api alembic upgrade head
       - run: npm run verify
+      - run: npm run test:api:db
       - run: uv run --project apps/api python -m app.seed
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
