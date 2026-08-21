@@ -1,0 +1,20 @@
+{
+  "dataset_id": "qinghe-chapter-1-v4",
+  "dataset_file": "yysls-qinghe-v4.json",
+  "sha256": "2c8ce5ef9ce940042b0301c652456ed14885f4a7bc608e6a41572196e40da6af",
+  "schema_version": "1.1",
+  "frozen_at": "2026-08-21 21:05",
+  "counts": {
+    "chapters": 1,
+    "factions": 10,
+    "characters": 39,
+    "events": 27,
+    "relationships": 29,
+    "sources": 24,
+    "historical_references": 10,
+    "historical_contexts": 7,
+    "event_historical_links": 4
+  },
+  "signoff_checklist": "docs/editorial-signoff-qinghe.md",
+  "pending_decisions": 82
+}

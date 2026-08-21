@@ -66,3 +66,14 @@ npm run test:e2e
 - 已确认事实写入摘要，个人理解写入角色 `interpretation`、事件 `impact` 或低置信关系
 
 可信度表示资料确定程度，不表示内容是否值得收录。目标是在明确区分事实与解读的前提下，尽可能完整地还原玩家经历的剧情。
+
+## 编辑发布（阶段 B）
+
+```bash
+python3 scripts/generate_signoff_checklist.py
+```
+
+生成逐条签字清单（`docs/editorial-signoff-qinghe.md`）与发布清单
+（`content/release-manifest.json`，含数据集 SHA-256 与实体计数）。
+数据集任何改动后必须重新生成两者；全部条目签字通过前不进入发布流程。
+真实玩家验证使用 `docs/player-validation-worksheet.md`。
