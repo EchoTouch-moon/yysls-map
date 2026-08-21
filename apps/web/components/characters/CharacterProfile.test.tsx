@@ -79,15 +79,37 @@ describe("CharacterProfile progressive reading (Wave 1)", () => {
     expect(screen.getByRole("heading", { name: "初识" })).toBeInTheDocument();
     expect(screen.getAllByRole("heading", { name: "剧情足迹" })[0]).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /他与谁相连/ })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /显示该人物的完整解析/ })).toBeInTheDocument();
 
-    const order = [
-      screen.getByRole("heading", { name: "初识" }),
-      ...screen.getAllByRole("heading", { name: "剧情足迹" }),
-      screen.getByRole("heading", { name: /他与谁相连/ }),
-    ];
-    const positions = order.map((el) => el.compareDocumentPosition(order[0]));
-    expect(positions.every((p) => p === 0 || typeof p === "number")).toBe(true);
+    // G3：五个分区按固定顺序渲染。先 Reveal 让「完整解析」出现，再验证真实 DOM 位序。
+    fireEvent.click(screen.getByRole("button", { name: /显示该人物的完整解析/ }));
+    await waitFor(() => {
+      expect(screen.getByText(/完整解析：他的失踪/)).toBeInTheDocument();
+    });
+
+    const sectionLabels = [
+      "初识",
+      "剧情足迹",
+      "人物关系",
+      "完整解析",
+      "相关历史背景",
+    ] as const;
+    const DOCUMENT_POSITION_FOLLOWING = 4;
+    const sections = sectionLabels.map((label) => {
+      const section = document.querySelector(`section[aria-label="${label}"]`);
+      expect(section, `missing section: ${label}`).not.toBeNull();
+      return section as HTMLElement;
+    });
+    for (let i = 1; i < sections.length; i += 1) {
+      const previous = sections[i - 1]!;
+      const current = sections[i]!;
+      // previous.compareDocumentPosition(current) 含 FOLLOWING 位 ⇔ current 在 previous 之后
+      const follows =
+        previous.compareDocumentPosition(current) & DOCUMENT_POSITION_FOLLOWING;
+      expect(
+        follows,
+        `${sectionLabels[i]} must come after ${sectionLabels[i - 1]}`,
+      ).toBeTruthy();
+    }
 
     // 深链：足迹 → 导读对应幕
     expect(screen.getByText(/在导读中阅读这一幕/)).toHaveAttribute(

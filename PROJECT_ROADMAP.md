@@ -215,7 +215,10 @@
 已通关玩家（把故事讲透）；首次游玩玩家获得背景但不接触重大揭示。
 本节与第五、六节冲突时，以本节为准。
 
-### 9.2 Wave 1（进行中）：逐层理解的信息架构
+### 9.2 Wave 1 — IMPLEMENTED / VALIDATION_PENDING
+
+状态：实现完成并通过代码级复核（含 H1–H4 hardening），等待真实用户验证；
+验证未完成前不标记 CLOSED。
 
 范围：派生分层 + 人物剧情足迹 + Story Guide 中枢化 + 人物级 Reveal +
 Story-first 首页 + 历史背景次级入口。
@@ -228,9 +231,20 @@ migration`；允许 API projection、derived aggregation、contract additive cha
 - **G1** Story-first 首页；Progress 不占 Hero 核心位置
 - **G2** 剧情足迹由现有 StoryArc/Event 数据派生，不改冻结数据集
 - **G3** 人物页按「初识 → 剧情足迹 → 联系 → 完整解析 → 背景」组织
-- **G4** 默认可见范围不扩大；完整解析仅由人物级显式 Reveal 触发
+- **G4** 默认可见范围不扩大；完整解析仅由人物级显式 Reveal 触发。
+  语义边界（准确表述）：Reveal 是 **UI 呈现层门控 + 人物级 unrestricted 阅读上下文**，
+  不是字段级数据边界——服务器载荷中 `interpretation` 在人物整体可见时即已返回，
+  保证的是「用户界面不在显式操作前呈现完整解析」。字段级
+  （intro/analysis/revelation）权限模型属 Wave 2
 - **G5** Beat → 人物 → 关系图/历史 → 返回故事，深链连续
 - **G6** `qinghe-chapter-1-v5` 及其 SHA、编辑签字不因 UI/projection 改动而变化
+
+Hardening（复核后已补）：
+
+- **H1** `/history/{slug}` related beats 补齐 Link→Beat→Event→Arc 四层可见性闭包，
+  并附回归 fixture（安全卡 × 未来事件链：START 下卡可见而 `related=[]`）
+- **H2** `story_path` 补 StoryArc 父级 publish/visibility 闭包，附回归 fixture
+  （DRAFT 卷不泄漏已发布子节点；转 PUBLISHED 后足迹出现）
 
 语义约定：自动聚合的人物事件序列一律称「剧情足迹」；
 人工撰写的人物叙事（Wave 2）才称「人物线/人物故事」。

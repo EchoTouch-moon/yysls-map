@@ -97,8 +97,8 @@ def get_history(
             )
         )
 
-    related_beats = db.execute(
-        select(StoryArcBeat, StoryEvent, StoryArc)
+    rows = db.execute(
+        select(StoryArcBeat, StoryEvent, StoryArc, EventHistoricalLink)
         .join(EventHistoricalLink, EventHistoricalLink.event_id == StoryArcBeat.event_id)
         .join(StoryEvent, StoryArcBeat.event_id == StoryEvent.id)
         .join(StoryArc, StoryArcBeat.arc_id == StoryArc.id)
@@ -111,6 +111,32 @@ def get_history(
         )
         .order_by(StoryArc.title.asc(), StoryArcBeat.sort_order.asc())
     ).all()
+    # 可见性闭包: 历史卡本身可见不代表其关联叙事也安全。
+    # Link -> Beat -> Event -> Arc 四层必须全部通过当前进度过滤,
+    # 否则 related 会把未来事件标题提前暴露给低进度读者。
+    related = [
+        RelatedBeatRef(
+            arc_slug=arc.slug,
+            arc_title=arc.title,
+            event_slug=event.slug,
+            event_title=event.title,
+        )
+        for beat, event, arc, link in rows
+        if all(
+            visible_entity(
+                context=spoiler_context,
+                ranks=ranks,
+                visible_after_chapter_id=visible_after_id,
+                spoiler_level=spoiler_level,
+            )
+            for visible_after_id, spoiler_level in (
+                (link.visible_after_chapter_id, link.spoiler_level),
+                (beat.visible_after_chapter_id, beat.spoiler_level),
+                (event.visible_after_chapter_id or event.chapter_id, event.spoiler_level),
+                (arc.visible_after_chapter_id, arc.spoiler_level),
+            )
+        )
+    ]
 
     return ApiResponse(
         data=HistoryDetailRead(
@@ -132,14 +158,6 @@ def get_history(
                     historical.references, key=lambda item: (item.title, item.id)
                 )
             ],
-            related=[
-                RelatedBeatRef(
-                    arc_slug=arc.slug,
-                    arc_title=arc.title,
-                    event_slug=event.slug,
-                    event_title=event.title,
-                )
-                for beat, event, arc in related_beats
-            ],
+            related=related,
         )
     )

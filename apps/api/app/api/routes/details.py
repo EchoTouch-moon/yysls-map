@@ -51,6 +51,7 @@ def _story_path(
         .where(
             StoryArcBeat.status == ContentStatus.PUBLISHED,
             StoryEvent.status == ContentStatus.PUBLISHED,
+            StoryArc.status == ContentStatus.PUBLISHED,
             StoryEvent.characters.any(Character.id == character_id),
         )
         .order_by(
@@ -63,7 +64,16 @@ def _story_path(
     beats = [
         beat
         for beat in db.scalars(beat_query).unique().all()
-        if visible_entity(
+        # 可见性闭包: Arc -> Beat -> Event 三层全部可见才允许进入投影,
+        # 防止未发布/未来卷通过已发布子节点泄漏。
+        if beat.arc.status is ContentStatus.PUBLISHED
+        and visible_entity(
+            context=context,
+            ranks=ranks,
+            visible_after_chapter_id=beat.arc.visible_after_chapter_id,
+            spoiler_level=beat.arc.spoiler_level,
+        )
+        and visible_entity(
             context=context,
             ranks=ranks,
             visible_after_chapter_id=beat.visible_after_chapter_id,
