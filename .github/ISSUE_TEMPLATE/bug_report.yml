@@ -1,0 +1,37 @@
+name: 问题反馈
+description: 报告功能缺陷或页面异常
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: 所属区域
+      options:
+        - 关系图谱
+        - 剧情时间线 / 主线导读
+        - 人物 / 势力卷宗
+        - 搜索 / 关系路径
+        - 投稿与管理台
+        - 部署 / API
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: 1. 将进度设为… 2. 打开…
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望表现与实际表现
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: 环境信息
+      placeholder: 桌面/移动、浏览器、进度设置（如「已通关清河」）
+```

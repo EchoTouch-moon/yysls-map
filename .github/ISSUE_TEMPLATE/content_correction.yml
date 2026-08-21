@@ -1,0 +1,37 @@
+name: 内容勘误与补充
+description: 指出数据集中的事实错误、剧透泄漏、失效来源，或补充新线索
+labels: ["content"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 类型
+      options:
+        - 事实错误（与游戏内表现不符）
+        - 剧透防护问题（低进度下可见了不该看的内容）
+        - 来源链接失效
+        - 置信度/来源标注建议
+        - 补充新线索或新条目
+    validations:
+      required: true
+  - type: input
+    id: target
+    attributes:
+      label: 涉及条目
+      placeholder: 人物/事件/关系名称，或页面路径
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 依据
+      description: |
+        请给出可定位的依据：任务名与场景描述（玩家亲历）、官方公告链接、
+        或社区整理文章链接。依据决定置信度分级。
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 建议的修改内容
+```
