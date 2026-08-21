@@ -41,9 +41,11 @@ jobs:
       - run: npm ci
       - run: uv sync --project apps/api --frozen
       - run: npm run import:content:validate --workspace @yysls/api
-      - run: uv run --project apps/api alembic upgrade head
+      - run: uv run --no-sync alembic upgrade head
+        working-directory: apps/api
       - run: npm run verify
       - run: npm run test:api:db
-      - run: uv run --project apps/api python -m app.seed
+      - run: uv run --no-sync python -m app.seed
+        working-directory: apps/api
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
