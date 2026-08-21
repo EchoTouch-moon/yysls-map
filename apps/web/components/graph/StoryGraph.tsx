@@ -6,7 +6,6 @@ import {
   Background,
   BackgroundVariant,
   Controls,
-  MarkerType,
   MiniMap,
   ReactFlow,
   useEdgesState,
@@ -23,6 +22,7 @@ import {
 import {
   RelationshipEdge,
   type RelationshipFlowEdge,
+  withHoveredEdge,
 } from "@/components/graph/RelationshipEdge";
 import { DetailPanel, type DetailTarget } from "@/components/graph/DetailPanel";
 import { GraphFilters } from "@/components/graph/GraphFilters";
@@ -36,7 +36,7 @@ export function StoryGraph({ focus }: { focus?: string | null }) {
   const activeFocus = focus || DEFAULT_FOCUS;
   return (
     <GraphForProgress
-      key={`${progress}:${activeFocus}`}
+      key={progress}
       progress={progress}
       focus={activeFocus}
     />
@@ -65,7 +65,26 @@ function GraphForProgress({
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    fetchGraph(progress, focus)
+    async function loadGraph() {
+      const focused = await fetchGraph(progress, focus);
+      if (!focused.data) {
+        throw new Error("图谱响应缺少数据。");
+      }
+      if (
+        active &&
+        focused.data.nodes.length === 0 &&
+        focus === DEFAULT_FOCUS
+      ) {
+        const fallback = await fetchGraph(progress);
+        if (!fallback.data) {
+          throw new Error("图谱响应缺少数据。");
+        }
+        return fallback;
+      }
+      return focused;
+    }
+
+    loadGraph()
       .then((response) => {
         if (active) {
           setGraph(response.data);
@@ -75,7 +94,7 @@ function GraphForProgress({
           } else {
             setTimeout(() => {
               if (active) setTurning(false);
-            }, 200);
+            }, 50);
           }
         }
       })
@@ -117,7 +136,7 @@ function GraphForProgress({
     ).matches;
     window.setTimeout(
       () => router.push(`/graph?focus=${encodeURIComponent(slug)}`, { scroll: false }),
-      reducedMotion ? 0 : 260,
+      reducedMotion ? 0 : 80,
     );
   }
 
@@ -226,13 +245,13 @@ function GraphCanvas({
     source: edge.source,
     target: edge.target,
     type: "relationship",
-    markerEnd: edge.directional
-      ? { type: MarkerType.ArrowClosed, color: "#a9a68e" }
-      : undefined,
     data: {
       label: edge.label,
       relationType: edge.relation_type,
       confidence: edge.confidence,
+      directional: edge.directional,
+      isCenterEdge:
+        edge.source === center?.id || edge.target === center?.id,
     },
   }));
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -247,6 +266,12 @@ function GraphCanvas({
         onEdgesChange={onEdgesChange}
         nodeTypes={NODE_TYPES}
         edgeTypes={EDGE_TYPES}
+        onEdgeMouseEnter={(_, hoveredEdge) => {
+          setEdges((items) => withHoveredEdge(items, hoveredEdge.id));
+        }}
+        onEdgeMouseLeave={() => {
+          setEdges((items) => withHoveredEdge(items, null));
+        }}
         onNodeClick={(_, selected) => {
           const node = graph.nodes.find((item) => item.id === selected.id);
           if (!node) return;
@@ -298,7 +323,10 @@ function GraphStatus({
   role?: "alert";
 }) {
   return (
-    <div role={role} className="graph-status">
+    <div
+      role={role}
+      className="graph-status opacity-0 [animation:text-fade-in_0.5s_ease_0.15s_forwards]"
+    >
       <span className="seal-mark" aria-hidden="true">阅</span>
       <p>{children}</p>
     </div>

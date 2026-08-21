@@ -6,10 +6,10 @@ from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from app.api.contracts import CharacterDetail, RelationshipDetail
+from app.api.contracts import CharacterDetail, EvidenceSource, RelationshipDetail
 from app.db import get_db
 from app.domain import ContentStatus, ProgressKey
-from app.models import Chapter, Character, Faction, Relationship
+from app.models import Chapter, Character, Faction, Relationship, Source
 from app.schemas import ApiResponse, RestrictedData
 from app.services.spoiler import context_for, is_visible
 
@@ -66,6 +66,14 @@ def character_detail(
             identity_tags=character.identity_tags,
             faction_name=faction_name,
             first_appear_chapter=first_chapter.title if first_chapter else None,
+            sources=[
+                EvidenceSource.model_validate(source)
+                for source in db.scalars(
+                    select(Source)
+                    .where(Source.character_id == character.id)
+                    .order_by(Source.title.asc())
+                ).all()
+            ],
         )
     )
 
@@ -112,5 +120,13 @@ def relationship_detail(
             summary=relationship.summary,
             stage=relationship.stage,
             confidence=float(Decimal(relationship.confidence)),
+            sources=[
+                EvidenceSource.model_validate(source)
+                for source in db.scalars(
+                    select(Source)
+                    .where(Source.relationship_id == relationship.id)
+                    .order_by(Source.title.asc())
+                ).all()
+            ],
         )
     )

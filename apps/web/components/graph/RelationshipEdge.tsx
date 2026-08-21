@@ -2,23 +2,41 @@ import { memo } from "react";
 import {
   BaseEdge,
   EdgeLabelRenderer,
-  getSmoothStepPath,
   type Edge,
   type EdgeProps,
 } from "@xyflow/react";
 
 import type { RelationType } from "@/lib/graph";
+import { getRelationshipEdgeGeometry } from "@/lib/graph-edge-geometry";
 
 export type RelationshipEdgeData = Record<string, unknown> & {
   label: string;
   relationType: RelationType;
   confidence: number;
+  directional: boolean;
+  isCenterEdge: boolean;
+  isHovered?: boolean;
 };
 
 export type RelationshipFlowEdge = Edge<
   RelationshipEdgeData,
   "relationship"
->;
+> & {
+  data: RelationshipEdgeData;
+};
+
+export function withHoveredEdge(
+  edges: RelationshipFlowEdge[],
+  hoveredId: string | null,
+) {
+  return edges.map((edge) => ({
+    ...edge,
+    data: {
+      ...edge.data,
+      isHovered: edge.id === hoveredId,
+    },
+  }));
+}
 
 const COLORS: Record<RelationType, string> = {
   mentor: "#7f8a6b",
@@ -39,58 +57,67 @@ function RelationshipEdgeInner({
   sourceY,
   targetX,
   targetY,
-  sourcePosition,
-  targetPosition,
-  markerEnd,
   data,
   selected,
 }: EdgeProps<RelationshipFlowEdge>) {
-  const [path, labelX, labelY] = getSmoothStepPath({
+  const isHovered = Boolean(data?.isHovered);
+  const geometry = getRelationshipEdgeGeometry({
+    id,
     sourceX,
     sourceY,
     targetX,
     targetY,
-    sourcePosition,
-    targetPosition,
-    borderRadius: 12,
+    isCenterEdge: data?.isCenterEdge ?? false,
   });
   const color = COLORS[data?.relationType ?? "hidden"];
   const confidence = data?.confidence ?? 1;
-
-  const labelClassName = selected
-    ? "pointer-events-none absolute border border-[var(--cinnabar-bright)] bg-[var(--cinnabar)] px-2.5 py-0.5 text-[10px] tracking-[0.08em] text-white shadow-xl rounded-sm transition-[border-color,background-color,color,box-shadow] duration-200"
-    : "pointer-events-none absolute border border-[rgba(217,201,164,.28)] bg-[rgba(28,25,20,.94)] px-2 py-0.5 text-[9px] tracking-[0.08em] text-[var(--paper-deep)] shadow-lg rounded-sm transition-[border-color,background-color,color,box-shadow] duration-200";
+  const active = selected || isHovered;
+  const labelClassName = active
+    ? "pointer-events-none absolute border border-[var(--cinnabar-bright)] bg-[var(--cinnabar)] px-3 py-1 text-[11px] font-bold tracking-[0.1em] text-white shadow-[0_4px_20px_rgba(229,90,66,0.6)] rounded-sm transition-all duration-300"
+    : "pointer-events-none absolute border border-[rgba(217,201,164,.28)] bg-[rgba(28,25,20,.94)] px-2 py-0.5 text-[9px] tracking-[0.08em] text-[var(--paper-deep)] shadow-lg rounded-sm transition-all duration-300";
 
   return (
     <>
-      {/* Background shadow glow line when selected */}
-      {selected && (
+      {active && (
         <BaseEdge
           id={`${id}-glow`}
-          path={path}
+          path={geometry.path}
           style={{
             stroke: color,
-            strokeOpacity: 0.35,
-            strokeWidth: 6,
+            strokeOpacity: 0.45,
+            strokeWidth: 8,
           }}
         />
       )}
+
       <BaseEdge
         id={id}
-        path={path}
-        markerEnd={markerEnd}
+        path={geometry.path}
+        interactionWidth={25}
         style={{
           stroke: color,
-          strokeOpacity: selected ? 1 : 0.72,
-          strokeWidth: selected ? 2.5 : 1.5,
+          strokeOpacity: active ? 1 : 0.72,
+          strokeWidth: active ? 3 : 1.5,
           strokeDasharray: confidence < 0.7 ? "4 5" : undefined,
+          zIndex: active ? 40 : 10,
         }}
       />
+
+      {data?.directional && (
+        <polygon
+          points="-5,-4 5,0 -5,4"
+          fill={color}
+          transform={`translate(${geometry.arrowX}, ${geometry.arrowY}) rotate(${geometry.arrowAngle})`}
+          style={{ pointerEvents: "none", zIndex: active ? 40 : 10 }}
+        />
+      )}
+
       <EdgeLabelRenderer>
         <span
           className={labelClassName}
           style={{
-            transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px)`,
+            zIndex: active ? 50 : 20,
+            transform: `translate(-50%, -50%) translate(${geometry.labelX}px, ${geometry.labelY}px) scale(${active ? 1.15 : 1})`,
           }}
         >
           {data?.label}

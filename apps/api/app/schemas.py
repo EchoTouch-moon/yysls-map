@@ -208,6 +208,8 @@ class SourceRead(BaseModel):
     title: str
     reference: str | None
     note: str | None
+    chapter_id: uuid.UUID | None
+    faction_id: uuid.UUID | None
     character_id: uuid.UUID | None
     event_id: uuid.UUID | None
     relationship_id: uuid.UUID | None

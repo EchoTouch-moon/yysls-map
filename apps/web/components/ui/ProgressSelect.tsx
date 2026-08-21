@@ -2,13 +2,8 @@
 
 import { useId, useSyncExternalStore, type ChangeEvent } from "react";
 
-/** The five supported progress milestones. */
-export type ProgressKey =
-  | "start"
-  | "qinghe"
-  | "kaifeng"
-  | "current"
-  | "unrestricted";
+/** Progress milestones exposed by the current public content release. */
+export type ProgressKey = "start" | "qinghe" | "unrestricted";
 
 interface ProgressOption {
   key: ProgressKey;
@@ -17,11 +12,21 @@ interface ProgressOption {
 }
 
 const PROGRESS_OPTIONS: readonly ProgressOption[] = [
-  { key: "start", label: "初入江湖", description: "序章 · 尚未进入主线" },
-  { key: "qinghe", label: "清河篇", description: "卷一 · 清河线索已展开" },
-  { key: "kaifeng", label: "开封篇", description: "卷二 · 开封势力已揭露" },
-  { key: "current", label: "当前进度", description: "按最新已发布章节" },
-  { key: "unrestricted", label: "全部可见", description: "包含所有已录入关系" },
+  {
+    key: "start",
+    label: "清河篇未通关",
+    description: "仅显示开篇即可获知的线索",
+  },
+  {
+    key: "qinghe",
+    label: "清河篇已通关",
+    description: "包含清河主线结局与隐藏线索",
+  },
+  {
+    key: "unrestricted",
+    label: "不防剧透",
+    description: "显示全部已录入内容，可能严重剧透",
+  },
 ] as const;
 
 const STORAGE_KEY = "yysls-progress";
@@ -113,13 +118,20 @@ export function ProgressSelect({
   if (variant === "card") {
     return (
       <div className={className}>
-        <label
-          htmlFor={selectId}
+        <p
+          id={`${selectId}-label`}
           className="mb-3 block text-xs tracking-[0.2em] text-[var(--fog)]"
         >
-          剧情进度
-        </label>
-        <div className="grid gap-2">
+          已完成的剧情进度
+        </p>
+        <p className="mb-4 text-xs leading-5 text-[var(--fog)]">
+          进行中的章节请选择上一档，避免提前看到本章结局。
+        </p>
+        <div
+          role="group"
+          aria-labelledby={`${selectId}-label`}
+          className="grid gap-2"
+        >
           {PROGRESS_OPTIONS.map((opt) => (
             <button
               key={opt.key}
@@ -152,7 +164,7 @@ export function ProgressSelect({
   return (
     <div className={className}>
       <label htmlFor={selectId} className="sr-only">
-        剧情进度
+        已完成的剧情进度
       </label>
       <select
         id={selectId}

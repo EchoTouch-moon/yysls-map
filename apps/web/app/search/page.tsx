@@ -2,7 +2,7 @@ import { DiscoveryWorkbench } from "@/components/discovery/DiscoveryWorkbench";
 
 export default function SearchPage() {
   return (
-    <main className="mx-auto max-w-6xl px-5 py-16">
+    <main className="mx-auto max-w-6xl px-5 py-16 opacity-0 [animation:text-fade-in_0.5s_ease_0.1s_forwards]">
       <p className="text-xs tracking-[0.3em] text-[var(--cinnabar-bright)]">
         线索检索卷
       </p>

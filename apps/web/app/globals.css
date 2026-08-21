@@ -477,72 +477,64 @@ a.nav-bookmark-active {
   border-right: 1px dashed rgba(192, 74, 54, 0.24);
   padding-right: 0.35rem;
 }
-
-/* 3D Page Turn fold & shadow improvements */
+/* Ink wash & lens blur transition */
 .book-stage {
   position: relative;
   overflow: hidden;
-  perspective: 1600px;
-  transform-style: preserve-3d;
-}
-
-.book-stage::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 35;
-  pointer-events: none;
-  background: linear-gradient(to right, rgba(21, 19, 15, 0.58) 0%, rgba(217, 201, 164, 0.06) 50%, rgba(21, 19, 15, 0.82) 100%);
-  opacity: 0;
-  transition: opacity 0.26s cubic-bezier(0.25, 1, 0.3, 1);
-}
-
-.book-stage-turning::before {
-  opacity: 1;
-}
-
-.book-stage::after {
-  position: absolute;
-  inset: 0;
-  z-index: 30;
-  content: "";
-  pointer-events: none;
-  opacity: 0;
-  transform-origin: left center;
-  background:
-    linear-gradient(90deg, rgba(21, 19, 15, 0.95) 0%, rgba(217, 201, 164, 0.22) 50%, rgba(21, 19, 15, 0.95) 100%),
-    var(--ink-soft);
-  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.85);
-}
-
-.book-stage-turning::after {
-  animation: turn-archive-page 480ms cubic-bezier(.4, 0, .2, 1) forwards;
-}
-
-@keyframes turn-archive-page {
-  0% {
-    opacity: 0;
-    transform: rotateY(-95deg);
-  }
-  30% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: rotateY(95deg);
-  }
 }
 
 .book-stage .graph-canvas {
-  transition: opacity 0.24s ease, transform 0.24s ease;
+  transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: blur(0px);
+  transform: scale(1);
 }
 
 .book-stage-turning .graph-canvas {
-  opacity: 0.15;
-  transform: scale(0.975) rotateY(1.5deg);
+  opacity: 0;
+  filter: blur(8px);
+  transform: scale(0.98);
+  transition: opacity 0.1s ease-out, filter 0.1s ease-out, transform 0.1s ease-out;
+}
+
+/* Micro-animations: Edge flow & Character node hover */
+.react-flow__edge-path {
+  transition: stroke-width 0.2s ease, stroke-opacity 0.2s ease;
+}
+
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke-width: 3.5px !important;
+  stroke-opacity: 1 !important;
+}
+
+@keyframes edge-flow {
+  from { stroke-dashoffset: 20; }
+  to { stroke-dashoffset: 0; }
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  animation: edge-flow 1s linear infinite;
+}
+
+.character-slip {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.character-slip:hover {
+  border-color: #d4af37; /* Royal Bronze/Gold */
+  box-shadow:
+    0 16px 30px rgba(0, 0, 0, 0.42),
+    0 0 15px rgba(212, 175, 55, 0.15); /* Subtle golden glow */
+}
+
+.character-slip-center {
+  border-color: var(--cinnabar-bright);
+}
+
+.character-slip-center:hover {
+  border-color: #e55a42;
+  box-shadow:
+    0 18px 46px rgba(0, 0, 0, 0.55),
+    0 0 20px rgba(192, 74, 54, 0.25); /* Cinnabar glow */
 }
 
 /* React Flow custom styling overrides */
@@ -566,4 +558,13 @@ a.nav-bookmark-active {
   border: 1px solid var(--line-strong) !important;
   border-radius: 2px !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+@keyframes page-enter {
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-page-enter {
+  animation: page-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

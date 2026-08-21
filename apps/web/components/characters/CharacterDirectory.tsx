@@ -121,7 +121,7 @@ function DirectoryForProgress({ progress }: { progress: string }) {
           检索仅返回当前进度允许公开的内容，共 {results.length} 条。
         </p>
       )}
-      <div className="mt-8 grid gap-5 md:grid-cols-2">
+      <div className="mt-8 grid min-h-[50vh] gap-5 md:grid-cols-2">
         {shownCharacters.map((character) => (
           <Link
             key={character.id}

@@ -7,7 +7,7 @@ test("explores visible content, submits a clue, and moderates it", async ({
 
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: /看不懂燕云剧情/ }),
+    page.getByRole("heading", { name: /看不懂.*燕云剧情/ }),
   ).toBeVisible();
 
   await page.getByRole("link", { name: "展开关系图" }).click();
@@ -15,8 +15,17 @@ test("explores visible content, submits a clue, and moderates it", async ({
   await expect(page.getByLabel("角色关系图谱")).toBeVisible();
 
   await page.goto("/timeline");
-  await expect(page.getByText(/演示卷一：雾渡事件1/)).toBeVisible();
-  await expect(page.getByText(/演示卷五：终局事件1/)).not.toBeVisible();
+  await expect(page.getByRole("tab", { name: "跟着故事读" })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
+  await page.getByRole("tab", { name: "完整事件" }).click();
+  await expect(
+    page.getByRole("heading", { name: /演示卷一：雾渡事件1/ }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: /演示卷五：终局事件1/ }),
+  ).not.toBeVisible();
 
   await page.goto("/submit");
   await page.getByLabel("线索标题").fill(submissionTitle);

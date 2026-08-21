@@ -124,19 +124,16 @@ describe("ProgressSelect", () => {
     localStorage.clear();
   });
 
-  it("renders the compact select with all options", () => {
+  it("renders only the progress states supported by the current release", () => {
     render(<ProgressSelect variant="compact" />);
     const select = screen.getByRole("combobox");
     expect(select).toBeInTheDocument();
-    // All five progress options should be present.
     const options = within(select).getAllByRole("option");
-    expect(options).toHaveLength(5);
+    expect(options).toHaveLength(3);
     expect(options.map((o) => o.textContent)).toEqual([
-      "初入江湖",
-      "清河篇",
-      "开封篇",
-      "当前进度",
-      "全部可见",
+      "清河篇未通关",
+      "清河篇已通关",
+      "不防剧透",
     ]);
   });
 
@@ -147,12 +144,11 @@ describe("ProgressSelect", () => {
   });
 
   it("hydrates from localStorage after mount", async () => {
-    localStorage.setItem("yysls-progress", "kaifeng");
+    localStorage.setItem("yysls-progress", "qinghe");
     render(<ProgressSelect variant="compact" />);
     const select = screen.getByRole("combobox") as HTMLSelectElement;
-    // After useEffect runs the value should update.
     await vi.waitFor(() => {
-      expect(select.value).toBe("kaifeng");
+      expect(select.value).toBe("qinghe");
     });
   });
 
@@ -166,8 +162,8 @@ describe("ProgressSelect", () => {
   it("renders the card variant with buttons", () => {
     render(<ProgressSelect variant="card" />);
     const buttons = screen.getAllByRole("button");
-    expect(buttons).toHaveLength(5);
-    // First option should be pressed (default).
+    expect(buttons).toHaveLength(3);
+    expect(screen.getByText(/进行中的章节请选择上一档/)).toBeInTheDocument();
     expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
     expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
   });
@@ -175,14 +171,14 @@ describe("ProgressSelect", () => {
   it("updates selection in card variant on click", () => {
     render(<ProgressSelect variant="card" />);
     const buttons = screen.getAllByRole("button");
-    fireEvent.click(buttons[2]); // 开封篇
-    expect(buttons[2]).toHaveAttribute("aria-pressed", "true");
+    fireEvent.click(buttons[1]);
+    expect(buttons[1]).toHaveAttribute("aria-pressed", "true");
     expect(buttons[0]).toHaveAttribute("aria-pressed", "false");
-    expect(localStorage.getItem("yysls-progress")).toBe("kaifeng");
+    expect(localStorage.getItem("yysls-progress")).toBe("qinghe");
   });
 
   it("ignores invalid localStorage values", async () => {
-    localStorage.setItem("yysls-progress", "totally-invalid");
+    localStorage.setItem("yysls-progress", "current");
     render(<ProgressSelect variant="compact" />);
     const select = screen.getByRole("combobox") as HTMLSelectElement;
     await vi.waitFor(() => {

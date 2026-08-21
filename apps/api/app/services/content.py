@@ -357,7 +357,27 @@ def get_source_by_id_published(
     if source is None:
         return None
     ranks = _chapter_rank_map(db)
-    if source.character_id:
+    if source.chapter_id:
+        chapter = db.get(Chapter, source.chapter_id)
+        if chapter is None or chapter.status != ContentStatus.PUBLISHED:
+            return None
+        visible = is_visible(
+            context=context,
+            required_progress_rank=chapter.progress_rank,
+            spoiler_level=0,
+        )
+    elif source.faction_id:
+        faction = db.get(Faction, source.faction_id)
+        if faction is None or faction.status != ContentStatus.PUBLISHED:
+            return None
+        visible = passes_spoiler(
+            spoiler_level=faction.spoiler_level,
+            visible_after_chapter_id=faction.visible_after_chapter_id,
+            first_appear_chapter_id=None,
+            context=context,
+            ranks=ranks,
+        )
+    elif source.character_id:
         character = db.get(Character, source.character_id)
         if character is None or character.status != ContentStatus.PUBLISHED:
             return None
@@ -379,7 +399,7 @@ def get_source_by_id_published(
             context=context,
             ranks=ranks,
         )
-    else:
+    elif source.relationship_id:
         relationship = db.get(Relationship, source.relationship_id)
         if relationship is None or relationship.status != ContentStatus.PUBLISHED:
             return None
@@ -390,6 +410,8 @@ def get_source_by_id_published(
             context=context,
             ranks=ranks,
         )
+    else:
+        return None
     return source if visible else None
 
 

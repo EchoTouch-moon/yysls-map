@@ -4,6 +4,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { useProgress } from "@/components/ui/ProgressSelect";
+import {
+  EvidenceList,
+  type EvidenceSource,
+} from "@/components/ui/EvidenceList";
 import { apiFetch } from "@/lib/http";
 
 type CharacterDetail = {
@@ -18,6 +22,7 @@ type CharacterDetail = {
   identity_tags?: string[];
   faction_name?: string | null;
   first_appear_chapter?: string | null;
+  sources?: EvidenceSource[];
 };
 
 export function CharacterProfile({ slug }: { slug: string }) {
@@ -93,6 +98,7 @@ function ProfileForProgress({
             </p>
           </section>
         )}
+        <EvidenceList sources={detail.sources} className="mt-8" />
       </div>
       <dl className="space-y-5 border-t border-[var(--line)] pt-6 text-sm md:border-l md:border-t-0 md:pl-6 md:pt-0">
         <div>

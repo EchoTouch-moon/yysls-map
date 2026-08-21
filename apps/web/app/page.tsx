@@ -27,7 +27,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="江湖人物关系检索卷"
             level={1}
-            description="选择自己的剧情进度，在不被剧透的前提下探索角色、势力、事件与隐藏关系。这里不是原文数据库，而是一份由玩家共同校订的江湖卷宗。"
+            description="选择自己已经完整通关的剧情节点，在不被剧透的前提下探索角色、势力、事件与隐藏关系。这里不是原文数据库，而是一份由玩家共同校订的江湖卷宗。"
             headingClassName="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl text-balance text-wrap"
           >
             <>

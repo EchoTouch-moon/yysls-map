@@ -9,7 +9,7 @@ test("mobile navigation exposes the main routes and graph fallback", async ({
   await expect(drawer).toBeVisible();
   await drawer.getByRole("link", { name: "关系图谱" }).click();
   await expect(
-    page.getByText(/完整关系画布请在较宽屏幕查看/),
+    page.getByText(/完整人物关系卷需在较宽画布展开/),
   ).toBeVisible();
 
   const overflow = await page.evaluate(

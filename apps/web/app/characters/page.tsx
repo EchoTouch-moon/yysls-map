@@ -2,7 +2,7 @@ import { CharacterDirectory } from "@/components/characters/CharacterDirectory";
 
 export default function CharactersPage() {
   return (
-    <main className="mx-auto max-w-5xl px-5 py-16">
+    <main className="mx-auto max-w-5xl px-5 py-16 opacity-0 [animation:text-fade-in_0.5s_ease_0.1s_forwards]">
       <p className="text-xs tracking-[0.3em] text-[var(--cinnabar-bright)]">人物索引卷</p>
       <h1 className="mt-4 text-4xl">人物卷宗</h1>
       <p className="mt-6 max-w-2xl leading-8 text-[var(--fog)]">

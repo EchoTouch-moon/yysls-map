@@ -208,6 +208,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/story-arcs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Story Arcs */
+        get: operations["list_story_arcs_api_v1_story_arcs_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/story-arcs/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Story Arc */
+        get: operations["get_story_arc_api_v1_story_arcs__slug__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/characters/{slug}": {
         parameters: {
             query?: never;
@@ -1018,6 +1052,18 @@ export interface components {
             error?: components["schemas"]["ErrorDetail"] | null;
             meta?: components["schemas"]["ResponseMeta"];
         };
+        /** ApiResponse[StoryArcDetail] */
+        ApiResponse_StoryArcDetail_: {
+            data?: components["schemas"]["StoryArcDetail"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
+        /** ApiResponse[StoryArcListData] */
+        ApiResponse_StoryArcListData_: {
+            data?: components["schemas"]["StoryArcListData"] | null;
+            error?: components["schemas"]["ErrorDetail"] | null;
+            meta?: components["schemas"]["ResponseMeta"];
+        };
         /** ApiResponse[StoryEventRead] */
         ApiResponse_StoryEventRead_: {
             data?: components["schemas"]["StoryEventRead"] | null;
@@ -1164,6 +1210,8 @@ export interface components {
             faction_name: string | null;
             /** First Appear Chapter */
             first_appear_chapter: string | null;
+            /** Sources */
+            sources?: components["schemas"]["EvidenceSource"][];
         };
         /** CharacterListItem */
         CharacterListItem: {
@@ -1256,6 +1304,14 @@ export interface components {
             fields?: {
                 [key: string]: string[];
             } | null;
+        };
+        /** EvidenceSource */
+        EvidenceSource: {
+            source_type: components["schemas"]["SourceType"];
+            /** Title */
+            title: string;
+            /** Reference */
+            reference: string | null;
         };
         /** FactionRead */
         FactionRead: {
@@ -1354,6 +1410,57 @@ export interface components {
             /** Environment */
             environment: string;
         };
+        /** HistoricalContextRead */
+        HistoricalContextRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Slug */
+            slug: string;
+            /** Title */
+            title: string;
+            /** Period Label */
+            period_label: string;
+            /** Summary */
+            summary: string;
+            fact_kind: components["schemas"]["HistoricalFactKind"];
+            /** Boundary Note */
+            boundary_note: string;
+            relation_kind: components["schemas"]["HistoricalRelationKind"];
+            /** Editorial Note */
+            editorial_note: string;
+            /** References */
+            references: components["schemas"]["HistoricalReferenceRead"][];
+        };
+        /**
+         * HistoricalFactKind
+         * @enum {string}
+         */
+        HistoricalFactKind: "work_fact" | "historical_fact" | "credible_parallel" | "editorial_inference";
+        /** HistoricalReferenceRead */
+        HistoricalReferenceRead: {
+            reference_type: components["schemas"]["HistoricalReferenceType"];
+            /** Title */
+            title: string;
+            /** Publisher */
+            publisher: string;
+            /** Url */
+            url: string;
+            /** Locator */
+            locator: string | null;
+        };
+        /**
+         * HistoricalReferenceType
+         * @enum {string}
+         */
+        HistoricalReferenceType: "primary_source" | "scholarly_research" | "institutional_reference";
+        /**
+         * HistoricalRelationKind
+         * @enum {string}
+         */
+        HistoricalRelationKind: "setting" | "inspired_by" | "parallel" | "contrast" | "fictionalized";
         /** PathEdge */
         PathEdge: {
             /**
@@ -1431,6 +1538,8 @@ export interface components {
             stage: string | null;
             /** Confidence */
             confidence: number;
+            /** Sources */
+            sources?: components["schemas"]["EvidenceSource"][];
         };
         /** RelationshipPathData */
         RelationshipPathData: {
@@ -1518,6 +1627,10 @@ export interface components {
             reference: string | null;
             /** Note */
             note: string | null;
+            /** Chapter Id */
+            chapter_id: string | null;
+            /** Faction Id */
+            faction_id: string | null;
             /** Character Id */
             character_id: string | null;
             /** Event Id */
@@ -1540,6 +1653,125 @@ export interface components {
          * @enum {string}
          */
         SourceType: "player_note" | "quest_reference" | "official_reference" | "community_analysis";
+        /** StoryArcBeatEvent */
+        StoryArcBeatEvent: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Slug */
+            slug: string;
+            /** Title */
+            title: string;
+            /** Summary */
+            summary: string;
+            /** Impact */
+            impact: string | null;
+            /** Chapter Slug */
+            chapter_slug: string;
+            /** Chapter Title */
+            chapter_title: string;
+            /** Characters */
+            characters: components["schemas"]["TimelineCharacter"][];
+            /** Sources */
+            sources: components["schemas"]["EvidenceSource"][];
+        };
+        /** StoryArcBeatRead */
+        StoryArcBeatRead: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Sort Order */
+            sort_order: number;
+            role: components["schemas"]["StoryBeatRole"];
+            /** Guide */
+            guide: string;
+            /** Why It Matters */
+            why_it_matters: string;
+            /** Bridge */
+            bridge: string;
+            /** Next Question */
+            next_question: string;
+            event: components["schemas"]["StoryArcBeatEvent"];
+            /** Relationships */
+            relationships: components["schemas"]["StoryArcRelationship"][];
+            /** Historical Contexts */
+            historical_contexts: components["schemas"]["HistoricalContextRead"][];
+        };
+        /** StoryArcDetail */
+        StoryArcDetail: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Slug */
+            slug: string;
+            /** Title */
+            title: string;
+            /** Summary */
+            summary: string;
+            /** Core Question */
+            core_question: string;
+            /** Estimated Minutes */
+            estimated_minutes: number;
+            progress: components["schemas"]["ProgressKey"];
+            /** Beats */
+            beats: components["schemas"]["StoryArcBeatRead"][];
+        };
+        /** StoryArcListData */
+        StoryArcListData: {
+            progress: components["schemas"]["ProgressKey"];
+            /** Arcs */
+            arcs: components["schemas"]["StoryArcListItem"][];
+        };
+        /** StoryArcListItem */
+        StoryArcListItem: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Slug */
+            slug: string;
+            /** Title */
+            title: string;
+            /** Summary */
+            summary: string;
+            /** Core Question */
+            core_question: string;
+            /** Estimated Minutes */
+            estimated_minutes: number;
+            /** Beat Count */
+            beat_count: number;
+        };
+        /** StoryArcRelationship */
+        StoryArcRelationship: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            relation_type: components["schemas"]["RelationType"];
+            /** Label */
+            label: string;
+            /** Source Slug */
+            source_slug: string;
+            /** Source Name */
+            source_name: string;
+            /** Target Slug */
+            target_slug: string;
+            /** Target Name */
+            target_name: string;
+        };
+        /**
+         * StoryBeatRole
+         * @enum {string}
+         */
+        StoryBeatRole: "setup" | "clue" | "escalation" | "turning_point" | "consequence" | "resolution";
         /** StoryEventRead */
         StoryEventRead: {
             /**
@@ -1680,6 +1912,8 @@ export interface components {
             sort_order: number;
             /** Characters */
             characters: components["schemas"]["TimelineCharacter"][];
+            /** Sources */
+            sources?: components["schemas"]["EvidenceSource"][];
         };
         /** ValidationError */
         ValidationError: {
@@ -2074,6 +2308,70 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ApiResponse_TimelineData_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_story_arcs_api_v1_story_arcs_get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_StoryArcListData_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_story_arc_api_v1_story_arcs__slug__get: {
+        parameters: {
+            query?: {
+                progress?: components["schemas"]["ProgressKey"];
+            };
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponse_StoryArcDetail_"];
                 };
             };
             /** @description Validation Error */

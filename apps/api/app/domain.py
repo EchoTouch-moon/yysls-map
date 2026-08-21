@@ -55,3 +55,33 @@ class SourceType(StrEnum):
     QUEST_REFERENCE = "quest_reference"
     OFFICIAL_REFERENCE = "official_reference"
     COMMUNITY_ANALYSIS = "community_analysis"
+
+
+class StoryBeatRole(StrEnum):
+    SETUP = "setup"
+    CLUE = "clue"
+    ESCALATION = "escalation"
+    TURNING_POINT = "turning_point"
+    CONSEQUENCE = "consequence"
+    RESOLUTION = "resolution"
+
+
+class HistoricalFactKind(StrEnum):
+    WORK_FACT = "work_fact"
+    HISTORICAL_FACT = "historical_fact"
+    CREDIBLE_PARALLEL = "credible_parallel"
+    EDITORIAL_INFERENCE = "editorial_inference"
+
+
+class HistoricalRelationKind(StrEnum):
+    SETTING = "setting"
+    INSPIRED_BY = "inspired_by"
+    PARALLEL = "parallel"
+    CONTRAST = "contrast"
+    FICTIONALIZED = "fictionalized"
+
+
+class HistoricalReferenceType(StrEnum):
+    PRIMARY_SOURCE = "primary_source"
+    SCHOLARLY_RESEARCH = "scholarly_research"
+    INSTITUTIONAL_REFERENCE = "institutional_reference"

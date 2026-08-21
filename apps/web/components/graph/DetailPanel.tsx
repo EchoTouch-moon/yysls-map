@@ -1,6 +1,15 @@
-import Link from "next/link";
+"use client";
 
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+import {
+  EvidenceList,
+  type EvidenceSource,
+} from "@/components/ui/EvidenceList";
+import { useProgress } from "@/components/ui/ProgressSelect";
 import type { GraphEdge, GraphNode, RelationType } from "@/lib/graph";
+import { apiFetch } from "@/lib/http";
 
 export type DetailTarget =
   | { kind: "node"; node: GraphNode }
@@ -32,6 +41,7 @@ export function DetailPanel({
   detail: DetailTarget | null;
   onClose: () => void;
 }) {
+  const progress = useProgress();
   if (!detail) return null;
   return (
     <aside
@@ -102,6 +112,11 @@ export function DetailPanel({
               玩家亲历与社区解读也会收录；可信度用于区分明确剧情和待考推断。
             </p>
           </div>
+          <RelationshipEvidence
+            key={`${detail.edge.id}:${progress}`}
+            relationshipId={detail.edge.id}
+            progress={progress}
+          />
         </>
       )}
 
@@ -113,4 +128,48 @@ export function DetailPanel({
       </div>
     </aside>
   );
+}
+
+function RelationshipEvidence({
+  relationshipId,
+  progress,
+}: {
+  relationshipId: string;
+  progress: string;
+}) {
+  const [sources, setSources] = useState<EvidenceSource[] | null>(null);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    apiFetch<{ restricted?: boolean; sources?: EvidenceSource[] }>(
+      `/relationships/${encodeURIComponent(relationshipId)}?progress=${progress}`,
+    )
+      .then((response) => {
+        if (active) {
+          setSources(response.data?.restricted ? [] : (response.data?.sources ?? []));
+          setError("");
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setSources([]);
+          setError("资料来源暂时无法读取。");
+        }
+      });
+    return () => {
+      active = false;
+    };
+  }, [progress, relationshipId]);
+
+  if (error) {
+    return <p role="status" className="mt-5 text-xs text-[var(--fog)]">{error}</p>;
+  }
+  if (sources === null) {
+    return <p className="mt-5 text-xs text-[var(--fog)]">正在核对资料来源…</p>;
+  }
+  if (sources.length === 0) {
+    return <p className="mt-5 text-xs text-[var(--fog)]">暂无可公开来源。</p>;
+  }
+  return <EvidenceList sources={sources} className="mt-5" />;
 }

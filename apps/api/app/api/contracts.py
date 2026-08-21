@@ -6,8 +6,13 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationInfo, field_validat
 
 from app.domain import (
     ContentStatus,
+    HistoricalFactKind,
+    HistoricalReferenceType,
+    HistoricalRelationKind,
     ProgressKey,
     RelationType,
+    SourceType,
+    StoryBeatRole,
     SubmissionStatus,
     SubmissionType,
 )
@@ -195,6 +200,14 @@ class TimelineCharacter(BaseModel):
     name: str
 
 
+class EvidenceSource(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    source_type: SourceType
+    title: str
+    reference: str | None
+
+
 class TimelineEvent(BaseModel):
     id: uuid.UUID
     slug: str
@@ -205,11 +218,94 @@ class TimelineEvent(BaseModel):
     chapter_title: str
     sort_order: int
     characters: list[TimelineCharacter]
+    sources: list[EvidenceSource] = Field(default_factory=list)
 
 
 class TimelineData(BaseModel):
     progress: ProgressKey
     events: list[TimelineEvent]
+
+
+class StoryArcListItem(BaseModel):
+    id: uuid.UUID
+    slug: str
+    title: str
+    summary: str
+    core_question: str
+    estimated_minutes: int = Field(ge=1)
+    beat_count: int = Field(ge=0)
+
+
+class StoryArcListData(BaseModel):
+    progress: ProgressKey
+    arcs: list[StoryArcListItem]
+
+
+class HistoricalReferenceRead(BaseModel):
+    reference_type: HistoricalReferenceType
+    title: str
+    publisher: str
+    url: str
+    locator: str | None
+
+
+class HistoricalContextRead(BaseModel):
+    id: uuid.UUID
+    slug: str
+    title: str
+    period_label: str
+    summary: str
+    fact_kind: HistoricalFactKind
+    boundary_note: str
+    relation_kind: HistoricalRelationKind
+    editorial_note: str
+    references: list[HistoricalReferenceRead]
+
+
+class StoryArcBeatEvent(BaseModel):
+    id: uuid.UUID
+    slug: str
+    title: str
+    summary: str
+    impact: str | None
+    chapter_slug: str
+    chapter_title: str
+    characters: list[TimelineCharacter]
+    sources: list[EvidenceSource]
+
+
+class StoryArcRelationship(BaseModel):
+    id: uuid.UUID
+    relation_type: RelationType
+    label: str
+    source_slug: str
+    source_name: str
+    target_slug: str
+    target_name: str
+
+
+class StoryArcBeatRead(BaseModel):
+    id: uuid.UUID
+    sort_order: int
+    role: StoryBeatRole
+    guide: str
+    why_it_matters: str
+    bridge: str
+    next_question: str
+    event: StoryArcBeatEvent
+    relationships: list[StoryArcRelationship]
+    historical_contexts: list[HistoricalContextRead]
+
+
+class StoryArcDetail(BaseModel):
+    id: uuid.UUID
+    slug: str
+    title: str
+    summary: str
+    core_question: str
+    estimated_minutes: int = Field(ge=1)
+    progress: ProgressKey
+    beats: list[StoryArcBeatRead]
 
 
 class CharacterDetail(BaseModel):
@@ -221,6 +317,7 @@ class CharacterDetail(BaseModel):
     identity_tags: list[str]
     faction_name: str | None
     first_appear_chapter: str | None
+    sources: list[EvidenceSource] = Field(default_factory=list)
 
 
 class RelationshipDetail(BaseModel):
@@ -232,6 +329,7 @@ class RelationshipDetail(BaseModel):
     summary: str
     stage: str | None
     confidence: float
+    sources: list[EvidenceSource] = Field(default_factory=list)
 
 
 class SearchResult(BaseModel):

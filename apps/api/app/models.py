@@ -1,11 +1,12 @@
 import uuid
-from datetime import datetime
+from datetime import date, datetime
 from typing import Any
 
 from sqlalchemy import (
     JSON,
     CheckConstraint,
     Column,
+    Date,
     DateTime,
     Enum,
     ForeignKey,
@@ -24,9 +25,13 @@ from sqlalchemy.orm import Mapped, MappedColumn, mapped_column, relationship
 from app.db import Base, TimestampMixin
 from app.domain import (
     ContentStatus,
+    HistoricalFactKind,
+    HistoricalReferenceType,
+    HistoricalRelationKind,
     ProgressKey,
     RelationType,
     SourceType,
+    StoryBeatRole,
     SubmissionStatus,
     SubmissionType,
 )
@@ -83,6 +88,23 @@ relationship_events = Table(
         "event_id",
         UUID(as_uuid=True),
         ForeignKey("story_events.id", ondelete="CASCADE"),
+        primary_key=True,
+    ),
+)
+
+historical_context_references = Table(
+    "historical_context_references",
+    Base.metadata,
+    Column(
+        "context_id",
+        UUID(as_uuid=True),
+        ForeignKey("historical_contexts.id", ondelete="CASCADE"),
+        primary_key=True,
+    ),
+    Column(
+        "reference_id",
+        UUID(as_uuid=True),
+        ForeignKey("historical_references.id", ondelete="CASCADE"),
         primary_key=True,
     ),
 )
@@ -292,6 +314,12 @@ class Source(Base, TimestampMixin):
     title: Mapped[str] = mapped_column(String(200))
     reference: Mapped[str | None] = mapped_column(String(500))
     note: Mapped[str | None] = mapped_column(Text)
+    chapter_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("chapters.id", ondelete="CASCADE"), index=True
+    )
+    faction_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("factions.id", ondelete="CASCADE"), index=True
+    )
     character_id: Mapped[uuid.UUID | None] = mapped_column(
         ForeignKey("characters.id", ondelete="CASCADE"), index=True
     )
@@ -304,9 +332,171 @@ class Source(Base, TimestampMixin):
 
     __table_args__ = (
         CheckConstraint(
-            "num_nonnulls(character_id, event_id, relationship_id) = 1",
+            "num_nonnulls(chapter_id, faction_id, character_id, event_id, relationship_id) = 1",
             name="exactly_one_subject",
         ),
+    )
+
+
+class StoryArc(Base, TimestampMixin):
+    __tablename__ = "story_arcs"
+
+    id: Mapped[uuid.UUID] = uuid_pk()
+    slug: Mapped[str] = mapped_column(String(120), unique=True, index=True)
+    title: Mapped[str] = mapped_column(String(160))
+    summary: Mapped[str] = mapped_column(Text)
+    core_question: Mapped[str] = mapped_column(Text)
+    estimated_minutes: Mapped[int] = mapped_column(Integer)
+    visible_after_chapter_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("chapters.id", ondelete="SET NULL"), index=True
+    )
+    spoiler_level: Mapped[int] = mapped_column(Integer, default=0)
+    status: Mapped[ContentStatus] = mapped_column(
+        Enum(ContentStatus, name="content_status", create_type=False),
+        default=ContentStatus.DRAFT,
+        index=True,
+    )
+    beats: Mapped[list["StoryArcBeat"]] = relationship(
+        back_populates="arc", cascade="all, delete-orphan"
+    )
+
+    __table_args__ = (
+        CheckConstraint("estimated_minutes >= 1", name="estimated_minutes_positive"),
+        CheckConstraint("spoiler_level >= 0 AND spoiler_level <= 3", name="spoiler_level_range"),
+    )
+
+
+class StoryArcBeat(Base, TimestampMixin):
+    __tablename__ = "story_arc_beats"
+
+    id: Mapped[uuid.UUID] = uuid_pk()
+    arc_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("story_arcs.id", ondelete="CASCADE"), index=True
+    )
+    event_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("story_events.id", ondelete="CASCADE"), index=True
+    )
+    sort_order: Mapped[int] = mapped_column(Integer)
+    role: Mapped[StoryBeatRole] = mapped_column(Enum(StoryBeatRole, name="story_beat_role"))
+    guide: Mapped[str] = mapped_column(Text)
+    why_it_matters: Mapped[str] = mapped_column(Text)
+    bridge: Mapped[str] = mapped_column(Text)
+    next_question: Mapped[str] = mapped_column(Text)
+    visible_after_chapter_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("chapters.id", ondelete="SET NULL"), index=True
+    )
+    spoiler_level: Mapped[int] = mapped_column(Integer, default=0)
+    status: Mapped[ContentStatus] = mapped_column(
+        Enum(ContentStatus, name="content_status", create_type=False),
+        default=ContentStatus.DRAFT,
+        index=True,
+    )
+
+    arc: Mapped[StoryArc] = relationship(back_populates="beats")
+    event: Mapped[StoryEvent] = relationship()
+
+    __table_args__ = (
+        UniqueConstraint("arc_id", "sort_order", name="uq_story_arc_beat_order"),
+        UniqueConstraint("arc_id", "event_id", name="uq_story_arc_beat_event"),
+        CheckConstraint("sort_order >= 0", name="sort_order_nonnegative"),
+        CheckConstraint("spoiler_level >= 0 AND spoiler_level <= 3", name="spoiler_level_range"),
+    )
+
+
+class HistoricalReference(Base, TimestampMixin):
+    __tablename__ = "historical_references"
+
+    id: Mapped[uuid.UUID] = uuid_pk()
+    slug: Mapped[str] = mapped_column(String(120), unique=True, index=True)
+    reference_type: Mapped[HistoricalReferenceType] = mapped_column(
+        Enum(HistoricalReferenceType, name="historical_reference_type")
+    )
+    title: Mapped[str] = mapped_column(String(240))
+    publisher: Mapped[str] = mapped_column(String(160))
+    url: Mapped[str] = mapped_column(String(500))
+    locator: Mapped[str | None] = mapped_column(String(240))
+    accessed_at: Mapped[date] = mapped_column(Date)
+
+
+class HistoricalContext(Base, TimestampMixin):
+    __tablename__ = "historical_contexts"
+
+    id: Mapped[uuid.UUID] = uuid_pk()
+    slug: Mapped[str] = mapped_column(String(120), unique=True, index=True)
+    title: Mapped[str] = mapped_column(String(200))
+    period_label: Mapped[str] = mapped_column(String(120))
+    summary: Mapped[str] = mapped_column(Text)
+    fact_kind: Mapped[HistoricalFactKind] = mapped_column(
+        Enum(HistoricalFactKind, name="historical_fact_kind"), index=True
+    )
+    boundary_note: Mapped[str] = mapped_column(Text)
+    visible_after_chapter_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("chapters.id", ondelete="SET NULL"), index=True
+    )
+    spoiler_level: Mapped[int] = mapped_column(Integer, default=0)
+    status: Mapped[ContentStatus] = mapped_column(
+        Enum(ContentStatus, name="content_status", create_type=False),
+        default=ContentStatus.DRAFT,
+        index=True,
+    )
+    references: Mapped[list[HistoricalReference]] = relationship(
+        secondary=historical_context_references
+    )
+
+    __table_args__ = (
+        CheckConstraint("spoiler_level >= 0 AND spoiler_level <= 3", name="spoiler_level_range"),
+    )
+
+
+class EventHistoricalLink(Base, TimestampMixin):
+    __tablename__ = "event_historical_links"
+
+    id: Mapped[uuid.UUID] = uuid_pk()
+    event_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("story_events.id", ondelete="CASCADE"), index=True
+    )
+    context_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("historical_contexts.id", ondelete="CASCADE"), index=True
+    )
+    relation_kind: Mapped[HistoricalRelationKind] = mapped_column(
+        Enum(HistoricalRelationKind, name="historical_relation_kind")
+    )
+    editorial_note: Mapped[str] = mapped_column(Text)
+    sort_order: Mapped[int] = mapped_column(Integer)
+    visible_after_chapter_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("chapters.id", ondelete="SET NULL"), index=True
+    )
+    spoiler_level: Mapped[int] = mapped_column(Integer, default=0)
+    status: Mapped[ContentStatus] = mapped_column(
+        Enum(ContentStatus, name="content_status", create_type=False),
+        default=ContentStatus.DRAFT,
+        index=True,
+    )
+
+    event: Mapped[StoryEvent] = relationship()
+    context: Mapped[HistoricalContext] = relationship()
+
+    __table_args__ = (
+        UniqueConstraint("event_id", "context_id", name="uq_event_historical_context"),
+        UniqueConstraint("event_id", "sort_order", name="uq_event_historical_sort_order"),
+        CheckConstraint("sort_order >= 0", name="sort_order_nonnegative"),
+        CheckConstraint("spoiler_level >= 0 AND spoiler_level <= 3", name="spoiler_level_range"),
+    )
+
+
+class ContentImportRun(Base):
+    __tablename__ = "content_import_runs"
+
+    id: Mapped[uuid.UUID] = uuid_pk()
+    dataset_id: Mapped[str] = mapped_column(String(160), index=True)
+    dataset_title: Mapped[str] = mapped_column(String(240))
+    schema_version: Mapped[str] = mapped_column(String(40))
+    collected_at: Mapped[date] = mapped_column(Date)
+    file_sha256: Mapped[str] = mapped_column(String(64), index=True)
+    replaced_existing: Mapped[bool] = mapped_column(default=False)
+    stats: Mapped[dict[str, int]] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
     )
 
 
@@ -342,6 +532,18 @@ class AIDraftRun(Base):
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
 
+    __table_args__ = (CheckConstraint("duration_ms >= 0", name="duration_nonnegative"),)
+
+
+class RateLimitHit(Base):
+    __tablename__ = "rate_limit_hits"
+
+    id: Mapped[uuid.UUID] = uuid_pk()
+    bucket_key: Mapped[str] = mapped_column(String(200))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), nullable=False
+    )
+
     __table_args__ = (
-        CheckConstraint("duration_ms >= 0", name="duration_nonnegative"),
+        Index("ix_rate_limit_hits_bucket_key_created_at", "bucket_key", "created_at"),
     )
