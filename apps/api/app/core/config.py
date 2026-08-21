@@ -1,4 +1,5 @@
 from functools import lru_cache
+from typing import Literal
 
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -23,6 +24,7 @@ class Settings(BaseSettings):
         min_length=32,
     )
     session_ttl_minutes: int = Field(default=30, ge=5, le=240)
+    rate_limit_backend: Literal["memory", "database"] = "database"
     llm_enabled: bool = False
     llm_base_url: str = ""
     llm_api_key: str = ""

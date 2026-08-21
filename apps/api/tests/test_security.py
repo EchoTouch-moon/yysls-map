@@ -40,6 +40,10 @@ def test_admin_session_requires_origin_and_csrf(
     monkeypatch,
 ) -> None:
     monkeypatch.setattr(settings, "admin_password_hash", password_hasher.hash("test-password"))
+    monkeypatch.setattr(
+        "app.api.routes.auth.login_limiter",
+        SlidingWindowLimiter(limit=10, window=timedelta(minutes=15)),
+    )
     client = TestClient(app)
 
     rejected = client.post(
