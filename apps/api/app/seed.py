@@ -267,7 +267,7 @@ def seed_demo(db: Session) -> SeedStats:
     chapters = _existing_by_slug(
         db, Chapter, Chapter.slug, {item.slug for item in CHAPTERS}
     )
-    DEMO_SORT_ORDER_BASE = 1_000
+    DEMO_SORT_ORDER_BASE = 2_000
     for order, chapter_seed in enumerate(CHAPTERS):
         if chapter_seed.slug not in chapters:
             chapter = Chapter(
