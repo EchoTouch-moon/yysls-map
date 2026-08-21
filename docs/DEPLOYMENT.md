@@ -1,12 +1,12 @@
 # Deployment Runbook
 
-Platform references:
-[Vercel monorepos](https://vercel.com/docs/monorepos/) and
-[Railway config as code](https://docs.railway.com/reference/config-as-code).
+Self-hosted on a personal server. Platform references:
+[Vercel monorepos](https://vercel.com/docs/monorepos/) for the web app;
+the API runs from `apps/api/Dockerfile` or bare `uv` behind a reverse proxy.
 
 ## Required environment
 
-### API / Railway
+### API
 
 - `APP_ENV=production`
 - `DATABASE_URL`
@@ -32,7 +32,8 @@ uv run python -c 'from argon2 import PasswordHasher; print(PasswordHasher().hash
 
 1. Create a PostgreSQL backup.
 2. Build and test the exact revision in CI.
-3. Deploy the API; Railway runs `alembic upgrade head` as its pre-deploy command.
+3. Deploy the API; run `alembic upgrade head` against the production database
+   as part of the release (release script, systemd unit, or container entrypoint).
 4. Verify `/api/v1/health`, then deploy the web app.
 5. Run the Playwright core flow against production with a disposable submission.
 6. Confirm `LLM_ENABLED=false` unless the extraction review workflow is ready.
