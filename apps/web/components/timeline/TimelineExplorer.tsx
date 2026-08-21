@@ -242,9 +242,18 @@ function ModeButton({
 function StoryGuide({ progress }: { progress: string }) {
   const [arcs, setArcs] = useState<StoryArcSummary[]>([]);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
-  const [detail, setDetail] = useState<StoryArcDetail | null>(null);
+  const [details, setDetails] = useState<Record<string, StoryArcDetail>>({});
   const [listLoading, setListLoading] = useState(true);
   const [error, setError] = useState("");
+  // /timeline?beat={event_slug} —— 深链：定位包含该事件的卷与幕次。
+  const [pendingBeatSlug] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    return new URLSearchParams(window.location.search).get("beat");
+  });
+  const [deepLink, setDeepLink] = useState<{ arcSlug: string | null; done: boolean }>({
+    arcSlug: null,
+    done: false,
+  });
 
   useEffect(() => {
     let active = true;
@@ -266,31 +275,65 @@ function StoryGuide({ progress }: { progress: string }) {
     };
   }, [progress]);
 
-  const activeSlug = selectedSlug ?? arcs[0]?.slug ?? null;
-  const activeSummary = arcs.find((arc) => arc.slug === activeSlug) ?? arcs[0];
+  const activeSlug =
+    selectedSlug ?? deepLink.arcSlug ?? arcs[0]?.slug ?? null;
 
+  // 深链解析：逐卷检查哪一卷包含目标事件；解析完成后不再重试。
   useEffect(() => {
-    if (!activeSlug) return;
+    if (!pendingBeatSlug || deepLink.done || arcs.length === 0 || error) return;
+    let active = true;
+    void (async () => {
+      for (const arc of arcs) {
+        try {
+          const params = new URLSearchParams({ progress });
+          const response = await apiFetch<StoryArcDetail>(
+            `/story-arcs/${encodeURIComponent(arc.slug)}?${params}`,
+          );
+          if (!active || !response.data) return;
+          const arcDetail = response.data;
+          const contains = arcDetail.beats.some(
+            (beat) => beat.event.slug === pendingBeatSlug,
+          );
+          setDetails((prev) => ({ ...prev, [arc.slug]: arcDetail }));
+          if (contains) {
+            setDeepLink({ arcSlug: arc.slug, done: true });
+            return;
+          }
+        } catch {
+          // 单卷读取失败时继续尝试下一卷；常规加载路径会呈现错误。
+        }
+      }
+      if (active) setDeepLink({ arcSlug: null, done: true });
+    })();
+    return () => {
+      active = false;
+    };
+  }, [pendingBeatSlug, deepLink.done, arcs, progress, error]);
+
+  // 确保当前卷详情已加载（含深链解析过程中已缓存的卷）。
+  useEffect(() => {
+    if (!activeSlug || details[activeSlug]) return;
     let active = true;
     const params = new URLSearchParams({ progress });
     apiFetch<StoryArcDetail>(`/story-arcs/${encodeURIComponent(activeSlug)}?${params}`)
       .then((response) => {
-        if (active) {
-          setDetail(response.data);
-          setError("");
-        }
+        const arcDetail = response.data;
+        if (!active || !arcDetail) return;
+        setDetails((prev) => ({ ...prev, [activeSlug]: arcDetail }));
+        setError("");
       })
       .catch((reason: unknown) => {
         if (active) {
           setError(reason instanceof Error ? reason.message : "故事导读读取失败。");
         }
-      })
+      });
     return () => {
       active = false;
     };
-  }, [activeSlug, progress]);
+  }, [activeSlug, details, progress]);
 
-  const activeDetail = detail?.slug === activeSlug ? detail : null;
+  const activeDetail = activeSlug ? details[activeSlug] ?? null : null;
+  const activeSummary = arcs.find((arc) => arc.slug === activeSlug) ?? arcs[0];
 
   return (
     <div
@@ -328,7 +371,17 @@ function StoryGuide({ progress }: { progress: string }) {
           )}
           <GuideMasthead summary={activeSummary} beatCount={activeDetail?.beats.length ?? activeSummary.beat_count} />
           {!activeDetail && <StatusCard>正在校对本卷的叙事线索…</StatusCard>}
-          {activeDetail && <StoryReader key={activeDetail.slug} detail={activeDetail} />}
+          {activeDetail && (
+            <StoryReader
+              key={activeDetail.slug}
+              detail={activeDetail}
+              initialEventSlug={
+                deepLink.done && deepLink.arcSlug === activeDetail.slug
+                  ? pendingBeatSlug
+                  : null
+              }
+            />
+          )}
         </>
       )}
     </div>
@@ -362,9 +415,27 @@ function GuideMasthead({ summary, beatCount }: { summary: StoryArcSummary; beatC
   );
 }
 
-function StoryReader({ detail }: { detail: StoryArcDetail }) {
-  const [activePosition, setActivePosition] = useState(0);
+function StoryReader({
+  detail,
+  initialEventSlug = null,
+}: {
+  detail: StoryArcDetail;
+  initialEventSlug?: string | null;
+}) {
+  const initialPosition = Math.max(
+    0,
+    detail.beats.findIndex((beat) => beat.event.slug === initialEventSlug),
+  );
+  const [activePosition, setActivePosition] = useState(initialPosition);
   const activeBeat = detail.beats[activePosition] ?? detail.beats[0];
+
+  useEffect(() => {
+    if (initialPosition > 0) {
+      document
+        .getElementById("story-guide-panel")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [initialPosition]);
 
   if (!activeBeat) return <StatusCard>当前进度尚未解锁本卷的阅读节点。</StatusCard>;
 
@@ -515,6 +586,12 @@ function HistoricalContextCard({ context }: { context: HistoricalContext }) {
         <p className="mt-4 border-l border-[var(--cinnabar)] pl-4 text-[var(--paper)]">{context.boundary_note}</p>
         {context.editorial_note && <p className="mt-3 text-xs leading-6 text-[var(--fog)]">编辑说明：{context.editorial_note}</p>}
         <HistoricalReferenceList references={context.references} />
+        <Link
+          href={`/history/${context.slug}`}
+          className="mt-5 inline-block text-xs text-[var(--cinnabar-bright)] underline decoration-[var(--line-strong)] underline-offset-4 hover:text-[var(--paper-light)]"
+        >
+          查看完整历史背景 →
+        </Link>
       </div>
     </details>
   );

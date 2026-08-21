@@ -9,13 +9,15 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 import app.content_import.runner as import_module
-from app.api.contracts import CharacterDetail, RelationshipDetail
+from app.api.contracts import CharacterDetail, HistoryDetailRead, RelationshipDetail
 from app.api.routes.details import character_detail, relationship_detail
 from app.api.routes.graph import get_graph
+from app.api.routes.history import get_history, list_history
 from app.api.routes.story_arcs import get_story_arc, list_story_arcs
 from app.api.routes.timeline import get_timeline
 from app.content_import import (
     ContentValidationError,
+    ImportStats,
     import_dataset,
     load_dataset,
     main,
@@ -39,6 +41,7 @@ from app.models import (
     StoryArcBeat,
     StoryEvent,
 )
+from app.schemas import RestrictedData
 from app.services.content import get_source_by_id_published
 from app.services.spoiler import context_for
 
@@ -293,7 +296,7 @@ def test_dry_run_rolls_back_without_committing(
     monkeypatch.setattr(
         import_module,
         "run_import",
-        lambda *_args, **_kwargs: import_module.ImportStats(
+        lambda *_args, **_kwargs: ImportStats(
             chapters=1,
             factions=0,
             characters=1,
@@ -499,6 +502,29 @@ def test_content_import_postgresql_lifecycle() -> None:
             )
             assert len(protagonist_detail.data.sources) == len(protagonist_item.source_ids)
 
+            qinghe_story_path = protagonist_detail.data.story_path
+            assert len(qinghe_story_path) >= 3
+            assert [step.beat_sort_order for step in qinghe_story_path] == sorted(
+                step.beat_sort_order for step in qinghe_story_path
+            )
+            assert all(step.guide for step in qinghe_story_path)
+            chips = [chip for step in qinghe_story_path for chip in step.historical]
+            assert {chip.slug for chip in chips} <= {
+                item.slug for item in dataset.historical_contexts
+            }
+
+            start_protagonist_detail = character_detail(
+                slug="protagonist",
+                db=db,
+                progress=ProgressKey.START,
+                reveal=False,
+            )
+            assert isinstance(start_protagonist_detail.data, CharacterDetail)
+            assert (
+                len(start_protagonist_detail.data.story_path)
+                < len(qinghe_story_path)
+            )
+
             visible_edge = qinghe_graph.data.edges[0]
             relationship_result = relationship_detail(
                 relationship_id=visible_edge.id,
@@ -573,6 +599,33 @@ def test_content_import_postgresql_lifecycle() -> None:
                 for reference in card.references
             )
             assert all(beat.event.sources for beat in qinghe_arc.data.beats)
+
+            qinghe_history = list_history(db=db, progress=ProgressKey.QINGHE)
+            assert qinghe_history.data is not None
+            assert len(qinghe_history.data.contexts) == len(dataset.historical_contexts)
+            start_history = list_history(db=db, progress=ProgressKey.START)
+            assert start_history.data is not None
+            # all current cards are spoiler >= 1, so none are visible at START
+            assert len(start_history.data.contexts) < len(qinghe_history.data.contexts)
+
+            zhongdu_detail = get_history(
+                slug="zhongdu-bridge-wangqing-duwei",
+                db=db,
+                progress=ProgressKey.QINGHE,
+            )
+            assert isinstance(zhongdu_detail.data, HistoryDetailRead)
+            assert zhongdu_detail.data.references
+            related_events = {
+                item.slug for item in dataset.events if item.id == "evt-wangqing-battle"
+            }
+            assert {item.event_slug for item in zhongdu_detail.data.related} == related_events
+
+            restricted_history = get_history(
+                slug="zhongdu-bridge-wangqing-duwei",
+                db=db,
+                progress=ProgressKey.START,
+            )
+            assert isinstance(restricted_history.data, RestrictedData)
 
             import_dataset(db, dataset, replace_existing=True)
             assert db.get(Chapter, sentinel_id) is None

@@ -7,10 +7,13 @@ test("explores visible content, submits a clue, and moderates it", async ({
 
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: /看不懂.*燕云剧情/ }),
+    page.getByRole("link", { name: /看懂清河故事/ }),
   ).toBeVisible();
 
-  await page.getByRole("link", { name: "展开关系图" }).click();
+  await page
+    .getByRole("main")
+    .getByRole("link", { name: "关系图谱", exact: true })
+    .click();
   await expect(page.getByRole("heading", { name: "角色关系图谱" })).toBeVisible();
   await expect(page.getByLabel("角色关系图谱")).toBeVisible();
 

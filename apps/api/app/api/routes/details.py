@@ -4,16 +4,131 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import select
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 
-from app.api.contracts import CharacterDetail, EvidenceSource, RelationshipDetail
+from app.api.contracts import (
+    CharacterDetail,
+    EvidenceSource,
+    HistoryChip,
+    RelationshipDetail,
+    StoryPathStep,
+)
 from app.db import get_db
 from app.domain import ContentStatus, ProgressKey
-from app.models import Chapter, Character, Faction, Relationship, Source
+from app.models import (
+    Chapter,
+    Character,
+    EventHistoricalLink,
+    Faction,
+    Relationship,
+    Source,
+    StoryArc,
+    StoryArcBeat,
+    StoryEvent,
+)
 from app.schemas import ApiResponse, RestrictedData
-from app.services.spoiler import context_for, is_visible
+from app.services.spoiler import SpoilerContext, context_for, is_visible
+from app.services.visibility import chapter_ranks, visible_entity
 
 router = APIRouter(tags=["details"])
+
+
+def _story_path(
+    db: Session,
+    *,
+    character_id: uuid.UUID,
+    context: SpoilerContext,
+) -> list[StoryPathStep]:
+    ranks = chapter_ranks(db)
+    beat_query = (
+        select(StoryArcBeat)
+        .join(StoryEvent, StoryArcBeat.event_id == StoryEvent.id)
+        .join(StoryArc, StoryArcBeat.arc_id == StoryArc.id)
+        .options(
+            selectinload(StoryArcBeat.arc),
+            selectinload(StoryArcBeat.event).selectinload(StoryEvent.characters),
+        )
+        .where(
+            StoryArcBeat.status == ContentStatus.PUBLISHED,
+            StoryEvent.status == ContentStatus.PUBLISHED,
+            StoryEvent.characters.any(Character.id == character_id),
+        )
+        .order_by(
+            StoryArc.title.asc(),
+            StoryArc.id.asc(),
+            StoryArcBeat.sort_order.asc(),
+            StoryArcBeat.id.asc(),
+        )
+    )
+    beats = [
+        beat
+        for beat in db.scalars(beat_query).unique().all()
+        if visible_entity(
+            context=context,
+            ranks=ranks,
+            visible_after_chapter_id=beat.visible_after_chapter_id,
+            spoiler_level=beat.spoiler_level,
+        )
+        and visible_entity(
+            context=context,
+            ranks=ranks,
+            visible_after_chapter_id=beat.event.visible_after_chapter_id or beat.event.chapter_id,
+            spoiler_level=beat.event.spoiler_level,
+        )
+    ]
+    if not beats:
+        return []
+
+    event_ids = [beat.event_id for beat in beats]
+    history_by_event: dict[uuid.UUID, list[HistoryChip]] = {}
+    link_query = (
+        select(EventHistoricalLink)
+        .options(selectinload(EventHistoricalLink.context))
+        .where(
+            EventHistoricalLink.event_id.in_(event_ids),
+            EventHistoricalLink.status == ContentStatus.PUBLISHED,
+        )
+        .order_by(EventHistoricalLink.sort_order.asc(), EventHistoricalLink.id.asc())
+    )
+    for link in db.scalars(link_query).unique().all():
+        historical = link.context
+        if historical.status is not ContentStatus.PUBLISHED:
+            continue
+        if not visible_entity(
+            context=context,
+            ranks=ranks,
+            visible_after_chapter_id=link.visible_after_chapter_id,
+            spoiler_level=link.spoiler_level,
+        ) or not visible_entity(
+            context=context,
+            ranks=ranks,
+            visible_after_chapter_id=historical.visible_after_chapter_id,
+            spoiler_level=historical.spoiler_level,
+        ):
+            continue
+        history_by_event.setdefault(link.event_id, []).append(
+            HistoryChip(
+                slug=historical.slug,
+                title=historical.title,
+                relation_kind=link.relation_kind,
+            )
+        )
+
+    return [
+        StoryPathStep(
+            arc_slug=beat.arc.slug,
+            arc_title=beat.arc.title,
+            beat_sort_order=beat.sort_order,
+            role=beat.role,
+            guide=beat.guide,
+            event_slug=beat.event.slug,
+            event_title=beat.event.title,
+            event_summary=beat.event.summary,
+            why_it_matters=beat.why_it_matters,
+            historical=history_by_event.get(beat.event_id, []),
+        )
+        for beat in beats
+    ]
 
 
 @router.get(
@@ -45,8 +160,9 @@ def character_detail(
     required_chapter = db.get(
         Chapter, character.visible_after_chapter_id or character.first_appear_chapter_id
     )
+    spoiler_context = context_for(progress, allow_reveal=reveal)
     visible = is_visible(
-        context=context_for(progress, allow_reveal=reveal),
+        context=spoiler_context,
         required_progress_rank=required_chapter.progress_rank if required_chapter else None,
         spoiler_level=character.spoiler_level,
     )
@@ -74,6 +190,7 @@ def character_detail(
                     .order_by(Source.title.asc())
                 ).all()
             ],
+            story_path=_story_path(db, character_id=character.id, context=spoiler_context),
         )
     )
 

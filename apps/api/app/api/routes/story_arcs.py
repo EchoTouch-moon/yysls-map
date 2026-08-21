@@ -20,7 +20,6 @@ from app.api.contracts import (
 from app.db import get_db
 from app.domain import ContentStatus, ProgressKey
 from app.models import (
-    Chapter,
     EventHistoricalLink,
     HistoricalContext,
     Relationship,
@@ -30,16 +29,10 @@ from app.models import (
     StoryEvent,
 )
 from app.schemas import ApiResponse
-from app.services.spoiler import SpoilerContext, context_for, is_visible
+from app.services.spoiler import SpoilerContext, context_for
+from app.services.visibility import chapter_ranks, visible_entity
 
 router = APIRouter(prefix="/story-arcs", tags=["story-arcs"])
-
-
-def _chapter_ranks(db: Session) -> dict[uuid.UUID, int]:
-    return {
-        chapter_id: progress_rank
-        for chapter_id, progress_rank in db.execute(select(Chapter.id, Chapter.progress_rank)).all()
-    }
 
 
 def _visible(
@@ -49,11 +42,10 @@ def _visible(
     visible_after_chapter_id: uuid.UUID | None,
     spoiler_level: int,
 ) -> bool:
-    return is_visible(
+    return visible_entity(
         context=context,
-        required_progress_rank=(
-            ranks.get(visible_after_chapter_id) if visible_after_chapter_id is not None else None
-        ),
+        ranks=ranks,
+        visible_after_chapter_id=visible_after_chapter_id,
         spoiler_level=spoiler_level,
     )
 
@@ -105,7 +97,7 @@ def list_story_arcs(
     progress: ProgressKey = ProgressKey.START,
 ) -> ApiResponse[StoryArcListData]:
     spoiler_context = context_for(progress)
-    ranks = _chapter_ranks(db)
+    ranks = chapter_ranks(db)
     arcs: list[StoryArcListItem] = []
     for arc in db.scalars(_arc_query()).unique().all():
         if not _visible(
@@ -138,7 +130,7 @@ def get_story_arc(
     progress: ProgressKey = ProgressKey.START,
 ) -> ApiResponse[StoryArcDetail]:
     spoiler_context = context_for(progress)
-    ranks = _chapter_ranks(db)
+    ranks = chapter_ranks(db)
     arc = db.scalar(_arc_query().where(StoryArc.slug == slug))
     if arc is None or not _visible(
         context=spoiler_context,

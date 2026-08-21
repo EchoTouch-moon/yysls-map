@@ -12,42 +12,50 @@ import { Drawer } from "@/components/ui/Drawer";
 /* ------------------------------------------------------------------ */
 
 describe("Home", () => {
-  it("presents the primary graph action", () => {
+  it("presents the story-first primary action pointing at the guide", () => {
     render(<Home />);
-    expect(screen.getByRole("link", { name: "展开关系图" })).toHaveAttribute(
-      "href",
-      "/graph",
-    );
-  });
-
-  it("presents the secondary timeline action", () => {
-    render(<Home />);
-    expect(screen.getByRole("link", { name: "查看时间线" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /看懂清河故事/ })).toHaveAttribute(
       "href",
       "/timeline",
     );
+  });
+
+  it("presents character exploration as the second entry", () => {
+    render(<Home />);
+    expect(screen.getByRole("link", { name: "了解一个人物" })).toHaveAttribute(
+      "href",
+      "/characters",
+    );
+  });
+
+  it("keeps spoiler protection as a demoted optional control", () => {
+    render(<Home />);
+    fireEvent.click(screen.getByText(/避免看到重大揭示/));
+    expect(
+      screen.getByText(/涉及后续揭示的内容会整体隐藏/),
+    ).toBeInTheDocument();
   });
 
   it("renders the non-official disclaimer", () => {
     render(<Home />);
     expect(
-      screen.getByText(/玩家自发整理的非官方剧情关系图谱项目/),
+      screen.getByText(/玩家自发整理的非官方剧情解析项目/),
     ).toBeInTheDocument();
   });
 
   it("renders feature archive cards with correct links", () => {
     render(<Home />);
-    expect(screen.getByRole("link", { name: /关系图谱/ })).toHaveAttribute(
-      "href",
-      "/graph",
-    );
-    expect(screen.getByRole("link", { name: /剧情时间线/ })).toHaveAttribute(
+    expect(screen.getAllByRole("link", { name: /故事导读/ })[0]).toHaveAttribute(
       "href",
       "/timeline",
     );
-    expect(screen.getByRole("link", { name: /人物卷宗/ })).toHaveAttribute(
+    expect(screen.getAllByRole("link", { name: /人物卷宗/ })[0]).toHaveAttribute(
       "href",
       "/characters",
+    );
+    expect(screen.getAllByRole("link", { name: /历史背景/ })[0]).toHaveAttribute(
+      "href",
+      "/history",
     );
   });
 });

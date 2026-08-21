@@ -262,6 +262,56 @@ class HistoricalContextRead(BaseModel):
     references: list[HistoricalReferenceRead]
 
 
+class HistoryListItem(BaseModel):
+    slug: str
+    title: str
+    period_label: str
+    summary: str
+    fact_kind: HistoricalFactKind
+
+
+class HistoryListData(BaseModel):
+    progress: ProgressKey
+    contexts: list[HistoryListItem]
+
+
+class RelatedBeatRef(BaseModel):
+    arc_slug: str
+    arc_title: str
+    event_slug: str
+    event_title: str
+
+
+class HistoryDetailRead(BaseModel):
+    slug: str
+    title: str
+    period_label: str
+    summary: str
+    fact_kind: HistoricalFactKind
+    boundary_note: str
+    references: list[HistoricalReferenceRead] = Field(default_factory=list)
+    related: list[RelatedBeatRef] = Field(default_factory=list)
+
+
+class HistoryChip(BaseModel):
+    slug: str
+    title: str
+    relation_kind: HistoricalRelationKind
+
+
+class StoryPathStep(BaseModel):
+    arc_slug: str
+    arc_title: str
+    beat_sort_order: int
+    role: StoryBeatRole
+    guide: str
+    event_slug: str
+    event_title: str
+    event_summary: str
+    why_it_matters: str
+    historical: list[HistoryChip] = Field(default_factory=list)
+
+
 class StoryArcBeatEvent(BaseModel):
     id: uuid.UUID
     slug: str
@@ -318,6 +368,7 @@ class CharacterDetail(BaseModel):
     faction_name: str | None
     first_appear_chapter: str | None
     sources: list[EvidenceSource] = Field(default_factory=list)
+    story_path: list[StoryPathStep] = Field(default_factory=list)
 
 
 class RelationshipDetail(BaseModel):
