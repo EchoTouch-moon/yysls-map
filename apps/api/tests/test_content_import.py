@@ -59,9 +59,9 @@ def test_qinghe_dataset_matches_extended_release_contract() -> None:
     assert len(dataset.story_arcs) == 1
     assert len(dataset.story_arcs[0].beats) == 10
     assert dataset.story_arcs[0].estimated_minutes == 12
-    assert len(dataset.historical_references) == 6
-    assert len(dataset.historical_contexts) == 3
-    assert len(dataset.event_historical_links) == 3
+    assert len(dataset.historical_references) == 8
+    assert len(dataset.historical_contexts) == 5
+    assert len(dataset.event_historical_links) == 4
     assert all(context.reference_ids for context in dataset.historical_contexts)
 
 
@@ -396,11 +396,12 @@ def test_content_import_postgresql_lifecycle() -> None:
             assert counts_after_second == counts_after_first
 
             removed_link = dataset.event_historical_links[-1]
+            total_links = len(dataset.event_historical_links)
             dataset_without_link = dataset.model_copy(
                 update={"event_historical_links": dataset.event_historical_links[:-1]}
             )
             import_dataset(db, dataset_without_link)
-            assert db.scalar(select(func.count()).select_from(EventHistoricalLink)) == 2
+            assert db.scalar(select(func.count()).select_from(EventHistoricalLink)) == total_links - 1
             assert (
                 db.get(
                     EventHistoricalLink,
@@ -409,7 +410,7 @@ def test_content_import_postgresql_lifecycle() -> None:
                 is None
             )
             import_dataset(db, dataset)
-            assert db.scalar(select(func.count()).select_from(EventHistoricalLink)) == 3
+            assert db.scalar(select(func.count()).select_from(EventHistoricalLink)) == total_links
 
             expected_source_links = sum(
                 len(item.source_ids)
@@ -557,7 +558,11 @@ def test_content_import_postgresql_lifecycle() -> None:
             wangqing = next(
                 beat for beat in qinghe_arc.data.beats if beat.event.slug == "wangqing-battle"
             )
-            assert len(wangqing.historical_contexts) == 3
+            assert len(wangqing.historical_contexts) == sum(
+                1
+                for link in dataset.event_historical_links
+                if link.event_id == "evt-wangqing-battle"
+            )
             assert all(card.references for card in wangqing.historical_contexts)
             assert all(
                 reference.url.startswith(("http://", "https://"))
@@ -570,7 +575,11 @@ def test_content_import_postgresql_lifecycle() -> None:
             assert db.get(Chapter, sentinel_id) is None
             assert db.scalar(select(func.count()).select_from(StoryArc)) == 1
             assert db.scalar(select(func.count()).select_from(StoryArcBeat)) == 10
-            assert db.scalar(select(func.count()).select_from(HistoricalContext)) == 3
-            assert db.scalar(select(func.count()).select_from(EventHistoricalLink)) == 3
+            assert db.scalar(select(func.count()).select_from(HistoricalContext)) == len(
+                dataset.historical_contexts
+            )
+            assert db.scalar(select(func.count()).select_from(EventHistoricalLink)) == len(
+                dataset.event_historical_links
+            )
         finally:
             db.rollback()

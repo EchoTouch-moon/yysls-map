@@ -2013,6 +2013,26 @@
       "url": "https://www.bjmy.gov.cn/stmy/zjmy/mysz/202001/t20200106_97415.html",
       "locator": "五代时期燕云地区建置沿革",
       "accessed_at": "2026-08-20"
+    },
+    {
+      "id": "hist-ref-zztj-286",
+      "slug": "zizhi-tongjian-286",
+      "reference_type": "primary_source",
+      "title": "《资治通鉴》卷二百八十六",
+      "publisher": "维基文库",
+      "url": "https://zh.wikisource.org/zh-hans/資治通鑑/卷286",
+      "locator": "契丹入汴：以萧翰为宣武军节度使；萧翰为述律太后兄子；始以萧为姓，契丹后族皆称萧氏",
+      "accessed_at": "2026-08-21"
+    },
+    {
+      "id": "hist-ref-yuanshi-fenglong",
+      "slug": "yuanshi-gov-fenglong-academy",
+      "reference_type": "institutional_reference",
+      "title": "封龙书院（走进元氏）",
+      "publisher": "元氏县人民政府",
+      "url": "http://www.yuanshi.gov.cn/columns/6cc90287-efb7-48ef-a4a6-fa9ef9d35e36/202406/18/1e7e4229-425d-40e8-8bdf-a7165bb9b377.html",
+      "locator": "书院沿革：东汉发端结庐授业；唐五代以后书院形式兴盛；北宋河北见诸记载的三处书院全在封龙山",
+      "accessed_at": "2026-08-21"
     }
   ],
 
@@ -2052,6 +2072,30 @@
       "spoiler_level": 2,
       "visible_after_progress": "qinghe",
       "reference_ids": ["hist-ref-zztj-285", "hist-ref-jwds-95", "hist-ref-jwds-85"]
+    },
+    {
+      "id": "hist-zhongdu-xiaohan",
+      "slug": "zhongdu-xiaohan-khitan-general",
+      "title": "史籍中的萧翰与契丹后族",
+      "period_label": "后晋开运三年（946）前后",
+      "summary": "《资治通鉴》记载，中渡桥对峙期间，契丹遣将领萧翰与刘重进率百余骑潜出西山，袭断后晋军粮道与归路；灭晋后，契丹复以汴州为宣武军，任萧翰为节度使。萧翰是述律太后之兄子，其妹为契丹主后；《通鉴》称他始以萧为姓，自是契丹后族皆称萧氏。",
+      "fact_kind": "historical_fact",
+      "boundary_note": "史籍可证萧翰其人、其中渡桥断粮道之役与其后族身份。游戏镇守「滹沱河」以萧翰为首领属于以真实人物为锚点的改编，其具体战斗情节与性格刻画属作品演绎。",
+      "spoiler_level": 2,
+      "visible_after_progress": "qinghe",
+      "reference_ids": ["hist-ref-zztj-285", "hist-ref-zztj-286"]
+    },
+    {
+      "id": "hist-fenglong-academy",
+      "slug": "fenglong-academy-anachronism",
+      "title": "封龙书院的真实年代",
+      "period_label": "东汉发端，北宋成型（开运三年时尚未存在）",
+      "summary": "据元氏县人民政府介绍，封龙书院位于河北元氏封龙山阳，最早发端于东汉名流结庐授业；唐、五代以后书院形式兴盛，封龙山成为河北书院发祥地；北宋时河北见诸记载的三处书院全在封龙山中，元代李冶在此讲学著《测圆海镜》而鼎盛。作为制度化书院，其可考成型年代在北宋。",
+      "fact_kind": "historical_fact",
+      "boundary_note": "开运三年（946）滹沱河战事之时，封龙山尚无可考的「封龙书院」。游戏将「封龙书院」镇守置于滹沱战事年代属于年代错位的艺术加工；本卡用于帮助读者区分真实书院沿革与作品设定。",
+      "spoiler_level": 2,
+      "visible_after_progress": "qinghe",
+      "reference_ids": ["hist-ref-yuanshi-fenglong"]
     }
   ],
 
@@ -2083,6 +2127,16 @@
       "relation_kind": "fictionalized",
       "editorial_note": "事件保留了王清争桥、未获增援而战死及杜威随后谋降的史事骨架，再用虚构亲属关系与梦傀设定接入主角身世。",
       "sort_order": 3,
+      "spoiler_level": 2,
+      "visible_after_progress": "qinghe"
+    },
+    {
+      "id": "link-wangqing-xiaohan-parallel",
+      "event_id": "evt-wangqing-battle",
+      "historical_context_id": "hist-zhongdu-xiaohan",
+      "relation_kind": "parallel",
+      "editorial_note": "同一场战事的敌方视角：史载萧翰潜出西山袭断晋军粮道归路，与作品正面叙事的王清争桥互为对照。",
+      "sort_order": 4,
       "spoiler_level": 2,
       "visible_after_progress": "qinghe"
     }
