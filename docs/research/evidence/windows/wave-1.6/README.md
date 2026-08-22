@@ -17,7 +17,8 @@ docs/research/evidence/windows/wave-1.6/
     ├── block-container-classification.md ← W-R03.5 Block & Container Classification
     ├── resource-catalog-summary.md       ← W-R04 Archive Candidate Discovery
     ├── narrative-metadata-probe.md       ← W-R05 Narrative Metadata Schema Probe
-    └── static-extraction-decision.md     ← W-R06 Static Extraction Decision
+    ├── static-extraction-decision.md     ← W-R06 Static Extraction Decision
+    └── luat-dialect-identification.md    ← NEX-002 LuaT Dialect Identification
 ```
 
 ## 当前状态（R00→R06 已闭环）
