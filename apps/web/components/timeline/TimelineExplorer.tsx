@@ -502,6 +502,9 @@ function UnplacedEventCard({
       <p className="text-xs tracking-[0.2em] text-[var(--cinnabar-bright)]">编辑解析节点</p>
       <h3 className="mt-2 text-2xl leading-snug text-[var(--paper-light)]">{event.title}</h3>
       <p className="mt-3 max-w-3xl text-xs leading-6 text-[var(--fog)]">{note}</p>
+      {event.summary && (
+        <p className="mt-4 max-w-3xl text-sm leading-7 text-[var(--paper)]">{event.summary}</p>
+      )}
       <div className="mt-5">
         <CanonicalOverlay event={event} />
       </div>

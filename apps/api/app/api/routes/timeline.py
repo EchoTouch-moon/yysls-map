@@ -213,7 +213,7 @@ def get_timeline_canonical(
         else []
     )
     linked_event_ids = {link.story_event_id for link in links}
-    events = (
+    all_chapter_events = (
         db.scalars(
             select(StoryEvent)
             .options(
@@ -221,18 +221,17 @@ def get_timeline_canonical(
                 selectinload(StoryEvent.chapter),
             )
             .where(
-                StoryEvent.id.in_(linked_event_ids),
+                StoryEvent.chapter_id == chapter_row.id,
                 StoryEvent.status == ContentStatus.PUBLISHED,
             )
         ).unique().all()
-        if linked_event_ids
-        else []
     )
-    event_by_id = {event.id: event for event in events}
-    visible_event_ids = [
+    event_by_id = {event.id: event for event in all_chapter_events}
+    visible_linked_event_ids = [
         event.id
-        for event in events
-        if visible_entity(
+        for event in all_chapter_events
+        if event.id in linked_event_ids
+        and visible_entity(
             context=context,
             ranks=ranks,
             visible_after_chapter_id=event.visible_after_chapter_id or event.chapter_id,
@@ -240,8 +239,24 @@ def get_timeline_canonical(
         )
     ]
     visible_event_by_id = {
-        event_id: event_by_id[event_id] for event_id in visible_event_ids
+        event_id: event_by_id[event_id] for event_id in visible_linked_event_ids
     }
+    # H-D1: unplaced (editorial-only) visible events keep full overlay parity.
+    # The overlay preload set must cover linked AND unplaced events, so
+    # editorial-only deep links (?beat=wangqing-battle) still load beat,
+    # sources, relationships and history.
+    unplaced_event_ids = [
+        event.id
+        for event in all_chapter_events
+        if event.id not in linked_event_ids
+        and visible_entity(
+            context=context,
+            ranks=ranks,
+            visible_after_chapter_id=event.visible_after_chapter_id or event.chapter_id,
+            spoiler_level=event.spoiler_level,
+        )
+    ]
+    relevant_event_ids = linked_event_ids | set(unplaced_event_ids)
 
     # editorial beat overlays (published arc chain only)
     beats = (
@@ -250,7 +265,7 @@ def get_timeline_canonical(
             .join(StoryArc, StoryArcBeat.arc_id == StoryArc.id)
             .options(selectinload(StoryArcBeat.arc))
             .where(
-                StoryArcBeat.event_id.in_(linked_event_ids),
+                StoryArcBeat.event_id.in_(relevant_event_ids),
                 StoryArcBeat.status == ContentStatus.PUBLISHED,
                 StoryArc.status == ContentStatus.PUBLISHED,
             )
@@ -277,7 +292,7 @@ def get_timeline_canonical(
         for source in db.scalars(
             select(Source)
             .where(
-                Source.event_id.in_(linked_event_ids),
+                Source.event_id.in_(relevant_event_ids),
                 Source.event_id.is_not(None),
             )
             .order_by(Source.title.asc(), Source.id.asc())
@@ -298,7 +313,7 @@ def get_timeline_canonical(
             )
             .where(
                 Relationship.status == ContentStatus.PUBLISHED,
-                Relationship.events.any(StoryEvent.id.in_(linked_event_ids)),
+                Relationship.events.any(StoryEvent.id.in_(relevant_event_ids)),
             )
             .order_by(Relationship.label.asc(), Relationship.id.asc())
         )
@@ -337,7 +352,7 @@ def get_timeline_canonical(
                 target_name=relationship.target.name,
             )
             for event in relationship.events:
-                if event.id in linked_event_ids:
+                if event.id in relevant_event_ids:
                     relationships_by_event.setdefault(event.id, []).append(item)
 
     history_by_event: dict[uuid.UUID, list[HistoricalContextRead]] = {}
@@ -350,7 +365,7 @@ def get_timeline_canonical(
                 )
             )
             .where(
-                EventHistoricalLink.event_id.in_(linked_event_ids),
+                EventHistoricalLink.event_id.in_(relevant_event_ids),
                 EventHistoricalLink.status == ContentStatus.PUBLISHED,
             )
             .order_by(EventHistoricalLink.sort_order.asc(), EventHistoricalLink.id.asc())
@@ -452,37 +467,15 @@ def get_timeline_canonical(
     # unplaced events: visible chapter events without any canonical link
     # (editorial-only interpretation, e.g. wangqing-battle) for deep-link fallback.
     unplaced_events: list[CanonicalEventOverlay] = []
-    all_chapter_events = (
-        db.scalars(
-            select(StoryEvent)
-            .options(
-                selectinload(StoryEvent.characters),
-                selectinload(StoryEvent.chapter),
-            )
-            .where(
-                StoryEvent.chapter_id == chapter_row.id,
-                StoryEvent.status == ContentStatus.PUBLISHED,
-            )
-        ).unique().all()
-    )
-    for event in all_chapter_events:
-        if event.id in linked_event_ids:
-            continue
-        if not visible_entity(
-            context=context,
-            ranks=ranks,
-            visible_after_chapter_id=event.visible_after_chapter_id or event.chapter_id,
-            spoiler_level=event.spoiler_level,
-        ):
-            continue
+    for event_id in sorted(unplaced_event_ids, key=lambda item: (str(item),)):
         unplaced_events.append(
             _event_overlay(
                 db,
-                event=event,
+                event=event_by_id[event_id],
                 mapping_kind=None,
                 context=context,
                 ranks=ranks,
-                beat=beat_by_event.get(event.id),
+                beat=beat_by_event.get(event_id),
                 sources_by_event=sources_by_event,
                 relationships_by_event=relationships_by_event,
                 history_by_event=history_by_event,

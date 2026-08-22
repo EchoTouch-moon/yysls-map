@@ -45,9 +45,14 @@ test("guide beat deep-links into history and back to the story", async ({
     await expect(page).toHaveURL(/\/timeline\?beat=/);
   }
 
-  // ?beat= 深链直接定位幕次
+  // ?beat= 深链定位编辑解析节点，并保留完整 overlay（H-D1）
   await page.goto("/timeline?beat=wangqing-battle");
   await expect(
     page.getByRole("heading", { name: "作品中的中渡桥之战" }),
   ).toBeVisible();
+  await expect(page.getByText("为什么重要", { exact: true })).toBeVisible();
+  await expect(page.getByText("相关历史背景")).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "《资治通鉴》卷二百八十五" }),
+  ).toHaveAttribute("rel", "noopener noreferrer");
 });

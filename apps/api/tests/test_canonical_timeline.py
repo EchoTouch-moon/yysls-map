@@ -93,6 +93,31 @@ def test_canonical_locked_at_start_no_title_leak() -> None:
 
 
 @DB_TEST
+def test_canonical_unplaced_editorial_overlay_parity() -> None:
+    """H-D1: editorial-only deep links keep full overlay parity.
+
+    wangqing-battle has zero canonical links but must still load beat,
+    sources, historical contexts, relationships and characters through the
+    unplaced fallback (beat + history are the Story->History core sample).
+    """
+    with SessionLocal() as db:
+        try:
+            _seed(db)
+            data = get_timeline_canonical(db, progress=ProgressKey.QINGHE).data
+            wangqing = next(
+                event for event in data.unplaced_events if event.slug == "wangqing-battle"
+            )
+            assert wangqing.beat is not None
+            assert wangqing.beat.why_it_matters
+            assert wangqing.sources
+            assert wangqing.historical_contexts
+            assert wangqing.relationships
+            assert wangqing.characters
+        finally:
+            db.rollback()
+
+
+@DB_TEST
 def test_canonical_overlay_attaches_interpretation() -> None:
     """D-G3: StoryEvent + beat interpretation ride on the node without reordering."""
     with SessionLocal() as db:
