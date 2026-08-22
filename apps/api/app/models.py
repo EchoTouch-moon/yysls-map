@@ -458,6 +458,12 @@ class CanonicalStoryNode(Base, TimestampMixin):
             unique=True,
             postgresql_where=text("parent_id IS NOT NULL"),
         ),
+        Index(
+            "ix_canonical_story_nodes_root_order",
+            "sort_order",
+            unique=True,
+            postgresql_where=text("parent_id IS NULL"),
+        ),
     )
 
 

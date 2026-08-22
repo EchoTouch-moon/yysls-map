@@ -136,6 +136,13 @@ def upgrade() -> None:
         unique=True,
         postgresql_where=sa.text("parent_id IS NOT NULL"),
     )
+    op.create_index(
+        "ix_canonical_story_nodes_root_order",
+        "canonical_story_nodes",
+        ["sort_order"],
+        unique=True,
+        postgresql_where=sa.text("parent_id IS NULL"),
+    )
 
     op.create_table(
         "canonical_story_event_links",

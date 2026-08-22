@@ -433,6 +433,7 @@ def import_canonical_dataset(
         _clear_canonical(db)
 
     nodes: dict[str, CanonicalStoryNode] = {}
+    items_by_key = {item.canonical_key: item for item in dataset.nodes}
     for item in dataset.nodes:
         row_id = stable_content_id("canonical-node", item.canonical_key)
         node = db.get(CanonicalStoryNode, row_id)
@@ -451,10 +452,10 @@ def import_canonical_dataset(
         node.verification_state = item.verification_state
         node.status = item.status
         nodes[item.canonical_key] = node
-    db.flush()
-
+    # Resolve parents from the in-memory map BEFORE the first flush so no node
+    # is ever inserted with a temporary NULL parent (root-order constraint).
     for key, node in nodes.items():
-        item = next(item for item in dataset.nodes if item.canonical_key == key)
+        item = items_by_key[key]
         node.parent_id = nodes[item.parent_key].id if item.parent_key else None
     db.flush()
 

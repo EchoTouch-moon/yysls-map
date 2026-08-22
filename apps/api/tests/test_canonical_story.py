@@ -226,18 +226,41 @@ def test_g5_valid_exact_merged_split_pass() -> None:
 # ---------------------------------------------------------------------------
 
 
-def test_g6_published_node_needs_identity_or_general_evidence() -> None:
+def test_g6_published_node_requires_identity_evidence() -> None:
+    """GENERAL evidence cannot satisfy the published identity requirement (H-C2-1)."""
     ds = _dataset(
         [
             _node(
                 "n1",
-                provenance=[_provenance(role=CanonicalEvidenceRole.ORDER)],
+                provenance=[_provenance(role=CanonicalEvidenceRole.GENERAL)],
             )
         ],
         [],
     )
-    with pytest.raises(ContentValidationError, match="IDENTITY or GENERAL"):
+    with pytest.raises(ContentValidationError, match="IDENTITY evidence"):
         validate_canonical_dataset(ds)
+
+
+def test_g6_general_evidence_supplements_identity() -> None:
+    """GENERAL may supplement IDENTITY; published node with IDENTITY passes."""
+    ds = _dataset(
+        [
+            _node(
+                "n1",
+                provenance=[
+                    _provenance(role=CanonicalEvidenceRole.IDENTITY),
+                    _provenance(role=CanonicalEvidenceRole.GENERAL),
+                ],
+            )
+        ],
+        [],
+    )
+    validate_canonical_dataset(ds)  # must not raise
+
+
+def test_g6_published_node_with_identity_passes() -> None:
+    ds = _dataset([_node("n1")], [])  # default provenance is IDENTITY
+    validate_canonical_dataset(ds)  # must not raise
 
 
 def test_g6_invalid_evidence_role_rejected() -> None:
@@ -438,6 +461,64 @@ def test_c2_g3_identity_constraints() -> None:
             with pytest.raises(IntegrityError):
                 db.flush()
             db.rollback()
+        finally:
+            db.rollback()
+
+
+@DB_TEST
+def test_c2_g3_root_sibling_sort_order_unique() -> None:
+    """H-C2-2: root siblings (parent_id IS NULL) must also have unique sort_order.
+
+    PostgreSQL treats NULLs as distinct in a plain unique index, so this needs
+    the dedicated partial index (parent_id IS NULL) -> UNIQUE(sort_order).
+    """
+    marker = uuid.uuid4().hex[:8]
+    with SessionLocal() as db:
+        try:
+            a = CanonicalStoryNode(
+                canonical_key=f"csn-{marker}-root-a",
+                title="root a",
+                node_type=CanonicalStoryNodeType.CHAPTER,
+                region="清河",
+                chapter_slug="qinghe",
+                parent_id=None,
+                sort_order=0,
+                provenance=[],
+                verification_state=CanonicalVerificationState.VERIFIED,
+                status=ContentStatus.DRAFT,
+            )
+            b = CanonicalStoryNode(
+                canonical_key=f"csn-{marker}-root-b",
+                title="root b",
+                node_type=CanonicalStoryNodeType.CHAPTER,
+                region="清河",
+                chapter_slug="qinghe",
+                parent_id=None,
+                sort_order=0,
+                provenance=[],
+                verification_state=CanonicalVerificationState.VERIFIED,
+                status=ContentStatus.DRAFT,
+            )
+            db.add_all([a, b])
+            with pytest.raises(IntegrityError):
+                db.flush()
+            db.rollback()
+
+            # distinct root orders still allowed
+            c = CanonicalStoryNode(
+                canonical_key=f"csn-{marker}-root-c",
+                title="root c",
+                node_type=CanonicalStoryNodeType.CHAPTER,
+                region="清河",
+                chapter_slug="qinghe",
+                parent_id=None,
+                sort_order=1,
+                provenance=[],
+                verification_state=CanonicalVerificationState.VERIFIED,
+                status=ContentStatus.DRAFT,
+            )
+            db.add(c)
+            db.flush()
         finally:
             db.rollback()
 

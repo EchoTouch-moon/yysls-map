@@ -372,14 +372,14 @@ def validate_canonical_dataset(dataset: CanonicalDataset) -> None:
                 f"node {item.canonical_key}: {item.verification_state.value} "
                 "cannot be PUBLISHED (C2-G4)"
             )
+        # H-C2-1 (frozen C2-G6): GENERAL may supplement but cannot replace
+        # IDENTITY for a published node's identity evidence.
         if item.status is ContentStatus.PUBLISHED and not any(
-            entry.evidence_role
-            in (CanonicalEvidenceRole.IDENTITY, CanonicalEvidenceRole.GENERAL)
+            entry.evidence_role is CanonicalEvidenceRole.IDENTITY
             for entry in item.provenance
         ):
             errors.append(
-                f"node {item.canonical_key}: published node needs IDENTITY or GENERAL "
-                "evidence (C2-G6)"
+                f"node {item.canonical_key}: published node needs IDENTITY evidence (C2-G6)"
             )
         if any(not entry.ref.strip() for entry in item.provenance):
             errors.append(f"node {item.canonical_key}: empty provenance ref is not allowed (C2-G6)")
