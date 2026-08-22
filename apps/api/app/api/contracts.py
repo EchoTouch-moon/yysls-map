@@ -5,6 +5,8 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, ValidationInfo, field_validator
 
 from app.domain import (
+    CanonicalMappingKind,
+    CanonicalStoryNodeType,
     ContentStatus,
     HistoricalFactKind,
     HistoricalReferenceType,
@@ -448,3 +450,55 @@ class AIExtractionResult(BaseModel):
     events: list[AIEventCandidate] = Field(default_factory=list, max_length=100)
     model: str
     prompt_version: str
+
+
+
+class CanonicalEventBeatOverlay(BaseModel):
+    """Editorial beat interpretation attached to a linked StoryEvent (D-G3)."""
+
+    role: StoryBeatRole
+    guide: str
+    why_it_matters: str
+    bridge: str
+    next_question: str
+
+
+class CanonicalEventOverlay(BaseModel):
+    """StoryEvent interpretation layered on a canonical node (D-G3)."""
+
+    mapping_kind: CanonicalMappingKind | None = None
+    slug: str
+    title: str
+    summary: str
+    impact: str | None
+    chapter_slug: str
+    chapter_title: str
+    characters: list[TimelineCharacter] = Field(default_factory=list)
+    sources: list[EvidenceSource] = Field(default_factory=list)
+    relationships: list[StoryArcRelationship] = Field(default_factory=list)
+    historical_contexts: list[HistoricalContextRead] = Field(default_factory=list)
+    beat: CanonicalEventBeatOverlay | None = None
+
+
+class CanonicalNodeRead(BaseModel):
+    canonical_key: str
+    title: str
+    node_type: CanonicalStoryNodeType
+    parent_key: str | None
+    sort_order: int
+    events: list[CanonicalEventOverlay] = Field(default_factory=list)
+
+
+class TimelineCanonicalChapter(BaseModel):
+    slug: str
+    title: str
+    region: str | None
+
+
+class TimelineCanonicalData(BaseModel):
+    progress: ProgressKey
+    chapter: TimelineCanonicalChapter | None
+    chapter_unlocked: bool
+    spine: list[CanonicalNodeRead] = Field(default_factory=list)
+    beat_index: dict[str, list[str]] = Field(default_factory=dict)
+    unplaced_events: list[CanonicalEventOverlay] = Field(default_factory=list)

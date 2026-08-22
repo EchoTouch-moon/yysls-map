@@ -22,240 +22,176 @@ describe("spoiler-aware workflows", () => {
     vi.restoreAllMocks();
   });
 
-  it("removes old guide and historical context immediately when progress is lowered", async () => {
+  function canonicalEnvelope(
+    progress: string,
+    options: {
+      unlocked?: boolean;
+      events?: unknown[];
+      unplaced?: unknown[];
+      beatIndex?: Record<string, string[]>;
+    } = {},
+  ) {
+    const spine = options.events
+      ? [
+          {
+            canonical_key: "wwm:qinghe:chapter-1",
+            title: "第一章·神仙不渡",
+            node_type: "chapter",
+            parent_key: null,
+            sort_order: 0,
+            events: [],
+          },
+          {
+            canonical_key: "wwm:qinghe:chapter-1:part-1",
+            title: "又见新来燕",
+            node_type: "main_part",
+            parent_key: "wwm:qinghe:chapter-1",
+            sort_order: 1,
+            events: [],
+          },
+          {
+            canonical_key: "wwm:qinghe:chapter-1:part-1:awaken",
+            title: "竹林旧居线索",
+            node_type: "main_quest",
+            parent_key: "wwm:qinghe:chapter-1:part-1",
+            sort_order: 1,
+            events: options.events,
+          },
+        ]
+      : [];
+    return envelope({
+      progress,
+      chapter: { slug: "qinghe", title: "第一章·神仙不渡", region: "清河" },
+      chapter_unlocked: options.unlocked ?? true,
+      spine,
+      beat_index: options.beatIndex ?? {},
+      unplaced_events: options.unplaced ?? [],
+    });
+  }
+
+  function eventOverlay(overrides: Record<string, unknown> = {}) {
+    return {
+      mapping_kind: "exact",
+      slug: "p1-awaken",
+      title: "红线唤醒",
+      summary: "主角在竹林小屋醒来。",
+      impact: "终局秘密影响的开始。",
+      chapter_slug: "qinghe",
+      chapter_title: "第一章·神仙不渡",
+      characters: [{ slug: "hero", name: "主角" }],
+      sources: [
+        {
+          source_type: "official_reference",
+          title: "终局资料",
+          reference: "https://example.com/ending",
+        },
+      ],
+      relationships: [],
+      historical_contexts: [
+        {
+          id: "future-history",
+          slug: "future-history",
+          title: "终局历史背景",
+          period_label: "946",
+          summary: "只应在全剧透进度出现。",
+          fact_kind: "historical_fact",
+          relation_kind: "setting",
+          boundary_note: "受限历史说明。",
+          editorial_note: null,
+          references: [
+            {
+              reference_type: "史料",
+              title: "终局史料",
+              url: "https://example.com/history",
+            },
+          ],
+        },
+      ],
+      beat: {
+        role: "clue",
+        guide: "为什么重要导读。",
+        why_it_matters: "终局秘密为什么重要。",
+        bridge: "前情承接。",
+        next_question: "接下来？",
+      },
+      ...overrides,
+    };
+  }
+
+  it("removes canonical guide content immediately when progress is lowered", async () => {
     let resolveStart: ((response: Response) => void) | undefined;
-    const fetchMock = vi
-      .spyOn(globalThis, "fetch")
-      .mockResolvedValueOnce(
-        envelope({
-          progress: "unrestricted",
-          arcs: [
-            {
-              id: "ending-journey",
-              slug: "ending-journey",
-              title: "终局导读",
-              summary: "仅限全剧透进度的导读。",
-              core_question: "终局的真相是什么？",
-              estimated_minutes: 12,
-              beat_count: 1,
-            },
-          ],
-        }),
-      )
-      .mockResolvedValueOnce(
-        envelope({
-          id: "ending-journey",
-          slug: "ending-journey",
-          title: "终局导读",
-          summary: "仅限全剧透进度的导读。",
-          core_question: "终局的真相是什么？",
-          estimated_minutes: 12,
-          beats: [
-            {
-              id: "ending-beat",
-              sort_order: 1,
-              role: "回收",
-              guide: "终局秘密只应在全部可见时出现。",
-              why_it_matters: "这是结局的意义。",
-              bridge: "前情承接。",
-              next_question: "还有什么秘密？",
-              event: {
-                slug: "future-event",
-                title: "终局秘密",
-                summary: "只应在全部可见时出现。",
-                impact: null,
-                characters: [],
-                sources: [
-                  {
-                    source_type: "official_reference",
-                    title: "终局资料",
-                    reference: "https://example.com/ending",
-                  },
-                ],
-              },
-              relationships: [],
-              historical_contexts: [
-                {
-                  id: "future-history",
-                  slug: "future-history",
-                  title: "终局历史背景",
-                  period_label: "946",
-                  summary: "只应在全剧透进度出现。",
-                  fact_kind: "historical_fact",
-                  relation_kind: "setting",
-                  boundary_note: "受限历史说明。",
-                  editorial_note: null,
-                  references: [
-                    {
-                      reference_type: "史料",
-                      title: "终局史料",
-                      url: "https://example.com/history",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        }),
-      )
-      .mockImplementationOnce(
-        () =>
-          new Promise<Response>((resolve) => {
-            resolveStart = resolve;
-          }),
-      );
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation((input) => {
+      const url = String(input);
+      if (url.includes("/timeline/canonical?progress=unrestricted")) {
+        return Promise.resolve(
+          canonicalEnvelope("unrestricted", { events: [eventOverlay()] }),
+        );
+      }
+      if (url.includes("/timeline/canonical?progress=start")) {
+        return new Promise<Response>((resolve) => {
+          resolveStart = resolve;
+        });
+      }
+      throw new Error(`Unexpected request: ${url}`);
+    });
     localStorage.setItem("yysls-progress", "unrestricted");
     render(<TimelineExplorer />);
-    expect((await screen.findAllByText("终局秘密")).length).toBeGreaterThan(0);
-    expect(screen.getByText("终局资料")).toBeInTheDocument();
+    expect(await screen.findByText("竹林旧居线索")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "这里为什么重要 →" }));
+    expect(await screen.findByText("终局资料")).toBeInTheDocument();
     expect(screen.getByText("终局历史背景")).toBeInTheDocument();
 
     localStorage.setItem("yysls-progress", "start");
     fireEvent(window, new Event("yysls-progress-change"));
-    expect(screen.queryByText("终局秘密")).not.toBeInTheDocument();
+    expect(screen.queryByText("竹林旧居线索")).not.toBeInTheDocument();
     expect(screen.queryByText("终局资料")).not.toBeInTheDocument();
     expect(screen.queryByText("终局历史背景")).not.toBeInTheDocument();
     expect(screen.getByText("正在展开故事卷轴…")).toBeInTheDocument();
 
-    resolveStart?.(envelope({ progress: "start", arcs: [] }));
-    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(3));
+    resolveStart?.(canonicalEnvelope("start", { unlocked: false }));
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
+    expect(screen.getByText("完成本章主线后解锁连续故事导读。")).toBeInTheDocument();
   });
 
-  it("does not render a deferred unrestricted detail after progress is lowered", async () => {
-    let resolveOldDetail: ((response: Response) => void) | undefined;
-    const oldDetail = {
-      id: "ending-journey",
-      slug: "ending-journey",
-      title: "终局导读",
-      summary: "旧导读。",
-      core_question: "旧问题？",
-      estimated_minutes: 12,
-      beats: [
-        {
-          id: "ending-beat",
-          sort_order: 10,
-          role: "resolution",
-          guide: "延迟抵达的终局受限导读。",
-          why_it_matters: "旧重要性。",
-          bridge: "旧承接。",
-          next_question: "旧问题？",
-          event: {
-            slug: "future-event",
-            title: "延迟终局秘密",
-            summary: "旧摘要。",
-            impact: null,
-            characters: [],
-            sources: [],
-          },
-          relationships: [],
-          historical_contexts: [],
-        },
-      ],
-    };
-    const startDetail = {
-      id: "start-journey",
-      slug: "start-journey",
-      title: "开篇导读",
-      summary: "安全导读。",
-      core_question: "开篇问题？",
-      estimated_minutes: 3,
-      beats: [
-        {
-          id: "start-beat",
-          sort_order: 1,
-          role: "setup",
-          guide: "进度降级后允许的开篇导读。",
-          why_it_matters: "安全的重要性。",
-          bridge: "安全承接。",
-          next_question: "安全问题？",
-          event: {
-            slug: "start-event",
-            title: "开篇线索",
-            summary: "安全摘要。",
-            impact: null,
-            characters: [],
-            sources: [],
-          },
-          relationships: [],
-          historical_contexts: [],
-        },
-      ],
-    };
+  it("does not render a deferred unrestricted canonical spine after progress is lowered", async () => {
+    let resolveOld: ((response: Response) => void) | undefined;
     const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation((input) => {
       const url = String(input);
-      if (url.includes("/story-arcs?progress=unrestricted")) {
-        return Promise.resolve(
-          envelope({
-            progress: "unrestricted",
-            arcs: [
-              {
-                id: "ending-journey",
-                slug: "ending-journey",
-                title: "终局导读",
-                summary: "旧导读。",
-                core_question: "旧问题？",
-                estimated_minutes: 12,
-                beat_count: 1,
-              },
-            ],
-          }),
-        );
-      }
-      if (url.includes("/story-arcs/ending-journey?progress=unrestricted")) {
+      if (url.includes("/timeline/canonical?progress=unrestricted")) {
         return new Promise<Response>((resolve) => {
-          resolveOldDetail = resolve;
+          resolveOld = resolve;
         });
       }
-      if (url.includes("/story-arcs?progress=start")) {
-        return Promise.resolve(
-          envelope({
-            progress: "start",
-            arcs: [
-              {
-                id: "start-journey",
-                slug: "start-journey",
-                title: "开篇导读",
-                summary: "安全导读。",
-                core_question: "开篇问题？",
-                estimated_minutes: 3,
-                beat_count: 1,
-              },
-            ],
-          }),
-        );
-      }
-      if (url.includes("/story-arcs/start-journey?progress=start")) {
-        return Promise.resolve(envelope(startDetail));
+      if (url.includes("/timeline/canonical?progress=start")) {
+        return Promise.resolve(canonicalEnvelope("start", { unlocked: false }));
       }
       throw new Error(`Unexpected request: ${url}`);
     });
-
     localStorage.setItem("yysls-progress", "unrestricted");
     render(<TimelineExplorer />);
-    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
-
     localStorage.setItem("yysls-progress", "start");
     fireEvent(window, new Event("yysls-progress-change"));
-    expect(await screen.findByText("进度降级后允许的开篇导读。")).toBeInTheDocument();
 
-    resolveOldDetail?.(envelope(oldDetail));
-    await waitFor(() => {
-      expect(screen.getByText("进度降级后允许的开篇导读。")).toBeInTheDocument();
-      expect(screen.queryByText("延迟抵达的终局受限导读。")).not.toBeInTheDocument();
-      expect(screen.queryByText("延迟终局秘密")).not.toBeInTheDocument();
-    });
+    resolveOld?.(
+      canonicalEnvelope("unrestricted", {
+        events: [eventOverlay({ title: "延迟终局秘密" })],
+      }),
+    );
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
+    expect(screen.queryByText("延迟终局秘密")).not.toBeInTheDocument();
+    expect(screen.getByText("完成本章主线后解锁连续故事导读。")).toBeInTheDocument();
   });
 
   it("follows the WAI tab keyboard pattern for timeline modes", async () => {
     vi.spyOn(globalThis, "fetch").mockImplementation((input) => {
       const url = String(input);
-      return Promise.resolve(
-        envelope(
-          url.includes("/timeline?")
-            ? { progress: "start", events: [] }
-            : { progress: "start", arcs: [] },
-        ),
-      );
+      if (url.includes("/timeline/canonical")) {
+        return Promise.resolve(canonicalEnvelope("start", { unlocked: false }));
+      }
+      if (url.includes("/timeline?")) {
+        return Promise.resolve(envelope({ progress: "start", events: [] }));
+      }
+      throw new Error(`Unexpected request: ${url}`);
     });
 
     render(<TimelineExplorer />);
@@ -291,154 +227,95 @@ describe("spoiler-aware workflows", () => {
     await waitFor(() => expect(guideTab).toHaveFocus());
   });
 
-  it("switches between story reading and complete events, and navigates beats", async () => {
-    vi.spyOn(globalThis, "fetch")
-      .mockResolvedValueOnce(
-        envelope({
-          progress: "start",
-          arcs: [
-            {
-              id: "qinghe-main-journey",
-              slug: "qinghe-main-journey",
-              title: "清河主线 · 一枚玉佩引出的江湖",
-              summary: "从黑衣人袭击开始。",
-              core_question: "镇冠珏为何重要？",
-              estimated_minutes: 12,
-              beat_count: 2,
-            },
-          ],
-        }),
-      )
-      .mockResolvedValueOnce(
-        envelope({
-          id: "qinghe-main-journey",
-          slug: "qinghe-main-journey",
-          title: "清河主线 · 一枚玉佩引出的江湖",
-          summary: "从黑衣人袭击开始。",
-          core_question: "镇冠珏为何重要？",
-          estimated_minutes: 12,
-          beats: [
-            {
-              id: "beat-1",
-              sort_order: 1,
-              role: "导火索",
-              guide: "第一节导读文字。",
-              why_it_matters: "第一节的重要性。",
-              bridge: "第一节承接。",
-              next_question: "第一节的问题？",
-              event: {
-                slug: "prologue-attack",
-                title: "黑衣人袭击",
-                summary: "第一节事件摘要。",
+  it("switches between canonical story reading and complete events", async () => {
+    vi.spyOn(globalThis, "fetch").mockImplementation((input) => {
+      const url = String(input);
+      if (url.includes("/timeline/canonical")) {
+        return Promise.resolve(
+          canonicalEnvelope("unrestricted", {
+            events: [
+              eventOverlay({
+                characters: [
+                  { slug: "hero", name: "主角" },
+                  { slug: "hongxian", name: "红线" },
+                ],
+                historical_contexts: [
+                  {
+                    id: "h1",
+                    slug: "h1",
+                    title: "滹沱河中渡桥：王清与杜重威",
+                    period_label: "946",
+                    summary: "史实摘要。",
+                    fact_kind: "historical_fact",
+                    relation_kind: "fictionalized",
+                    boundary_note: "拒援后谋降可证。",
+                    editorial_note: null,
+                    references: [
+                      {
+                        reference_type: "史料",
+                        title: "《资治通鉴》卷二百八十五",
+                        url: "https://example.com/zztj",
+                        locator: "开运三年十一月至十二月",
+                      },
+                    ],
+                  },
+                ],
+              }),
+            ],
+          }),
+        );
+      }
+      if (url.includes("/timeline?")) {
+        return Promise.resolve(
+          envelope({
+            progress: "unrestricted",
+            events: [
+              {
+                id: "ev-1",
+                slug: "p1-awaken",
+                title: "红线唤醒主角",
+                summary: "完整事件记录。",
                 impact: null,
-                characters: [{ slug: "hero", name: "主角" }],
-                sources: [],
-              },
-              relationships: [],
-              historical_contexts: [],
-            },
-            {
-              id: "beat-2",
-              sort_order: 2,
-              role: "回望",
-              guide: "第二节导读文字。",
-              why_it_matters: "第二节的重要性。",
-              bridge: "第二节承接。",
-              next_question: "第二节的问题？",
-              event: {
-                slug: "wangqing-battle",
-                title: "中渡桥旧战",
-                summary: "第二节事件摘要。",
-                impact: "第二节影响。",
+                chapter_slug: "qinghe",
+                chapter_title: "第一章·神仙不渡",
+                sort_order: 2,
                 characters: [],
                 sources: [],
               },
-              relationships: [
-                {
-                  id: "relationship-1",
-                  relation_type: "old_acquaintance",
-                  label: "旧识",
-                  source_slug: "wang-qing",
-                  source_name: "王清",
-                  target_slug: "du-zhongwei",
-                  target_name: "杜重威",
-                },
-              ],
-              historical_contexts: [
-                {
-                  id: "zhongdu-bridge",
-                  slug: "zhongdu-bridge",
-                  title: "滹沱河中渡桥：王清与杜重威",
-                  period_label: "后晋开运三年（946）",
-                  summary: "王清请率两千步卒夺桥开路。",
-                  fact_kind: "historical_fact",
-                  relation_kind: "fictionalized",
-                  boundary_note: "拒援后谋降可证，事前勾结动机不可证；十万与二十万的史料记载存在分歧。",
-                  editorial_note: null,
-                  references: [
-                    {
-                      reference_type: "史料",
-                      title: "《资治通鉴》卷二百八十五",
-                      url: "https://example.com/history",
-                      locator: "开运三年十一月至十二月",
-                    },
-                    {
-                      reference_type: "不安全来源",
-                      title: "不应成为链接",
-                      url: "javascript:alert(1)",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        }),
-      )
-      .mockResolvedValueOnce(
-        envelope({
-          progress: "start",
-          events: [
-            {
-              id: "event-1",
-              slug: "prologue-attack",
-              title: "完整事件记录",
-              summary: "完整时间线事件。",
-              impact: null,
-              chapter_slug: "qinghe-1",
-              chapter_title: "清河第一章",
-              sort_order: 1,
-              characters: [],
-              sources: [],
-            },
-          ],
-        }),
-      );
+            ],
+          }),
+        );
+      }
+      throw new Error(`Unexpected request: ${url}`);
+    });
 
     render(<TimelineExplorer />);
-    expect(await screen.findByText("第一节导读文字。")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "← 上一节" })).toBeDisabled();
+    // canonical-first continuous scroll: no beat navigation controls
+    expect(await screen.findByText("竹林旧居线索")).toBeInTheDocument();
+    expect(screen.getByText("又见新来燕")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "这里为什么重要 →" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /上一节|下一节/ })).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "下一节 →" }));
-    expect(await screen.findByText("第二节导读文字。")).toBeInTheDocument();
-    expect(screen.getAllByText("历史事实").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("虚构改写").length).toBeGreaterThan(0);
-    expect(screen.getByRole("link", { name: "王清" })).toHaveAttribute(
+    // click drills into interpretation, it never advances the story
+    fireEvent.click(screen.getByRole("button", { name: "这里为什么重要 →" }));
+    expect(screen.getByText("终局秘密为什么重要。")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "红线" })).toHaveAttribute(
       "href",
-      "/characters/wang-qing",
+      "/characters/hongxian",
     );
     fireEvent.click(screen.getByText("滹沱河中渡桥：王清与杜重威"));
     expect(screen.getByText(/拒援后谋降可证/)).toBeInTheDocument();
-    expect(screen.getByText(/开运三年十一月至十二月/)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "《资治通鉴》卷二百八十五" })).toHaveAttribute(
-      "rel",
-      "noopener noreferrer",
-    );
-    expect(screen.queryByRole("link", { name: "不应成为链接" })).not.toBeInTheDocument();
+    expect(screen.getByText(/定位：开运三年十一月至十二月/)).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "《资治通鉴》卷二百八十五" }),
+    ).toHaveAttribute("rel", "noopener noreferrer");
 
     fireEvent.click(screen.getByRole("tab", { name: "完整事件" }));
-    expect(await screen.findByText("完整事件记录")).toBeInTheDocument();
+    expect(await screen.findByText("完整事件记录。")).toBeInTheDocument();
     expect(screen.getByLabelText("章节")).toBeInTheDocument();
-    expect(screen.queryByText("第二节导读文字。")).not.toBeInTheDocument();
+    expect(screen.queryByText("竹林旧居线索")).not.toBeInTheDocument();
   });
 
   it("submits a relationship as a pending moderation item", async () => {

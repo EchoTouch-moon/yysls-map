@@ -12,6 +12,8 @@
     "format": "uv run --no-sync --cache-dir /tmp/yysls-map-uv-cache ruff format .",
     "typecheck": "uv run --no-sync --cache-dir /tmp/yysls-map-uv-cache mypy app",
     "test": "uv run --no-sync --cache-dir /tmp/yysls-map-uv-cache pytest",
-    "build": "uv build"
+    "build": "uv build",
+    "import:canonical": "uv run --no-sync --cache-dir /tmp/yysls-map-uv-cache python -m app.content_import ../../content/yysls-qinghe-canonical-v0.1.json --canonical",
+    "import:canonical:validate": "uv run --no-sync --cache-dir /tmp/yysls-map-uv-cache python -m app.content_import ../../content/yysls-qinghe-canonical-v0.1.json --canonical --validate-only"
   }
 }

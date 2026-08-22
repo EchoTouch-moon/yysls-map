@@ -65,6 +65,11 @@ def main(
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("dataset", type=Path)
     parser.add_argument(
+        "--canonical",
+        action="store_true",
+        help="Import a canonical story dataset (frozen contract v0.1) instead of v5.",
+    )
+    parser.add_argument(
         "--validate-only",
         action="store_true",
         help="Validate the dataset without connecting to the database.",
@@ -85,6 +90,34 @@ def main(
         help="Required confirmation value when using --replace-existing.",
     )
     args = parser.parse_args(argv)
+    if args.canonical:
+        from .apply import import_canonical_dataset
+        from .validation import load_canonical_dataset as load_canon
+
+        canonical = load_canon(args.dataset)
+        if args.replace_existing and args.confirm_replace != canonical.dataset.id:
+            parser.error(
+                f"--replace-existing requires --confirm-replace {canonical.dataset.id}"
+            )
+        if args.validate_only:
+            print(f"Canonical dataset valid: {canonical.dataset.id}")
+            return
+        with session_factory() as db:
+            try:
+                canon_stats = import_canonical_dataset(
+                    db, canonical, replace_existing=args.replace_existing
+                )
+                if args.dry_run:
+                    db.rollback()
+                else:
+                    db.commit()
+            except Exception as exc:
+                db.rollback()
+                print(f"Canonical import failed: {exc}", file=sys.stderr)
+                raise
+        status = "rolled back" if args.dry_run else "committed"
+        print(f"Canonical import {status}: {canon_stats.model_dump_json()}")
+        return
     dataset = load_dataset(args.dataset)
     if args.replace_existing and args.confirm_replace != dataset.dataset.id:
         parser.error(f"--replace-existing requires --confirm-replace {dataset.dataset.id}")

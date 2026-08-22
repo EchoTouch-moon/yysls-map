@@ -48,5 +48,6 @@ jobs:
       - run: uv run --no-sync python -m app.seed
         working-directory: apps/api
       - run: npm run import:content --workspace @yysls/api
+      - run: npm run import:canonical --workspace @yysls/api
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
