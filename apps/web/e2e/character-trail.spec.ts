@@ -52,6 +52,8 @@ test("guide beat deep-links into history and back to the story", async ({
   ).toBeVisible();
   await expect(page.getByText("为什么重要", { exact: true })).toBeVisible();
   await expect(page.getByText("相关历史背景")).toBeVisible();
+  // expand the history card to reach its reference list
+  await page.getByText("史籍中的中度桥、王清与杜威").click();
   await expect(
     page.getByRole("link", { name: "《资治通鉴》卷二百八十五" }),
   ).toHaveAttribute("rel", "noopener noreferrer");
