@@ -90,26 +90,33 @@ simple table structure  可选；不做完整 AST/源码重建
 
 ```text
 ExtractedNarrativeRecord
+  schema_version           1
+  extractor_version/commit <git-sha>
   game_version
-  archive            LT71
+  archive                  LT71
   archive_sha256
-  entry_index        1631
+  mpkinfo_sha256
+  entry_index              1631
   entry_offset
-  payload_sha256
+  entry_stored_size
+  block_sha256             ← 存储态块（含 LZMA 压缩）
+  decoded_payload_sha256   ← 解压后 payload（如适用）
+  extraction_status        OK | PARTIAL | FAILED
+  warnings[]               ← 非致命告警
 
-  source_path        hexm/client/storyline_data/…
-  script_family      storyline_data | MSD_ST | AI | UI | other
+  source_path              hexm/client/storyline_data/…
+  script_family            storyline_data | MSD_ST | AI | UI | other
 
-  string_constants[]     清河 / 江晏 / dq_610900 / 70276 / EXPANSION_QINGHE
+  string_constants[]       清河 / 江晏 / dq_610900 / 70276 / EXPANSION_QINGHE
   numeric_constants[]
-  symbol_keys[]          name / area_name / TextByNo / expansion_id
-  reference_tokens[]     EXPANSION_QINGHE / MSD_ST / storyline_data
+  symbol_keys[]            name / area_name / TextByNo / expansion_id
+  reference_tokens[]       EXPANSION_QINGHE / MSD_ST / storyline_data
 
-  region_candidates[]    清QINGHE（candidate，非 verified）
-  task_candidates[]      dq_610900（candidate）
-  character_tokens[]     江晏 / 天泉
+  region_candidates[]      清河 (qinghe)（candidate，非 verified）
+  task_candidates[]        dq_610900（candidate）
+  character_tokens[]       江晏 / 天泉
 
-  extraction_confidence  RAW | STRUCTURAL | SEMANTIC
+  extraction_confidence    RAW | STRUCTURAL | SEMANTIC
 ```
 
 > **`task_candidates` ≠ `task_id`**：直到语义跨样本验证完成才能升级。

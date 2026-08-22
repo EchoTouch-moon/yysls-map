@@ -39,6 +39,29 @@ trailer : 16 B（用途未知）
 
 另有 `HEXB_` 前缀 + base64 的**混淆变体** `.mpkinfo`（非 version=3），parser 对其 fail-closed 拒绝。
 
+## 验证（H-NEX-001）
+
+```bash
+python inspect_mpkinfo.py --selftest
+#   → selftest PASS（exit 0）
+
+python inspect_mpkinfo.py samples/main_Resources.mpkinfo --summary
+#   → version 3 / entry_count 625（exit 0）
+
+# fail-closed（均 exit 1，REJECT）：
+#   截断（truncated）           → ERROR: fail-closed: truncated ...
+#   额外尾随字节（extra bytes） → ERROR: fail-closed: unexpected trailing data ...
+#   version≠3（unknown）        → ERROR: fail-closed: unsupported version ...
+#   HEXB 变体                  → ERROR: fail-closed: unsupported version ...（"HEXB_" 被读作非法 version）
+#   count 不符（size mismatch） → ERROR: fail-closed: truncated/unexpected trailing ...
+
+python probe_archive_mapping.py samples/main_Resources.mpkinfo E:\yysls\Resources.mpk --limit 1 --ext PS
+#   → 正常 probe（exit 0）；含 bounds check + MAX_PROBE_BYTES=1MiB + streaming SHA-256 + LZMA magic 识别
+
+python probe_archive_mapping.py samples/main_Resources.mpkinfo E:\yysls\Resources.mpk --ext ZZ
+#   → ERROR: no matching samples ...（exit 1，显式失败）
+```
+
 ## 状态
 
 - W-R00 Baseline Freeze：DONE
@@ -53,4 +76,4 @@ trailer : 16 B（用途未知）
 
 ## W-R03 关键结论
 
-`.mpk` 块可静态定位；存在普通 LZMA 压缩（无加密/无密钥），type A 块已用标准库解压验证；另有 type B 块（小 u32 头）未解码，故 Gate = PARTIAL（非 NO_GO）。详见 `docs/research/evidence/windows/wave-1.6/asset-feasibility/archive-linkage.md`。
+`.mpk` 块可静态定位；存在普通 LZMA 压缩（NOT_OBSERVED_IN_TESTED_SCOPE），type A 块已用标准库解压验证；另有 type B 块（小 u32 头）未解码，故 Gate = PARTIAL（非 NO_GO）。详见 `docs/research/evidence/windows/wave-1.6/asset-feasibility/archive-linkage.md`。

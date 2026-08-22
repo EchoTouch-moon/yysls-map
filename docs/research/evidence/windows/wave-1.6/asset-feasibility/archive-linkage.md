@@ -8,7 +8,7 @@
 
 ## 0. 结论
 
-`.mpkinfo` entry 可以**完全静态、确定性**地定位到 `.mpk` 内的数据块，且**存在普通 LZMA 压缩（无加密、无需密钥）**：
+`.mpkinfo` entry 可以**完全静态、确定性**地定位到 `.mpk` 内的数据块，且**存在普通 LZMA 压缩（NOT_OBSERVED_IN_TESTED_SCOPE：已测样本内无需加密/密钥）**：
 
 ```text
 mpkinfo entry
@@ -23,7 +23,7 @@ mpkinfo entry
 已实测：type A 块用 Python `lzma`（FORMAT_ALONE，重建 13 字节头）解压成功，输出字节数与 `uncompressed_size` 精确一致。
 
 **Gate = PARTIAL** 的原因（非 NO_GO）：
-1. index → archive → payload 链路静态、确定性成立，**无 protected bypass 迹象**（LZMA 是普通压缩）；
+1. index → archive → payload 链路静态、确定性成立，**NOT_OBSERVED_IN_TESTED_SCOPE**（已测样本 LZMA 为普通压缩，未见 protected bypass）；
 2. 但存在**第二类块格式（小 u32 头）尚未解码**，且解压后的 shader 内容是自定义容器（非标准 DXBC）——属于“普通压缩/静态格式仍有少量问题”，需后续（W-R04 或小步跟进）补完，而不是“需要密钥/解密”。
 
 ---
@@ -68,8 +68,8 @@ block 头：
 2. **offset 指向 payload 还是 block header** → **指向 block**（不是裸 payload）。块首要么是 `LZMA` magic（压缩块），要么是小 u32 头（1/3/6，另一类块）。
 3. **stored_size 是否是有效读取边界** → **是**。5/5 样本读满不短；对 LZMA 块，`stored_size` = 块总长（magic+头+压缩数据）。
 4. **payload 是否可静态识别** → **部分**。块头可识别（`LZMA`）；解压后是自定义容器（首字节 `fb 00 00 00`），**不是**标准 shader magic（DXBC/DXIL），内层格式待查。
-5. **是否存在普通压缩** → **是**，LZMA（标准、无密钥），已用标准库解压成功。
-6. **是否出现需要 protected bypass 的迹象** → **未发现**。无加密/密钥/签名校验迹象；LZMA 为普通压缩，无需绕过任何保护。
+5. **是否存在普通压缩** → **是**，LZMA（标准，样本内无需密钥），已用标准库解压成功。
+6. **是否出现需要 protected bypass 的迹象** → **NOT_OBSERVED_IN_TESTED_SCOPE**（仅限已测样本；不得据此推断所有 archive 无保护）。
 
 ---
 
@@ -83,7 +83,7 @@ block 头：
 | 解压得到裸资源字节 | **YES（type A 块）** |
 | 全块类型解码 | **PARTIAL（type B 小 u32 头未解码）** |
 | 解压后资源可识别为标准格式 | **NO（自定义容器，非 DXBC）** |
-| 需要 protected bypass | **NO** |
+| 需要 protected bypass | **NOT_OBSERVED_IN_TESTED_SCOPE** |
 
 → **STATIC_EXTRACTION_PARTIAL**
 

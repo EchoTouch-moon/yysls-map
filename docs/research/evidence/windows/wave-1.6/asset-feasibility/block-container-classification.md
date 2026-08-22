@@ -7,7 +7,7 @@
 
 ## 0. 结论（一句话）
 
-`.mpk` 资源块被完整分类：**主体是 DirectX 着色器容器（`ZZZ4` + `DXBC`/`DXIL` 字节码）**，有未压缩与 LZMA 压缩两种封装；另有空块与表格块。全程**无加密、无 protected bypass、无需运行时**，`chinaHEX_` 头不影响 offset 遍历。
+`.mpk` 资源块被完整分类：**主体是 DirectX 着色器容器（`ZZZ4` + `DXBC`/`DXIL` 字节码）**，有未压缩与 LZMA 压缩两种封装；另有空块与表格块。全程 **NOT_OBSERVED_IN_TESTED_SCOPE**（仅限已测试样本，不得推断所有 archive），`chinaHEX_` 头不影响 offset 遍历。
 
 ---
 
@@ -83,9 +83,9 @@ entry 2（'.ePS'，LZMA 块）解压 → 3,452,000 B
 | --- | --- |
 | block 类型分类（LZMA / 着色器容器 / 空块 / 表格块 / other） | YES（静态、确定性） |
 | payload 内容识别（`ZZZ4` + `DXBC`/`DXIL` = DirectX 着色器） | YES |
-| 解压（LZMA） | YES（普通压缩，无密钥） |
+| 解压（LZMA） | YES（普通压缩，样本内无需密钥） |
 | header 影响 offset | NO（NON_BLOCKING） |
-| 需要 protected / runtime | NO |
+| 需要 protected / runtime | NOT_OBSERVED_IN_TESTED_SCOPE |
 
 ## 6. 对叙事目标的直接含义（供 Lead 参考，非本轮任务）
 

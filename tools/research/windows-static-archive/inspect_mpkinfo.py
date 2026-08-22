@@ -3,7 +3,7 @@
 inspect_mpkinfo.py — deterministic, read-only parser for NetEase .mpkinfo
 resource index files (燕云十六声 / yysls). Wave 1.6 W-R02.
 
-Format (confirmed on 7 samples, version=3):
+Format (confirmed on 7 samples):
 
     header : uint32 LE version (=3) + uint32 LE entry_count   (8 bytes)
     entries: entry_count * 20 bytes each (fixed)
@@ -17,12 +17,23 @@ Entry (20 bytes):
     +0x10  flags          u32   1 = directory/empty, 0 = file (other values observed in patch indexes)
 
 This tool only reads the index. It never opens, extracts, or decrypts .mpk payloads.
-Fail-closed: any size/count mismatch raises an error instead of guessing.
+Fail-closed: unknown version, size/count mismatch, and truncation raise an error
+instead of guessing.
+
+Verification (run and expect):
+    python inspect_mpkinfo.py --selftest            ->  prints "selftest PASS"
+    python inspect_mpkinfo.py <valid_v3>.mpkinfo --summary   ->  version 3 summary
+    python inspect_mpkinfo.py <truncated>           ->  exit 1 (fail-closed)
+    python inspect_mpkinfo.py <version4>            ->  exit 1 (unsupported version)
+    python inspect_mpkinfo.py <HEXB_variant>        ->  exit 1 (unsupported version)
 """
 import argparse
 import struct
 import sys
 from collections import Counter
+
+# Only this version is understood. Anything else fails closed.
+SUPPORTED_VERSION = 3
 
 ENTRY_SIZE = 20
 HEADER_SIZE = 8
@@ -38,6 +49,9 @@ class Mpkinfo:
         if len(data) < HEADER_SIZE:
             raise ValueError(f"truncated: {len(data)} bytes < {HEADER_SIZE}-byte header")
         self.version, self.count = struct.unpack_from("<II", data, 0)
+        if self.version != SUPPORTED_VERSION:
+            raise ValueError(
+                f"unsupported version {self.version}; only version {SUPPORTED_VERSION} is supported")
         expected = HEADER_SIZE + self.count * ENTRY_SIZE + TRAILER_SIZE
         if len(data) < expected:
             raise ValueError(
@@ -138,14 +152,67 @@ def render_extensions(mp):
     return "\n".join(out)
 
 
+def build_synthetic(count=3):
+    """Build a minimal valid version=3 index for regression testing (synthetic, no game data)."""
+    header = struct.pack("<II", SUPPORTED_VERSION, count)
+    entries = b"".join(
+        struct.pack("<IIIII", 0x30303030 + i, 0x11111111 + i, 100 + i * 16, 40 + i, 0)
+        for i in range(count))
+    trailer = b"\x00" * TRAILER_SIZE
+    return header + entries + trailer
+
+
+def _must_raise(fn, label):
+    try:
+        fn()
+    except ValueError:
+        return
+    raise AssertionError(f"{label}: expected ValueError, none raised")
+
+
+def selftest():
+    """Synthetic regression: valid parse + fail-closed on malformed/unsupported inputs."""
+    data = build_synthetic(3)
+    mp = Mpkinfo(data)
+    assert mp.version == SUPPORTED_VERSION and mp.count == 3, "valid parse failed"
+    assert len(mp.entries) == 3, "entry count mismatch"
+
+    # truncated (drop trailer byte)
+    _must_raise(lambda: Mpkinfo(data[:-1]), "truncated")
+    # extra trailing bytes
+    _must_raise(lambda: Mpkinfo(data + b"\x00"), "extra-bytes")
+    # unsupported version
+    bad = struct.pack("<II", SUPPORTED_VERSION + 1, 1) + build_synthetic(1)[HEADER_SIZE:]
+    _must_raise(lambda: Mpkinfo(bad), "unsupported-version")
+    # count mismatch (header claims 5, body has 3)
+    mismatch = struct.pack("<II", SUPPORTED_VERSION, 5) + data[HEADER_SIZE:]
+    _must_raise(lambda: Mpkinfo(mismatch), "count-mismatch")
+    # too short for header
+    _must_raise(lambda: Mpkinfo(b"\x03\x00\x00"), "short-header")
+    return True
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="Deterministic read-only .mpkinfo index parser")
-    ap.add_argument("file", help="path to a .mpkinfo file")
+    ap.add_argument("file", nargs="?", help="path to a .mpkinfo file")
     ap.add_argument("--summary", action="store_true", help="print structural summary")
     ap.add_argument("--list", action="store_true", help="list entries")
     ap.add_argument("--limit", type=int, default=50, help="max entries for --list (default 50)")
     ap.add_argument("--extensions", action="store_true", help="extension histogram")
+    ap.add_argument("--selftest", action="store_true", help="run synthetic regression and exit")
     args = ap.parse_args(argv)
+
+    if args.selftest:
+        try:
+            selftest()
+            print("selftest PASS")
+            return 0
+        except AssertionError as exc:
+            print(f"selftest FAIL: {exc}", file=sys.stderr)
+            return 1
+
+    if not args.file:
+        ap.error("a file path is required (or use --selftest)")
 
     with open(args.file, "rb") as f:
         data = f.read()

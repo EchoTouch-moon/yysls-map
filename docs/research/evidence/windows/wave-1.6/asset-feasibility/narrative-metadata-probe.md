@@ -88,7 +88,7 @@ LT 块头（4 个样本 + LT1/LT261 一致）：
 ## 7. 对项目目标的影响（供 Lead 决策，非本轮任务）
 
 - 游戏原生任务/剧情结构在**客户端 Lua 脚本**里（`storyline_data`、`MSD_ST`、AI 树 `StartDialog/ShowSubtitle/NpcCall`），含任务 ID、区域常量、角色/地点名、对白文本。
-- 要得到**干净的 quest/task 结构化 metadata**，需解析 `LuaT` 容器 + 编译 Lua 常量表（比 `.mpkinfo` 索引更深一层，但仍是**纯静态**、无加密/无运行时）。
+- 要得到**干净的 quest/task 结构化 metadata**，需解析 `LuaT` 容器 + 编译 Lua 常量表（比 `.mpkinfo` 索引更深一层，但仍是**纯静态**；保护/加密为 **NOT_OBSERVED_IN_TESTED_SCOPE**）。
 - 注意版权边界：Lua 内含大量对白原文，**只提结构字段/ID/hash，不批量导出文本**。
 
 ## 8. 下一步（W-R06 决策包，待 Lead 放行）

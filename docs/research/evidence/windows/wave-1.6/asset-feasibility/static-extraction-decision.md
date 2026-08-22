@@ -11,7 +11,8 @@
 | --- | --- |
 | Game version | `patching_version=20260820220319` · `pkgversion=0-1783500887` · 注册表 `1.0.0` |
 | Install root | `E:\yysls` |
-| Research branch | `codex/mvp-platform` @ `ca7988a`（产物未 commit，待 Lead review 后 Git） |
+| Milestone commit | `research/windows-evidence-tooling` @ `4ce57e2`（R00→R06 证据 + 脚本） |
+| NEX-001 commit | `research/windows-evidence-tooling` @ `34bc72a` |
 | Scripts | `tools/research/windows-static-archive/inspect_mpkinfo.py`、`probe_archive_mapping.py` |
 
 ### 关键输入哈希（SHA-256）
@@ -23,18 +24,21 @@
 | `Resources.mpkinfo` | 12,524 | `DC98DF817E390414B7FD89FDD6A0BDA764826938AB585B0E493CF8D41730468F` |
 | `Resources.mpk` | 200,632,208 | `31C309B06FD8A4FAA15B37C3B076D7215FF4B7A28C78038E291F7F2FFF532E01` |
 | `Win32\deploy\Resources.mpk` | 270,179,195 | `3C8E059BC7810A6EC24286D5ECAADA9D160EBCE976587F4244BFBF5C6EE24D9F` |
-| `LT71.mpkinfo` / `LT71.mpk` | 57,264 / 15,490,766 | `F5F8F157…82CFCDB` / `42C9D328…6174B60` |
-| `LT51.mpkinfo` / `LT51.mpk` | 60,704 / 15,950,227 | `65A53CCE…B6C6359D` / `A98EBFEA…E1BF9826` |
-| `LT31.mpkinfo` / `LT31.mpk` | 60,104 / 17,012,957 | `4AE32CEF…B34AC97A` / `280639E8…D10CFA96` |
+| `LT71.mpkinfo` | 57,264 | `F5F8F15770689C257D83298E599D9961DACFBC311C1662DCDC322F98782CFCDB` |
+| `LT71.mpk` | 15,490,766 | `42C9D32837A808C14FBE94DD161D6A011F21D6BF2378A91CA3E592AE76174B60` |
+| `LT51.mpkinfo` | 60,704 | `65A53CCED2D9F6DEA197197271A028B0526F71C712EB27E726C2CB62B6C6359D` |
+| `LT51.mpk` | 15,950,227 | `A98EBFEACF7C4A2DA9776A0A786F562238C94107DB596E1904E3C457E1BF9826` |
+| `LT31.mpkinfo` | 60,104 | `4AE32CEF07988376AF946BB7BEFE2294E1E06AAE466EF60740DB89B34AC97AC3` |
+| `LT31.mpk` | 17,012,957 | `280639E8E0DD1980C2FEAE65BECA7BA972EE89C0EF528D6405AD4657D10CFA96` |
 
 **块级（R05 探针样本，短 locator）**
 
 | 样本 | offset / size / flags | SHA-256 |
 | --- | ---: | --- |
-| LT71[1631]（清河） | 12,382,428 / 11,784 / 142 | `D3C2930D…8848BFD5` |
-| LT71[1768]（江晏） | 4,750,441 / 11,168 / 142 | `3504BD0C…B88B47FB` |
-| LT51[1178]（清河） | 12,760,804 / 24,873 / 102 | `8AE24367…F3E13EC4` |
-| LT31[874]（清河） | 1,996,455 / 11,718 / 62 | `DA4DCE48…667ACDCE` |
+| LT71[1631]（清河） | 12,382,428 / 11,784 / 142 | `D3C2930D8AD419371166FB4EB93CF50D4F09E1CA35DF34EFBCE1C3608848BFD5` |
+| LT71[1768]（江晏） | 4,750,441 / 11,168 / 142 | `3504BD0C22F0DD62051D6BF791F5C72275BF3EE032B2074D5419545B88B47FB5` |
+| LT51[1178]（清河） | 12,760,804 / 24,873 / 102 | `8AE243670F404122C7AF680564BD793178ACEE5D3BCA2A26391FA8F3E13EC449` |
+| LT31[874]（清河） | 1,996,455 / 11,718 / 62 | `DA4DCE485D484610C7F239D6AA93DE772153752708A1332C5C8E9B6F667ACDCE` |
 
 ---
 
@@ -44,7 +48,7 @@
 | --- | --- | --- |
 | mpkinfo parse | **YES** | version=3，`size == 8 + N×20 + 16` 全样本成立；deterministic、fail-closed |
 | archive addressing | **YES** | `offset`/`stored_size` 绝对寻址，`offset+size ≤ mpk` 零违例 |
-| LZMA decompress | **YES** | 标准 LZMA（`LZMA`+u32 size+props+dict），无密钥，已解压验证 |
+| LZMA decompress | **YES** | 标准 LZMA（`LZMA`+u32 size+props+dict），已测样本内无需密钥，已解压验证 |
 | container classification | **YES** | 已区分 `LuaT` / LZMA / SHADER(ZZZ4+DXBC) / TABLE / EMPTY / OTHER |
 | LT discovery | **YES** | `LT*.mpk` 为叙事候选；`LT<N>1` 高信号、`LT<N>2` 低信号 |
 | LuaT container | **YES** | magic `LuaT` + 源码路径 + 编译 Lua，跨 entry 一致 |
@@ -53,7 +57,7 @@
 | cross-entry joins | **YES** | `EXPANSION_QINGHE` 13 entry/3 archive；`storyline_data` 671；`MSD_ST` 43；`70276`↔对话 |
 | quest hierarchy | **NO（未解）** | `NodeGraphData`/`get_variables` 提示存在，但层级/父/序未解析 |
 | Lua dialect | **UNKNOWN** | `LuaT` 非标准 `\x1bLua`/`\x1bLJ`；5.x / LuaJIT / 自定义未确认 |
-| protected bypass / runtime | **NONE** | 全程静态、只读、无密钥/无解密链/无运行时/无反作弊 |
+| protected bypass / runtime | **NOT_OBSERVED_IN_TESTED_SCOPE** | 已测样本全程静态、只读；不得据此推断所有 archive 无保护 |
 
 ---
 
@@ -61,7 +65,7 @@
 
 > **MINIMAL_EXTRACTOR_GO**
 
-依据：`mpkinfo → archive → LuaT block → narrative strings/stable refs` 链路**完全静态、确定性、无加密、无需运行时**已闭环；存在可跨 entry 重现的任务/区域/命名空间引用（`EXPANSION_QINGHE` / `storyline_data` / `MSD_ST` / `dq_*` / `70276`），具备产出稳定 quest/task metadata 的工程基础。
+依据：`mpkinfo → archive → LuaT block → narrative strings/stable refs` 链路**完全静态、确定性**已闭环（保护/加密为 **NOT_OBSERVED_IN_TESTED_SCOPE**）；存在可跨 entry 重现的任务/区域/命名空间引用（`EXPANSION_QINGHE` / `storyline_data` / `MSD_ST` / `dq_*` / `70276`），具备产出稳定 quest/task metadata 的工程基础。
 
 ---
 
