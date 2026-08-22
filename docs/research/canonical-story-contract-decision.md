@@ -13,6 +13,16 @@
 - schema 1.2 / migration / 重冻结 v5：NO_GO（本阶段只设计，不实施）。
 - 详细契约设计见 canonical-story-contract-v0.1.md。
 
+## 0.1 C1.1 修订（2026-08-23，Lead: APPROVED_WITH_CHANGES）
+
+- mapping_kind = EXACT / MERGED / SPLIT（EDITORIAL_ONLY 移出 link 枚举，改为"零 link"审计状态）；
+- EXACT/MERGED/SPLIT 定义 cardinality invariant（机器可校验）；
+- provenance：node 级 JSON + evidence_role 强枚举（不新增第三张表）；
+- 移除 title_verified boolean → verification_state（VERIFIED/PROVISIONAL/SOURCE_CONFLICT/UNRESOLVED）；
+- id（DB UUID）/ canonical_key（项目稳定 key）/ native_id（可选游戏原生 id）三者分离；
+- taxonomy 统一 MAIN_QUEST（不再用 STORY_NODE 别名）；PROVISIONAL_GROUP 仅 research 层。
+- 修订后契约见 canonical-story-contract-v0.1.md rev 2；Freeze gates C1-G1..C1-G6 见其 §7。
+
 ## 1. 决策结论
 
 ### ADDITIVE_MODEL_RECOMMENDED
