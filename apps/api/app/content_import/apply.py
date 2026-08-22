@@ -448,7 +448,7 @@ def import_canonical_dataset(
         node.chapter_slug = item.chapter_slug
         node.sort_order = item.sort_order
         node.spine = item.spine
-        node.provenance = [entry.model_dump() for entry in item.provenance]
+        node.provenance = [entry.model_dump(mode="json") for entry in item.provenance]
         node.verification_state = item.verification_state
         node.status = item.status
         nodes[item.canonical_key] = node

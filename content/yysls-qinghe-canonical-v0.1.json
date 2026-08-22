@@ -1,0 +1,703 @@
+{
+  "schema_version": "0.1",
+  "dataset": {
+    "id": "yysls-qinghe-canonical-v0.1",
+    "title": "燕云十六声·第一章·神仙不渡 清河主线骨架（canonical v0.1）"
+  },
+  "nodes": [
+    {
+      "canonical_key": "wwm:qinghe:chapter-1",
+      "title": "第一章·神仙不渡",
+      "node_type": "chapter",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": null,
+      "sort_order": 0,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://www.3dmgame.com/gl/3976025.html",
+          "locator": "清河区域的主线任务名为神仙不渡",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "3DM 3976025"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "第7页 神仙不渡「主章」",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "ali213 全剧情流程攻略"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://www.3dmgame.com/gl/3976025.html",
+          "locator": "章节名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-1",
+      "title": "又见新来燕",
+      "node_type": "main_part",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1",
+      "sort_order": 1,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "第1页 又见新来燕「主章」",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": null
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://www.3dmgame.com/gl/3977244.html",
+          "locator": "主线:神仙不渡·又见新来燕",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": null
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "篇名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": "又名「又见新燕来」（v5 数据集写法；9game 两式混用）"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "篇一",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "order",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-2",
+      "title": "匹马映林嘶",
+      "node_type": "main_part",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1",
+      "sort_order": 2,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_8.html",
+          "locator": "第8页 匹马映林嘶「主章」",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": null
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://news.17173.com/z/yy16s/content/11132024/162133494.shtml",
+          "locator": "第一章神仙不渡 第二篇匹马映林嘶",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "17173"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_8.html",
+          "locator": "篇名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": "17173 标题含「祸源」副题，是否官方篇名 UNRESOLVED"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_8.html",
+          "locator": "篇二",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "order",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-3",
+      "title": "菱花尘满",
+      "node_type": "main_part",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1",
+      "sort_order": 3,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_9.html",
+          "locator": "第9页 菱花尘满「主章」",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": null
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_9.html",
+          "locator": "篇名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_9.html",
+          "locator": "篇三",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "order",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-4",
+      "title": "为谁归去",
+      "node_type": "main_part",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1",
+      "sort_order": 4,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_10.html",
+          "locator": "第10页 为谁归去「主章」",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": null
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_10.html",
+          "locator": "篇名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_10.html",
+          "locator": "篇四",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "order",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-1:awaken",
+      "title": "竹林旧居线索",
+      "node_type": "main_quest",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1:part-1",
+      "sort_order": 1,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "第1页步骤1-4",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "红线唤醒、罐中信、灵位"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "节点名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-1:bridge",
+      "title": "断桥",
+      "node_type": "main_quest",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1:part-1",
+      "sort_order": 2,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "第1页步骤5",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "桥断，轻功过桥"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "节点名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-1:archery",
+      "title": "北竹林学射",
+      "node_type": "main_quest",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1:part-1",
+      "sort_order": 3,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "第1页步骤8-10",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "冯继升/冯继生 射术比试"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "节点名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": "NPC 名写法 UNRESOLVED"
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-1:wilderness",
+      "title": "百草野遇天涯客",
+      "node_type": "main_quest",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1:part-1",
+      "sort_order": 4,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "第1页步骤11-14",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "清河舆图、驱熊偷师太极"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "节点名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-1:arena",
+      "title": "将军祠擂台",
+      "node_type": "main_quest",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1:part-1",
+      "sort_order": 5,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "第1页步骤15-19",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "方旭/老金，听风辨位"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605.html",
+          "locator": "节点名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-2:return-home",
+      "title": "回神仙渡打听",
+      "node_type": "main_quest",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1:part-2",
+      "sort_order": 1,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_8.html",
+          "locator": "第8页步骤1-2",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "NPC 周叔叔；v5 作「打听江叔」"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_8.html",
+          "locator": "节点名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-2:reunion",
+      "title": "不羡仙与寒姨重逢",
+      "node_type": "main_quest",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1:part-2",
+      "sort_order": 2,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_8.html",
+          "locator": "第8页步骤3-4",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "寒姨、刘三爷/陆瘦子"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_8.html",
+          "locator": "节点名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-2:cisheng",
+      "title": "瓷窑与地下仓库",
+      "node_type": "main_quest",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1:part-2",
+      "sort_order": 3,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_8.html",
+          "locator": "第8页步骤5-8",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "宋九、瘦老弟、与伊刀交战"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_8.html",
+          "locator": "节点名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-2:break-temple",
+      "title": "破庙救红线与广胡子",
+      "node_type": "main_quest",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1:part-2",
+      "sort_order": 4,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_8.html",
+          "locator": "第8页步骤22-24",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "主殿击败舞马人 BOSS 收尾"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_8.html",
+          "locator": "节点名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-3:depart",
+      "title": "酒香塔留信辞行",
+      "node_type": "main_quest",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1:part-3",
+      "sort_order": 1,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_9.html",
+          "locator": "第9页步骤5",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "回屋留信"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_9.html",
+          "locator": "节点名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-4:reunion-yidao",
+      "title": "破庙汇合伊刀",
+      "node_type": "main_quest",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1:part-4",
+      "sort_order": 1,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_10.html",
+          "locator": "第10页步骤1-2",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": null
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_10.html",
+          "locator": "节点名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-4:rescue",
+      "title": "回不羡仙救人",
+      "node_type": "main_quest",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1:part-4",
+      "sort_order": 2,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_10.html",
+          "locator": "第10页步骤3-6",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": "宋九/广胡子/丁巳、杜乔仙、袁金刚"
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_10.html",
+          "locator": "节点名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    },
+    {
+      "canonical_key": "wwm:qinghe:chapter-1:part-4:tower-battle",
+      "title": "酒香塔击败千夜",
+      "node_type": "main_quest",
+      "region": "清河",
+      "chapter_slug": "qinghe",
+      "parent_key": "wwm:qinghe:chapter-1:part-4",
+      "sort_order": 3,
+      "spine": "main",
+      "provenance": [
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_10.html",
+          "locator": "第10页步骤7-10",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "identity",
+          "note": null
+        },
+        {
+          "source_kind": "walkthrough",
+          "ref": "https://app.ali213.net/gl/1599605_10.html",
+          "locator": "节点名",
+          "accessed_at": "2026-08-23",
+          "evidence_role": "title",
+          "note": null
+        }
+      ],
+      "verification_state": "verified",
+      "status": "published"
+    }
+  ],
+  "links": [
+    {
+      "node_key": "wwm:qinghe:chapter-1:part-1:awaken",
+      "event_slug": "p1-awaken",
+      "mapping_kind": "exact",
+      "sort_order": 0,
+      "is_primary": true,
+      "note": null
+    },
+    {
+      "node_key": "wwm:qinghe:chapter-1:part-1:bridge",
+      "event_slug": "p1-cross-bridge",
+      "mapping_kind": "exact",
+      "sort_order": 0,
+      "is_primary": true,
+      "note": null
+    },
+    {
+      "node_key": "wwm:qinghe:chapter-1:part-1:archery",
+      "event_slug": "p1-archery",
+      "mapping_kind": "exact",
+      "sort_order": 0,
+      "is_primary": true,
+      "note": null
+    },
+    {
+      "node_key": "wwm:qinghe:chapter-1:part-1:wilderness",
+      "event_slug": "p1-wilderness",
+      "mapping_kind": "exact",
+      "sort_order": 0,
+      "is_primary": true,
+      "note": null
+    },
+    {
+      "node_key": "wwm:qinghe:chapter-1:part-1:arena",
+      "event_slug": "p1-arena",
+      "mapping_kind": "exact",
+      "sort_order": 0,
+      "is_primary": true,
+      "note": null
+    },
+    {
+      "node_key": "wwm:qinghe:chapter-1:part-2:return-home",
+      "event_slug": "p2-return-home",
+      "mapping_kind": "exact",
+      "sort_order": 0,
+      "is_primary": true,
+      "note": null
+    },
+    {
+      "node_key": "wwm:qinghe:chapter-1:part-2:reunion",
+      "event_slug": "p2-reunion",
+      "mapping_kind": "merged",
+      "sort_order": 0,
+      "is_primary": false,
+      "note": "evt-p2-reunion 同时覆盖瓷窑/地下仓库（见 cisheng 节点）"
+    },
+    {
+      "node_key": "wwm:qinghe:chapter-1:part-2:cisheng",
+      "event_slug": "p2-reunion",
+      "mapping_kind": "merged",
+      "sort_order": 0,
+      "is_primary": false,
+      "note": "与 reunion 节点共享 evt-p2-reunion（MERGED N→1）"
+    },
+    {
+      "node_key": "wwm:qinghe:chapter-1:part-3:depart",
+      "event_slug": "p3-depart",
+      "mapping_kind": "exact",
+      "sort_order": 0,
+      "is_primary": true,
+      "note": null
+    },
+    {
+      "node_key": "wwm:qinghe:chapter-1:part-4:reunion-yidao",
+      "event_slug": "p4-reunion-yidao",
+      "mapping_kind": "exact",
+      "sort_order": 0,
+      "is_primary": true,
+      "note": null
+    },
+    {
+      "node_key": "wwm:qinghe:chapter-1:part-4:rescue",
+      "event_slug": "p4-rescue",
+      "mapping_kind": "exact",
+      "sort_order": 0,
+      "is_primary": true,
+      "note": null
+    },
+    {
+      "node_key": "wwm:qinghe:chapter-1:part-4:tower-battle",
+      "event_slug": "p4-tower-battle",
+      "mapping_kind": "exact",
+      "sort_order": 0,
+      "is_primary": true,
+      "note": null
+    }
+  ]
+}

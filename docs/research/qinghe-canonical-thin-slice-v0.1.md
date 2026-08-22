@@ -53,3 +53,12 @@
 
 - thin slice 覆盖 v5 中 15 个事件的 canonical 挂载：12 EXACT（prologue-escape/attack、p1-awaken/cross-bridge/archery/wilderness/arena、p2-return-home、p3-depart、p4-reunion-yidao/rescue/tower-battle）+ 1 MERGED（p2-reunion，2 links ✓）+ 2 UNRESOLVED pending（p2-hospital、p3-farewell，正式层零 link）；
 - v5 中未挂载到 thin slice 的事件（12 个）：暗线（tianying-qingfeng / tianying-fakedeath / lizhenzhen-death / lizuo-origin）、奇遇（qiyu-jingzhong / qiyu-xunxia / qiyu-diao）、历史对照（wangqing-battle：canonical 层零 link，audit editorial-only，G2）、PROVISIONAL（p1-chouyuehai）、大火/牺牲（p3-aftermath / yidao-sacrifice / hongxian-death SOURCE_CONFLICT）——均属 secondary branch 或解释层，按 scope gate 不进入第一版主 spine。
+
+
+## 4.1 数据落地（Phase C3，2026-08-23）
+
+- 正式数据集：content/yysls-qinghe-canonical-v0.1.json（schema 0.1，独立于 v5 冻结）
+- sha256：4b1919f0b8d86ffac66b77d0e2f02c9e1a824e02ecd9a87e170889c134ece1ec
+- 范围：第一章·神仙不渡 → 四篇 → 高置信 MAIN_QUEST 主 spine（18 节点 / 12 links：10 EXACT + 1 MERGED 组）
+- 未纳入（按"不确定就不发布"）：序章（任务簿名 UNRESOLVED）、神仙不渡城镇段（PROVISIONAL_GROUP）、活人医馆/寒姨房刺杀与竹隐居告别红线（UNRESOLVED 归属）、不羡仙大火与红线/伊刀之死（SOURCE_CONFLICT）、全部侠迹/镇守/奇遇/暗线
+- 链接仅含已审核 EXACT / MERGED；evt-wangqing-battle 等 editorial-only 保持零 link

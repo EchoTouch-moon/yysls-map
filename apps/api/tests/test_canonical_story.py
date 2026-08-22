@@ -8,16 +8,21 @@ plus the migration -> import -> validate -> query internally loop.
 
 import os
 import uuid
+from pathlib import Path
 
 import pytest
 from pydantic import ValidationError
 from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import selectinload
 
 from app.content_import import (
     CanonicalDataset,
     ContentValidationError,
     import_canonical_dataset,
+    import_dataset,
+    load_canonical_dataset,
+    load_dataset,
     validate_canonical_dataset,
 )
 from app.content_import.models import CanonicalProvenanceItem
@@ -44,6 +49,9 @@ from app.services.canonical import (
     get_links_for_node,
     ordered_main_spine,
 )
+
+V5_DATASET_PATH = Path(__file__).parents[3] / "content" / "yysls-qinghe-v5.json"
+CANONICAL_DATASET_PATH = Path(__file__).parents[3] / "content" / "yysls-qinghe-canonical-v0.1.json"
 
 DB_TEST = pytest.mark.skipif(
     os.getenv("RUN_DB_TESTS") != "1",
@@ -601,3 +609,118 @@ def test_c2_import_missing_event_slug_fails_closed() -> None:
                 import_canonical_dataset(db, ds)
         finally:
             db.rollback()
+
+
+# ---------------------------------------------------------------------------
+# Phase C3 gates: dataset file contract + deterministic idempotent import
+# ---------------------------------------------------------------------------
+
+
+def test_c3_dataset_file_matches_v01_contract() -> None:
+    """C3-G1/G2/G3/G4: the shipped canonical file satisfies the v0.1 contract."""
+    ds = load_canonical_dataset(CANONICAL_DATASET_PATH)
+
+    assert ds.schema_version == "0.1"  # G1: own version
+    assert ds.dataset.id == "yysls-qinghe-canonical-v0.1"
+    assert len(ds.nodes) == 18
+    assert len(ds.links) == 12
+
+    # G2: every published node carries IDENTITY evidence
+    assert all(node.status is ContentStatus.PUBLISHED for node in ds.nodes)
+    assert all(
+        any(entry.evidence_role is CanonicalEvidenceRole.IDENTITY for entry in node.provenance)
+        for node in ds.nodes
+    )
+    # G2/G5: no provisional / unresolved nodes in the published backbone
+    assert all(
+        node.verification_state is CanonicalVerificationState.VERIFIED for node in ds.nodes
+    )
+
+    # G3: main backbone only
+    assert {node.node_type for node in ds.nodes} <= {
+        CanonicalStoryNodeType.CHAPTER,
+        CanonicalStoryNodeType.MAIN_PART,
+        CanonicalStoryNodeType.MAIN_QUEST,
+    }
+    assert all(node.spine is CanonicalSpine.MAIN for node in ds.nodes)
+    assert all(node.chapter_slug == "qinghe" for node in ds.nodes)
+    assert all(node.region == "清河" for node in ds.nodes)
+
+    # G4: mapping kinds within the frozen enum; editorial-only events stay zero-link
+    assert {link.mapping_kind for link in ds.links} <= {
+        CanonicalMappingKind.EXACT,
+        CanonicalMappingKind.MERGED,
+        CanonicalMappingKind.SPLIT,
+    }
+    assert "wangqing-battle" not in {link.event_slug for link in ds.links}
+
+
+@DB_TEST
+def test_c3_import_idempotent_and_deterministic() -> None:
+    """C3-G5: clean import -> snapshot -> re-import -> state unchanged.
+
+    The real v5 dataset is imported first so canonical links resolve against
+    the actual StoryEvents (exercises the v5 -> canonical loop end to end).
+    """
+    ds = load_canonical_dataset(CANONICAL_DATASET_PATH)
+    v5 = load_dataset(V5_DATASET_PATH)
+    with SessionLocal() as db:
+        try:
+            import_dataset(db, v5)
+            db.flush()
+            import_canonical_dataset(db, ds, replace_existing=True)
+            db.flush()
+            before = _snapshot_canonical(db)
+
+            import_canonical_dataset(db, ds, replace_existing=True)
+            db.flush()
+            after = _snapshot_canonical(db)
+
+            assert before == after
+            assert len(before["nodes"]) == 18
+            assert len(before["links"]) == 12
+        finally:
+            db.rollback()
+
+
+def _snapshot_canonical(db) -> dict:
+    nodes = db.scalars(
+        select(CanonicalStoryNode).order_by(
+            CanonicalStoryNode.canonical_key.asc()
+        )
+    ).unique().all()
+    links = db.scalars(
+        select(CanonicalStoryEventLink)
+        .options(
+            selectinload(CanonicalStoryEventLink.node),
+            selectinload(CanonicalStoryEventLink.event),
+        )
+        .order_by(CanonicalStoryEventLink.id.asc())
+    ).unique().all()
+    return {
+        "nodes": [
+            (
+                node.canonical_key,
+                node.parent.canonical_key if node.parent else None,
+                node.sort_order,
+                node.title,
+                node.node_type.value,
+                node.spine.value,
+                node.verification_state.value,
+                node.status.value,
+                node.provenance,
+            )
+            for node in nodes
+        ],
+        "links": [
+            (
+                link.node.canonical_key,
+                link.event.slug,
+                link.mapping_kind.value,
+                link.is_primary,
+                link.sort_order,
+                link.note,
+            )
+            for link in links
+        ],
+    }
