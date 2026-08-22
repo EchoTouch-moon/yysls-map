@@ -1,0 +1,11 @@
+evidence_id,kind,source_path,sample_name,size_bytes,sha256,note
+WIN16-AF-001,index,E:\yysls\Resources.mpkinfo,main_Resources.mpkinfo,12524,DC98DF817E390414B7FD89FDD6A0BDA764826938AB585B0E493CF8D41730468F,version=3 count=625 (launcher root Resources index)
+WIN16-AF-002,archive,E:\yysls\Resources.mpk,,200632208,31C309B06FD8A4FAA15B37C3B076D7215FF4B7A28C78038E291F7F2FFF532E01,paired archive for WIN16-AF-001
+WIN16-AF-003,index,E:\yysls\Win32\deploy\Resources.mpkinfo,deploy_Resources.mpkinfo,13744,925616A47626DC9B32FAD51FCCD04D48F0CF027963DD6DA3496E066A8E7CC0D5,version=3 count=686 (launcher deploy Resources index)
+WIN16-AF-004,archive,E:\yysls\Win32\deploy\Resources.mpk,,270179195,3C8E059BC7810A6EC24286D5ECAADA9D160EBCE976587F4244BFBF5C6EE24D9F,paired archive for WIN16-AF-003
+WIN16-AF-005,index,E:\yysls\yysls_fast\LocalData\Patch\TinyFiles_common_hexi.1.mpkinfo,tiny_hexi_1.mpkinfo,64,049A1503F0B6EC2022450C58AB672108DBD976215046C6302F5B51903EF5AE90,version=3 count=2 (smallest sample)
+WIN16-AF-006,index,E:\yysls\yysls_fast\LocalData\Patch\TinyFiles_common_bjs.3.mpkinfo,tiny_bjs_3.mpkinfo,161,E454BBD028A5D5303DF197F6CF2A0D0F61C9450D44FFF44576787DADC3334D24,HEXB_ obfuscated variant (NOT version=3)
+WIN16-AF-007,index,E:\yysls\yysls_fast\LocalData\Patch\LT261.mpkinfo,lt261.mpkinfo,224,392C6687DF02E8F05031755633B4437D5566685040F154B5A677EB521EC6BC3C,version=3 count=10
+WIN16-AF-008,index,E:\yysls\yysls_fast\LocalData\Patch\Patch1001.mpkinfo,patch1001.mpkinfo,264,9E496AD6F2678617CAEEF42AD6B848FCE2B6ABB12B7316FA163C8B0500B4FB17,version=3 count=12
+WIN16-AF-009,index,E:\yysls\yysls_fast\LocalData\Patch\LT312.mpkinfo,lt312.mpkinfo,1524,13C92FD2D996EB9FC69462B4E351A23CAFD4380312A9F902BC309F1875A6BC0A,version=3 count=75
+WIN16-AF-010,index,E:\yysls\yysls_fast\LocalData\Patch\TinyFiles_mid_qingzhou.mpkinfo,tiny_qingzhou.mpkinfo,2984,5F85FF5AFE241D4C21181CA8125A30D97CB38DB9DB5821E143337576BC63F295,version=3 count=148 (qingzhou patch index)
