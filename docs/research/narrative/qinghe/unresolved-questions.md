@@ -1,8 +1,28 @@
 # Unresolved Registry（清河）
 
 > M-01 · Mac · 迁移自 Wave 1.5 inventory §7 + 新增 Wave 1.6 待核项。
-> 标记 [W-verify] 的问题由 Windows（Game Evidence Station）现场采集回答；
 > 标记 [M-verify] 由 Mac 公开资料补查；[LEAD] 需 Lead 决策。
+
+## 验证路径（2026-08-23，Windows 静态路线 supersede）
+
+Windows 主路径已改为**静态安装目录研究**（W-R00/R01/R02，见
+docs/execution/WAVE_1_6_WINDOWS_STATIC_ARCHIVE_TASKS.md）；W-01/W-02/W-03 人工采集降为 FALLBACK_ONLY。
+
+UQ 的 owner/verification 逻辑统一为：
+
+```text
+UQ
+ ↓
+静态 metadata 能解决？（localization/quest 表/资源名）
+ ├─ YES → Windows static evidence（W-R04/R05 探测）
+ └─ NO
+      ↓
+是否阻塞 P0 narrative claim？
+ ├─ NO → 保持 UNRESOLVED
+ └─ YES → W-01/W-02/W-03 fallback 人工采集
+```
+
+下方 [W-verify] 标签含义：**优先走 Windows 静态路线；静态拿不到且阻塞 P0 时才回退人工采集。**
 
 ## A. 需 Windows 现场核实（[W-verify]）
 
@@ -19,9 +39,9 @@
 | UQ-09 | 「祸源」「追缉」是否官方副题 | 仅个别攻略/视频标题 | 任务簿标题观察 | Windows |
 | UQ-10 | 滴答（篇四结尾带回神仙渡的对象）身份 | 无来源 | 过场观察 | Windows |
 | UQ-11 | 冯继升 vs 冯继生 人名写法 | 两式混用 | 对话/任务文本截图 | Windows |
-| UQ-19 | 寻心 BOSS 是否 = 寒姨（或其换脸身份） | ali213 寻心页单一来源高价值 claim（HC-09） | 游戏内剧情过场/任务文本 | Windows（第一优先组后） |
-| UQ-20 | 少东家/寒姨/江叔 是否出现在官方文本 | 当前仅社区/攻略证据 | 游戏内对话/官方号文本 | Windows |
-| UQ-21 | 明潮/暗涌机制与清河暗线结构（燕北盟/换脸术/妙善田英）游戏内确认 | 机制文为单社区 claim 双镜像（H-M02-2），状态 SUPPORTED/HIGH-CANDIDATE | 游戏内明暗故事页面截图/录屏（W-01） | Windows |
+| UQ-19 | 寻心 BOSS 是否 = 寒姨（或其换脸身份） | ali213 寻心页单一来源高价值 claim（HC-09） | 优先静态：localization/任务文本；静态失败→剧情过场 | Windows（静态优先；第二优先组前） |
+| UQ-20 | 少东家/寒姨/江叔 是否出现在官方文本 | 当前仅社区/攻略证据 | 优先静态：localization 对话文本 | Windows（静态优先） |
+| UQ-21 | 明潮/暗涌机制与清河暗线结构（燕北盟/换脸术/妙善田英）游戏内确认 | 机制文为单社区 claim 双镜像（H-M02-2），状态 SUPPORTED/HIGH-CANDIDATE | 优先静态：资源 catalog/明暗故事 metadata；静态失败且阻塞 E1→W-01 | Windows（静态优先） |
 ## B. Mac 公开资料待补（[M-verify]，M-02 处理）
 
 | id | 问题 | 方向 |

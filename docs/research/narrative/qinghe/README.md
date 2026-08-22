@@ -47,6 +47,7 @@ HIDDEN_CLUE / MOTIVATION / FORESHADOWING / COMMUNITY_ALIAS / GENERAL
 
 ## 与 Windows 的接口
 
-- unresolved-questions.md 中标记 [W-verify] 的问题由 Windows 现场采集回答；
+- unresolved-questions.md 中 [W-verify] 的问题**优先走 Windows 静态路线**（W-R04/R05 资源探测）；
+  静态无法解决且阻塞 P0 narrative claim 时才回退 W-01 人工采集（2026-08-23 supersede）；
 - Windows 的 raw evidence 结论经 Mac reconciliation（M-05）后才成为 reviewed claim；
 - 本目录任何条目不得凭二手攻略把未确认节点升级为 VERIFIED（执行协议 0.4.2）。
