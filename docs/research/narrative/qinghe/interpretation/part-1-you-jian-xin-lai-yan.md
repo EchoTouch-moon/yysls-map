@@ -157,4 +157,6 @@ TODO: SOURCE_CONFLICT              # 来源冲突待裁决
 | SOURCE_CONFLICT（冯继升/冯继生） | 北竹林 | 是（native 文本） |
 | NEED_ALIAS_PROVENANCE（少东家/寒姨/江叔官方文本） | 篇外 | 是（native 文本） |
 
-> 每一条在 Windows W-R04/R05 静态探测后重新评估；静态拿不到且阻塞 E1 的才回退 W-01 人工采集。
+> 每一条在 Windows W-R04/R05 静态探测与 NEX-00x extractor 输出后重新评估；
+> 静态/extractor 可关闭的项（NEED_NATIVE_TITLE / NEED_CHARACTER_IDENTITY 等）优先自动关闭；
+> 静态拿不到且阻塞 E1 的才回退 W-01 人工采集；语义升格只经 promotion policy（EXTRACTED ≠ CANONICAL VERIFIED）。

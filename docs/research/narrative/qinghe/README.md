@@ -49,5 +49,21 @@ HIDDEN_CLUE / MOTIVATION / FORESHADOWING / COMMUNITY_ALIAS / GENERAL
 
 - unresolved-questions.md 中 [W-verify] 的问题**优先走 Windows 静态路线**（W-R04/R05 资源探测）；
   静态无法解决且阻塞 P0 narrative claim 时才回退 W-01 人工采集（2026-08-23 supersede）；
-- Windows 的 raw evidence 结论经 Mac reconciliation（M-05）后才成为 reviewed claim；
+- Windows 的 raw evidence 结论经 Mac reconciliation（M-05/NEX-006）后才成为 reviewed claim；
 - 本目录任何条目不得凭二手攻略把未确认节点升级为 VERIFIED（执行协议 0.4.2）。
+
+## 证据职责分工（2026-08-23，extractor supersede — Lead §7）
+
+Windows 静态研究已证明可确定性定位剧情结构 metadata（LT/LuaT narrative data，W-R00→R06
+TECHNICAL PASS，方向 MINIMAL_EXTRACTOR_GO）；Mac 路线相应更新：
+
+| 证据类型 | 主来源 |
+| --- | --- |
+| native task identity / task IDs / 结构 / region / story refs | **Extractor**（Windows 静态，NEX 系列） |
+| character identity | Extractor + public |
+| exact UI presentation | 人工 fallback（W-01~03 FALLBACK_ONLY） |
+| motivation / causality / foreshadowing / historical interpretation | **Mac research**（本总账） |
+
+即：**Windows 自动回答"游戏数据里是什么"；Mac 回答"玩家应该怎样理解它"。**
+本总账聚焦后四类叙事理解证据；native title/order/identity 类 TODO 优先由 Extractor 输出关闭
+（NEX-006 reconciliation 时对账；CANONICAL_CANDIDATE 只经 promotion policy 产生，自动覆盖 canonical 禁止）。
