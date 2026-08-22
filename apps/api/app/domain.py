@@ -85,3 +85,57 @@ class HistoricalReferenceType(StrEnum):
     PRIMARY_SOURCE = "primary_source"
     SCHOLARLY_RESEARCH = "scholarly_research"
     INSTITUTIONAL_REFERENCE = "institutional_reference"
+
+
+class CanonicalStoryNodeType(StrEnum):
+    """v1 canonical taxonomy (frozen contract rev 2): main-line backbone only."""
+
+    CHAPTER = "chapter"
+    MAIN_PART = "main_part"
+    MAIN_QUEST = "main_quest"
+
+
+class CanonicalMappingKind(StrEnum):
+    """Link cardinality between canonical nodes and StoryEvents (frozen).
+
+    EDITORIAL_ONLY is intentionally NOT a mapping kind: editorial-only events
+    simply carry zero canonical links (derived audit state).
+    """
+
+    EXACT = "exact"
+    MERGED = "merged"
+    SPLIT = "split"
+
+
+class CanonicalVerificationState(StrEnum):
+    VERIFIED = "verified"
+    PROVISIONAL = "provisional"
+    SOURCE_CONFLICT = "source_conflict"
+    UNRESOLVED = "unresolved"
+
+
+class CanonicalSpine(StrEnum):
+    MAIN = "main"
+    SECONDARY = "secondary"
+
+
+class CanonicalSourceKind(StrEnum):
+    """Provenance source kinds (alignment plan Level 1-2)."""
+
+    OFFICIAL = "official"
+    WALKTHROUGH = "walkthrough"
+    WIKI = "wiki"
+    PLAYER = "player"
+    IN_GAME = "in_game"
+
+
+class CanonicalEvidenceRole(StrEnum):
+    """Which node field a provenance entry supports (frozen contract v0.1)."""
+
+    IDENTITY = "identity"
+    TITLE = "title"
+    HIERARCHY = "hierarchy"
+    ORDER = "order"
+    TYPE = "type"
+    GAME_ID = "game_id"
+    GENERAL = "general"

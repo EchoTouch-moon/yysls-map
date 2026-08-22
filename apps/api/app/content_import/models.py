@@ -9,6 +9,13 @@ from urllib.parse import urlsplit
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from app.domain import (
+    CanonicalEvidenceRole,
+    CanonicalMappingKind,
+    CanonicalSourceKind,
+    CanonicalSpine,
+    CanonicalStoryNodeType,
+    CanonicalVerificationState,
+    ContentStatus,
     HistoricalFactKind,
     HistoricalReferenceType,
     HistoricalRelationKind,
@@ -221,6 +228,72 @@ class ImportStats(BaseModel):
     historical_references: int
     historical_contexts: int
     event_historical_links: int
+
+
+class CanonicalProvenanceItem(ImportModel):
+    """One provenance entry on a canonical node (frozen contract §1.3)."""
+
+    source_kind: CanonicalSourceKind
+    ref: str = Field(min_length=1)
+    locator: str | None = None
+    accessed_at: date | None = None
+    evidence_role: CanonicalEvidenceRole
+    note: str | None = None
+
+    @field_validator("ref")
+    @classmethod
+    def ref_not_blank(cls, value: str) -> str:
+        stripped = value.strip()
+        if not stripped:
+            raise ValueError("ref must not be blank")
+        return stripped
+
+
+class CanonicalStoryNodeItem(ImportModel):
+    canonical_key: str = Field(min_length=1)
+    native_id: str | None = None
+    title: str = Field(min_length=1)
+    node_type: CanonicalStoryNodeType
+    region: str = Field(min_length=1)
+    chapter_slug: str = Field(min_length=1)
+    parent_key: str | None = None
+    sort_order: int = Field(ge=0)
+    spine: CanonicalSpine = CanonicalSpine.MAIN
+    provenance: list[CanonicalProvenanceItem] = Field(default_factory=list)
+    verification_state: CanonicalVerificationState
+    status: ContentStatus = ContentStatus.DRAFT
+
+
+class CanonicalEventLinkItem(ImportModel):
+    node_key: str = Field(min_length=1)
+    event_slug: str = Field(min_length=1)
+    mapping_kind: CanonicalMappingKind
+    sort_order: int = Field(default=0, ge=0)
+    is_primary: bool = False
+    note: str | None = None
+
+
+class CanonicalDatasetMeta(ImportModel):
+    id: str
+    title: str
+
+
+class CanonicalDataset(ImportModel):
+    """Independent canonical dataset (frozen contract v0.1 rev 2).
+
+    Deliberately separate from ContentDataset: canonical data never rewrites
+    story_events / story_arcs / story_arc_beats (C2-G1).
+    """
+
+    schema_version: str
+    dataset: CanonicalDatasetMeta
+    nodes: list[CanonicalStoryNodeItem] = Field(default_factory=list)
+    links: list[CanonicalEventLinkItem] = Field(default_factory=list)
+
+
+class CanonicalImportStats(BaseModel):
+    nodes: int
+    links: int
 
 
 def stable_content_id(kind: str, key: str) -> uuid.UUID:

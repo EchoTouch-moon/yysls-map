@@ -4,11 +4,13 @@ from __future__ import annotations
 
 import uuid
 
-from sqlalchemy import delete, or_
+from sqlalchemy import delete, or_, select
 from sqlalchemy.orm import Session
 
 from app.domain import ContentStatus, ProgressKey
 from app.models import (
+    CanonicalStoryEventLink,
+    CanonicalStoryNode,
     Chapter,
     Character,
     CharacterAlias,
@@ -23,7 +25,15 @@ from app.models import (
     StoryEvent,
 )
 
-from .models import ContentDataset, ImportStats, SourceItem, stable_content_id
+from .models import (
+    CanonicalDataset,
+    CanonicalImportStats,
+    ContentDataset,
+    ContentValidationError,
+    ImportStats,
+    SourceItem,
+    stable_content_id,
+)
 
 
 def _clear_content(db: Session) -> None:
@@ -396,3 +406,86 @@ def import_dataset(
         event_historical_links=len(dataset.event_historical_links),
     )
 
+
+def _clear_canonical(db: Session) -> None:
+    db.execute(delete(CanonicalStoryEventLink))
+    db.execute(delete(CanonicalStoryNode))
+    db.flush()
+
+
+def import_canonical_dataset(
+    db: Session,
+    dataset: CanonicalDataset,
+    *,
+    replace_existing: bool = False,
+) -> CanonicalImportStats:
+    """Transactional upsert of a canonical dataset (frozen contract rev 2).
+
+    Additive by design: touches only canonical_story_nodes and
+    canonical_story_event_links. StoryEvent resolution happens by slug; a
+    missing event aborts the import (fail-closed). Cardinality and publication
+    invariants are enforced by validate_canonical_dataset before any write.
+    """
+    from .validation import validate_canonical_dataset
+
+    validate_canonical_dataset(dataset)
+    if replace_existing:
+        _clear_canonical(db)
+
+    nodes: dict[str, CanonicalStoryNode] = {}
+    for item in dataset.nodes:
+        row_id = stable_content_id("canonical-node", item.canonical_key)
+        node = db.get(CanonicalStoryNode, row_id)
+        if node is None:
+            node = CanonicalStoryNode(id=row_id)
+            db.add(node)
+        node.canonical_key = item.canonical_key
+        node.native_id = item.native_id
+        node.title = item.title
+        node.node_type = item.node_type
+        node.region = item.region
+        node.chapter_slug = item.chapter_slug
+        node.sort_order = item.sort_order
+        node.spine = item.spine
+        node.provenance = [entry.model_dump() for entry in item.provenance]
+        node.verification_state = item.verification_state
+        node.status = item.status
+        nodes[item.canonical_key] = node
+    db.flush()
+
+    for key, node in nodes.items():
+        item = next(item for item in dataset.nodes if item.canonical_key == key)
+        node.parent_id = nodes[item.parent_key].id if item.parent_key else None
+    db.flush()
+
+    events_by_slug = {
+        event.slug: event
+        for event in db.scalars(select(StoryEvent)).all()
+    }
+    missing_events = sorted(
+        {link.event_slug for link in dataset.links} - set(events_by_slug)
+    )
+    if missing_events:
+        raise ContentValidationError(
+            [f"canonical links reference missing events: {', '.join(missing_events)}"]
+        )
+
+    for link_item in dataset.links:
+        node = nodes[link_item.node_key]
+        event = events_by_slug[link_item.event_slug]
+        row_id = stable_content_id(
+            "canonical-link", f"{link_item.node_key}:{link_item.event_slug}"
+        )
+        link = db.get(CanonicalStoryEventLink, row_id)
+        if link is None:
+            link = CanonicalStoryEventLink(id=row_id)
+            db.add(link)
+        link.canonical_node_id = node.id
+        link.story_event_id = event.id
+        link.mapping_kind = link_item.mapping_kind
+        link.sort_order = link_item.sort_order
+        link.is_primary = link_item.is_primary
+        link.note = link_item.note
+    db.flush()
+
+    return CanonicalImportStats(nodes=len(nodes), links=len(dataset.links))

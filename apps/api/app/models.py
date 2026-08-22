@@ -18,12 +18,17 @@ from sqlalchemy import (
     Text,
     UniqueConstraint,
     func,
+    text,
 )
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, MappedColumn, mapped_column, relationship
 
 from app.db import Base, TimestampMixin
 from app.domain import (
+    CanonicalMappingKind,
+    CanonicalSpine,
+    CanonicalStoryNodeType,
+    CanonicalVerificationState,
     ContentStatus,
     HistoricalFactKind,
     HistoricalReferenceType,
@@ -400,6 +405,96 @@ class StoryArcBeat(Base, TimestampMixin):
         UniqueConstraint("arc_id", "event_id", name="uq_story_arc_beat_event"),
         CheckConstraint("sort_order >= 0", name="sort_order_nonnegative"),
         CheckConstraint("spoiler_level >= 0 AND spoiler_level <= 3", name="spoiler_level_range"),
+    )
+
+
+class CanonicalStoryNode(Base, TimestampMixin):
+    """Game-native story coordinate (frozen contract v0.1 rev 2).
+
+    Holds only game-fact structure: identity, hierarchy, order, provenance and
+    verification state. It must not depend on StoryEvent surviving (C1-G1).
+    """
+
+    __tablename__ = "canonical_story_nodes"
+
+    id: Mapped[uuid.UUID] = uuid_pk()
+    canonical_key: Mapped[str] = mapped_column(String(200), unique=True, index=True)
+    native_id: Mapped[str | None] = mapped_column(String(200))
+    title: Mapped[str] = mapped_column(String(240))
+    node_type: Mapped[CanonicalStoryNodeType] = mapped_column(
+        Enum(CanonicalStoryNodeType, name="canonical_story_node_type"), index=True
+    )
+    region: Mapped[str] = mapped_column(String(120))
+    chapter_slug: Mapped[str] = mapped_column(String(80), index=True)
+    parent_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("canonical_story_nodes.id", ondelete="RESTRICT"), index=True
+    )
+    sort_order: Mapped[int] = mapped_column(Integer)
+    spine: Mapped[CanonicalSpine] = mapped_column(
+        Enum(CanonicalSpine, name="canonical_spine"), default=CanonicalSpine.MAIN
+    )
+    provenance: Mapped[list[dict[str, Any]]] = mapped_column(JSON, default=list)
+    verification_state: Mapped[CanonicalVerificationState] = mapped_column(
+        Enum(CanonicalVerificationState, name="canonical_verification_state"), index=True
+    )
+    status: Mapped[ContentStatus] = mapped_column(
+        Enum(ContentStatus, name="content_status", create_type=False),
+        default=ContentStatus.DRAFT,
+        index=True,
+    )
+
+    parent: Mapped["CanonicalStoryNode | None"] = relationship(remote_side=[id])
+    children: Mapped[list["CanonicalStoryNode"]] = relationship(back_populates="parent")
+    event_links: Mapped[list["CanonicalStoryEventLink"]] = relationship(
+        back_populates="node", cascade="all, delete-orphan"
+    )
+
+    __table_args__ = (
+        CheckConstraint("sort_order >= 0", name="sort_order_nonnegative"),
+        Index(
+            "ix_canonical_story_nodes_parent_order",
+            "parent_id",
+            "sort_order",
+            unique=True,
+            postgresql_where=text("parent_id IS NOT NULL"),
+        ),
+    )
+
+
+class CanonicalStoryEventLink(Base, TimestampMixin):
+    """Mapping between a canonical node and a StoryEvent (frozen contract).
+
+    mapping_kind is EXACT / MERGED / SPLIT only; editorial-only events carry no
+    link at all (C1-G2). Cardinality invariants are enforced by the import
+    validator (C2-G5), not by the database alone.
+    """
+
+    __tablename__ = "canonical_story_event_links"
+
+    id: Mapped[uuid.UUID] = uuid_pk()
+    canonical_node_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("canonical_story_nodes.id", ondelete="CASCADE"), index=True
+    )
+    story_event_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("story_events.id", ondelete="CASCADE"), index=True
+    )
+    mapping_kind: Mapped[CanonicalMappingKind] = mapped_column(
+        Enum(CanonicalMappingKind, name="canonical_mapping_kind"), index=True
+    )
+    sort_order: Mapped[int] = mapped_column(Integer)
+    is_primary: Mapped[bool] = mapped_column(default=False)
+    note: Mapped[str | None] = mapped_column(Text)
+
+    node: Mapped[CanonicalStoryNode] = relationship(back_populates="event_links")
+    event: Mapped[StoryEvent] = relationship()
+
+    __table_args__ = (
+        CheckConstraint("sort_order >= 0", name="sort_order_nonnegative"),
+        UniqueConstraint(
+            "canonical_node_id",
+            "story_event_id",
+            name="uq_canonical_link_node_event",
+        ),
     )
 
 

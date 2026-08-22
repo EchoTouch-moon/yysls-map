@@ -6,7 +6,19 @@ import json
 from collections.abc import Hashable, Sequence
 from pathlib import Path
 
-from .models import ContentDataset, ContentValidationError
+from app.domain import (
+    CanonicalEvidenceRole,
+    CanonicalMappingKind,
+    CanonicalVerificationState,
+    ContentStatus,
+)
+
+from .models import (
+    CanonicalDataset,
+    CanonicalEventLinkItem,
+    ContentDataset,
+    ContentValidationError,
+)
 
 
 def load_dataset(path: Path) -> ContentDataset:
@@ -324,3 +336,136 @@ def validate_dataset(dataset: ContentDataset) -> None:
     if errors:
         raise ContentValidationError(errors)
 
+
+def validate_canonical_dataset(dataset: CanonicalDataset) -> None:
+    """Structural validation for a canonical dataset (frozen contract rev 2).
+
+    Implements the C2 gates that are checkable without a database:
+    - C2-G4 publication safety: UNRESOLVED / PROVISIONAL nodes cannot be PUBLISHED;
+    - C2-G5 mapping cardinality invariants (EXACT/MERGED/SPLIT + no complex N:M);
+    - C2-G6 provenance: published nodes need identity evidence; refs non-empty.
+    Referential checks that need the database (parent exists, event exists) are
+    performed at apply time.
+    """
+    errors: list[str] = []
+    if dataset.schema_version != "0.1":
+        errors.append(f"unsupported canonical schema version: {dataset.schema_version}")
+
+    node_keys = [item.canonical_key for item in dataset.nodes]
+    duplicate_keys = sorted(_duplicates(node_keys))
+    if duplicate_keys:
+        errors.append(f"duplicate canonical keys: {', '.join(duplicate_keys)}")
+
+    key_set = set(node_keys)
+    parent_keys = [item.parent_key for item in dataset.nodes if item.parent_key is not None]
+    missing_parents = sorted(set(parent_keys) - key_set)
+    if missing_parents:
+        errors.append(f"parent_key references missing nodes: {', '.join(missing_parents)}")
+
+    for item in dataset.nodes:
+        if (
+            item.verification_state
+            in (CanonicalVerificationState.UNRESOLVED, CanonicalVerificationState.PROVISIONAL)
+            and item.status is ContentStatus.PUBLISHED
+        ):
+            errors.append(
+                f"node {item.canonical_key}: {item.verification_state.value} "
+                "cannot be PUBLISHED (C2-G4)"
+            )
+        if item.status is ContentStatus.PUBLISHED and not any(
+            entry.evidence_role
+            in (CanonicalEvidenceRole.IDENTITY, CanonicalEvidenceRole.GENERAL)
+            for entry in item.provenance
+        ):
+            errors.append(
+                f"node {item.canonical_key}: published node needs IDENTITY or GENERAL "
+                "evidence (C2-G6)"
+            )
+        if any(not entry.ref.strip() for entry in item.provenance):
+            errors.append(f"node {item.canonical_key}: empty provenance ref is not allowed (C2-G6)")
+
+    link_pairs = [(item.node_key, item.event_slug) for item in dataset.links]
+    duplicate_pairs = sorted(_duplicate_string_pairs(link_pairs))
+    if duplicate_pairs:
+        errors.append(
+            "duplicate canonical links: "
+            + ", ".join(f"{node}:{event}" for node, event in duplicate_pairs)
+        )
+
+    link_node_keys = [item.node_key for item in dataset.links]
+    missing_link_nodes = sorted(set(link_node_keys) - key_set)
+    if missing_link_nodes:
+        errors.append(f"link references missing nodes: {', '.join(missing_link_nodes)}")
+
+    # --- C2-G5 mapping cardinality invariants ---
+    links_by_event: dict[str, list[CanonicalEventLinkItem]] = {}
+    links_by_node: dict[str, list[CanonicalEventLinkItem]] = {}
+    for link in dataset.links:
+        links_by_event.setdefault(link.event_slug, []).append(link)
+        links_by_node.setdefault(link.node_key, []).append(link)
+
+    # Event side: one link -> EXACT (1:1) or SPLIT (node-side split, each
+    # event carries exactly one SPLIT link); many links -> all MERGED.
+    for event_slug, links in sorted(links_by_event.items()):
+        kinds = {link.mapping_kind for link in links}
+        if len(links) == 1:
+            if next(iter(kinds)) not in (
+                CanonicalMappingKind.EXACT,
+                CanonicalMappingKind.SPLIT,
+            ):
+                errors.append(
+                    f"event {event_slug}: single link must be EXACT or SPLIT, "
+                    f"got {next(iter(kinds)).value}"
+                )
+        elif len(links) >= 2 and not all(
+            kind is CanonicalMappingKind.MERGED for kind in kinds
+        ):
+                errors.append(
+                    f"event {event_slug}: multi-link event must be all MERGED, got "
+                    + ", ".join(sorted(kind.value for kind in kinds))
+                )
+
+    # Node side: one link -> EXACT (1:1) or MERGED (event-side merge, each node
+    # carries exactly one MERGED link); many links -> all SPLIT.
+    for node_key, links in sorted(links_by_node.items()):
+        kinds = {link.mapping_kind for link in links}
+        if len(links) == 1:
+            if next(iter(kinds)) not in (
+                CanonicalMappingKind.EXACT,
+                CanonicalMappingKind.MERGED,
+            ):
+                errors.append(
+                    f"node {node_key}: single link must be EXACT or MERGED, "
+                    f"got {next(iter(kinds)).value}"
+                )
+        elif len(links) >= 2 and not all(
+            kind is CanonicalMappingKind.SPLIT for kind in kinds
+        ):
+                errors.append(
+                    f"node {node_key}: multi-link node must be all SPLIT, got "
+                    + ", ".join(sorted(kind.value for kind in kinds))
+                )
+
+    # complex many-to-many mapping groups are unsupported in v0.1 (frozen rule)
+    for event_slug, event_links in links_by_event.items():
+        if len(event_links) < 2:
+            continue
+        for link in event_links:
+            if len(links_by_node.get(link.node_key, [])) >= 2:
+                errors.append(
+                    f"complex N:M mapping group around event {event_slug} / node "
+                    f"{link.node_key} is unsupported in v0.1 (frozen rule)"
+                )
+                break
+
+    if errors:
+        raise ContentValidationError(errors)
+
+
+def load_canonical_dataset(path: Path) -> CanonicalDataset:
+    """Load and validate a canonical dataset file (frozen contract v0.1)."""
+    with path.open(encoding="utf-8") as handle:
+        payload = json.load(handle)
+    dataset = CanonicalDataset.model_validate(payload)
+    validate_canonical_dataset(dataset)
+    return dataset
