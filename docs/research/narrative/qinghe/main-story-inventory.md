@@ -36,8 +36,9 @@
 | 4 | 百草野遇天涯客 | 天涯客给清河舆图；驱熊偷师太极 | ali213 步骤11-14；官方访谈（"神秘的江湖人"） | walkthrough/official | IDENTITY/CHARACTER/HIDDEN_CLUE | VERIFIED；与官方"江湖人"对应为候选（未官方点名） |
 | 5 | 将军祠擂台 | 方旭/老金擂台，得听风辨位等 | ali213 步骤15-19；SRC-9GAME-YJXL（独立第二来源） | walkthrough | IDENTITY/ORDER/CHARACTER | VERIFIED（两来源一致） |
 
-> **篇一独立第二来源已确认**（M-02）：SRC-9GAME-YJXL（9game 又见新来燕攻略）与 ali213 步骤一致
-> （红线叫醒→断桥→北竹林→百草野天涯客→将军祠方旭/老金），提升篇一节点 ORDER/IDENTITY 置信度；
+> **篇一获得第二公开页面支持**（M-02/H-M02-1）：SRC-9GAME-YJXL（9game 又见新来燕攻略）与 ali213 步骤一致，
+> 但该页自标"来源：游侠网(app)"，与 ali213/游侠属同一 source lineage → **不计独立 corroboration**；
+> 节点 ORDER/IDENTITY 置信度提升（两公开页面一致），independence 待真正独立来源（玩家实录/另一家原创攻略/游戏内记录）；
 > 「又见新来燕/又见新燕来」精确字符串仍待 Windows（UQ-02）。
 
 ## 3. 明潮（明线）关键候选（供 E1 Narrative Model 讨论，非冻结结论）

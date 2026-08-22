@@ -19,8 +19,8 @@
 | SRC-ALI213-FULL-STORY | walkthrough | 全剧情流程图文攻略汇总（清河段 = 第 1–10 页） | https://app.ali213.net/gl/1599605.html (+_2.._10.html) | IDENTITY/TITLE/ORDER/HIERARCHY（四篇名与步骤）、CHARACTER | 作者分段非任务簿；「神仙不渡城镇段」边界有冲突 |
 | SRC-3DM-QINGHE-NAV | walkthrough | 清河主线主章侠迹残章任务做法介绍（16 页导航） | https://www.3dmgame.com/gl/3977244.html (+_2.._16.html) | IDENTITY/HIERARCHY/ORDER（主线四篇、侠迹卷、镇守分类）、TITLE | 视频导航；篇名"又见新来燕"写法 |
 | SRC-3DM-QINGHE-MAIN | walkthrough | 清河神仙不渡主线流程分享 | https://www.3dmgame.com/gl/3976025.html | IDENTITY（清河主线名=神仙不渡、四篇）、TITLE | 无篇内步骤细节 |
-| SRC-3DM-MINGAN-STORY | community | 游历中明暗故事介绍（小黑盒 Asterismkings 文，3dm 收录） | https://www.3dmgame.com/gl/3976139.html | HIDDEN_CLUE/MOTIVATION（**明潮=主线收集、暗涌=侠迹/镇守/万事知/偷听收集、满收集开终章动画**；清河暗线：燕北盟/换脸之术/妙善田英）、COMMUNITY_ALIAS（"少东家"） | 社区分析文，非官方界面截图；明潮/暗涌为机制表述需游戏内验证 |
-| SRC-CHINA-MINGAN-STORY | community | 游历中明暗故事介绍（中华网游戏频道，同文转发） | https://game.china.com/industry/focus/11118308/20260107/49142244.html | 同 SRC-3DM-MINGAN-STORY | 同文转发，仅增加可达性 |
+| SRC-3DM-MINGAN-STORY | community | 游历中明暗故事介绍（小黑盒 Asterismkings 文，3dm 收录） | https://www.3dmgame.com/gl/3976139.html | HIDDEN_CLUE/MOTIVATION（**明潮=主线收集、暗涌=侠迹/镇守/万事知/偷听收集、满收集开终章动画**；清河暗线：燕北盟/换脸之术/妙善田英）、COMMUNITY_ALIAS（"少东家"） | origin=小黑盒(Asterismkings)（H-M02-2）：1 个 community-origin claim；同文镜像见 SRC-CHINA-MINGAN-STORY；非官方界面证据，机制需 W-01 游戏内确认 |
+| SRC-CHINA-MINGAN-STORY | community | 游历中明暗故事介绍（中华网游戏频道，同文转发） | https://game.china.com/industry/focus/11118308/20260107/49142244.html | 同 SRC-3DM-MINGAN-STORY | origin=小黑盒(Asterismkings)、lineage=3DM 同文镜像（H-M02-2）：与 SRC-3DM-MINGAN-STORY 合为 1 claim + 2 镜像，**不计独立 corroboration** |
 | SRC-GAMERSKY-FULL-WALKTHROUGH | walkthrough | 主线及残章支线任务图文攻略 | https://wap.gamersky.com/gl/Content-1864988.html | IDENTITY/HIERARCHY（残章=武林录侠迹、清河"三块区域"）、ORDER | 区域精确清单待核 |
 | SRC-GAMERSKY-QIYU | walkthrough | 清河奇遇触发条件与位置整理（50 个） | https://wap.gamersky.com/gl/Content-2062714.html | IDENTITY（奇遇名册）、HIDDEN_CLUE | 奇遇总数口径冲突（50 vs 38） |
 | SRC-17173-PIMA | walkthrough | 第一章神仙不渡第二篇·匹马映林嘶 | https://news.17173.com/z/yy16s/content/11132024/162133494.shtml | IDENTITY/ORDER（第二篇=匹马映林嘶）、CHARACTER | 仅一段流程 |
@@ -30,7 +30,7 @@
 | SRC-BAIDU-LINGHUA | walkthrough | 菱花尘满主线任务攻略（百度知道） | https://zhidao.baidu.com/question/2130051928167805427.html | IDENTITY（篇三存在） | 标题级引用 |
 | SRC-9GAME-CH1 | walkthrough | 第一章通关攻略（第一章=神仙不渡） | https://a.9game.cn/yyslskfsjwx/10771502.html | IDENTITY（第一章名）、CHARACTER | 无任务簿层级 |
 | SRC-9GAME-NAME-VARIANT | walkthrough | 又见新燕来（10756501）/ 又见新来燕（10773761）两页 | https://www.9game.cn/yyslskfsjwx/10756501.html ；https://www.9game.cn/yyslskfsjwx/10773761.html | TITLE（篇一命名两式并存证据） | 不能定论游戏内字符串 |
-| SRC-9GAME-YJXL | walkthrough | 又见新来燕主线攻略（**篇一独立第二来源**） | https://www.9game.cn/yyslskfsjwx/10773761.html | IDENTITY/ORDER（红线叫醒→断桥→北竹林→百草野天涯客→将军祠方旭/老金，与 ali213 步骤一致） | 步骤省略号缺失中间项；命名用"又见新来燕" |
+| SRC-9GAME-YJXL | walkthrough | 又见新来燕主线攻略（**篇一第二公开页面，同一 source lineage**） | https://www.9game.cn/yyslskfsjwx/10773761.html | IDENTITY/ORDER（红线叫醒→断桥→北竹林→百草野天涯客→将军祠方旭/老金，与 ali213 步骤一致） | origin=游侠网(app)、lineage=ALI213/YOUXIA（H-M02-1）：页面自标"来源：游侠网" → 非独立 corroboration；步骤省略号缺失中间项 |
 | SRC-ALI213-XUNXIN | walkthrough | 寻心角色介绍 | https://gl.ali213.net/html/2025-1/1591407.html | CHARACTER/MOTIVATION（**寻心=剧情开头"寒姨"；寒姨给江叔甲胄；江叔离开后寒姨抚养主角**） | 单一来源高价值 claim，需 Windows 游戏内核验（UQ-19） |
 | SRC-ALI213-WANSIZHI-ANCHONG | walkthrough | 万事知·怒潮暗涌任务攻略 | https://m.ali213.net/news/gl2512/1731159.html | IDENTITY（"暗涌"进入万事知任务名） | 任务内容与明暗故事机制关系待核 |
 | SRC-BILIBILI-MAIN-PARTS | player | 主线系列标题：BV1ZL6fYMEer（篇一）/ BV1onrcYkErP（篇二）/ BV1Nc6fYUEb9（序章） | https://www.bilibili.com/video/BV1ZL6fYMEer 等 3 条 | IDENTITY/TITLE/CHARACTER（篇序与出场人物） | 视频标题非任务簿 |
@@ -48,6 +48,13 @@
 2. **寻心=寒姨**（SRC-ALI213-XUNXIN）：开篇即登场；寒姨给江叔甲胄；江叔离开后寒姨抚养主角。→ 高价值 claim，Windows 核验（UQ-19）。
 3. **又见新来燕独立第二来源**（SRC-9GAME-YJXL）：步骤与 ali213 一致（红线叫醒→断桥→北竹林→百草野天涯客→将军祠）。→ 写入 main-story-inventory。
 4. **「暗涌」进入万事知任务名**（SRC-ALI213-WANSIZHI-ANCHONG，怒潮暗涌）→ 支持暗涌为游戏术语。
+
+## Lineage 约定（H-M02，2026-08-23 起）
+
+- 字段：`origin`（原始作者/发布者）与 `lineage`（转载链）；
+- 判定：**页面数量 ≠ 来源数量 ≠ 独立证据数量**；同文镜像/转载不算独立 corroboration；
+- 例：SRC-9GAME-YJXL origin=游侠网(app)、lineage=ALI213/YOUXIA；SRC-3DM/CHINA-MINGAN-STORY origin=小黑盒(Asterismkings)、互为镜像；
+- 后续新增来源必须携带 origin/lineage 标注。
 
 ## 来源缺口（M-02 未闭合，继续扩展）
 

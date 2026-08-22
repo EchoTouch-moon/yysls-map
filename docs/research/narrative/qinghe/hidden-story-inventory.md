@@ -11,9 +11,9 @@
 | HL-01 | 清风驿之变 | 田英执行悬剑任务：护契丹使入南唐，驿馆刺杀嫁祸南唐；清河暗线由此延伸 | 官方访谈；v5 evt-tianying-qingfeng | VERIFIED（官方锚点） |
 | HL-02 | 绣金楼 | 追杀主角的暗势力；总部为据点；与镇冠珏/身世相关 | v5 factions；社区考据 | VERIFIED（存在）；细节待核 |
 | HL-03 | 中渡桥之战（作品化） | 946 年王清/杜重威桥战 + 作品虚构（王清=主角生父、梦傀、江晏了结王清） | v5 evt-wangqing-battle + 3 历史卡；官方访谈（身世关联） | VERIFIED（史实）/ MEDIUM（作品细节） |
-| HL-04 | 燕北盟（王清将军、河东八骏） | 清河暗线组织：王清将军/河东八骏组成，为暗线隐藏势力 | SRC-3DM-MINGAN-STORY / SRC-CHINA-MINGAN-STORY | VERIFIED（机制文明确提及）；细节待核 |
-| HL-05 | 活人医馆换脸之术（寒姨/天不收） | 寒姨与天不收在活人医馆下秘密完成换脸之术 | SRC-3DM-MINGAN-STORY / SRC-CHINA-MINGAN-STORY；v5（寒香寻=换脸医师） | VERIFIED（机制文）；与 v5 标签互证 |
-| HL-06 | 佛子妙善 / 田英刺契丹使者 | 清河暗线灵魂人物；田英刺杀契丹使者（=清风驿之变） | SRC-3DM-MINGAN-STORY；官方访谈（清风驿之变） | VERIFIED（机制文+官方锚点互证） |
+| HL-04 | 燕北盟（王清将军、河东八骏） | 清河暗线组织：王清将军/河东八骏组成，为暗线隐藏势力 | SRC-3DM-MINGAN-STORY / SRC-CHINA-MINGAN-STORY | **HIGH-CANDIDATE / W-VERIFY**（单社区 claim 双镜像，H-M02-2） |
+| HL-05 | 活人医馆换脸之术（寒姨/天不收） | 寒姨与天不收在活人医馆下秘密完成换脸之术 | SRC-3DM-MINGAN-STORY / SRC-CHINA-MINGAN-STORY；v5（寒香寻=换脸医师） | **HIGH-CANDIDATE / W-VERIFY**（机制文为单 claim 双镜像；v5 标签为弱互证） |
+| HL-06 | 佛子妙善 / 田英刺契丹使者 | 清河暗线灵魂人物；田英刺杀契丹使者（=清风驿之变） | SRC-3DM-MINGAN-STORY；官方访谈（清风驿之变） | **HIGH-CANDIDATE / W-VERIFY**（"妙善"仅机制文；"田英刺契丹使者"与官方"清风驿之变"锚点互证，但具体命名待核） |
 
 ## 2. 暗涌候选关联（CANDIDATE，待确认）
 
@@ -31,8 +31,12 @@
 
 ## 2.5 明潮/暗涌机制（游戏原生，M-02 确认）
 
-> 来源：SRC-3DM-MINGAN-STORY / SRC-CHINA-MINGAN-STORY（小黑盒文，两站同文）
-> 状态：机制层面 VERIFIED（公开资料一致）；界面细节待 Windows W-01 现场采集
+> 来源：SRC-3DM-MINGAN-STORY / SRC-CHINA-MINGAN-STORY（小黑盒 Asterismkings 文，两站同文 = 1 claim + 2 镜像，H-M02-2）
+> 状态分级（H-M02-2，界面细节待 Windows W-01 现场采集后升级为 VERIFIED_IN_GAME）：
+> - 「游戏存在明潮/暗涌双线」→ HIGH（官方旧访谈 + 机制文互证）
+> - 「明潮由主线收集、暗涌由侠迹/镇守/万事知/偷听组成」→ SUPPORTED / W-VERIFY
+> - 「清河明线 = 千夜火烧不羡仙」→ HIGH-CANDIDATE / W-VERIFY
+> - 「燕北盟 / 换脸术 / 妙善田英为清河暗涌结构」→ HIGH-CANDIDATE / W-VERIFY
 
 - 明潮线：由**主线任务**收集，可理解为主线剧情；
 - 暗涌线：由**侠迹、镇守、万事知、偷听对话**等探索途径收集；

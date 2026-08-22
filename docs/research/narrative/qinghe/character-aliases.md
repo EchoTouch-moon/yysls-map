@@ -9,7 +9,7 @@
 character_id / slug
 canonical_name
 alias
-alias_kind = OFFICIAL_ALIAS | COMMUNITY_COMMON | COMMUNITY_MEME
+alias_kind = OFFICIAL_ALIAS | COMMUNITY_COMMON | COMMUNITY_COMMON_CANDIDATE | COMMUNITY_MEME
 source
 context
 safe_for_narrative
@@ -25,9 +25,11 @@ notes
 | han-xiangxun | 寒香寻 | 寒姨 | COMMUNITY_COMMON | SRC-ALI213-XUNXIN（"剧情开头的'寒姨'"）；SRC-ALI213-FULL-STORY（"见过寒姨"）；v5 文案 | 是 | 攻略+项目普遍使用；官方是否使用待核（UQ-20） |
 | jiang-yan | 江晏 | 江叔 | COMMUNITY_COMMON | SRC-ALI213-XUNXIN（"江叔离开后寒姨抚养主角长大"）；v5 事件文案 | 是 | 攻略+项目使用；官方待核（UQ-20） |
 | zhou-hongxian | 周红线 | 红线 | COMMUNITY_COMMON | 攻略/社区/官方语境普遍；v5 | 是 | 项目已用 |
-| yi-dao | 伊刀 | 刀哥 | COMMUNITY_COMMON（候选） | SRC-BILIBILI-MAIN-PARTS（BV1onrcYkErP 标题"刀哥"） | 是 | 仅视频标题证据，正式度待核 |
-| tian-ying | 田英 | 田英 | OFFICIAL（本名） | v5；官方叙事 | 是 | 无别名冲突 |
+| yi-dao | 伊刀 | 刀哥 | COMMUNITY_COMMON_CANDIDATE | SRC-BILIBILI-MAIN-PARTS（BV1onrcYkErP 标题"刀哥"） | 待定（暂否） | 仅 1 条 bilibili 标题证据（H-M03-1）；再找到 ≥1 独立社区使用后再放开 |
 | wang-qing | 王清 | 王清将军 | COMMUNITY_COMMON | 社区考据标题（SRC-TOUTIAO-WANGQING） | 是 | 历史身份需与作品设定区分 |
+
+> **无别名基线**（H-M03-2）：田英（canonical identity = 本名，无别名记录，从 alias records 移出）；
+> canonical identity ≠ alias，本表只登记真别名。
 
 ## Provenance 状态（H-M01-1 明确表述）
 
