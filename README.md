@@ -8,6 +8,21 @@
 > **许可**：源代码 [MIT](LICENSE)；`content/` 剧情数据集
 > [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)。
 
+## 当前方向：Wave 1.6
+
+Wave 1.5 已完成清河 canonical story alignment 与 canonical-first continuous Timeline。当前进入 **Wave 1.6 — Narrative Depth & Native Presentation**：不再横向扩功能，而是优先补足剧情研究深度、游戏原生明潮/暗涌结构、人物 point-of-need recall、玩家社区称谓与燕云式信息设计。
+
+当前原则：
+
+- 游戏原生 canonical structure 决定主阅读顺序，编辑解析不得创造第二套权威剧情顺序；
+- 先把“第一章·神仙不渡 / 又见新来燕”做成深度样板，再扩整章；
+- Mac 负责公共资料、证据 reconciliation、内容深挖、模型与产品实现；Windows 负责游戏内任务/明潮/暗涌观察和本地资源 metadata feasibility；
+- Windows raw evidence 与 Mac reviewed conclusion 分离，未经 review 不修改 frozen canonical dataset；
+- 本地资源研究先做只读 feasibility，不绕过加密、DRM、反作弊或访问控制；
+- Canvas、开封扩张、AI chat、账号/收藏与大规模解包继续 DEFER。
+
+详细方向见 [`docs/WAVE_1_6_NARRATIVE_DIRECTION.md`](docs/WAVE_1_6_NARRATIVE_DIRECTION.md)，双机任务分发与 Task-ID 见 [`docs/execution/WAVE_1_6_DUAL_MACHINE_TASKS.md`](docs/execution/WAVE_1_6_DUAL_MACHINE_TASKS.md)，总执行台账见 [`docs/execution/TASKS.md`](docs/execution/TASKS.md)。
+
 ## 技术栈
 
 - Web：Next.js 16、TypeScript、Tailwind CSS 4、React Flow
