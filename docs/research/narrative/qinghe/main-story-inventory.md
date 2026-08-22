@@ -34,7 +34,11 @@
 | 2 | 断桥 | 木桥断裂，需轻功过桥 | ali213 步骤5；sohu 全主线 | walkthrough | IDENTITY/ORDER | VERIFIED |
 | 3 | 北竹林学射 | 冯继升（一作冯继生）传授射术并比试 | ali213 步骤8-10；bilibili BV1ZL6fYMEer | walkthrough/player | CHARACTER/TITLE | VERIFIED（NPC 名写法 UNRESOLVED） |
 | 4 | 百草野遇天涯客 | 天涯客给清河舆图；驱熊偷师太极 | ali213 步骤11-14；官方访谈（"神秘的江湖人"） | walkthrough/official | IDENTITY/CHARACTER/HIDDEN_CLUE | VERIFIED；与官方"江湖人"对应为候选（未官方点名） |
-| 5 | 将军祠擂台 | 方旭/老金擂台，得听风辨位等 | ali213 步骤15-19 | walkthrough | IDENTITY/ORDER/CHARACTER | VERIFIED |
+| 5 | 将军祠擂台 | 方旭/老金擂台，得听风辨位等 | ali213 步骤15-19；SRC-9GAME-YJXL（独立第二来源） | walkthrough | IDENTITY/ORDER/CHARACTER | VERIFIED（两来源一致） |
+
+> **篇一独立第二来源已确认**（M-02）：SRC-9GAME-YJXL（9game 又见新来燕攻略）与 ali213 步骤一致
+> （红线叫醒→断桥→北竹林→百草野天涯客→将军祠方旭/老金），提升篇一节点 ORDER/IDENTITY 置信度；
+> 「又见新来燕/又见新燕来」精确字符串仍待 Windows（UQ-02）。
 
 ## 3. 明潮（明线）关键候选（供 E1 Narrative Model 讨论，非冻结结论）
 

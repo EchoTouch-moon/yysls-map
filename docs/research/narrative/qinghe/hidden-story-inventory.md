@@ -11,6 +11,9 @@
 | HL-01 | 清风驿之变 | 田英执行悬剑任务：护契丹使入南唐，驿馆刺杀嫁祸南唐；清河暗线由此延伸 | 官方访谈；v5 evt-tianying-qingfeng | VERIFIED（官方锚点） |
 | HL-02 | 绣金楼 | 追杀主角的暗势力；总部为据点；与镇冠珏/身世相关 | v5 factions；社区考据 | VERIFIED（存在）；细节待核 |
 | HL-03 | 中渡桥之战（作品化） | 946 年王清/杜重威桥战 + 作品虚构（王清=主角生父、梦傀、江晏了结王清） | v5 evt-wangqing-battle + 3 历史卡；官方访谈（身世关联） | VERIFIED（史实）/ MEDIUM（作品细节） |
+| HL-04 | 燕北盟（王清将军、河东八骏） | 清河暗线组织：王清将军/河东八骏组成，为暗线隐藏势力 | SRC-3DM-MINGAN-STORY / SRC-CHINA-MINGAN-STORY | VERIFIED（机制文明确提及）；细节待核 |
+| HL-05 | 活人医馆换脸之术（寒姨/天不收） | 寒姨与天不收在活人医馆下秘密完成换脸之术 | SRC-3DM-MINGAN-STORY / SRC-CHINA-MINGAN-STORY；v5（寒香寻=换脸医师） | VERIFIED（机制文）；与 v5 标签互证 |
+| HL-06 | 佛子妙善 / 田英刺契丹使者 | 清河暗线灵魂人物；田英刺杀契丹使者（=清风驿之变） | SRC-3DM-MINGAN-STORY；官方访谈（清风驿之变） | VERIFIED（机制文+官方锚点互证） |
 
 ## 2. 暗涌候选关联（CANDIDATE，待确认）
 
@@ -24,6 +27,19 @@
 | HC-06 | 黎蓁蓁（月神） ↔ 红尘无眼侠迹 | 湖底殉情与「月神」意象疑似同源 | v5 evt-lizhenzhen-death；ali213 红尘无眼 | CANDIDATE |
 | HC-07 | 千夜 ↔ 绣金楼杀手 + 酒香塔终战 | 千夜为绣金楼杀手，篇四收束；匹马映林嘶已现身 | 18183（"见过千夜"）；v5 evt-p4-tower-battle | CANDIDATE |
 | HC-08 | 红线/伊刀之死 ↔ 不羡仙大火 | v5 记载于大火，但与篇四流程矛盾 | v5 evt-yidao-sacrifice / evt-hongxian-death | SOURCE_CONFLICT（见 UQ-04） |
+| HC-09 | 寻心（神仙不渡段 BOSS）↔ 寒姨 | ali213 角色页称"寻心就是剧情开头的寒姨"；与寒香寻"换脸医师"标签自洽（多重身份） | SRC-ALI213-XUNXIN；v5 han-xiangxun 标签 | CANDIDATE / HIGH-VALUE → Windows 核验（UQ-19） |
+
+## 2.5 明潮/暗涌机制（游戏原生，M-02 确认）
+
+> 来源：SRC-3DM-MINGAN-STORY / SRC-CHINA-MINGAN-STORY（小黑盒文，两站同文）
+> 状态：机制层面 VERIFIED（公开资料一致）；界面细节待 Windows W-01 现场采集
+
+- 明潮线：由**主线任务**收集，可理解为主线剧情；
+- 暗涌线：由**侠迹、镇守、万事知、偷听对话**等探索途径收集；
+- 明潮 + 暗涌 集齐后开启该地图**最终动画剧情**；
+- 清河明线 = 千夜火烧不羡仙（与 v5 p3-aftermath 一致）；
+- 清河暗线 = 燕北盟 / 活人医馆换脸之术 / 佛子妙善与田英刺契丹使者（HL-04/05/06）；
+- 「暗涌」同时进入万事知任务名（SRC-ALI213-WANSIZHI-ANCHONG，怒潮暗涌）。
 
 ## 3. 明潮 ↔ 暗涌 拓扑（供 E1 讨论，非结论）
 
@@ -43,3 +59,4 @@
 
 - DD-01：v5 中红线/伊刀之死（大火）与为谁归去流程（红线随队赴酒香塔）矛盾 → SOURCE_CONFLICT，待 Windows 现场确认；
 - DD-02：v5 evt-p1-chouyuehai 归入篇一，但攻略置于「神仙不渡城镇段」（PROVISIONAL_GROUP）→ 归属待核。
+- DD-03：若「寻心=寒姨」（HC-09）成立，则主角在神仙不渡段击败的 BOSS 即养母寒姨（或其换脸身份）——与「寒姨=养母」关系并存，需 Windows 确认剧情语境（避免解释层擅自编排）。
