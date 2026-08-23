@@ -28,6 +28,7 @@ docs/research/evidence/windows/wave-1.6/
     └── nex004a-raw-observations/ ← 4 条 RawNarrativeObservation 记录（JSON）+ SCHEMA-v2.md
     └── nex004b-structural-discovery/ ← NEX-004B 冻结规则/manifest（Commit A）+ blind/regression 输出（Commit B）
     └── nex004c-holdout/ ← NEX-004C selector 政策（C0）+ holdout manifest（C1）+ holdout 输出（C2）
+    └── nex005-qinghe-packet/ ← NEX-005 Qinghe evidence packet（P0 政策 + P1 manifest/clusters/REPORT）
 ```
 
 ## 当前状态（R00→R06 已闭环）

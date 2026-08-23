@@ -19,6 +19,7 @@ tools/research/windows-static-archive/
 ├── discovery_engine.py        ← NEX-004B generic structural discovery engine（已交付）
 ├── blind_manifest.json        ← NEX-004B frozen blind manifest（Commit A 冻结）
 ├── narrative_holdout_selector.py ← NEX-004C holdout selector（C0 冻结）
+├── qinghe_packet_builder.py    ← NEX-005 Qinghe evidence packet builder（P0 冻结）
 └── samples/                   ← 本地研究样本（.mpkinfo 副本，gitignored，不进 Git）
 ```
 
