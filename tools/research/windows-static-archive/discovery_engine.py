@@ -241,9 +241,8 @@ class Collector:
         self.obs.append(ob)
 
 
-def framed_scan(blk, prov):
+def framed_scan(blk, prov, col):
     """FRAMED_STRING_SCAN: [tag][len varint][len-1 bytes] printable values."""
-    col = Collector()
     n = len(blk)
     for p in range(n):
         tag = blk[p]
@@ -284,13 +283,11 @@ def framed_scan(blk, prov):
     return col.obs
 
 
-def source_path_scan(src_obs, prov):
+def source_path_scan(src_obs, prov, col):
     """SOURCE_PATH_SCAN: classify components of observed source path."""
-    col = Collector()
     for seg in src_obs.get("source_segments", []):
         base = seg["offset"]
         value = seg["value"]
-        # split on '/' and '.' while tracking offsets
         pos = 0
         for piece in re.split(r"([/\.])", value):
             if piece in ("/", ".") or piece == "":
@@ -356,8 +353,10 @@ def discover(archive_dir, archive_name, mpkinfo_name, entry_index,
     prov = {"schema_version": SCHEMA_VERSION, "extractor_commit": commit,
             "archive": archive_name, "entry_index": entry_index,
             "block_sha256": rec["block_sha256"]}
-    obs = framed_scan(blk, prov) + source_path_scan(src_obs, prov)
-    rec["observations"] = obs
+    col = Collector()  # one shared collector: per-class cap 8 / per-entry 32 on COMBINED output
+    framed_scan(blk, prov, col)
+    source_path_scan(src_obs, prov, col)
+    rec["observations"] = col.obs
     rec["observation_limits"] = {"max_locator_bytes": MAX_LOCATOR_BYTES,
                                  "max_per_entry": MAX_OBSERVATIONS_PER_ENTRY,
                                  "per_class_cap": PER_CLASS_CAP}
