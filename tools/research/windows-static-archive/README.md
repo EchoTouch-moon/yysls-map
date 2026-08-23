@@ -73,7 +73,7 @@ python probe_archive_mapping.py samples/main_Resources.mpkinfo E:\yysls\Resource
 - W-R04 Archive Candidate Discovery：DONE（Gate = **NARRATIVE_CANDIDATES_FOUND**；叙事候选 = `LT*.mpk`）
 - W-R05 Narrative Metadata Schema Probe：DONE（Gate = **R5_SCHEMA_AND_JOIN_FOUND**；叙事 = `LuaT` 容器 + 编译 Lua）
 - W-R06 Static Extraction Decision：DONE（建议 = **MINIMAL_EXTRACTOR_GO**，边界 = LT/LuaT narrative metadata only）
-- NEX-002 LuaT Dialect Identification：DONE（Gate = **DIALECT_PARTIAL_CONSTANTS_READABLE**；dialect = modified Lua 5.4）
+- NEX-002 LuaT Dialect Identification：DONE（Gate = **DIALECT_PARTIAL_CONSTANTS_READABLE**；Lua 5.4 32-bit Instruction + 修改版 header 尾，见 H-NEX-002 修订）
 - 下一阶段（NEX-003 / extractor implementation）：WAITING_FOR_LEAD_AUTHORIZATION
 
 ## W-R03 关键结论
