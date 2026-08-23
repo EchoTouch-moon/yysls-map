@@ -20,6 +20,7 @@ docs/research/evidence/windows/wave-1.6/
     ├── static-extraction-decision.md     ← W-R06 Static Extraction Decision
     ├── luat-dialect-identification.md    ← NEX-002 LuaT Dialect Identification
     └── nex003-minimal-proto-reader.md    ← NEX-003 Minimal Lua 5.4 Proto/Constant Reader
+    └── hnex003-varint-proto-reparse.md   ← H-NEX-003 Varint/Proto Reparse
 ```
 
 ## 当前状态（R00→R06 已闭环）

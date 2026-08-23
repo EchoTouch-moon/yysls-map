@@ -12,7 +12,7 @@ tools/research/windows-static-archive/
 ├── inspect_mpkinfo.py        ← W-R02 deterministic index parser（已交付）
 ├── probe_archive_mapping.py  ← W-R03 index→archive→payload linkage probe（已交付）
 ├── probe_luat_dialect.py     ← NEX-002 LuaT bytecode dialect fingerprint（已交付）
-├── probe_lua54_metadata.py   ← NEX-003 minimal Lua 5.4 header/source/token reader（已交付）
+├── probe_lua54_metadata.py   ← H-NEX-003 varint/proto reparse（已交付）
 └── samples/                  ← 本地研究样本（.mpkinfo 副本，gitignored，不进 Git）
 ```
 
@@ -76,7 +76,8 @@ python probe_archive_mapping.py samples/main_Resources.mpkinfo E:\yysls\Resource
 - W-R06 Static Extraction Decision：DONE（建议 = **MINIMAL_EXTRACTOR_GO**，边界 = LT/LuaT narrative metadata only）
 - NEX-002 LuaT Dialect Identification：DONE（Gate = **DIALECT_PARTIAL_CONSTANTS_READABLE**；Lua 5.4 32-bit Instruction + 修改版 header 尾，见 H-NEX-002 修订）
 - NEX-003 Minimal Constant/Proto Reader：DONE（Gate = **BODY_LAYOUT_PARTIAL**；header/source 定位成功，Proto/constant 确定性解析被 custom body 布局阻塞）
-- 下一阶段（body-layout 二次研究 / NEX-004）：WAITING_FOR_LEAD_AUTHORIZATION
+- H-NEX-003 Varint/Proto Reparse：DONE（Gate = **BODY_VARIANT_CONFIRMED**；source varint(convB) + header variant + string constant 编码确认，5 token 定位成功；sizecode→code→protos 全遍历残留未解析）
+- 下一阶段（sizecode 残差研究 / NEX-004）：WAITING_FOR_LEAD_AUTHORIZATION
 
 ## W-R03 关键结论
 
