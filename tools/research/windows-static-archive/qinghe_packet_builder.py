@@ -33,7 +33,7 @@ PACKET_SCHEMA = "qinghe-evidence-packet-1"
 MANIFEST_SCHEMA = "nex005-selection-manifest-1"
 ENGINE_COMMIT = "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa"
 ARCHIVES = ["LT71", "LT51", "LT31"]
-SELECT_N = 16
+SELECT_N = 12
 CLUSTER_OBS_CAP = 60
 
 KNOWN = {
@@ -218,16 +218,23 @@ def score_record(r):
 
 
 def sub_split_key(record):
-    """Deterministic sub-split key: source directory after 'storyline_data/'."""
+    """Deterministic sub-split key: cleaned source directory after
+    'storyline_data/' (only [A-Za-z0-9_/.-], collapsed slashes)."""
+    import re as _re
     loc = record["container"].get("source_locator") or ""
     marker = "storyline_data/"
     if marker in loc:
         rest = loc.split(marker, 1)[1]
         parts = rest.split("/")
         if len(parts) >= 2:
-            return "/".join(parts[:-1])  # directory part (drop filename)
-        return parts[0]
-    return ""
+            key = "/".join(parts[:-1])
+        else:
+            key = parts[0]
+    else:
+        key = loc
+    cleaned = _re.sub(r"[^A-Za-z0-9_/.-]", "", key)
+    cleaned = _re.sub(r"/{2,}", "/", cleaned).strip("/")
+    return cleaned or "unclassified"
 
 
 def cluster_entries(selected):
@@ -260,12 +267,10 @@ def cluster_entries(selected):
     # §3a.b: fallback OTHER
     if others:
         final["OTHER"] = others
-    # §3a.c: merge smallest into FAMILY_ST until <=8
+    # §3a.c: merge smallest into FAMILY_ST until <=8 clusters total
     if len(final) > 8:
-        fam_st = final.get("FAMILY_ST", [])
-        drop = final.pop("FAMILY_ST", None)
-        # repeatedly merge the smallest remaining cluster into FAMILY_ST
-        while len(final) + (1 if "FAMILY_ST" in final else 0) > 8:
+        fam_st = final.pop("FAMILY_ST", [])
+        while len(final) >= 8:
             smallest = min(final.items(), key=lambda kv: len(kv[1]))[0]
             fam_st += final.pop(smallest)
         final["FAMILY_ST"] = fam_st

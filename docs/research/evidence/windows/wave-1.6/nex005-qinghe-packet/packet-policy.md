@@ -28,7 +28,7 @@ family == MSD_ST                                                             +1
 stored_size >= 8000                                                          +1
 ```
 
-选中 top 16（score desc → size desc → sha256 平局）。
+选中 top 12（scope 下限；同分 qinghe 条目按 size desc 取舍，避免单一 qinghe quest 家族簇超过 ≤5 约束）。score desc → size desc → sha256 平局。
 
 ## 3. 聚类（优先级分配，≤5 entries/cluster，目标 5-8 clusters）
 
