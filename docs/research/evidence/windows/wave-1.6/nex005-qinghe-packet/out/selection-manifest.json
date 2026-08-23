@@ -1,0 +1,159 @@
+{
+  "schema_version": "nex005-selection-manifest-1",
+  "builder_commit": "9c0f72d3ebc6ad01fcf90d2fa29d212eeb5dc6f1",
+  "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+  "game_version": "20260820220319",
+  "selection_count": 12,
+  "entries": [
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 1768,
+      "entry_offset": 4750441,
+      "stored_size": 11168,
+      "flags_raw": 142,
+      "score": 9,
+      "selection_reasons": [
+        "dq_ TASK_REF (dq_610900)",
+        "NodeGraphData observation",
+        "SHORT_CJK (江晏,天泉,费亦可)",
+        "family MSD_ST",
+        "stored_size >= 8KB"
+      ]
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 1631,
+      "entry_offset": 12382428,
+      "stored_size": 11784,
+      "flags_raw": 142,
+      "score": 7,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "SHORT_CJK (方外地)",
+        "stored_size >= 8KB"
+      ]
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 1068,
+      "entry_offset": 4698218,
+      "stored_size": 13099,
+      "flags_raw": 142,
+      "score": 6,
+      "selection_reasons": [
+        "NodeGraphData observation",
+        "SHORT_CJK (赵铁)",
+        "family MSD_ST",
+        "stored_size >= 8KB"
+      ]
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 493,
+      "entry_offset": 3863610,
+      "stored_size": 5027,
+      "flags_raw": 142,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 1909,
+      "entry_offset": 5493281,
+      "stored_size": 2915,
+      "flags_raw": 102,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 2553,
+      "entry_offset": 4859677,
+      "stored_size": 2858,
+      "flags_raw": 102,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 2194,
+      "entry_offset": 4847683,
+      "stored_size": 2651,
+      "flags_raw": 102,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 1886,
+      "entry_offset": 3861133,
+      "stored_size": 2477,
+      "flags_raw": 142,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 311,
+      "entry_offset": 3868637,
+      "stored_size": 2229,
+      "flags_raw": 142,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 954,
+      "entry_offset": 7036507,
+      "stored_size": 2014,
+      "flags_raw": 62,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 85,
+      "entry_offset": 4857952,
+      "stored_size": 1725,
+      "flags_raw": 102,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 318,
+      "entry_offset": 4856382,
+      "stored_size": 1570,
+      "flags_raw": 102,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    }
+  ]
+}
