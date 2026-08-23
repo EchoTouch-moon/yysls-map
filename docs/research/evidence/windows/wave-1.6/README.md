@@ -23,6 +23,7 @@ docs/research/evidence/windows/wave-1.6/
     └── hnex003-varint-proto-reparse.md   ← H-NEX-003 Varint/Proto Reparse
     └── hnex003r-official-varint-walk.md  ← H-NEX-003R Official Lua 5.4 Varint/Proto Walk
     └── hnex003s-proto-boundary-validation.md ← H-NEX-003S Proto Boundary & Post-Code Validation
+    └── hnex003t-lt31-framing.md ← H-NEX-003T LT31 Instruction Framing & Sizecode Boundary
 ```
 
 ## 当前状态（R00→R06 已闭环）

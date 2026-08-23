@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-verify_proto_boundary.py — H-NEX-003S: proto boundary & post-code section verifier.
+verify_proto_boundary.py — H-NEX-003S/T: proto boundary & post-code section verifier.
 
 Deterministic boundary parse (NO find("@"), NO token scan, NO guessed marker):
   source   : varint (official Lua 5.4 loadUnsigned, MSB-first) at block 0x20;
@@ -11,7 +11,8 @@ Deterministic boundary parse (NO find("@"), NO token scan, NO guessed marker):
   code     : sizecode * 4 bytes at code_start.
   sizek    : loadInt at code_end (attempted; raw bytes + decoded/failure reported).
 
-Instruction validation uses the OFFICIAL Lua 5.4 opcode enum (79 opcodes, 0-78).
+Instruction validation uses the OFFICIAL Lua 5.4 opcode enum:
+83 opcodes (0..82), NUM_OPCODES = 83 (includes GETI/GETFIELD/SETI/SETFIELD).
 The relaxed `opcode <= 127` check is NOT used as validity evidence.
 
 Guardrails: mpkinfo version/entry/size bounds, archive offset+size bounds,
@@ -30,21 +31,22 @@ import sys
 LUA_SIG = b"\x1bLua"
 LUAC_DATA_STD = bytes([0x19, 0x93, 0x0D, 0x0A, 0x1A, 0x0A])
 
-# Official Lua 5.4 opcode enum (lopcodes.h), NUM_OPCODES = 79.
+# Official Lua 5.4 opcode enum (lopcodes.h), NUM_OPCODES = 83 (0..82).
 LUA54_OPCODES = [
     "MOVE", "LOADI", "LOADF", "LOADK", "LOADKX", "LOADFALSE", "LFALSESKIP",
     "LOADTRUE", "LOADNIL", "GETUPVAL", "SETUPVAL", "GETTABUP", "GETTABLE",
-    "SETTABUP", "SETTABLE", "NEWTABLE", "SELF", "ADDI", "ADDK", "SUBK",
-    "MULK", "MODK", "POWK", "DIVK", "IDIVK", "BANDK", "BORK", "BXORK",
-    "SHRI", "SHLI", "ADD", "SUB", "MUL", "MOD", "POW", "DIV", "IDIV",
-    "BAND", "BOR", "BXOR", "SHL", "SHR", "MMBIN", "MMBINI", "MMBINK",
-    "UNM", "BNOT", "NOT", "LEN", "CONCAT", "CLOSE", "TBC", "JMP", "EQ",
-    "LT", "LE", "EQK", "EQI", "LTI", "LEI", "GTI", "GEI", "TEST",
-    "TESTSET", "CALL", "TAILCALL", "RETURN", "RETURN0", "RETURN1",
-    "FORLOOP", "FORPREP", "TFORPREP", "TFORCALL", "TFORLOOP", "SETLIST",
-    "CLOSURE", "VARARG", "VARARGPREP", "EXTRAARG",
+    "GETI", "GETFIELD", "SETTABUP", "SETTABLE", "SETI", "SETFIELD",
+    "NEWTABLE", "SELF", "ADDI", "ADDK", "SUBK", "MULK", "MODK", "POWK",
+    "DIVK", "IDIVK", "BANDK", "BORK", "BXORK", "SHRI", "SHLI", "ADD",
+    "SUB", "MUL", "MOD", "POW", "DIV", "IDIV", "BAND", "BOR", "BXOR",
+    "SHL", "SHR", "MMBIN", "MMBINI", "MMBINK", "UNM", "BNOT", "NOT",
+    "LEN", "CONCAT", "CLOSE", "TBC", "JMP", "EQ", "LT", "LE", "EQK",
+    "EQI", "LTI", "LEI", "GTI", "GEI", "TEST", "TESTSET", "CALL",
+    "TAILCALL", "RETURN", "RETURN0", "RETURN1", "FORLOOP", "FORPREP",
+    "TFORPREP", "TFORCALL", "TFORLOOP", "SETLIST", "CLOSURE", "VARARG",
+    "VARARGPREP", "EXTRAARG",
 ]
-NUM_OPCODES = len(LUA54_OPCODES)  # 79
+NUM_OPCODES = len(LUA54_OPCODES)  # 83
 
 VARINT_REGRESSION = [
     (bytes([0x80]), 0),
@@ -160,7 +162,7 @@ def parse_proto_header(blk, body):
 
 
 def validate_code(blk, code_start, code_end):
-    """Validate every 4-byte instruction with official opcode enum (op < 79)."""
+    """Validate every 4-byte instruction with official opcode enum (op < 83)."""
     invalid = []
     for i in range(code_start, code_end, 4):
         instr = struct.unpack_from("<I", blk, i)[0]
@@ -205,7 +207,6 @@ def verify(mpkinfo_path, mpk_path, index):
         "head": "".join(chr(b) if 32 <= b < 127 else "." for b in src[:60]),
     }
 
-    # header at the varint-determined body offset
     hdr, err = parse_proto_header(blk, body)
     if err:
         out["proto"] = {"status": "HEADER_FAIL", "reason": err,
@@ -214,14 +215,11 @@ def verify(mpkinfo_path, mpk_path, index):
                         "source_serialization": "PARTIAL"}
     else:
         out["proto"] = {"status": "HEADER_OK", "body_offset": body, **hdr}
-        code = validate_code(blk, hdr["code_start"], hdr["code_end"])
-        out["code"] = code
+        out["code"] = validate_code(blk, hdr["code_start"], hdr["code_end"])
         out["sizek"] = attempt_sizek(blk, hdr["code_end"])
         out["sizek"]["code_end"] = hdr["code_end"]
 
     # Phase E: candidate boundary using the FIRST 0x80 0x80 after 0x21.
-    # Labeled research candidate (NOT the deterministic path); used only for
-    # cross-sample structural comparison of the post-code section.
     marker = blk.find(b"\x80\x80", 0x21)
     if marker >= 0:
         ch, cerr = parse_proto_header(blk, marker)
@@ -256,7 +254,7 @@ def print_report(r):
               f"sc={p['sizecode']} code=+0x{p['code_start']:04X}..+0x{p['code_end']:04X}")
         c = r["code"]
         print(f"# code: count={c['instruction_count']} "
-              f"invalid_ops(>=79)={c['invalid_opcode_count']} "
+              f"invalid_ops(>=83)={c['invalid_opcode_count']} "
               f"first_invalid={'+0x%04X' % c['first_invalid_offset'] if c['first_invalid_offset'] is not None else 'None'}")
         for pos, op in c["invalid_samples"]:
             print(f"#   invalid @ +0x{pos:04X} op={op}")
@@ -280,14 +278,16 @@ def selftest():
     for blob, expect in VARINT_REGRESSION:
         got, _ = load_unsigned(blob, 0)
         assert got == expect, (blob.hex(" "), got, expect)
-    # opcode validation: valid op passes, op >= 79 fails
-    good = struct.pack("<I", 0x0C)  # op 12 (GETTABLE)
-    bad = struct.pack("<I", 0x60)   # op 96 (>= 79)
-    blk = good + bad + good
-    r = validate_code(blk, 0, 12)
-    assert r["invalid_opcode_count"] == 1
-    assert r["first_invalid_offset"] == 4
-    assert r["instruction_count"] == 3
+    # opcode validation: op 78/79/82 valid; op 83 invalid
+    op78 = struct.pack("<I", 0x4E)   # op 78 (SETLIST)
+    op79 = struct.pack("<I", 0x4F)   # op 79 (CLOSURE)
+    op82 = struct.pack("<I", 0x52)   # op 82 (EXTRAARG)
+    bad = struct.pack("<I", 0x53)    # op 83 (>= NUM_OPCODES)
+    blk = op78 + op79 + op82 + bad
+    r = validate_code(blk, 0, 16)
+    assert r["invalid_opcode_count"] == 1, r
+    assert r["first_invalid_offset"] == 12, r
+    assert r["instruction_count"] == 4, r
     # boundary parse selftest
     hdr = LUA_SIG + bytes([0x54, 0x00]) + LUAC_DATA_STD + bytes([4, 8, 8])
     tail11 = bytes([0x78, 0x56, 0x00, 0x01, 0x00, 0x00, 0x00, 0x28, 0x77, 0x40, 0x01])
@@ -313,7 +313,7 @@ def selftest():
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="H-NEX-003S proto boundary verifier")
+    ap = argparse.ArgumentParser(description="H-NEX-003S/T proto boundary verifier")
     ap.add_argument("--selftest", action="store_true")
     ap.add_argument("mpkinfo", nargs="?")
     ap.add_argument("mpk", nargs="?")
