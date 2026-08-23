@@ -84,7 +84,8 @@ python probe_archive_mapping.py samples/main_Resources.mpkinfo E:\yysls\Resource
 - H-NEX-003S Proto Boundary & Post-Code Validation：DONE（Gate = **BOUNDARY_PARTIAL**；LT31 control source/header 确定性确认；**code 官方 79-opcode enum 下 51 条非法**；sizek@code_end 四样本全失败；segmented = SOURCE_SERIALIZATION_PARTIAL）
 - H-NEX-003T LT31 Instruction Framing：DONE（Gate = **INSTRUCTION_SERIALIZATION_VARIANT_CONFIRMED**；opcode 表修复为 83；LT31 invalid=46；H0-H3 framing hypotheses 全部失败 → Lua body research 收口）
 - NEX-004A Raw Narrative Observation Normalizer：DONE（Gate = **RAW_NORMALIZATION_PASS**；4 pilot 记录完整 provenance + 哈希与 ledger 吻合；目标 7/7 恢复；RAW ≠ canonical）
-- 下一阶段（STRUCTURAL_NORMALIZATION / canonical 更新）：WAITING_FOR_LEAD_AUTHORIZATION
+- H-NEX-004A Provenance & Encoding Hardening：DONE（schema v2；两阶段 provenance freeze；UTF-8-safe 输出；byte cap；taxonomy 修正；fail-closed）
+- 下一阶段（NEX-004B Structural Discovery / canonical 更新）：WAITING_FOR_LEAD_AUTHORIZATION
 
 ## W-R03 关键结论
 
