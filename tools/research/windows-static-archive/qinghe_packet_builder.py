@@ -120,16 +120,18 @@ def block_of(archive_path, e):
     return blk if len(blk) == e["size"] else None
 
 
-def load_existing(records_dir):
-    """Load processed records (regression/ + holdout-json/)."""
+def load_existing(records_dirs):
+    """Load processed records from one or more records dirs
+    (each may contain regression/ and/or holdout-json/ subdirs)."""
     recs = []
-    for sub in ("regression", "holdout-json"):
-        d = os.path.join(records_dir, sub)
-        if not os.path.isdir(d):
-            continue
-        for f in sorted(os.listdir(d)):
-            if f.endswith(".json"):
-                recs.append(json.load(open(os.path.join(d, f), encoding="utf-8")))
+    for rd in records_dirs:
+        for sub in ("regression", "holdout-json"):
+            d = os.path.join(rd, sub)
+            if not os.path.isdir(d):
+                continue
+            for f in sorted(os.listdir(d)):
+                if f.endswith(".json"):
+                    recs.append(json.load(open(os.path.join(d, f), encoding="utf-8")))
     return recs
 
 
@@ -208,9 +210,9 @@ def score_record(r):
     return s, reasons
 
 
-def build(archive_dir, records_dir, out_dir, engine_commit, builder_commit,
+def build(archive_dir, records_dirs, out_dir, engine_commit, builder_commit,
           game_version):
-    existing = load_existing(records_dir)
+    existing = load_existing(records_dirs)
     new = discover_new(archive_dir, engine_commit, builder_commit, game_version)
     all_recs = existing + new
     scored = []
@@ -348,7 +350,7 @@ def selftest():
 def main(argv=None):
     ap = argparse.ArgumentParser(description="NEX-005 Qinghe evidence packet builder")
     ap.add_argument("--selftest", action="store_true")
-    ap.add_argument("--records-dir", required=False)
+    ap.add_argument("--records-dir", action="append", default=[], required=False)
     ap.add_argument("--out", required=False)
     ap.add_argument("--commit", default=ENGINE_COMMIT)
     ap.add_argument("--builder-commit", default=None)
