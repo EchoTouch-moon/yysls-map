@@ -72,21 +72,25 @@ warnings[]
 unresolved[]                显式保留未决语义（无 canonical 映射）
 ```
 
-## 5. Provenance
+## 5. Provenance（H-NEX-005 hardened）
 
 ```text
-builder_commit        = P0 sha（git rev-parse HEAD，运行点）
-extractor_commit      = 204c97f（frozen observation engine）
-game_version          = Patch/patching_version.txt
-每 entry：archive / entry_index / entry_offset / stored_size / block_sha256
+builder_commit          = P0 最终 builder commit（可 checkout 复现）
+builder_source_sha256   = SHA256(qinghe_packet_builder.py @ builder commit)
+extractor_commit        = 204c97f（从输入 structural records 继承并强制一致）
+extractor_source_sha256 = SHA256(discovery_engine.py @ 204c97f)，从输入 records 继承
+                          （所有 selected records 必须同一值，否则 FAIL CLOSED）
+game_version            = Patch/patching_version.txt
+每 entry                = archive / entry_index / entry_offset / stored_size / block_sha256
+                          （block_sha256 直接取自 source record，不做聚合信任）
 ```
 
-## 6. 边界（copyright / scope）
+## 6. 边界（copyright / scope）确认
 
 ```text
-12-20 entries（选中 16）
+12-20 entries（选中 12）
 5-8 clusters（≤5 entries/cluster）
-MAX_LOCATOR_BYTES = 64
+MAX_LOCATOR_BYTES = 64（UTF-8 bytes，source_locator 用 byte cap + source_truncated）
 无 canonical 映射 / 无 confirmed character identity / 无 quest title 分配
 无 owning proto / constant index / opcode/VM 工作
 无 dialogue/prose dump / 无 scripts/assets 提交

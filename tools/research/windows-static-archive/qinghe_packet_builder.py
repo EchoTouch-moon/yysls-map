@@ -277,6 +277,54 @@ def cluster_entries(selected):
     return final
 
 
+def locator_bytes(value, cap=MAX_LOCATOR_BYTES):
+    """UTF-8-safe byte cap (same contract as NEX-004A): encode -> cap at
+    `cap` bytes -> trim incomplete trailing codepoint.  Returns (str, truncated)."""
+    b = value.encode("utf-8")
+    if len(b) <= cap:
+        return value, False
+    b = b[:cap]
+    while b and (b[-1] & 0xC0) == 0x80:
+        b = b[:-1]
+    if b and b[-1] >= 0xC0:
+        b = b[:-1]
+    return b.decode("utf-8", errors="replace"), True
+
+
+def verify_identity(selected, expected_engine):
+    """H1/H2: verify builder-vs-extractor identity and per-record consistency.
+    FAIL CLOSED unless: all selected records share one extractor_commit ==
+    expected_engine and one extractor_source_sha256; per-entry metadata and
+    block hash match the source record."""
+    commits = {}
+    srcs = {}
+    for s, size, h, r, reasons in selected:
+        c = r.get("extractor_commit")
+        e = r.get("extractor_source_sha256")
+        if not c or not e:
+            raise SystemExit(f"FAIL: record {r['archive']}[{r['entry_index']}] "
+                             "missing extractor identity")
+        commits.setdefault(c, []).append(f"{r['archive']}[{r['entry_index']}]")
+        srcs.setdefault(e, []).append(f"{r['archive']}[{r['entry_index']}]")
+        # H2: per-entry block hash is taken from the record itself (no
+        # aggregated trust); assert the archive/index fields are present.
+        if r["archive"] not in ("LT71", "LT51", "LT31"):
+            raise SystemExit(f"FAIL: unexpected archive {r['archive']}")
+        if not (0 <= r["entry_index"] < 100000):
+            raise SystemExit("FAIL: entry_index out of range")
+        if len(r.get("block_sha256", "")) != 64:
+            raise SystemExit("FAIL: block_sha256 missing/malformed")
+    if len(commits) != 1:
+        raise SystemExit(f"FAIL: extractor_commit inconsistent across records: {commits}")
+    (engine_commit,), _ = commits.popitem()
+    if engine_commit != expected_engine:
+        raise SystemExit(f"FAIL: extractor_commit {engine_commit} != {expected_engine}")
+    if len(srcs) != 1:
+        raise SystemExit(f"FAIL: extractor_source_sha256 inconsistent across records: {srcs}")
+    (engine_src,), _ = srcs.popitem()
+    return engine_commit, engine_src
+
+
 def build(archive_dir, records_dirs, out_dir, engine_commit, builder_commit,
           game_version):
     existing = load_existing(records_dirs)
@@ -292,6 +340,10 @@ def build(archive_dir, records_dirs, out_dir, engine_commit, builder_commit,
     selected = scored[:SELECT_N]
     if len(selected) < 12:
         raise SystemExit(f"FAIL: only {len(selected)} candidates (need >= 12)")
+    # H1: verify builder-vs-extractor identity (fail closed)
+    verified_engine, verified_engine_src = verify_identity(selected, ENGINE_COMMIT)
+    if verified_engine != engine_commit:
+        raise SystemExit("FAIL: engine commit mismatch (record identity != arg)")
 
     # clustering with §3a rules
     clusters = cluster_entries(selected)
@@ -311,11 +363,12 @@ def build(archive_dir, records_dirs, out_dir, engine_commit, builder_commit,
             })
             src = r["container"]
             if src.get("source_locator"):
-                short = src["source_locator"][:MAX_LOCATOR_BYTES]
+                short, trunc = locator_bytes(src["source_locator"])
                 src_obs.append({"archive": r["archive"],
                                 "entry_index": r["entry_index"],
                                 "source_status": src.get("source_status"),
                                 "source_locator": short,
+                                "source_truncated": trunc,
                                 "source_reconstruction": src.get("source_reconstruction")})
             for o in r.get("observations", []):
                 obs_all.append(o)
@@ -339,9 +392,10 @@ def build(archive_dir, records_dirs, out_dir, engine_commit, builder_commit,
             "structural_observations": obs_all,
             "provenance": {
                 "builder_commit": builder_commit,
-                "extractor_commit": engine_commit,
+                "builder_source_sha256": _src_sha(),
+                "extractor_commit": verified_engine,
+                "extractor_source_sha256": verified_engine_src,
                 "game_version": game_version,
-                "extractor_source_sha256": _src_sha(),
             },
             "warnings": sorted(warnings),
             "unresolved": unresolved,
@@ -354,7 +408,9 @@ def build(archive_dir, records_dirs, out_dir, engine_commit, builder_commit,
     manifest = {
         "schema_version": MANIFEST_SCHEMA,
         "builder_commit": builder_commit,
-        "extractor_commit": engine_commit,
+        "builder_source_sha256": _src_sha(),
+        "extractor_commit": verified_engine,
+        "extractor_source_sha256": verified_engine_src,
         "game_version": game_version,
         "selection_count": len(selected),
         "entries": [{
@@ -367,13 +423,17 @@ def build(archive_dir, records_dirs, out_dir, engine_commit, builder_commit,
     packet = {
         "schema_version": PACKET_SCHEMA,
         "builder_commit": builder_commit,
-        "extractor_commit": engine_commit,
+        "builder_source_sha256": _src_sha(),
+        "extractor_commit": verified_engine,
+        "extractor_source_sha256": verified_engine_src,
         "game_version": game_version,
         "selection_policy_ref": "docs/research/evidence/windows/wave-1.6/nex005-qinghe-packet/packet-policy.md",
         "clusters": cluster_list,
         "provenance": {
             "builder_commit": builder_commit,
-            "extractor_commit": engine_commit,
+            "builder_source_sha256": _src_sha(),
+            "extractor_commit": verified_engine,
+            "extractor_source_sha256": verified_engine_src,
             "game_version": game_version,
         },
         "warnings": [
@@ -406,6 +466,30 @@ def selftest():
     assert family_of("@hexm/client/storyline_data/wanfa/MSD_ST/ZDQ/dq_610900.lua") == "MSD_ST"
     assert qinghe_of("@hexm/client/storyline_data/guanqia/qinghe_end_task/_200443.lua")
     assert not qinghe_of("@hexm/client/ui/common.lua")
+    # H3: UTF-8 byte cap
+    v, t = locator_bytes("汉" * 40)
+    assert t and len(v.encode("utf-8")) <= MAX_LOCATOR_BYTES and v == "汉" * 21
+    v2, t2 = locator_bytes("@hexm/client/storyline_data/guanqia/qinghe_end_task/_200443.lua")
+    assert not t2
+    # H1: identity verification fail-closed on inconsistent commits
+    recs_ok = [
+        (0, 0, "", {"archive": "LT71", "entry_index": 1,
+                    "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+                    "extractor_source_sha256": "a" * 64, "block_sha256": "b" * 64}, []),
+        (0, 0, "", {"archive": "LT71", "entry_index": 2,
+                    "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+                    "extractor_source_sha256": "a" * 64, "block_sha256": "c" * 64}, []),
+    ]
+    c, s = verify_identity(recs_ok, "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa")
+    assert c == "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa" and s == "a" * 64
+    recs_bad = [dict(r) for _, _, _, r, _ in recs_ok]
+    recs_bad[1]["extractor_source_sha256"] = "d" * 64
+    try:
+        verify_identity([(0, 0, "", recs_bad[0], []), (0, 0, "", recs_bad[1], [])],
+                        "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa")
+        raise AssertionError("expected SystemExit")
+    except SystemExit:
+        pass
     return True
 
 
