@@ -27,6 +27,7 @@ docs/research/evidence/windows/wave-1.6/
     └── nex004a-raw-normalizer.md ← NEX-004A Raw Narrative Observation Normalizer
     └── nex004a-raw-observations/ ← 4 条 RawNarrativeObservation 记录（JSON）+ SCHEMA-v2.md
     └── nex004b-structural-discovery/ ← NEX-004B 冻结规则/manifest（Commit A）+ blind/regression 输出（Commit B）
+    └── nex004c-holdout/ ← NEX-004C selector 政策（C0）+ holdout manifest（C1）+ holdout 输出（C2）
 ```
 
 ## 当前状态（R00→R06 已闭环）

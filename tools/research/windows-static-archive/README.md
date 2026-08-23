@@ -18,6 +18,7 @@ tools/research/windows-static-archive/
 ├── nex004a_normalizer.py      ← NEX-004A raw narrative observation normalizer（已交付）
 ├── discovery_engine.py        ← NEX-004B generic structural discovery engine（已交付）
 ├── blind_manifest.json        ← NEX-004B frozen blind manifest（Commit A 冻结）
+├── narrative_holdout_selector.py ← NEX-004C holdout selector（C0 冻结）
 └── samples/                   ← 本地研究样本（.mpkinfo 副本，gitignored，不进 Git）
 ```
 
