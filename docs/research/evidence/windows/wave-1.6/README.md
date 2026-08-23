@@ -24,6 +24,8 @@ docs/research/evidence/windows/wave-1.6/
     └── hnex003r-official-varint-walk.md  ← H-NEX-003R Official Lua 5.4 Varint/Proto Walk
     └── hnex003s-proto-boundary-validation.md ← H-NEX-003S Proto Boundary & Post-Code Validation
     └── hnex003t-lt31-framing.md ← H-NEX-003T LT31 Instruction Framing & Sizecode Boundary
+    └── nex004a-raw-normalizer.md ← NEX-004A Raw Narrative Observation Normalizer
+    └── nex004a-raw-observations/ ← 4 条 RawNarrativeObservation 记录（JSON）
 ```
 
 ## 当前状态（R00→R06 已闭环）

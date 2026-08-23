@@ -1,0 +1,43 @@
+﻿{
+  "schema_version": "raw-narrative-observation-1",
+  "extractor_commit": "ed5d9ad3b692bfb713f61807cf35ab1e7083c58e",
+  "game_version": "20260820220319",
+  "archive": "LT31.mpk",
+  "archive_sha256": "280639e8e0dd1980c2feae65beca7ba972ee89c0ef528d6405ad4657d10cfa96",
+  "mpkinfo_sha256": "4ae32cef07988376af946bb7befe2294e1e06aae466ef60740db89b34ac97ac3",
+  "entry_index": 874,
+  "entry_offset": 1996455,
+  "entry_stored_size": 11718,
+  "flags_raw": 62,
+  "block_sha256": "da4dce485d484610c7f239d6aa93de772153752708a1332c5c8e9b6f667acdce",
+  "container": {
+    "lua_version": "5.4",
+    "source_status": "EXACT",
+    "source_path_observed": "@Sunshine/AI/bt2code/output/u_newplay_horserob_thin_qifen.lua"
+  },
+  "strings": [
+    {
+      "byte_offset": 6073,
+      "framing_tag_raw": 4,
+      "encoded_length": 6,
+      "value_byte_length": 5,
+      "short_value": "70276",
+      "framing_status": "FRAMED_PLAINTEXT"
+    }
+  ],
+  "references": [
+    {
+      "raw_value": "70276",
+      "byte_offset": 6073,
+      "source_kind": "block_string",
+      "pattern_kind": "TASK_REF_CANDIDATE",
+      "confidence": "MEDIUM"
+    }
+  ],
+  "warnings": [
+    "INSTRUCTION_SERIALIZATION_VARIANT",
+    "CONSTANT_OWNERSHIP_UNKNOWN",
+    "PROTO_OWNERSHIP_UNKNOWN",
+    "SEMANTIC_ROLE_UNVERIFIED"
+  ]
+}

@@ -15,6 +15,7 @@ tools/research/windows-static-archive/
 ├── probe_lua54_metadata.py   ← H-NEX-003R official Lua 5.4 varint/proto walk（已交付）
 ├── verify_proto_boundary.py   ← H-NEX-003S/T proto boundary & post-code verifier（83-opcode enum）
 ├── framing_probe.py           ← H-NEX-003T LT31 instruction framing probe（已交付）
+├── nex004a_normalizer.py      ← NEX-004A raw narrative observation normalizer（已交付）
 └── samples/                   ← 本地研究样本（.mpkinfo 副本，gitignored，不进 Git）
 ```
 
@@ -82,7 +83,8 @@ python probe_archive_mapping.py samples/main_Resources.mpkinfo E:\yysls\Resource
 - H-NEX-003R Official Varint/Proto Walk：DONE（Gate = **PROTO_PARTIAL_AFTER_OFFICIAL_VARINT**；官方 MSB-first loadUnsigned 确认；sizecode `01 YY`=236/245，4/4 code 区域合法指令流；**sizek @ code_end 失败（custom post-code variant）**）
 - H-NEX-003S Proto Boundary & Post-Code Validation：DONE（Gate = **BOUNDARY_PARTIAL**；LT31 control source/header 确定性确认；**code 官方 79-opcode enum 下 51 条非法**；sizek@code_end 四样本全失败；segmented = SOURCE_SERIALIZATION_PARTIAL）
 - H-NEX-003T LT31 Instruction Framing：DONE（Gate = **INSTRUCTION_SERIALIZATION_VARIANT_CONFIRMED**；opcode 表修复为 83；LT31 invalid=46；H0-H3 framing hypotheses 全部失败 → Lua body research 收口）
-- 下一阶段（NEX-004A Raw Structural Normalizer 评估）：WAITING_FOR_LEAD_AUTHORIZATION
+- NEX-004A Raw Narrative Observation Normalizer：DONE（Gate = **RAW_NORMALIZATION_PASS**；4 pilot 记录完整 provenance + 哈希与 ledger 吻合；目标 7/7 恢复；RAW ≠ canonical）
+- 下一阶段（STRUCTURAL_NORMALIZATION / canonical 更新）：WAITING_FOR_LEAD_AUTHORIZATION
 
 ## W-R03 关键结论
 

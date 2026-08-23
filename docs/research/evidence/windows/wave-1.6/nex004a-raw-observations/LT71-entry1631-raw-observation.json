@@ -1,0 +1,59 @@
+﻿{
+  "schema_version": "raw-narrative-observation-1",
+  "extractor_commit": "ed5d9ad3b692bfb713f61807cf35ab1e7083c58e",
+  "game_version": "20260820220319",
+  "archive": "LT71.mpk",
+  "archive_sha256": "42c9d32837a808c14fbe94dd161d6a011f21d6bf2378a91ca3e592ae76174b60",
+  "mpkinfo_sha256": "f5f8f15770689c257d83298e599d9961dacfbc311c1662dcdc322f98782cfcdb",
+  "entry_index": 1631,
+  "entry_offset": 12382428,
+  "entry_stored_size": 11784,
+  "flags_raw": 142,
+  "block_sha256": "d3c2930d8ad419371166fb4eb93cf50d4f09e1ca35df34efbce1c3608848bfd5",
+  "container": {
+    "lua_version": "5.4",
+    "source_status": "SEGMENTED_PARTIAL",
+    "source_path_observed": "@hexm/client/ui/windows/yankov/storage/cangpin_sub_#/homeland_di"
+  },
+  "strings": [
+    {
+      "byte_offset": 1366,
+      "framing_tag_raw": 4,
+      "encoded_length": 17,
+      "value_byte_length": 16,
+      "short_value": "EXPANSION_QINGHE",
+      "framing_status": "FRAMED_PLAINTEXT"
+    },
+    {
+      "byte_offset": 1317,
+      "framing_tag_raw": 4,
+      "encoded_length": 9,
+      "value_byte_length": 8,
+      "short_value": "TextByNo",
+      "framing_status": "FRAMED_PLAINTEXT"
+    }
+  ],
+  "references": [
+    {
+      "raw_value": "EXPANSION_QINGHE",
+      "byte_offset": 1366,
+      "source_kind": "block_string",
+      "pattern_kind": "TEXT_LOOKUP_KEY_CANDIDATE",
+      "confidence": "MEDIUM"
+    },
+    {
+      "raw_value": "TextByNo",
+      "byte_offset": 1317,
+      "source_kind": "block_string",
+      "pattern_kind": "FIELD_KEY_CANDIDATE",
+      "confidence": "MEDIUM"
+    }
+  ],
+  "warnings": [
+    "INSTRUCTION_SERIALIZATION_VARIANT",
+    "CONSTANT_OWNERSHIP_UNKNOWN",
+    "PROTO_OWNERSHIP_UNKNOWN",
+    "SEMANTIC_ROLE_UNVERIFIED",
+    "SOURCE_SEGMENTED_SERIALIZATION"
+  ]
+}

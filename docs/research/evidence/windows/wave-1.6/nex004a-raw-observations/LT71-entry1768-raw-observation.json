@@ -1,0 +1,104 @@
+﻿{
+  "schema_version": "raw-narrative-observation-1",
+  "extractor_commit": "ed5d9ad3b692bfb713f61807cf35ab1e7083c58e",
+  "game_version": "20260820220319",
+  "archive": "LT71.mpk",
+  "archive_sha256": "42c9d32837a808c14fbe94dd161d6a011f21d6bf2378a91ca3e592ae76174b60",
+  "mpkinfo_sha256": "f5f8f15770689c257d83298e599d9961dacfbc311c1662dcdc322f98782cfcdb",
+  "entry_index": 1768,
+  "entry_offset": 4750441,
+  "entry_stored_size": 11168,
+  "flags_raw": 142,
+  "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5",
+  "container": {
+    "lua_version": "5.4",
+    "source_status": "SEGMENTED_PARTIAL",
+    "source_path_observed": "@hexm/client/storyline_data/wanfa/MSD_ST/ZDQ/dq_610900.lua"
+  },
+  "strings": [
+    {
+      "byte_offset": 84,
+      "framing_tag_raw": null,
+      "encoded_length": null,
+      "value_byte_length": 9,
+      "short_value": "dq_610900",
+      "framing_status": "SOURCE_PATH_TEXT"
+    },
+    {
+      "byte_offset": 46,
+      "framing_tag_raw": null,
+      "encoded_length": null,
+      "value_byte_length": 14,
+      "short_value": "storyline_data",
+      "framing_status": "SOURCE_PATH_TEXT"
+    },
+    {
+      "byte_offset": 70,
+      "framing_tag_raw": null,
+      "encoded_length": null,
+      "value_byte_length": 6,
+      "short_value": "MSD_ST",
+      "framing_status": "SOURCE_PATH_TEXT"
+    },
+    {
+      "byte_offset": 1622,
+      "framing_tag_raw": 4,
+      "encoded_length": 14,
+      "value_byte_length": 13,
+      "short_value": "NodeGraphData",
+      "framing_status": "FRAMED_PLAINTEXT"
+    },
+    {
+      "byte_offset": 1748,
+      "framing_tag_raw": 6,
+      "encoded_length": 7,
+      "value_byte_length": 6,
+      "short_value": "����",
+      "framing_status": "FRAMED_PLAINTEXT"
+    }
+  ],
+  "references": [
+    {
+      "raw_value": "dq_610900",
+      "byte_offset": 84,
+      "source_kind": "source_path",
+      "pattern_kind": "SCRIPT_FAMILY_CANDIDATE",
+      "confidence": "LOW"
+    },
+    {
+      "raw_value": "storyline_data",
+      "byte_offset": 46,
+      "source_kind": "source_path",
+      "pattern_kind": "SCRIPT_FAMILY_CANDIDATE",
+      "confidence": "LOW"
+    },
+    {
+      "raw_value": "MSD_ST",
+      "byte_offset": 70,
+      "source_kind": "source_path",
+      "pattern_kind": "SCRIPT_FAMILY_CANDIDATE",
+      "confidence": "LOW"
+    },
+    {
+      "raw_value": "NodeGraphData",
+      "byte_offset": 1622,
+      "source_kind": "block_string",
+      "pattern_kind": "FIELD_KEY_CANDIDATE",
+      "confidence": "MEDIUM"
+    },
+    {
+      "raw_value": "����",
+      "byte_offset": 1748,
+      "source_kind": "block_string",
+      "pattern_kind": "CHARACTER_TOKEN",
+      "confidence": "MEDIUM"
+    }
+  ],
+  "warnings": [
+    "INSTRUCTION_SERIALIZATION_VARIANT",
+    "CONSTANT_OWNERSHIP_UNKNOWN",
+    "PROTO_OWNERSHIP_UNKNOWN",
+    "SEMANTIC_ROLE_UNVERIFIED",
+    "SOURCE_SEGMENTED_SERIALIZATION"
+  ]
+}
