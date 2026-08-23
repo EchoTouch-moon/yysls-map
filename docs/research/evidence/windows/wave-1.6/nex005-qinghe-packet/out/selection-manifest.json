@@ -1,7 +1,9 @@
 {
   "schema_version": "nex005-selection-manifest-1",
-  "builder_commit": "9c0f72d3ebc6ad01fcf90d2fa29d212eeb5dc6f1",
+  "builder_commit": "3159afd3d6201da6f6839a6c45053fe81602e53c",
+  "builder_source_sha256": "8c96e72e54c13e4473df3252623c779ebb4afc7d15ea50812df994e9fbc5e1d5",
   "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+  "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
   "game_version": "20260820220319",
   "selection_count": 12,
   "entries": [

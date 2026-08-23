@@ -1,7 +1,9 @@
 {
   "schema_version": "qinghe-evidence-packet-1",
-  "builder_commit": "9c0f72d3ebc6ad01fcf90d2fa29d212eeb5dc6f1",
+  "builder_commit": "3159afd3d6201da6f6839a6c45053fe81602e53c",
+  "builder_source_sha256": "8c96e72e54c13e4473df3252623c779ebb4afc7d15ea50812df994e9fbc5e1d5",
   "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+  "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
   "game_version": "20260820220319",
   "selection_policy_ref": "docs/research/evidence/windows/wave-1.6/nex005-qinghe-packet/packet-policy.md",
   "clusters": [
@@ -28,6 +30,7 @@
           "entry_index": 1631,
           "source_status": "SEGMENTED_PARTIAL",
           "source_locator": "@hexm/client/ui/windows/yankov/storage/cangpin_sub_#/homeland_di",
+          "source_truncated": false,
           "source_reconstruction": "PRINTABLE_RUN_JOIN"
         }
       ],
@@ -224,10 +227,11 @@
         }
       ],
       "provenance": {
-        "builder_commit": "9c0f72d3ebc6ad01fcf90d2fa29d212eeb5dc6f1",
+        "builder_commit": "3159afd3d6201da6f6839a6c45053fe81602e53c",
+        "builder_source_sha256": "8c96e72e54c13e4473df3252623c779ebb4afc7d15ea50812df994e9fbc5e1d5",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "game_version": "20260820220319",
-        "extractor_source_sha256": "c82ce4db841adcc069c76b61a2a6c0598ff04f10dea0b37b4d23fc54881d3cca"
+        "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+        "game_version": "20260820220319"
       },
       "warnings": [
         "CONSTANT_OWNERSHIP_UNKNOWN",
@@ -294,6 +298,7 @@
           "entry_index": 493,
           "source_status": "SEGMENTED_PARTIAL",
           "source_locator": "@hexm/client/storyline_data/guanqia/qinghe_end_task//_200443.lua",
+          "source_truncated": false,
           "source_reconstruction": "PRINTABLE_RUN_JOIN"
         },
         {
@@ -301,6 +306,7 @@
           "entry_index": 2553,
           "source_status": "SEGMENTED_PARTIAL",
           "source_locator": "@hexm/client/storyline_data/guanqia/qinghe_end_task//$_bxx_fight",
+          "source_truncated": false,
           "source_reconstruction": "PRINTABLE_RUN_JOIN"
         },
         {
@@ -308,6 +314,7 @@
           "entry_index": 311,
           "source_status": "SEGMENTED_PARTIAL",
           "source_locator": "@hexm/client/storyline_data/guanqia/qinghe_end_task//_200453.lua",
+          "source_truncated": false,
           "source_reconstruction": "PRINTABLE_RUN_JOIN"
         },
         {
@@ -315,6 +322,7 @@
           "entry_index": 85,
           "source_status": "SEGMENTED_PARTIAL",
           "source_locator": "@hexm/client/storyline_data/guanqia/qinghe_end_task//&_200464_ch",
+          "source_truncated": false,
           "source_reconstruction": "PRINTABLE_RUN_JOIN"
         },
         {
@@ -322,6 +330,7 @@
           "entry_index": 318,
           "source_status": "SEGMENTED_PARTIAL",
           "source_locator": "@hexm/client/storyline_data/guanqia/qinghe_end_task//_200451_1.l",
+          "source_truncated": false,
           "source_reconstruction": "PRINTABLE_RUN_JOIN"
         }
       ],
@@ -1088,10 +1097,11 @@
         }
       ],
       "provenance": {
-        "builder_commit": "9c0f72d3ebc6ad01fcf90d2fa29d212eeb5dc6f1",
+        "builder_commit": "3159afd3d6201da6f6839a6c45053fe81602e53c",
+        "builder_source_sha256": "8c96e72e54c13e4473df3252623c779ebb4afc7d15ea50812df994e9fbc5e1d5",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "game_version": "20260820220319",
-        "extractor_source_sha256": "c82ce4db841adcc069c76b61a2a6c0598ff04f10dea0b37b4d23fc54881d3cca"
+        "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+        "game_version": "20260820220319"
       },
       "warnings": [
         "CONSTANT_OWNERSHIP_UNKNOWN",
@@ -1130,6 +1140,7 @@
           "entry_index": 1886,
           "source_status": "SEGMENTED_PARTIAL",
           "source_locator": "@hexm/client/storyline_data/>guanqia/qinghe_end_boss_fight/task_",
+          "source_truncated": false,
           "source_reconstruction": "PRINTABLE_RUN_JOIN"
         }
       ],
@@ -1288,10 +1299,11 @@
         }
       ],
       "provenance": {
-        "builder_commit": "9c0f72d3ebc6ad01fcf90d2fa29d212eeb5dc6f1",
+        "builder_commit": "3159afd3d6201da6f6839a6c45053fe81602e53c",
+        "builder_source_sha256": "8c96e72e54c13e4473df3252623c779ebb4afc7d15ea50812df994e9fbc5e1d5",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "game_version": "20260820220319",
-        "extractor_source_sha256": "c82ce4db841adcc069c76b61a2a6c0598ff04f10dea0b37b4d23fc54881d3cca"
+        "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+        "game_version": "20260820220319"
       },
       "warnings": [
         "CONSTANT_OWNERSHIP_UNKNOWN",
@@ -1330,6 +1342,7 @@
           "entry_index": 2194,
           "source_status": "SEGMENTED_PARTIAL",
           "source_locator": "@hexm/client/storyline_data/guanqia/qinghe_end_boss_fight/bxx/_h",
+          "source_truncated": false,
           "source_reconstruction": "PRINTABLE_RUN_JOIN"
         }
       ],
@@ -1488,10 +1501,11 @@
         }
       ],
       "provenance": {
-        "builder_commit": "9c0f72d3ebc6ad01fcf90d2fa29d212eeb5dc6f1",
+        "builder_commit": "3159afd3d6201da6f6839a6c45053fe81602e53c",
+        "builder_source_sha256": "8c96e72e54c13e4473df3252623c779ebb4afc7d15ea50812df994e9fbc5e1d5",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "game_version": "20260820220319",
-        "extractor_source_sha256": "c82ce4db841adcc069c76b61a2a6c0598ff04f10dea0b37b4d23fc54881d3cca"
+        "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+        "game_version": "20260820220319"
       },
       "warnings": [
         "CONSTANT_OWNERSHIP_UNKNOWN",
@@ -1530,6 +1544,7 @@
           "entry_index": 1909,
           "source_status": "SEGMENTED_PARTIAL",
           "source_locator": "@hexm/client/storyline_data//task/qinghefenwei_yexiuluo.lua",
+          "source_truncated": false,
           "source_reconstruction": "PRINTABLE_RUN_JOIN"
         }
       ],
@@ -1688,10 +1703,11 @@
         }
       ],
       "provenance": {
-        "builder_commit": "9c0f72d3ebc6ad01fcf90d2fa29d212eeb5dc6f1",
+        "builder_commit": "3159afd3d6201da6f6839a6c45053fe81602e53c",
+        "builder_source_sha256": "8c96e72e54c13e4473df3252623c779ebb4afc7d15ea50812df994e9fbc5e1d5",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "game_version": "20260820220319",
-        "extractor_source_sha256": "c82ce4db841adcc069c76b61a2a6c0598ff04f10dea0b37b4d23fc54881d3cca"
+        "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+        "game_version": "20260820220319"
       },
       "warnings": [
         "CONSTANT_OWNERSHIP_UNKNOWN",
@@ -1730,6 +1746,7 @@
           "entry_index": 954,
           "source_status": "SEGMENTED_PARTIAL",
           "source_locator": "@hexm/client/storyline_data/;task/lizehao/qinghejianzhang_moonli",
+          "source_truncated": false,
           "source_reconstruction": "PRINTABLE_RUN_JOIN"
         }
       ],
@@ -1888,10 +1905,11 @@
         }
       ],
       "provenance": {
-        "builder_commit": "9c0f72d3ebc6ad01fcf90d2fa29d212eeb5dc6f1",
+        "builder_commit": "3159afd3d6201da6f6839a6c45053fe81602e53c",
+        "builder_source_sha256": "8c96e72e54c13e4473df3252623c779ebb4afc7d15ea50812df994e9fbc5e1d5",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "game_version": "20260820220319",
-        "extractor_source_sha256": "c82ce4db841adcc069c76b61a2a6c0598ff04f10dea0b37b4d23fc54881d3cca"
+        "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+        "game_version": "20260820220319"
       },
       "warnings": [
         "CONSTANT_OWNERSHIP_UNKNOWN",
@@ -1933,6 +1951,7 @@
           "entry_index": 1768,
           "source_status": "SEGMENTED_PARTIAL",
           "source_locator": "@hexm/client/storyline_data/wanfa/MSD_ST/ZDQ/dq_610900.lua",
+          "source_truncated": false,
           "source_reconstruction": "PRINTABLE_RUN_JOIN"
         }
       ],
@@ -2186,10 +2205,11 @@
         }
       ],
       "provenance": {
-        "builder_commit": "9c0f72d3ebc6ad01fcf90d2fa29d212eeb5dc6f1",
+        "builder_commit": "3159afd3d6201da6f6839a6c45053fe81602e53c",
+        "builder_source_sha256": "8c96e72e54c13e4473df3252623c779ebb4afc7d15ea50812df994e9fbc5e1d5",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "game_version": "20260820220319",
-        "extractor_source_sha256": "c82ce4db841adcc069c76b61a2a6c0598ff04f10dea0b37b4d23fc54881d3cca"
+        "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+        "game_version": "20260820220319"
       },
       "warnings": [
         "CONSTANT_OWNERSHIP_UNKNOWN",
@@ -2230,6 +2250,7 @@
           "entry_index": 1068,
           "source_status": "SEGMENTED_PARTIAL",
           "source_locator": "@hexm/client/storyline_data/.wanfa/MSD_ST/LC/LC_Room2.lua",
+          "source_truncated": false,
           "source_reconstruction": "PRINTABLE_RUN_JOIN"
         }
       ],
@@ -2407,10 +2428,11 @@
         }
       ],
       "provenance": {
-        "builder_commit": "9c0f72d3ebc6ad01fcf90d2fa29d212eeb5dc6f1",
+        "builder_commit": "3159afd3d6201da6f6839a6c45053fe81602e53c",
+        "builder_source_sha256": "8c96e72e54c13e4473df3252623c779ebb4afc7d15ea50812df994e9fbc5e1d5",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "game_version": "20260820220319",
-        "extractor_source_sha256": "c82ce4db841adcc069c76b61a2a6c0598ff04f10dea0b37b4d23fc54881d3cca"
+        "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+        "game_version": "20260820220319"
       },
       "warnings": [
         "CONSTANT_OWNERSHIP_UNKNOWN",
@@ -2427,8 +2449,10 @@
     }
   ],
   "provenance": {
-    "builder_commit": "9c0f72d3ebc6ad01fcf90d2fa29d212eeb5dc6f1",
+    "builder_commit": "3159afd3d6201da6f6839a6c45053fe81602e53c",
+    "builder_source_sha256": "8c96e72e54c13e4473df3252623c779ebb4afc7d15ea50812df994e9fbc5e1d5",
     "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+    "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
     "game_version": "20260820220319"
   },
   "warnings": [
