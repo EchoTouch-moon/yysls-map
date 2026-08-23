@@ -169,9 +169,16 @@ def discover_new(archive_dir, engine_commit, builder_commit, game_version):
                 new.append({"archive": arch, "index": idx, "size": e["size"],
                             "offset": e["offset"], "flags": e["flags"],
                             "family": fam, "qinghe": qh})
-    # run engine on all new candidates
+    # frozen policy: pool = all Qinghe-source + TOP 4 large-family (size desc,
+    # sha256 tie-break)
+    qh_all = [c for c in new if c["qinghe"]]
+    large_only = [c for c in new if not c["qinghe"]]
+    large_only.sort(key=lambda x: (-x["size"],
+                                   hashlib.sha256(f"{x['archive']}:{x['index']}".encode()).hexdigest()))
+    to_run = qh_all + large_only[:4]
+    # run engine on new candidates
     recs = []
-    for c in sorted(new, key=lambda x: (-x["size"], x["archive"], x["index"])):
+    for c in sorted(to_run, key=lambda x: (-x["size"], x["archive"], x["index"])):
         r = de.discover(archive_dir, c["archive"] + ".mpk",
                         c["archive"] + ".mpkinfo", c["index"], game_version,
                         engine_commit, None)
