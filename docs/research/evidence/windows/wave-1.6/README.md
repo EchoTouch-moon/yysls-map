@@ -18,7 +18,8 @@ docs/research/evidence/windows/wave-1.6/
     ├── resource-catalog-summary.md       ← W-R04 Archive Candidate Discovery
     ├── narrative-metadata-probe.md       ← W-R05 Narrative Metadata Schema Probe
     ├── static-extraction-decision.md     ← W-R06 Static Extraction Decision
-    └── luat-dialect-identification.md    ← NEX-002 LuaT Dialect Identification
+    ├── luat-dialect-identification.md    ← NEX-002 LuaT Dialect Identification
+    └── nex003-minimal-proto-reader.md    ← NEX-003 Minimal Lua 5.4 Proto/Constant Reader
 ```
 
 ## 当前状态（R00→R06 已闭环）

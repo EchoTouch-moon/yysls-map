@@ -12,6 +12,7 @@ tools/research/windows-static-archive/
 ├── inspect_mpkinfo.py        ← W-R02 deterministic index parser（已交付）
 ├── probe_archive_mapping.py  ← W-R03 index→archive→payload linkage probe（已交付）
 ├── probe_luat_dialect.py     ← NEX-002 LuaT bytecode dialect fingerprint（已交付）
+├── probe_lua54_metadata.py   ← NEX-003 minimal Lua 5.4 header/source/token reader（已交付）
 └── samples/                  ← 本地研究样本（.mpkinfo 副本，gitignored，不进 Git）
 ```
 
@@ -74,7 +75,8 @@ python probe_archive_mapping.py samples/main_Resources.mpkinfo E:\yysls\Resource
 - W-R05 Narrative Metadata Schema Probe：DONE（Gate = **R5_SCHEMA_AND_JOIN_FOUND**；叙事 = `LuaT` 容器 + 编译 Lua）
 - W-R06 Static Extraction Decision：DONE（建议 = **MINIMAL_EXTRACTOR_GO**，边界 = LT/LuaT narrative metadata only）
 - NEX-002 LuaT Dialect Identification：DONE（Gate = **DIALECT_PARTIAL_CONSTANTS_READABLE**；Lua 5.4 32-bit Instruction + 修改版 header 尾，见 H-NEX-002 修订）
-- 下一阶段（NEX-003 / extractor implementation）：WAITING_FOR_LEAD_AUTHORIZATION
+- NEX-003 Minimal Constant/Proto Reader：DONE（Gate = **BODY_LAYOUT_PARTIAL**；header/source 定位成功，Proto/constant 确定性解析被 custom body 布局阻塞）
+- 下一阶段（body-layout 二次研究 / NEX-004）：WAITING_FOR_LEAD_AUTHORIZATION
 
 ## W-R03 关键结论
 
