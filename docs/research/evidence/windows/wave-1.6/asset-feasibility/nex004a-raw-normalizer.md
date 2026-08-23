@@ -1,7 +1,10 @@
-# NEX-004A — Raw Narrative Observation Normalizer
+# NEX-004A / H-NEX-004A — Raw Narrative Observation Normalizer
 
-> Task-ID: NEX-004A · Status: **DONE** · Gate: **RAW_NORMALIZATION_PASS**
-> Base: `research/windows-evidence-tooling` @ `ed5d9ad`
+> Task-ID: NEX-004A + H-NEX-004A · Status: **DONE** · Gate: **RAW_NORMALIZATION_PASS**
+> Extractors：
+> - NEX-004A 原始 pilot：commit `1eeec82`（Gate 被远端降级为 PROVENANCE_INCOMPLETE）
+> - **H-NEX-004A hardened extractor（EXTRACTOR_SHA）：commit `bfd610a`**（本记录由它生成）
+> Base：`research/windows-evidence-tooling`
 > Precondition：H-NEX-003T = INSTRUCTION_SERIALIZATION_VARIANT_CONFIRMED（Lua VM/body research CLOSED）
 > Committed tool：`tools/research/windows-static-archive/nex004a_normalizer.py`（selftest PASS）
 
@@ -9,91 +12,78 @@
 
 ## 0. 结论（一句话）
 
-不依赖私有 instruction serialization，将 4 个 frozen pilot 块的可静态观察 narrative metadata 规范化为 **RawNarrativeObservation** 记录：完整 provenance（archive/mpkinfo/block SHA-256 全部与 frozen ledger 吻合）、source 观察（EXACT / SEGMENTED_PARTIAL）、目标字符串观察（7/7 按样本出现处全部恢复）、带 pattern_kind/confidence 的 reference 观察、四类强制 warning。**RAW observation ≠ canonical，未写 canonical。**
+H-NEX-004A hardening 完成：schema v2、**两阶段 provenance freeze**（`bfd610a` 冻结 extractor → 干净 worktree 重生成 → 记录指向 `bfd610a`）、工具自身 UTF-8 输出 + round-trip 校验（**`江晏` 完整无损**）、byte cap（UTF-8 bytes）、taxonomy 修正、fail-closed 全部落实。4/4 记录重生成，哈希全部与 frozen ledger 吻合。
 
-## 1. 工具与 schema
+> **NEX-004A → CLOSED / RAW_NORMALIZATION_PASS**（按 H-NEX-004A Gate 条件全部满足）
 
-`nex004a_normalizer.py`：
+## 1. 两阶段 provenance freeze
 
 ```text
-RawNarrativeObservation v1:
-  provenance : schema_version, extractor_commit, game_version, archive,
-               archive_sha256, mpkinfo_sha256, entry_index, entry_offset,
-               entry_stored_size, flags_raw, block_sha256
-  container  : lua_version, source_status(EXACT|SEGMENTED_PARTIAL|UNAVAILABLE),
-               source_path_observed
-  strings    : byte_offset, framing_tag_raw, encoded_length, value_byte_length,
-               short_value, framing_status
-  references : raw_value, byte_offset, source_kind, pattern_kind, confidence
-  warnings   : [INSTRUCTION_SERIALIZATION_VARIANT, CONSTANT_OWNERSHIP_UNKNOWN,
-                PROTO_OWNERSHIP_UNKNOWN, SEMANTIC_ROLE_UNVERIFIED,
-                (+SOURCE_SEGMENTED_SERIALIZATION if segmented)]
+Commit A  bfd610a  fix(nex004a): harden raw observation provenance and encoding
+                   包含: nex004a_normalizer.py + SCHEMA-v2.md + selftests + README
+                   EXTRACTOR_SHA = bfd610a
+
+干净 worktree @ bfd610a 运行 extractor
+   ↓ 生成
+Commit B  （本 commit）只提交 4 条 regenerated observations + 本报告
 ```
 
-- `game_version` = `20260820220319`（`Patch/patching_version.txt`）。
-- `extractor_commit` = 运行时 `git rev-parse HEAD`（ed5d9ad，本任务产出前）。
-- 哈希：archive/mpkinfo 流式 SHA-256；block 直接计算。**全部与 frozen ledger 一致**。
-- **`framing_tag_raw` 为原始字节，绝不称为 Lua constant tag。**
-- **MAX_LOCATOR_BYTES = 64**：所有 value/locator 截断到 64B；无 bulk string dump / 无完整对白 / 无完整脚本。
+每条记录：
 
-## 2. Pilot 结果（4 样本）
+```text
+extractor_commit          = bfd610a（可 checkout 复现 extractor）
+extractor_source_sha256   = <nex004a_normalizer.py 的 SHA-256>（双保险）
+```
 
-| entry | source_status | source_path_observed | 恢复的目标 |
+## 2. 修复清单（H1-H6 全落实）
+
+| 项 | 修复 | 验证 |
+| --- | --- | --- |
+| H1 provenance | 两阶段 freeze；`extractor_commit=bfd610a` 可复现；`extractor_source_sha256` | 4/4 commit=True, src_hash=True |
+| H2 UTF-8 | `--output` 工具自写 UTF-8（ensure_ascii=False, LF）；round-trip 校验 | `江晏` 在 JSON 中完整；selftest 含 CJK |
+| H3 taxonomy | dq→TASK_REF / EXPANSION→REGION_REF / TextByNo→TEXT_LOOKUP_KEY / 70276→TEXT_REF 修正 | 8/8 符合证据语义 |
+| H4 source v2 | `source_locator`（lossy candidate）+ `source_segments[]` + `source_reconstruction` + `source_truncated` | SEGMENTED_PARTIAL 不再伪装 exact path |
+| H5 byte cap | `MAX_LOCATOR_BYTES=64` 按 UTF-8 **bytes**（helper 修剪 dangling codepoint）| ASCII/CJK/边界 regression |
+| H6 fail-closed | game_version/commit 缺失 → 非零退出；mpkinfo 精确 size、entry 20B、LUAC_DATA、4/8/8 | `--game-version UNKNOWN` → exit 1 |
+
+## 3. Pilot 结果（4/4 regenerated @ bfd610a）
+
+| entry | source_status | source_reconstruction | 恢复的目标（pattern_kind）|
 | --- | --- | --- | --- |
-| LT71[1768] | SEGMENTED_PARTIAL | `@hexm/client/storyline_data/wanfa/MSD_ST/ZDQ/dq_610900.lua` | dq_610900、storyline_data、MSD_ST（source）、NodeGraphData、江晏 |
-| LT71[1631] | SEGMENTED_PARTIAL | `@hexm/client/ui/windows/yankov/storage/cangpin_sub_#homeland_display_side_page.lua` | EXPANSION_QINGHE、TextByNo |
-| LT31[874] | **EXACT** | `@Sunshine/AI/bt2code/output/u_newplay_horserob_thin_qifen.lua` | 70276 |
-| LT51[1178] | SEGMENTED_PARTIAL | `@hexm/client/ui/windows/common/_player_float.lua` | （7 个目标均不存在，符合预期）|
+| LT71[1768] | SEGMENTED_PARTIAL | PRINTABLE_RUN_JOIN | dq_610900(TASK_REF)、storyline_data(SCRIPT_FAMILY)、MSD_ST(SCRIPT_FAMILY)、NodeGraphData(FIELD_KEY)、**江晏(CHARACTER_TOKEN)** |
+| LT71[1631] | SEGMENTED_PARTIAL | PRINTABLE_RUN_JOIN | EXPANSION_QINGHE(REGION_REF)、TextByNo(TEXT_LOOKUP_KEY) |
+| LT31[874] | **EXACT** | — | 70276(TEXT_REF) |
+| LT51[1178] | SEGMENTED_PARTIAL | PRINTABLE_RUN_JOIN | （7 目标均不存在）|
 
-**目标恢复 7/7（按样本出现处）**：
+- 江晏：`"raw_value": "江晏"` 完整（UTF-8），@+0x06D4，tag=6，len=7，vlen=6，FRAMED_PLAINTEXT。
+- confidence：MEDIUM 仅当 framing 完全匹配（tag + len == vlen+1）。
+- 全部保留 `SEMANTIC_ROLE_UNVERIFIED`。
 
-| 目标 | 样本 | source_kind | pattern_kind | confidence |
-| --- | --- | --- | --- | --- |
-| dq_610900 | LT71[1768] | source_path | SCRIPT_FAMILY_CANDIDATE | LOW |
-| storyline_data | LT71[1768] | source_path | SCRIPT_FAMILY_CANDIDATE | LOW |
-| MSD_ST | LT71[1768] | source_path | SCRIPT_FAMILY_CANDIDATE | LOW |
-| NodeGraphData | LT71[1768] | block_string | FIELD_KEY_CANDIDATE | MEDIUM |
-| 江晏 | LT71[1768] | block_string | CHARACTER_TOKEN | MEDIUM |
-| EXPANSION_QINGHE | LT71[1631] | block_string | TEXT_LOOKUP_KEY_CANDIDATE | MEDIUM |
-| TextByNo | LT71[1631] | block_string | FIELD_KEY_CANDIDATE | MEDIUM |
-| 70276 | LT31[874] | block_string | TASK_REF_CANDIDATE | MEDIUM |
+## 4. Hash 交叉验证（frozen ledger，全部吻合）
 
-- confidence = MEDIUM 仅当 framing 完全匹配 `tag + len(varint) == value_len + 1`（FRAMED_PLAINTEXT）；source 内文本为 LOW（无 framing 语义）。
-- 所有 reference 均带 `SEMANTIC_ROLE_UNVERIFIED`。
-
-## 3. Hash 交叉验证（frozen ledger）
-
-| entry | block_sha256 匹配 |
+| entry | block_sha256 |
 | --- | --- |
 | LT71[1768] | ✓ `3504BD0C...` |
 | LT71[1631] | ✓ `D3C2930D...` |
 | LT31[874] | ✓ `DA4DCE48...` |
 | LT51[1178] | ✓ `8AE24367...` |
 
-archive / mpkinfo SHA-256 亦与 ledger 一致（LT71.mpk `42C9D328...`、LT71.mpkinfo `F5F8F157...` 等）。
+archive / mpkinfo SHA-256 亦与 ledger 一致（LT71.mpk `42C9D328...` 等）。
 
-## 4. Gate
+## 5. Gate
 
-> **RAW_NORMALIZATION_PASS**
+> **RAW_NORMALIZATION_PASS**（H-NEX-004A 条件全满足）
+> - 4/4 regenerated ✓ · 全部哈希匹配 ✓ · extractor commit 可复现（bfd610a）✓
+> - extractor source hash 记录 ✓ · 江晏 UTF-8 完整 ✓ · taxonomy 修正 ✓
+> - 无 UNKNOWN provenance ✓ · byte cap 强制执行 ✓
+> - **STRUCTURAL_NORMALIZATION_PASS 未声明**（allowlist recovery 不证明泛化发现）
 
-- 4/4 pilot 记录完整、可复现（固定 schema + 固定 provenance + 哈希可验证）。
-- 目标 7/7 按样本出现处恢复。
-- 未做任何语义化越级：无 constant index / 无 owning proto / 无 CFG / 无 opcode 工作。
-- **STRUCTURAL_NORMALIZATION_PASS 未声明**（source 仅 LT31 为 EXACT；segmented serialization 未解码）。
-- PROVENANCE 完整（game_version、commit、三组哈希均在）→ 非 PROVENANCE_INCOMPLETE。
+## 6. 交付物
 
-## 5. 交付物
+- Commit A `bfd610a`：`nex004a_normalizer.py`（v2 hardened）+ `SCHEMA-v2.md` + selftests + README。
+- Commit B（本 commit）：4 条 regenerated JSON（`docs/.../nex004a-raw-observations/`）+ 本报告。
+- 无 canonical 写入；Canonical v0.1 保持 FROZEN。
 
-- `tools/research/windows-static-archive/nex004a_normalizer.py`（selftest PASS；bounded read + fail closed + MAX_LOCATOR_BYTES=64）。
-- `docs/research/evidence/windows/wave-1.6/nex004a-raw-observations/LT{71,31,51}-entry{1768,1631,874,1178}-raw-observation.json`（4 条记录，UTF-8）。
-- `docs/research/evidence/windows/wave-1.6/asset-feasibility/nex004a-raw-normalizer.md`（本报告）。
-- 无 canonical 写入；canonical v0.1 保持 FROZEN。
+## 7. 下一步（待 Lead 决议）
 
-## 6. 状态
-
-```text
-NEX-004A                 CLOSED / RAW_NORMALIZATION_PASS
-NEX-004A 记录            RAW observations（非 canonical）
-Canonical v0.1           FROZEN
-下一步（如 Lead 放行）    STRUCTURAL_NORMALIZATION 评估 / canonical 更新
-```
+**NEX-004B — Structural Discovery & Generalization Pilot**：脱离 8 个硬编码 TARGETS，从 5-10 个未参与构造的陌生 entry 自动发现结构 observation（framed candidate → ≤64B bounded value → classifier：`dq_\d+` / `EXPANSION_[A-Z0-9_]+` / identifier-like key / numeric text ref / short CJK token），blind validation。PASS 后才考虑 Windows+Mac 合并 → NEX-006 reconciliation → CANONICAL_CANDIDATE。

@@ -1,6 +1,7 @@
-﻿{
-  "schema_version": "raw-narrative-observation-1",
-  "extractor_commit": "ed5d9ad3b692bfb713f61807cf35ab1e7083c58e",
+{
+  "schema_version": "raw-narrative-observation-2",
+  "extractor_commit": "bfd610abc6af1cbceaf96fe4833eabb1e6a43096",
+  "extractor_source_sha256": "daff2b52cd3f4c5e8a12d03cf4192c6fe2f5c810ce1477eaa0c04b57ae2891ff",
   "game_version": "20260820220319",
   "archive": "LT71.mpk",
   "archive_sha256": "42c9d32837a808c14fbe94dd161d6a011f21d6bf2378a91ca3e592ae76174b60",
@@ -13,7 +14,23 @@
   "container": {
     "lua_version": "5.4",
     "source_status": "SEGMENTED_PARTIAL",
-    "source_path_observed": "@hexm/client/ui/windows/yankov/storage/cangpin_sub_#/homeland_di"
+    "source_locator": "@hexm/client/ui/windows/yankov/storage/cangpin_sub_#/homeland_di",
+    "source_segments": [
+      {
+        "value": "@hexm/client/ui/windows/yankov/storage/cangpin_sub_#",
+        "truncated": false
+      },
+      {
+        "value": "homeland_display_side_page.lua",
+        "truncated": false
+      },
+      {
+        "value": "`",
+        "truncated": false
+      }
+    ],
+    "source_reconstruction": "PRINTABLE_RUN_JOIN",
+    "source_truncated": true
   },
   "strings": [
     {
@@ -22,6 +39,7 @@
       "encoded_length": 17,
       "value_byte_length": 16,
       "short_value": "EXPANSION_QINGHE",
+      "value_truncated": false,
       "framing_status": "FRAMED_PLAINTEXT"
     },
     {
@@ -30,22 +48,25 @@
       "encoded_length": 9,
       "value_byte_length": 8,
       "short_value": "TextByNo",
+      "value_truncated": false,
       "framing_status": "FRAMED_PLAINTEXT"
     }
   ],
   "references": [
     {
       "raw_value": "EXPANSION_QINGHE",
+      "value_truncated": false,
       "byte_offset": 1366,
       "source_kind": "block_string",
-      "pattern_kind": "TEXT_LOOKUP_KEY_CANDIDATE",
+      "pattern_kind": "REGION_REF_CANDIDATE",
       "confidence": "MEDIUM"
     },
     {
       "raw_value": "TextByNo",
+      "value_truncated": false,
       "byte_offset": 1317,
       "source_kind": "block_string",
-      "pattern_kind": "FIELD_KEY_CANDIDATE",
+      "pattern_kind": "TEXT_LOOKUP_KEY_CANDIDATE",
       "confidence": "MEDIUM"
     }
   ],
