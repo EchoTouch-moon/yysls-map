@@ -316,12 +316,12 @@ def verify_identity(selected, expected_engine):
             raise SystemExit("FAIL: block_sha256 missing/malformed")
     if len(commits) != 1:
         raise SystemExit(f"FAIL: extractor_commit inconsistent across records: {commits}")
-    (engine_commit,), _ = commits.popitem()
+    engine_commit, _ = commits.popitem()
     if engine_commit != expected_engine:
         raise SystemExit(f"FAIL: extractor_commit {engine_commit} != {expected_engine}")
     if len(srcs) != 1:
         raise SystemExit(f"FAIL: extractor_source_sha256 inconsistent across records: {srcs}")
-    (engine_src,), _ = srcs.popitem()
+    engine_src, _ = srcs.popitem()
     return engine_commit, engine_src
 
 
