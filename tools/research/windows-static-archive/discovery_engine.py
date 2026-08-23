@@ -408,14 +408,18 @@ def selftest():
     body = bytes([0x80, 0x80, 0x00, 0x01, 0x03])
     framed = bytes([0x04, 0x8E]) + b"NodeGraphData" + bytes([0x04, 0x86]) + b"70276"
     blk = (b"\xf2\xe8\x00\x00\xf6\x03" + hdr + tail11 + bytes([0x94]) + src + body + framed)
-    obs = framed_scan(blk, {"p": 1})
+    col0 = Collector()
+    framed_scan(blk, {"p": 1}, col0)
+    obs = col0.obs
     kinds = {o["pattern_kind"] for o in obs}
     assert "IDENTIFIER_TOKEN_CANDIDATE" in kinds and "TEXT_REF_CANDIDATE" in kinds
     # source path scan recovers dq_610900 as TASK_REF
     src2 = b"@a/b\x07\x00\xf0\xff\xb8" + b"dq_610900.lua"  # 21 bytes -> varint 22 = 0x96
     blk2 = (b"\xf2\xe8\x00\x00\xf6\x03" + hdr + tail11 + bytes([0x96]) + src2 + body)
     s2, _ = observe_source(blk2)
-    obs2 = source_path_scan(s2, {"p": 1})
+    col1 = Collector()
+    source_path_scan(s2, {"p": 1}, col1)
+    obs2 = col1.obs
     assert any(o["pattern_kind"] == "TASK_REF_CANDIDATE" and o["raw_value"] == "dq_610900"
                for o in obs2), obs2
     # collector caps
