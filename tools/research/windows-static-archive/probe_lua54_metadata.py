@@ -1,75 +1,127 @@
 #!/usr/bin/env python3
 """
-probe_lua54_metadata.py — H-NEX-003: Lua 5.4 metadata reader (research-only).
+probe_lua54_metadata.py — H-NEX-003R: Lua 5.4 metadata reader (research-only).
 
-CONFIRMED encodings (from >=4 frozen samples):
-  * source       : at block 0x21 (after 12-byte custom header tail); length =
-                   (convB varint at 0x20) - 1.  convB = high bit SET = final
-                   byte (7 bits/byte, LSB-first).
-  * proto header : ld = 0x80 (=0), lld = 0x80 (=0) [convB]; then numparams,
-                   is_vararg, maxstacksize as 1-byte fields. Observed across
-                   samples as pattern: 80 80 00 01 XX 01 (ld=0 lld=0 np=0 iv=1
-                   ms=XX).
-  * string consts: [tag byte][convB varint len][len-1 bytes].  Tags seen:
-                   04,05,06,07,08,14,15,16,...
+Official Lua 5.4 varint (loadUnsigned): MSB-first 7-bit groups, LSB-first
+accumulation, high bit 0x80 on the final byte:
 
-NOT fully resolved (documented in H-NEX-003 report):
-  * the sizecode / code / upvalues / nested-proto walk between the header and
-    the first constant table (custom layout; sizecode byte after maxstacksize
-    is ambiguous).  Therefore "constant index" and "owning proto" are NOT
-    reported; byte offsets + tag + length + value ARE reported.
+    x = 0
+    repeat: b = readByte(); x = (x << 7) | (b & 0x7f)
+    until b & 0x80 != 0
+
+CONFIRMED (4 frozen samples LT71[1768]/LT71[1631]/LT31[874]/LT51[1178]):
+  * source       : at block 0x21; length = (varint at 0x20) - 1 (single-byte
+                   for all 4 samples; decoded == source_len + 1).
+  * proto header : ld=0, lld=0 (varint 0x80), numparams=0, is_vararg=1,
+                   maxstacksize=XX (bytes) — pattern 80 80 00 01 XX.
+  * sizecode     : multi-byte varint `01 YY` (MSB-first) = 245/202/220/236;
+                   the resulting code region is a valid instruction stream
+                   (all opcodes <= 127) for all 4 samples.
+
+UNRESOLVED (concrete failure point):
+  * sizek @ code_end fails to parse as a standard Lua 5.4 varint count
+    (LT31 0x439, LT71[1768] 0x390, LT71[1631] 0x3F0, LT51 0x40C).
+    => post-code structure (sizek/constants/upvalues/protos) is a CUSTOM
+       VARIANT; the constant-table walk cannot be completed deterministically.
+  * narrative strings are byte-locatable (STRING_FRAMING_CANDIDATE), not
+    constant-index-confirmed.
+
+Guardrails: entry index bounds, archive offset/size bounds, seek + bounded
+read (no whole-file read), version == 0x54, format == 0, fail closed,
+synthetic multi-byte varint regression tests.
 
 Usage:
     python probe_lua54_metadata.py --selftest
     python probe_lua54_metadata.py <mpkinfo> <mpk> <entry_index> [tokens...]
 """
 import argparse
+import os
+import struct
 import sys
 
 LUA_SIG = b"\x1bLua"
 LUAC_DATA_STD = bytes([0x19, 0x93, 0x0D, 0x0A, 0x1A, 0x0A])
-VER = {0x54: "Lua 5.4"}
 DEFAULT_TOKENS = ["NodeGraphData", "TextByNo", "EXPANSION_QINGHE", "70276", "江晏"]
+VARINT_REGRESSION = [
+    (bytes([0x80]), 0),
+    (bytes([0xBE]), 62),
+    (bytes([0x01, 0xEC]), 236),
+    (bytes([0x01, 0xF5]), 245),
+]
 
 
-def varint_b(data, off):
-    """convB varint: 7 bits/byte LSB-first, high bit SET = final byte."""
+def load_unsigned(data, off):
+    """Official Lua 5.4 loadUnsigned: MSB-first 7-bit groups."""
     x = 0
-    shift = 0
-    n = 0
-    while n < 8:
-        if off + n >= len(data):
+    i = 0
+    while i < 8:
+        if off + i >= len(data):
             return None, None
-        b = data[off + n]
-        x |= (b & 0x7F) << (7 * shift)
-        n += 1
-        if b >= 0x80:
-            return x, n
-        shift += 1
-    return x, n
+        b = data[off + i]
+        x = (x << 7) | (b & 0x7F)
+        i += 1
+        if b & 0x80:
+            return x, i
+    return x, i
+
+
+def load_int(data, off):
+    return load_unsigned(data, off)
+
+
+class MpkinfoReader:
+    """Minimal .mpkinfo reader with bounds checks."""
+
+    def __init__(self, path):
+        with open(path, "rb") as f:
+            head = f.read(8)
+        if len(head) != 8:
+            raise ValueError("mpkinfo too short")
+        self.version, self.count = struct.unpack("<II", head)
+        if self.version != 3:
+            raise ValueError(f"mpkinfo version must be 3, got {self.version}")
+        self._path = path
+        self._head_len = 8 + self.count * 20 + 16
+        st = os.path.getsize(path)
+        if st != self._head_len:
+            raise ValueError(f"mpkinfo size {st} != expected {self._head_len}")
+
+    def entry(self, index):
+        if not (0 <= index < self.count):
+            raise IndexError(f"entry index {index} out of range 0..{self.count-1}")
+        with open(self._path, "rb") as f:
+            f.seek(8 + index * 20)
+            raw = f.read(20)
+        f0, f1, off, size, flags = struct.unpack("<IIIII", raw)
+        return {"f0": f0, "f1": f1, "offset": off, "stored_size": size, "flags": flags}
+
+
+def read_block(archive_path, entry):
+    st = os.path.getsize(archive_path)
+    if entry["offset"] + entry["stored_size"] > st:
+        raise ValueError("entry offset+size exceeds archive size (bounds check)")
+    with open(archive_path, "rb") as f:
+        f.seek(entry["offset"])
+        return f.read(entry["stored_size"])
 
 
 def parse_header(blk):
-    """Standard Lua 5.4 header through the 3 size fields; then 12-byte custom tail."""
     sig = blk.find(LUA_SIG)
     if sig < 0:
         raise ValueError("no Lua signature")
-    if blk[sig + 4] not in VER:
-        raise ValueError(f"unsupported Lua version 0x{blk[sig+4]:02X} (must be 0x54)")
+    if blk[sig + 4] != 0x54:
+        raise ValueError(f"Lua version must be 0x54, got 0x{blk[sig+4]:02X}")
     if blk[sig + 5] != 0:
         raise ValueError(f"format byte must be 0, got {blk[sig+5]}")
     if blk[sig + 6:sig + 12] != LUAC_DATA_STD:
         raise ValueError("LUAC_DATA mismatch")
-    sizes = list(blk[sig + 12:sig + 15])
-    if sizes != [4, 8, 8]:
-        raise ValueError(f"size fields must be 4/8/8, got {sizes}")
-    tail = blk[sig + 15:sig + 27]  # custom 12-byte tail (not standard LUAC_INT/NUM)
-    return sig, tail
+    if list(blk[sig + 12:sig + 15]) != [4, 8, 8]:
+        raise ValueError("size fields must be 4/8/8")
+    return sig, blk[sig + 15:sig + 27]
 
 
 def read_source(blk):
-    """Source at 0x21; length = (convB varint at 0x20) - 1."""
-    L, n = varint_b(blk, 0x20)
+    L, n = load_unsigned(blk, 0x20)
     if L is None or L < 2:
         raise ValueError("source length varint invalid at 0x20")
     slen = L - 1
@@ -79,19 +131,18 @@ def read_source(blk):
     return src, 0x21 + slen
 
 
-def read_header_fields(blk, body_off):
-    """ld/lld = 0x80 (convB 0); np/iv/ms = 3 bytes; return the sizecode candidate."""
-    if blk[body_off] != 0x80 or blk[body_off + 1] != 0x80:
-        raise ValueError(f"ld/lld marker 0x80 0x80 not found @ +0x{body_off:04X}")
-    ld, n = varint_b(blk, body_off)
-    off = body_off + n
-    lld, n = varint_b(blk, off)
-    off += n
+def read_header(blk, body):
+    if blk[body] != 0x80 or blk[body + 1] != 0x80:
+        raise ValueError(f"ld/lld 0x80 0x80 not found @ +0x{body:04X}")
+    off = body + 2
     np_, iv, ms = blk[off], blk[off + 1], blk[off + 2]
     off += 3
-    sc = blk[off]
-    return {"ld": ld, "lld": lld, "numparams": np_, "is_vararg": iv,
-            "maxstacksize": ms, "sizecode_byte": sc, "sc_pos": off}
+    sc, n = load_unsigned(blk, off)
+    if sc is None or sc > 500000:
+        raise ValueError(f"sizecode invalid @ +0x{off:04X}")
+    return {"numparams": np_, "is_vararg": iv, "maxstacksize": ms,
+            "sizecode": sc, "sc_bytes": blk[off:off + n].hex(" "),
+            "code_start": off + n, "code_end": off + n + sc * 4}
 
 
 def locate_tokens(blk, tokens):
@@ -102,41 +153,35 @@ def locate_tokens(blk, tokens):
         if p < 0 or p < 1:
             out.append((tok, None, None, None, None))
             continue
-        L, n = varint_b(blk, p - 1)
+        L, n = load_unsigned(blk, p - 1)
         ok = (L is not None and L - 1 == len(kb))
-        if ok:
-            out.append((tok, p, blk[p - 2], L, True))
-        else:
-            out.append((tok, p, None, None, False))
+        out.append((tok, p, blk[p - 2] if ok else None, L if ok else None, bool(ok)))
     return out
 
 
 def probe(mpkinfo_path, mpk_path, index, tokens):
-    from inspect_mpkinfo import Mpkinfo
-    mp = Mpkinfo(open(mpkinfo_path, "rb").read())
-    e = mp.entries[index]
-    blk = open(mpk_path, "rb").read()[e["offset"]:e["offset"] + e["stored_size"]]
+    mp = MpkinfoReader(mpkinfo_path)
+    e = mp.entry(index)
+    blk = read_block(mpk_path, e)
 
     sig, tail = parse_header(blk)
-    print(f"# block entry[{index}] offset={e['offset']} stored_size={e['stored_size']}")
-    print(f"# header: {VER[blk[sig+4]]} fmt={blk[sig+5]} size=4/8/8 sig@+0x{sig:04X}")
-    print(f"# custom tail (12B, non-standard): {tail.hex(' ')}")
-
+    print(f"# block entry[{index}] offset={e['offset']} stored_size={e['stored_size']} "
+          f"flags={e['flags']}")
+    print(f"# header: Lua 5.4 fmt=0 size=4/8/8 sig@+0x{sig:04X} "
+          f"custom_tail={tail.hex(' ')}")
     src, body = read_source(blk)
     printable = "".join(chr(b) if 32 <= b < 127 else "." for b in src)
     print(f"# source: +0x0021..+0x{0x21+len(src):04X} len={len(src)} "
-          f"varint@{0x20}=0x{blk[0x20]:02X}({blk[0x20]&0x7F}+0x80) -> len+1={len(src)+1}")
+          f"varint@{0x20}=0x{blk[0x20]:02X} decoded={len(src)+1}")
     print(f"#   head: {printable[:70]!r}")
-
     try:
-        h = read_header_fields(blk, body)
-        print(f"# header variant @ +0x{body:04X}: ld={h['ld']} lld={h['lld']} "
-              f"np={h['numparams']} iv={h['is_vararg']} ms={h['maxstacksize']} "
-              f"sizecode_candidate=0x{h['sizecode_byte']:02X}@{h['sc_pos']:#06x} (unresolved)")
+        h = read_header(blk, body)
+        print(f"# header @ +0x{body:04X}: np={h['numparams']} iv={h['is_vararg']} "
+              f"ms={h['maxstacksize']} sizecode={h['sizecode']} "
+              f"(varint {h['sc_bytes']}) code=+0x{h['code_start']:04X}..+0x{h['code_end']:04X}")
     except ValueError as ex:
-        print(f"# header variant: {ex}")
-
-    print("# tokens (byte offset, tag, len, len-1==toklen):")
+        print(f"# header: {ex}")
+    print("# tokens (byte offset, tag, len, len-1==toklen): [STRING_FRAMING_CANDIDATE]")
     for tok, p, tag, L, ok in locate_tokens(blk, tokens):
         if p is None:
             print(f"    {tok!r:24} NOT_FOUND")
@@ -146,22 +191,23 @@ def probe(mpkinfo_path, mpk_path, index, tokens):
 
 
 def selftest():
+    for blob, expect in VARINT_REGRESSION:
+        got, _ = load_unsigned(blob, 0)
+        assert got == expect, (blob.hex(" "), got, expect)
+    # header parse selftest
     hdr = LUA_SIG + bytes([0x54, 0x00]) + LUAC_DATA_STD + bytes([4, 8, 8])
     tail11 = bytes([0x78, 0x56, 0x00, 0x01, 0x00, 0x00, 0x00, 0x28, 0x77, 0x40, 0x01])
     src = b"@synthetic/path.lua"
-    # source len varint (convB) at 0x20: len(src)+1 = 20 -> 0x94
-    src_len_varint = 0x94
-    body = bytes([0x80, 0x80, 0x00, 0x01, 0x03, 0x01, 0xF5, 0x60])
-    const = bytes([0x04, 0x8E]) + b"NodeGraphData"
-    # 0x00-0x05 envelope, 0x06-0x14 hdr, 0x15-0x1F tail11, 0x20 varint, 0x21+ src
+    src_len_varint = 0x94  # 20 = 19+1
+    body = bytes([0x80, 0x80, 0x00, 0x01, 0x03, 0x01, 0xF5])
     blk = (b"\xf2\xe8\x00\x00\xf6\x03" + hdr + tail11 + bytes([src_len_varint])
-           + src + body + const)
-    s, tail2 = parse_header(blk)
+           + src + body)
+    s, tail = parse_header(blk)
     src2, body2 = read_source(blk)
-    assert src2 == src, (src2, src)
-    h = read_header_fields(blk, body2)
-    assert h["ld"] == 0 and h["lld"] == 0 and h["numparams"] == 0 and h["is_vararg"] == 1
-    assert h["maxstacksize"] == 3
+    assert src2 == src
+    h = read_header(blk, body2)
+    assert h["numparams"] == 0 and h["is_vararg"] == 1 and h["maxstacksize"] == 3
+    assert h["sizecode"] == 245, h
     # fail-closed: wrong version
     try:
         parse_header(LUA_SIG + bytes([0x53, 0x00]) + LUAC_DATA_STD + bytes([4, 8, 8]))
@@ -172,7 +218,7 @@ def selftest():
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="H-NEX-003 minimal Lua 5.4 metadata reader")
+    ap = argparse.ArgumentParser(description="H-NEX-003R minimal Lua 5.4 metadata reader")
     ap.add_argument("--selftest", action="store_true")
     ap.add_argument("mpkinfo", nargs="?")
     ap.add_argument("mpk", nargs="?")
