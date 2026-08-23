@@ -45,6 +45,18 @@ C8 FAMILY_ST     family == storyline_data（未入 C1-C7）
 
 空 cluster 丢弃；若 >8 个非空 cluster，合并最小的进入 C8。
 
+**§3a 边界规则（确保冻结的 caps 成立：≤5 entries/cluster，5-8 clusters）**：
+
+```text
+a. 任一 cluster 超过 5 entries -> 按 source 子路径确定性拆分：
+   取 "storyline_data/" 之后的目录（不含 .lua 文件名），相同目录合并；
+   cluster_id = 原 id + "/" + 子目录。仅对 >5 的 cluster 触发。
+b. 未匹配任何 C1-C8 的 entry -> "OTHER" cluster（仅当存在）。
+c. 拆分后非空 cluster 数 >8 -> 按成员数升序，把最小的并入 C8 (FAMILY_ST)，
+   直至 <=8。
+d. 最终非空 cluster 数必须落在 [5,8]；否则 FAIL（不产出 packet）。
+```
+
 ## 4. Cluster 内容
 
 ```text

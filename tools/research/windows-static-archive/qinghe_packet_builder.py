@@ -217,6 +217,61 @@ def score_record(r):
     return s, reasons
 
 
+def sub_split_key(record):
+    """Deterministic sub-split key: source directory after 'storyline_data/'."""
+    loc = record["container"].get("source_locator") or ""
+    marker = "storyline_data/"
+    if marker in loc:
+        rest = loc.split(marker, 1)[1]
+        parts = rest.split("/")
+        if len(parts) >= 2:
+            return "/".join(parts[:-1])  # directory part (drop filename)
+        return parts[0]
+    return ""
+
+
+def cluster_entries(selected):
+    """Priority assignment + §3a sub-split / fallback / merge rules."""
+    clusters = {cid: [] for cid, _ in CLUSTER_ORDER}
+    others = []
+    for s, size, h, r, reasons in selected:
+        placed = False
+        for cid, pred in CLUSTER_ORDER:
+            if pred(r):
+                clusters[cid].append((r, reasons))
+                placed = True
+                break
+        if not placed:
+            others.append((r, reasons))
+    # §3a.a: sub-split any cluster with >5 entries by source sub-path
+    final = {}
+    for cid, members in clusters.items():
+        if not members:
+            continue
+        if len(members) <= 5:
+            final[cid] = members
+            continue
+        by_key = {}
+        for m in members:
+            key = sub_split_key(m[0]) or cid
+            by_key.setdefault(key, []).append(m)
+        for key, group in sorted(by_key.items(), key=lambda kv: (-len(kv[1]), kv[0])):
+            final[f"{cid}/{key}" if key != cid else cid] = group
+    # §3a.b: fallback OTHER
+    if others:
+        final["OTHER"] = others
+    # §3a.c: merge smallest into FAMILY_ST until <=8
+    if len(final) > 8:
+        fam_st = final.get("FAMILY_ST", [])
+        drop = final.pop("FAMILY_ST", None)
+        # repeatedly merge the smallest remaining cluster into FAMILY_ST
+        while len(final) + (1 if "FAMILY_ST" in final else 0) > 8:
+            smallest = min(final.items(), key=lambda kv: len(kv[1]))[0]
+            fam_st += final.pop(smallest)
+        final["FAMILY_ST"] = fam_st
+    return final
+
+
 def build(archive_dir, records_dirs, out_dir, engine_commit, builder_commit,
           game_version):
     existing = load_existing(records_dirs)
@@ -233,17 +288,10 @@ def build(archive_dir, records_dirs, out_dir, engine_commit, builder_commit,
     if len(selected) < 12:
         raise SystemExit(f"FAIL: only {len(selected)} candidates (need >= 12)")
 
-    # clustering
-    clusters = {cid: [] for cid, _ in CLUSTER_ORDER}
-    for s, size, h, r, reasons in selected:
-        for cid, pred in CLUSTER_ORDER:
-            if pred(r):
-                clusters[cid].append((r, reasons))
-                break
+    # clustering with §3a rules
+    clusters = cluster_entries(selected)
     cluster_list = []
     for cid, members in clusters.items():
-        if not members:
-            continue
         entries = []
         obs_all = []
         src_obs = []
@@ -294,7 +342,9 @@ def build(archive_dir, records_dirs, out_dir, engine_commit, builder_commit,
             "unresolved": unresolved,
         })
     if not 5 <= len(cluster_list) <= 8:
-        raise SystemExit(f"FAIL: cluster count {len(cluster_list)} not in [5,8]")
+        counts = {c["cluster_id"]: len(c["entries"]) for c in cluster_list}
+        raise SystemExit(f"FAIL: cluster count {len(cluster_list)} not in [5,8] "
+                         f"(counts={counts})")
 
     manifest = {
         "schema_version": MANIFEST_SCHEMA,
