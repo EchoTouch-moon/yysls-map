@@ -1,0 +1,193 @@
+{
+  "schema_version": "raw-structural-observation-1",
+  "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+  "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+  "game_version": "20260820220319",
+  "archive": "LT31.mpk",
+  "archive_sha256": "280639e8e0dd1980c2feae65beca7ba972ee89c0ef528d6405ad4657d10cfa96",
+  "mpkinfo_sha256": "4ae32cef07988376af946bb7befe2294e1e06aae466ef60740db89b34ac97ac3",
+  "entry_index": 552,
+  "entry_offset": 1185098,
+  "entry_stored_size": 7008,
+  "flags_raw": 62,
+  "block_sha256": "5f1c22e1b3e77eeea0b9507537fd9e6dd9bf9bfbf007db06a39212eca0165ed2",
+  "container": {
+    "lua_version": "5.4",
+    "source_status": "EXACT",
+    "source_locator": "@Sunshine/AI/bt2code/output/liumin_tiechan_fight_1.lua",
+    "source_segments": [
+      {
+        "value": "@Sunshine/AI/bt2code/output/liumin_tiechan_fight_1.lua",
+        "truncated": false,
+        "offset": 33
+      }
+    ],
+    "source_reconstruction": null,
+    "source_truncated": false
+  },
+  "observations": [
+    {
+      "byte_offset": 570,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 8,
+      "value_byte_length": 7,
+      "raw_value": "require",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "5f1c22e1b3e77eeea0b9507537fd9e6dd9bf9bfbf007db06a39212eca0165ed2"
+      }
+    },
+    {
+      "byte_offset": 693,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 17,
+      "value_byte_length": 16,
+      "raw_value": "n00_ExecuteBtree",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "5f1c22e1b3e77eeea0b9507537fd9e6dd9bf9bfbf007db06a39212eca0165ed2"
+      }
+    },
+    {
+      "byte_offset": 1642,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 11,
+      "value_byte_length": 10,
+      "raw_value": "jump_debug",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "5f1c22e1b3e77eeea0b9507537fd9e6dd9bf9bfbf007db06a39212eca0165ed2"
+      }
+    },
+    {
+      "byte_offset": 1800,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 17,
+      "value_byte_length": 16,
+      "raw_value": "total_pass_count",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "5f1c22e1b3e77eeea0b9507537fd9e6dd9bf9bfbf007db06a39212eca0165ed2"
+      }
+    },
+    {
+      "byte_offset": 2047,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 4,
+      "value_byte_length": 3,
+      "raw_value": "key",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "5f1c22e1b3e77eeea0b9507537fd9e6dd9bf9bfbf007db06a39212eca0165ed2"
+      }
+    },
+    {
+      "byte_offset": 2091,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 7,
+      "value_byte_length": 6,
+      "raw_value": "reason",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "5f1c22e1b3e77eeea0b9507537fd9e6dd9bf9bfbf007db06a39212eca0165ed2"
+      }
+    },
+    {
+      "byte_offset": 2155,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 13,
+      "value_byte_length": 12,
+      "raw_value": "bianshenfumo",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "5f1c22e1b3e77eeea0b9507537fd9e6dd9bf9bfbf007db06a39212eca0165ed2"
+      }
+    },
+    {
+      "byte_offset": 3295,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 15,
+      "value_byte_length": 14,
+      "raw_value": "enable_physics",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "5f1c22e1b3e77eeea0b9507537fd9e6dd9bf9bfbf007db06a39212eca0165ed2"
+      }
+    }
+  ],
+  "observation_limits": {
+    "max_locator_bytes": 64,
+    "max_per_entry": 32,
+    "per_class_cap": 8
+  },
+  "warnings": [
+    "INSTRUCTION_SERIALIZATION_VARIANT",
+    "CONSTANT_OWNERSHIP_UNKNOWN",
+    "PROTO_OWNERSHIP_UNKNOWN",
+    "SEMANTIC_ROLE_UNVERIFIED"
+  ]
+}

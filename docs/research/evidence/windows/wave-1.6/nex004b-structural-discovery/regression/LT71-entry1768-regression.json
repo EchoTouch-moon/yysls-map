@@ -1,0 +1,299 @@
+{
+  "schema_version": "raw-structural-observation-1",
+  "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+  "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+  "game_version": "20260820220319",
+  "archive": "LT71.mpk",
+  "archive_sha256": "42c9d32837a808c14fbe94dd161d6a011f21d6bf2378a91ca3e592ae76174b60",
+  "mpkinfo_sha256": "f5f8f15770689c257d83298e599d9961dacfbc311c1662dcdc322f98782cfcdb",
+  "entry_index": 1768,
+  "entry_offset": 4750441,
+  "entry_stored_size": 11168,
+  "flags_raw": 142,
+  "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5",
+  "container": {
+    "lua_version": "5.4",
+    "source_status": "SEGMENTED_PARTIAL",
+    "source_locator": "@hexm/client/storyline_data/wanfa/MSD_ST/ZDQ/dq_610900.lua",
+    "source_segments": [
+      {
+        "value": "@hexm/client/storyline_data",
+        "truncated": false,
+        "offset": 33
+      },
+      {
+        "value": "wanfa/MSD_ST/ZDQ",
+        "truncated": false,
+        "offset": 64
+      },
+      {
+        "value": "dq_610900.lua",
+        "truncated": false,
+        "offset": 84
+      }
+    ],
+    "source_reconstruction": "PRINTABLE_RUN_JOIN",
+    "source_truncated": false
+  },
+  "observations": [
+    {
+      "byte_offset": 858,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 12,
+      "value_byte_length": 11,
+      "raw_value": "_reload_all",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1768,
+        "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5"
+      }
+    },
+    {
+      "byte_offset": 872,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 17,
+      "value_byte_length": 16,
+      "raw_value": "aYFoaZ2izQQkDkhX",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1768,
+        "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5"
+      }
+    },
+    {
+      "byte_offset": 945,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 17,
+      "value_byte_length": 16,
+      "raw_value": "aXSB0HRIlUaUvhhD",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1768,
+        "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5"
+      }
+    },
+    {
+      "byte_offset": 1620,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 14,
+      "value_byte_length": 13,
+      "raw_value": "NodeGraphData",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1768,
+        "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5"
+      }
+    },
+    {
+      "byte_offset": 1635,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 14,
+      "value_byte_length": 13,
+      "raw_value": "get_variables",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1768,
+        "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5"
+      }
+    },
+    {
+      "byte_offset": 1746,
+      "framing_tag_raw": "0x6",
+      "encoded_length": 7,
+      "value_byte_length": 6,
+      "raw_value": "江晏",
+      "value_truncated": false,
+      "discovery_rule_id": "R5",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "SHORT_CJK_TERM_CANDIDATE",
+      "confidence": "MEDIUM",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1768,
+        "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5"
+      }
+    },
+    {
+      "byte_offset": 1754,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 7,
+      "value_byte_length": 6,
+      "raw_value": "天泉",
+      "value_truncated": false,
+      "discovery_rule_id": "R5",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "SHORT_CJK_TERM_CANDIDATE",
+      "confidence": "MEDIUM",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1768,
+        "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5"
+      }
+    },
+    {
+      "byte_offset": 1773,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 10,
+      "value_byte_length": 9,
+      "raw_value": "费亦可",
+      "value_truncated": false,
+      "discovery_rule_id": "R5",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "SHORT_CJK_TERM_CANDIDATE",
+      "confidence": "MEDIUM",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1768,
+        "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5"
+      }
+    },
+    {
+      "byte_offset": 1784,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 7,
+      "value_byte_length": 6,
+      "raw_value": "狂澜",
+      "value_truncated": false,
+      "discovery_rule_id": "R5",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "SHORT_CJK_TERM_CANDIDATE",
+      "confidence": "MEDIUM",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1768,
+        "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5"
+      }
+    },
+    {
+      "byte_offset": 1797,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 14,
+      "value_byte_length": 13,
+      "raw_value": "autoStartList",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1768,
+        "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5"
+      }
+    },
+    {
+      "byte_offset": 1964,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 7,
+      "value_byte_length": 6,
+      "raw_value": "nodeID",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1768,
+        "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5"
+      }
+    },
+    {
+      "byte_offset": 1990,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 8,
+      "value_byte_length": 7,
+      "raw_value": "__out__",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1768,
+        "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5"
+      }
+    },
+    {
+      "byte_offset": 84,
+      "framing_tag_raw": null,
+      "encoded_length": null,
+      "value_byte_length": 9,
+      "raw_value": "dq_610900",
+      "value_truncated": false,
+      "discovery_rule_id": "R1",
+      "discovery_method": "SOURCE_PATH_SCAN",
+      "pattern_kind": "TASK_REF_CANDIDATE",
+      "confidence": "MEDIUM",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1768,
+        "block_sha256": "3504bd0c22f0dd62051d6bf791f5c72275bf3ee032b2074d5419545b88b47fb5"
+      }
+    }
+  ],
+  "observation_limits": {
+    "max_locator_bytes": 64,
+    "max_per_entry": 32,
+    "per_class_cap": 8
+  },
+  "warnings": [
+    "INSTRUCTION_SERIALIZATION_VARIANT",
+    "CONSTANT_OWNERSHIP_UNKNOWN",
+    "PROTO_OWNERSHIP_UNKNOWN",
+    "SEMANTIC_ROLE_UNVERIFIED",
+    "SOURCE_SEGMENTED_SERIALIZATION"
+  ]
+}
