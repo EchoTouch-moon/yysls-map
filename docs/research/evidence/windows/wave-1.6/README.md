@@ -26,6 +26,7 @@ docs/research/evidence/windows/wave-1.6/
     └── hnex003t-lt31-framing.md ← H-NEX-003T LT31 Instruction Framing & Sizecode Boundary
     └── nex004a-raw-normalizer.md ← NEX-004A Raw Narrative Observation Normalizer
     └── nex004a-raw-observations/ ← 4 条 RawNarrativeObservation 记录（JSON）+ SCHEMA-v2.md
+    └── nex004b-structural-discovery/ ← NEX-004B 冻结规则/manifest（Commit A）+ blind/regression 输出（Commit B）
 ```
 
 ## 当前状态（R00→R06 已闭环）
