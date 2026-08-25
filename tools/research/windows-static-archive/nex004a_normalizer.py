@@ -106,7 +106,7 @@ def load_unsigned(data, off):
         i += 1
         if b & 0x80:
             return x, i
-    return x, i
+    return None, None
 
 
 def printable_runs(blk):
@@ -334,6 +334,7 @@ def selftest():
                          (bytes([0x01, 0xEC]), 236), (bytes([0x01, 0xF5]), 245)]:
         got, _ = load_unsigned(blob, 0)
         assert got == expect, (blob.hex(" "), got, expect)
+    assert load_unsigned(bytes([1] * 8), 0) == (None, None)
     # MAX_LOCATOR_BYTES: ASCII cap
     v, t = locator("a" * 100)
     assert len(v.encode("utf-8")) == MAX_LOCATOR_BYTES and t

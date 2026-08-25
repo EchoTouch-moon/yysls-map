@@ -24,6 +24,7 @@ import hashlib
 import json
 import os
 import struct
+import subprocess
 import sys
 
 LUA_SIG = b"\x1bLua"
@@ -71,7 +72,9 @@ def load_unsigned(data, off):
         i += 1
         if b & 0x80:
             return x, i
-    return x, i
+    # An unsigned Lua varint must terminate with a byte carrying 0x80.
+    # Reaching the width limit without that marker is malformed input.
+    return None, None
 
 
 def source_of(blk):
@@ -308,7 +311,8 @@ def verify_identity(selected, expected_engine):
         srcs.setdefault(e, []).append(f"{r['archive']}[{r['entry_index']}]")
         # H2: per-entry block hash is taken from the record itself (no
         # aggregated trust); assert the archive/index fields are present.
-        if r["archive"] not in ("LT71", "LT51", "LT31"):
+        arch = r["archive"].replace(".mpk", "")
+        if arch not in ("LT71", "LT51", "LT31"):
             raise SystemExit(f"FAIL: unexpected archive {r['archive']}")
         if not (0 <= r["entry_index"] < 100000):
             raise SystemExit("FAIL: entry_index out of range")
@@ -327,6 +331,7 @@ def verify_identity(selected, expected_engine):
 
 def build(archive_dir, records_dirs, out_dir, engine_commit, builder_commit,
           game_version):
+    verify_builder_identity(builder_commit)
     existing = load_existing(records_dirs)
     new = discover_new(archive_dir, engine_commit, builder_commit, game_version)
     all_recs = existing + new
@@ -461,7 +466,39 @@ def _src_sha():
         return hashlib.sha256(f.read()).hexdigest()
 
 
+def _git_source_sha(commit):
+    """Return the SHA-256 of this file at `commit`, or fail closed."""
+    try:
+        root = subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"],
+            capture_output=True,
+            check=True,
+            text=True,
+        ).stdout.strip()
+        rel = os.path.relpath(os.path.abspath(__file__), root).replace(os.sep, "/")
+        blob = subprocess.run(
+            ["git", "show", f"{commit}:{rel}"],
+            capture_output=True,
+            check=True,
+        ).stdout
+    except (OSError, subprocess.CalledProcessError) as exc:
+        raise SystemExit(f"FAIL: builder commit/source unavailable: {commit}") from exc
+    return hashlib.sha256(blob).hexdigest()
+
+
+def verify_builder_identity(builder_commit):
+    """Reject packets whose declared commit does not contain this source."""
+    expected = _git_source_sha(builder_commit)
+    actual = _src_sha()
+    if expected != actual:
+        raise SystemExit(
+            "FAIL: builder source differs from declared commit "
+            f"{builder_commit} (expected {expected}, current {actual})"
+        )
+
+
 def selftest():
+    assert load_unsigned(bytes([1] * 8), 0) == (None, None)
     assert family_of("@hexm/client/storyline_data/x.lua") == "storyline_data"
     assert family_of("@hexm/client/storyline_data/wanfa/MSD_ST/ZDQ/dq_610900.lua") == "MSD_ST"
     assert qinghe_of("@hexm/client/storyline_data/guanqia/qinghe_end_task/_200443.lua")

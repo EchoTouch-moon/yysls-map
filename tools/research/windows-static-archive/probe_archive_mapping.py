@@ -58,6 +58,11 @@ def detect_magic(head):
     return None
 
 
+def ascii_preview(data):
+    """Render arbitrary bytes without depending on the console code page."""
+    return data.decode("ascii", "backslashreplace")
+
+
 def sha256_stream(f, size):
     """Streaming SHA-256 over `size` bytes; stops early on EOF (returns actual read)."""
     h = hashlib.sha256()
@@ -97,7 +102,7 @@ def probe(mpkinfo_path, mpk_path, limit, exts):
     print(f"# source_mpk SHA-256: {mpk_sha}")
     print(f"# mpk size: {mpk_size}")
     print(f"# MAX_PROBE_BYTES: {MAX_PROBE_BYTES}")
-    print(f"# mpk first 16 bytes: {mpk_head.hex(' ')}  '{mpk_head.decode('ascii','replace')}'")
+    print(f"# mpk first 16 bytes: {mpk_head.hex(' ')}  '{ascii_preview(mpk_head)}'")
     print()
 
     selected = []

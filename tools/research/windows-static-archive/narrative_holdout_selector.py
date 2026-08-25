@@ -60,7 +60,7 @@ def load_unsigned(data, off):
         i += 1
         if b & 0x80:
             return x, i
-    return x, i
+    return None, None
 
 
 def entry_metadata(mpkinfo_path, index, count):
@@ -167,6 +167,7 @@ def selftest():
     for blob, expect in [(bytes([0x80]), 0), (bytes([0xBE]), 62)]:
         got, _ = load_unsigned(blob, 0)
         assert got == expect
+    assert load_unsigned(bytes([1] * 8), 0) == (None, None)
     # family detection on synthetic sources
     hdr = LUA_SIG + bytes([0x54, 0x00]) + LUAC_DATA_STD + bytes([4, 8, 8])
     tail11 = bytes([0x78, 0x56, 0x00, 0x01, 0x00, 0x00, 0x00, 0x28, 0x77, 0x40, 0x01])

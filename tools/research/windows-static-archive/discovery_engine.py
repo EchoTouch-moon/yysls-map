@@ -119,7 +119,7 @@ def load_unsigned(data, off):
         i += 1
         if b & 0x80:
             return x, i
-    return x, i
+    return None, None
 
 
 def is_printable(s):
@@ -394,6 +394,7 @@ def selftest():
     for val, kind, rid in cases:
         got_kind, got_rid = classify(val)
         assert got_kind == kind and got_rid == rid, (val, got_kind, got_rid)
+    assert load_unsigned(bytes([1] * 8), 0) == (None, None)
     # CJK 5 chars -> no match (R5 max 4)
     assert classify("江晏先生你好") == (None, None)
     # identifier with dot -> no match

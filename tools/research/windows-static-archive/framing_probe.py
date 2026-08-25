@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 """
-framing_probe.py — H-NEX-003T: LT31 instruction framing & sizecode boundary probe.
+framing_probe.py — H-NEX-003T: LuaT instruction framing & sizecode boundary probe.
 
-Primary control: LT31[874] ONLY.
-Deterministic frozen input (Phase A): source len/bytes, body start,
-linedefined=0, lastlinedefined=0, numparams=0, is_vararg=1, maxstacksize=3.
+The original control is LT31[874]. Segmented LT51/LT71 entries are also
+accepted when their logical source-length boundary does not contain the proto
+header: the first bounded ``0x80 0x80`` marker is reported as a candidate body
+and the source serialization is explicitly marked PARTIAL.
+Deterministic Phase A fields: source length, candidate body start,
+numparams, is_vararg, and maxstacksize. LT31[874] remains the control sample;
+segmented samples are explicitly marked PARTIAL.
 Then records the raw 32 bytes after maxstacksize (no field naming).
 
 Phase B tests only a bounded set of framing hypotheses:
@@ -80,7 +84,7 @@ def load_unsigned(data, off):
         i += 1
         if b & 0x80:
             return x, i
-    return x, i
+    return None, None
 
 
 class MpkinfoReader:
@@ -115,8 +119,8 @@ def read_block(archive_path, entry):
         return f.read(entry["stored_size"])
 
 
-def frozen_lt31(blk):
-    """Deterministic LT31 frozen input (Phase A)."""
+def frozen_proto(blk):
+    """Read the common proto marker and classify source/body agreement."""
     sig = blk.find(LUA_SIG)
     if sig < 0 or blk[sig + 4] != 0x54 or blk[sig + 5] != 0:
         raise ValueError("not Lua 5.4 fmt 0")
@@ -127,15 +131,25 @@ def frozen_lt31(blk):
     src = blk[0x21:0x21 + slen]
     if len(src) != slen:
         raise ValueError("source truncated")
-    body = 0x21 + slen
-    if blk[body] != 0x80 or blk[body + 1] != 0x80:
-        raise ValueError("ld/lld marker missing")
+    logical_body = 0x21 + slen
+    marker = blk.find(b"\x80\x80", 0x21)
+    if marker < 0:
+        raise ValueError("ld/lld marker missing after source")
+    body = logical_body if marker == logical_body else marker
+    source_serialization = "EXACT" if marker == logical_body else "PARTIAL"
+    if body + 4 >= len(blk):
+        raise ValueError("proto marker truncated")
     np_, iv, ms = blk[body + 2], blk[body + 3], blk[body + 4]
     if (np_, iv) != (0, 1) or not (2 <= ms <= 255):
         raise ValueError(f"unexpected np/iv/ms ({np_},{iv},{ms})")
     tail32 = blk[body + 5:body + 5 + 32]
-    return {"src_len": slen, "body": body, "np": np_, "iv": iv, "ms": ms,
-            "after_ms32": tail32.hex(" ")}
+    return {"src_len": slen, "logical_body": logical_body, "body": body,
+            "marker": marker, "source_serialization": source_serialization,
+            "np": np_, "iv": iv, "ms": ms, "after_ms32": tail32.hex(" ")}
+
+
+# Backward-compatible name used by earlier notebooks.
+frozen_lt31 = frozen_proto
 
 
 def decode_ops(blk, code_start, count, big_endian=False):
@@ -188,8 +202,10 @@ def probe(mpkinfo_path, mpk_path, index):
     mp = MpkinfoReader(mpkinfo_path)
     e = mp.entry(index)
     blk = read_block(mpk_path, e)
-    f = frozen_lt31(blk)
-    print(f"# LT31 frozen: src_len={f['src_len']} body=+0x{f['body']:04X} "
+    f = frozen_proto(blk)
+    print(f"# proto framing: src_len={f['src_len']} logical_body=+0x{f['logical_body']:04X} "
+          f"body=+0x{f['body']:04X} marker=+0x{f['marker']:04X} "
+          f"source_serialization={f['source_serialization']} "
           f"np={f['np']} iv={f['iv']} ms={f['ms']}")
     print(f"# after maxstacksize 32B (raw): {f['after_ms32']}")
     after = f["body"] + 5  # first byte after maxstacksize
@@ -243,6 +259,7 @@ def selftest():
     for blob, expect in VARINT_REGRESSION:
         got, _ = load_unsigned(blob, 0)
         assert got == expect, (blob.hex(" "), got, expect)
+    assert load_unsigned(bytes([1] * 8), 0) == (None, None)
     # opcode decode: LE vs BE
     blk = struct.pack("<I", 0x0C) + struct.pack(">I", 0x0C)
     ops_le = decode_ops(blk, 0, 1)
@@ -269,7 +286,11 @@ def main(argv=None):
         return 0
     if not args.mpkinfo or not args.mpk or args.entry_index is None:
         ap.error("mpkinfo, mpk, entry_index required (or --selftest)")
-    return probe(args.mpkinfo, args.mpk, args.entry_index)
+    try:
+        return probe(args.mpkinfo, args.mpk, args.entry_index)
+    except (OSError, ValueError, IndexError, struct.error) as exc:
+        print(f"# framing probe unavailable: {exc}", file=sys.stderr)
+        return 2
 
 
 if __name__ == "__main__":

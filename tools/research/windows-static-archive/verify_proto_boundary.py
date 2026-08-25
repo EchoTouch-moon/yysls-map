@@ -11,9 +11,9 @@ Deterministic boundary parse (NO find("@"), NO token scan, NO guessed marker):
   code     : sizecode * 4 bytes at code_start.
   sizek    : loadInt at code_end (attempted; raw bytes + decoded/failure reported).
 
-Instruction validation uses the OFFICIAL Lua 5.4 opcode enum:
-83 opcodes (0..82), NUM_OPCODES = 83 (includes GETI/GETFIELD/SETI/SETFIELD).
-The relaxed `opcode <= 127` check is NOT used as validity evidence.
+The code check uses the OFFICIAL Lua 5.4 opcode enum as a compatibility
+diagnostic only. A high count means the body is not standard Lua 5.4
+bit-packed code; it does not by itself prove a bad boundary or corrupt data.
 
 Guardrails: mpkinfo version/entry/size bounds, archive offset+size bounds,
 seek + bounded read, Lua version==0x54, format==0, sizes 4/8/8, fail closed,
@@ -68,7 +68,7 @@ def load_unsigned(data, off):
         i += 1
         if b & 0x80:
             return x, i
-    return x, i
+    return None, None
 
 
 def load_int(data, off):
@@ -162,7 +162,7 @@ def parse_proto_header(blk, body):
 
 
 def validate_code(blk, code_start, code_end):
-    """Validate every 4-byte instruction with official opcode enum (op < 83)."""
+    """Report incompatibility with standard Lua 5.4 packed opcodes."""
     invalid = []
     for i in range(code_start, code_end, 4):
         instr = struct.unpack_from("<I", blk, i)[0]
@@ -254,7 +254,7 @@ def print_report(r):
               f"sc={p['sizecode']} code=+0x{p['code_start']:04X}..+0x{p['code_end']:04X}")
         c = r["code"]
         print(f"# code: count={c['instruction_count']} "
-              f"invalid_ops(>=83)={c['invalid_opcode_count']} "
+              f"packed_lua54_invalid_ops(>=83)={c['invalid_opcode_count']} "
               f"first_invalid={'+0x%04X' % c['first_invalid_offset'] if c['first_invalid_offset'] is not None else 'None'}")
         for pos, op in c["invalid_samples"]:
             print(f"#   invalid @ +0x{pos:04X} op={op}")
@@ -267,7 +267,7 @@ def print_report(r):
             cc = cand["code"]
             print(f"# candidate(first 0x80 0x80 @ +0x{cand['marker_offset']:04X}): "
                   f"sc={cand['sizecode']} code=+0x{cand['code_start']:04X}..+0x{cand['code_end']:04X} "
-                  f"invalid_ops={cc['invalid_opcode_count']}")
+                  f"packed_lua54_invalid_ops={cc['invalid_opcode_count']}")
             print(f"# candidate raw32@code_end: {cand['raw32_at_code_end']}")
         else:
             print(f"# candidate(first 0x80 0x80 @ +0x{cand['marker_offset']:04X}): "
@@ -278,6 +278,7 @@ def selftest():
     for blob, expect in VARINT_REGRESSION:
         got, _ = load_unsigned(blob, 0)
         assert got == expect, (blob.hex(" "), got, expect)
+    assert load_unsigned(bytes([1] * 8), 0) == (None, None)
     # opcode validation: op 78/79/82 valid; op 83 invalid
     op78 = struct.pack("<I", 0x4E)   # op 78 (SETLIST)
     op79 = struct.pack("<I", 0x4F)   # op 79 (CLOSURE)
