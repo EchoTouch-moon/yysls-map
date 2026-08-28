@@ -21,6 +21,7 @@ tools/research/windows-static-archive/
 ├── probe_segment_split.py     ← H-NEX-003X post-code segment split probe
 ├── probe_varint_walk.py       ← H-NEX-003Y varint-led record walk probe
 ├── probe_tag_grammar.py       ← H-NEX-003Z full-tail tag-grammar walk probe
+├── probe_record_boundary.py   ← H-NEX-003AA record boundary (length vs terminator) probe
 ├── nex004a_normalizer.py      ← NEX-004A raw narrative observation normalizer（已交付）
 ├── discovery_engine.py        ← NEX-004B generic structural discovery engine（已交付）
 ├── blind_manifest.json        ← NEX-004B frozen blind manifest（Commit A 冻结）
@@ -99,6 +100,7 @@ python probe_archive_mapping.py samples/main_Resources.mpkinfo E:\yysls\Resource
 - H-NEX-003X Segment Split on Delimiter Candidates：DONE（Gate = **SEGMENTATION_PARTIAL**；0x04 强分隔符假设被证伪（D0 纯可打印段仅 2.9-3.0%，D2 最高 13.1%）；非纯段首字节稳定落在 0x85-0x91（varint 终止字节特征），`83 01` 为各归档最高频首二元组 → 工作假设改为 varint-led record grammar，0x04 可能是 varint 续字节）
 - H-NEX-003Y Varint-Led Record Walk：DONE（Gate = **VARINT_WALK_PARTIAL**；naive `[varint][v-1 payload]` 行走在首条记录即失败，但尾部 +0 处 varint 值呈稳定双族结构：小值族 {5..13,17,30}（8/17 领先）与 512+k 族（520=512+8、529=512+17、542=512+30，续字节 0x04）→ 定量确认 0x04 为 varint 续字节而非分隔符；值更像 tag/类型 ID 而非字符串长度）
 - H-NEX-003Z Tag-Grammar Record Walk：DONE（Gate = **TAG_GRAMMAR_PARTIAL**；全块尾部消除 256B 窗口伪影（512+k 首记录完成率 0.91-0.93）；判别式回答为否——v 与 v+512 不共享 payload 形态：裸 tag 8/17 的 payload 可打印率 0.71-0.85（字符串样），512+k 全部 0.0（二进制），tag 值预测 payload 类型；首单元可消费但 record-2 边界是瓶颈，全尾行走覆盖 ≈0；N 嵌套形状被拒）
+- H-NEX-003AA Record Boundary Test：DONE（Gate = **RECORD_BOUNDARY_PARTIAL**；边界普查：裸 tag 仅 ~22% 终止符落在 t==v−1（官方 loadString 形态），~76% 控制字节在 payload 内部，512+k 为 100%；L1/L2 两种长度约定处 varint 可解析率 0.68-0.83 但续行走塌缩（中位 0 条，ge3 ≤ 0.066）；终止符重启 T1 为最优约定——中位恰好多解析 1 条记录（ge3 ≤ 0.108）→ 与嵌套递归 TLV 文法一致，平坦记录文法被进一步排除）
 - 2026-08-28 baseline drift：LT31/LT51/LT71 patch 文件被 launcher 重写（count/sha256 变化，已重新冻结为 WIN16-AF-017..022）；H-NEX-003U 的逐 entry 计数对应更新前文件集，不直接可比
 - NEX-004A Raw Narrative Observation Normalizer：DONE（Gate = **RAW_NORMALIZATION_PASS**；4 pilot 记录完整 provenance + 哈希与 ledger 吻合；目标 7/7 恢复；RAW ≠ canonical）
 - H-NEX-004A Provenance & Encoding Hardening：DONE（schema v2；两阶段 provenance freeze；UTF-8-safe 输出；byte cap；taxonomy 修正；fail-closed）
