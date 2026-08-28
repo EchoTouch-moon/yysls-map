@@ -26,6 +26,7 @@ tools/research/windows-static-archive/
 ├── probe_interleaved_walk.py  ← H-NEX-003AC control-aware interleaved walk probe
 ├── probe_head_length.py       ← H-NEX-003AD head varint vs tail length probe
 ├── probe_constant_table.py    ← H-NEX-003AE official constant-table walk probe
+├── probe_string_table.py      ← H-NEX-003AF raw concatenated loadString walk probe
 ├── nex004a_normalizer.py      ← NEX-004A raw narrative observation normalizer（已交付）
 ├── discovery_engine.py        ← NEX-004B generic structural discovery engine（已交付）
 ├── blind_manifest.json        ← NEX-004B frozen blind manifest（Commit A 冻结）
@@ -109,6 +110,7 @@ python probe_archive_mapping.py samples/main_Resources.mpkinfo E:\yysls\Resource
 - H-NEX-003AC Control-Aware Interleaved Walk：DONE（Gate = **INTERLEAVED_WALK_PARTIAL**；全流交错文法作为 top-level 分词器被证伪（覆盖率中位 0.000，全消费 ≤ 0.2%，命中预注册 <0.50 证伪分支）：~48% 块首部为无终止 varint 的文本游程，~50% 首 varint 的 v−1 溢出整条尾部；但条件性 framing 信号集中——边界位置 0x04 后继记录解析率 0.94-0.97（样本最大），0x14 次之 0.61-0.80，其余控制值 ≤ 0.31；存活区段以控制符↔记录交替为主，记录 tag 仍为裸族（8/14/17…），无 ≥512 值出现于边界）
 - H-NEX-003AD Head Varint vs Tail Length：DONE（Gate = **HEAD_LENGTH_PARTIAL**；长度字段假设被决定性排除：精确匹配 0 块，±2 字节内占比 ≈ 0.000；首 varint 解析率 0.62-0.64，其中溢出块 ~97% 为 >4096 大值族（超额集中于 ≥32 上限），欠溢块残差同样集中于 ≥32 → 首部字节既非记录流也非长度前缀；无 varint 块（~36%）首个 ≥0x80 字节集中于偏移 8-10（恰在 8 字节读取窗口外）→ 稳定宽度文本游程；与 post-code 区为常量/子 proto 表（官方 `[sizek][tag][value]` 布局）的解读一致）
 - H-NEX-003AE Official Constant-Table Walk：DONE（Gate = **CONSTANT_TABLE_PARTIAL**；官方 `[sizek][tag][value]` 常量表布局干净消费仅 0.6-0.8%（零块全消费）；失败三态复现 003AD 三分：no_sizek ~36% / sizek_unreasonable ~34% / bad_tag ~29%（count 后首字节为文本字符而非常量 tag）；凡有常量被解析处主导 tag 为 0x04=短串（其后混入 0x72/0x68/0x61 等可打印文本），官方 tag 占比仅 0.44-0.46，字符串体可打印率 0.63 → 该区为文本/字符串密集但非官方带标签常量表；至此五种结构模型（平坦记录流/纯递归 TLV/交错控制-记录/长度前缀/官方常量表）均在 ~9000 块上被排除，幸存信号 = 0x04/0x14 作为 loadString 形字符串标记）
+- H-NEX-003AF Raw Concatenated loadString Walk：DONE（Gate = **STRING_TABLE_PARTIAL**；无前缀串联 loadString 亦被排除——最佳标记相对起点覆盖率中位仅 0.11-0.13、中位 2 条记录，第六种全流模型失败；但两项阳性信号幸存：87% 块的最优起点为 0x04/0x14 标记后一位（独立复证标记为真实字符串锚点），稳定的 ~3.5% 块可近全消费为纯字符串表（疑似叶子 proto）；offset-0 覆盖率中位仍 0.000 → 结论：post-code 区组织为块/ proto 条件性 heterogeneous，无单一全流字节文法，自顶向下行走已达极限）
 - 2026-08-28 baseline drift：LT31/LT51/LT71 patch 文件被 launcher 重写（count/sha256 变化，已重新冻结为 WIN16-AF-017..022）；H-NEX-003U 的逐 entry 计数对应更新前文件集，不直接可比
 - NEX-004A Raw Narrative Observation Normalizer：DONE（Gate = **RAW_NORMALIZATION_PASS**；4 pilot 记录完整 provenance + 哈希与 ledger 吻合；目标 7/7 恢复；RAW ≠ canonical）
 - H-NEX-004A Provenance & Encoding Hardening：DONE（schema v2；两阶段 provenance freeze；UTF-8-safe 输出；byte cap；taxonomy 修正；fail-closed）
