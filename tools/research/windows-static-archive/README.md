@@ -23,6 +23,8 @@ tools/research/windows-static-archive/
 ├── probe_tag_grammar.py       ← H-NEX-003Z full-tail tag-grammar walk probe
 ├── probe_record_boundary.py   ← H-NEX-003AA record boundary (length vs terminator) probe
 ├── probe_nested_descent.py    ← H-NEX-003AB bounded recursive descent probe
+├── probe_interleaved_walk.py  ← H-NEX-003AC control-aware interleaved walk probe
+├── probe_head_length.py       ← H-NEX-003AD head varint vs tail length probe
 ├── nex004a_normalizer.py      ← NEX-004A raw narrative observation normalizer（已交付）
 ├── discovery_engine.py        ← NEX-004B generic structural discovery engine（已交付）
 ├── blind_manifest.json        ← NEX-004B frozen blind manifest（Commit A 冻结）
@@ -103,6 +105,7 @@ python probe_archive_mapping.py samples/main_Resources.mpkinfo E:\yysls\Resource
 - H-NEX-003Z Tag-Grammar Record Walk：DONE（Gate = **TAG_GRAMMAR_PARTIAL**；全块尾部消除 256B 窗口伪影（512+k 首记录完成率 0.91-0.93）；判别式回答为否——v 与 v+512 不共享 payload 形态：裸 tag 8/17 的 payload 可打印率 0.71-0.85（字符串样），512+k 全部 0.0（二进制），tag 值预测 payload 类型；首单元可消费但 record-2 边界是瓶颈，全尾行走覆盖 ≈0；N 嵌套形状被拒）
 - H-NEX-003AA Record Boundary Test：DONE（Gate = **RECORD_BOUNDARY_PARTIAL**；边界普查：裸 tag 仅 ~22% 终止符落在 t==v−1（官方 loadString 形态），~76% 控制字节在 payload 内部，512+k 为 100%；L1/L2 两种长度约定处 varint 可解析率 0.68-0.83 但续行走塌缩（中位 0 条，ge3 ≤ 0.066）；终止符重启 T1 为最优约定——中位恰好多解析 1 条记录（ge3 ≤ 0.108）→ 与嵌套递归 TLV 文法一致，平坦记录文法被进一步排除）
 - H-NEX-003AB Nested Recursive Descent：DONE（Gate = **NESTED_DESCENT_CANDIDATE**，post-code 链首个 CANDIDATE 级门槛；payload 内首个控制字节之后（E1）的子流深度-1 存活率 0.35-0.38，为 payload 起点（E0，~0.10）的 3.1-3.9 倍 → 控制字节确为子记录开启符；但深度-2 存活率骤降至 0.08-0.13 且各层 full_frac ≈ 0 → 纯递归 TLV 被拒，存在交错的第二类 framing；512+k tag 族仅出现在顶层，嵌套记录复用裸 tag 词汇（8/14/17/34/21））
+- H-NEX-003AC Control-Aware Interleaved Walk：DONE（Gate = **INTERLEAVED_WALK_PARTIAL**；全流交错文法作为 top-level 分词器被证伪（覆盖率中位 0.000，全消费 ≤ 0.2%，命中预注册 <0.50 证伪分支）：~48% 块首部为无终止 varint 的文本游程，~50% 首 varint 的 v−1 溢出整条尾部；但条件性 framing 信号集中——边界位置 0x04 后继记录解析率 0.94-0.97（样本最大），0x14 次之 0.61-0.80，其余控制值 ≤ 0.31；存活区段以控制符↔记录交替为主，记录 tag 仍为裸族（8/14/17…），无 ≥512 值出现于边界）
 - 2026-08-28 baseline drift：LT31/LT51/LT71 patch 文件被 launcher 重写（count/sha256 变化，已重新冻结为 WIN16-AF-017..022）；H-NEX-003U 的逐 entry 计数对应更新前文件集，不直接可比
 - NEX-004A Raw Narrative Observation Normalizer：DONE（Gate = **RAW_NORMALIZATION_PASS**；4 pilot 记录完整 provenance + 哈希与 ledger 吻合；目标 7/7 恢复；RAW ≠ canonical）
 - H-NEX-004A Provenance & Encoding Hardening：DONE（schema v2；两阶段 provenance freeze；UTF-8-safe 输出；byte cap；taxonomy 修正；fail-closed）
