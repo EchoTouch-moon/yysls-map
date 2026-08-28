@@ -19,6 +19,7 @@ tools/research/windows-static-archive/
 ├── probe_semantic_fields.py   ← H-NEX-003V semantic field validation probe
 ├── probe_postcode_framing.py  ← H-NEX-003W post-code framing classifier
 ├── probe_segment_split.py     ← H-NEX-003X post-code segment split probe
+├── probe_varint_walk.py       ← H-NEX-003Y varint-led record walk probe
 ├── nex004a_normalizer.py      ← NEX-004A raw narrative observation normalizer（已交付）
 ├── discovery_engine.py        ← NEX-004B generic structural discovery engine（已交付）
 ├── blind_manifest.json        ← NEX-004B frozen blind manifest（Commit A 冻结）
@@ -95,6 +96,7 @@ python probe_archive_mapping.py samples/main_Resources.mpkinfo E:\yysls\Resource
 - H-NEX-003V Semantic Field Validation：DONE（Gate = **SEMANTIC_FIELD_VALIDATION_PARTIAL**；跨版本稳定的操作码条件操作数族：双向位移族 0x5C/0x5D/0xDC(+0xDD/0x9F) 与索引/计数族 0x60/0x8C/0x1D/0x0C/0x61；无 EXTRAARG 式强耦合；code 后为非官方 string-like framing）
 - H-NEX-003W Post-Code Framing Classification：DONE（Gate = **POSTCODE_FRAMING_PARTIAL**；code_end 后为密集交错的标识符风格文本（空格占比 0.005），无固定头部、无边界对齐长度前缀；0x04 为跨版本稳定的分隔符/标签候选（42-44% 最长游程以其终止））
 - H-NEX-003X Segment Split on Delimiter Candidates：DONE（Gate = **SEGMENTATION_PARTIAL**；0x04 强分隔符假设被证伪（D0 纯可打印段仅 2.9-3.0%，D2 最高 13.1%）；非纯段首字节稳定落在 0x85-0x91（varint 终止字节特征），`83 01` 为各归档最高频首二元组 → 工作假设改为 varint-led record grammar，0x04 可能是 varint 续字节）
+- H-NEX-003Y Varint-Led Record Walk：DONE（Gate = **VARINT_WALK_PARTIAL**；naive `[varint][v-1 payload]` 行走在首条记录即失败，但尾部 +0 处 varint 值呈稳定双族结构：小值族 {5..13,17,30}（8/17 领先）与 512+k 族（520=512+8、529=512+17、542=512+30，续字节 0x04）→ 定量确认 0x04 为 varint 续字节而非分隔符；值更像 tag/类型 ID 而非字符串长度）
 - 2026-08-28 baseline drift：LT31/LT51/LT71 patch 文件被 launcher 重写（count/sha256 变化，已重新冻结为 WIN16-AF-017..022）；H-NEX-003U 的逐 entry 计数对应更新前文件集，不直接可比
 - NEX-004A Raw Narrative Observation Normalizer：DONE（Gate = **RAW_NORMALIZATION_PASS**；4 pilot 记录完整 provenance + 哈希与 ledger 吻合；目标 7/7 恢复；RAW ≠ canonical）
 - H-NEX-004A Provenance & Encoding Hardening：DONE（schema v2；两阶段 provenance freeze；UTF-8-safe 输出；byte cap；taxonomy 修正；fail-closed）
