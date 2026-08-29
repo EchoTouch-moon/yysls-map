@@ -1,0 +1,159 @@
+{
+  "schema_version": "nex005-selection-manifest-1",
+  "builder_commit": "6c47256be6f42b33826341bf217469be03d4c7ab",
+  "builder_source_sha256": "2c0112b8c01d42d35b914799a37c11d93a3752d41ae2e02a38fcb1d946261847",
+  "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+  "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+  "game_version": "20260829165912",
+  "selection_count": 12,
+  "entries": [
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 1248,
+      "entry_offset": 4895949,
+      "stored_size": 8248,
+      "flags_raw": 142,
+      "score": 6,
+      "selection_reasons": [
+        "NodeGraphData observation",
+        "SHORT_CJK (小稞)",
+        "family MSD_ST",
+        "stored_size >= 8KB"
+      ]
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 502,
+      "entry_offset": 4151261,
+      "stored_size": 5027,
+      "flags_raw": 142,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 566,
+      "entry_offset": 7275325,
+      "stored_size": 3015,
+      "flags_raw": 62,
+      "score": 6,
+      "selection_reasons": [
+        "NodeGraphData observation",
+        "SHORT_CJK (传送配置)",
+        "numeric TEXT_REF",
+        "family MSD_ST"
+      ]
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 1943,
+      "entry_offset": 5668011,
+      "stored_size": 2915,
+      "flags_raw": 102,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 2597,
+      "entry_offset": 4984101,
+      "stored_size": 2858,
+      "flags_raw": 102,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 2232,
+      "entry_offset": 4972107,
+      "stored_size": 2651,
+      "flags_raw": 102,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 1919,
+      "entry_offset": 4148784,
+      "stored_size": 2477,
+      "flags_raw": 142,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 318,
+      "entry_offset": 4156288,
+      "stored_size": 2229,
+      "flags_raw": 142,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 972,
+      "entry_offset": 7036507,
+      "stored_size": 2014,
+      "flags_raw": 62,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 86,
+      "entry_offset": 4982376,
+      "stored_size": 1725,
+      "flags_raw": 102,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 322,
+      "entry_offset": 4980806,
+      "stored_size": 1570,
+      "flags_raw": 102,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 2415,
+      "entry_offset": 6669148,
+      "stored_size": 1561,
+      "flags_raw": 62,
+      "score": 6,
+      "selection_reasons": [
+        "Qinghe signal (source/EXPANSION)",
+        "NodeGraphData observation"
+      ]
+    }
+  ]
+}

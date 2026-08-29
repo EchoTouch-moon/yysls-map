@@ -1,0 +1,3 @@
+# Local research working copies (raw game index files) — never commit to Git.
+# See docs/execution/WAVE_1_6_WINDOWS_STATIC_ARCHIVE_TASKS.md §2 "不进入 Git".
+samples/

@@ -1,0 +1,204 @@
+{
+  "schema_version": "raw-structural-observation-1",
+  "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+  "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+  "game_version": "20260829165912",
+  "archive": "LT31.mpk",
+  "archive_sha256": "b404de7775a7e18876bbc4da732ee997509b09eb26f4fe4affee961ba1abea87",
+  "mpkinfo_sha256": "2d07b95700bc44e3e931b469c85e86b738c6da259b1b029b66f95f3ce2e5604b",
+  "entry_index": 552,
+  "entry_offset": 11288240,
+  "entry_stored_size": 11194,
+  "flags_raw": 62,
+  "block_sha256": "d005f9ecf6deaa400427526204a4430c999ef894e46ed95d5506ff683981d94a",
+  "container": {
+    "lua_version": "5.4",
+    "source_status": "SEGMENTED_PARTIAL",
+    "source_locator": "@hexm/client/ui/windows/monopoly/_jiesuan_v2_rank_grade_0/.lua",
+    "source_segments": [
+      {
+        "value": "@hexm/client/ui/windows/monopoly",
+        "truncated": false,
+        "offset": 33
+      },
+      {
+        "value": "_jiesuan_v2_rank_grade_0",
+        "truncated": false,
+        "offset": 69
+      },
+      {
+        "value": ".lua",
+        "truncated": false,
+        "offset": 96
+      }
+    ],
+    "source_reconstruction": "PRINTABLE_RUN_JOIN",
+    "source_truncated": false
+  },
+  "observations": [
+    {
+      "byte_offset": 643,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 8,
+      "value_byte_length": 7,
+      "raw_value": "require",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "d005f9ecf6deaa400427526204a4430c999ef894e46ed95d5506ff683981d94a"
+      }
+    },
+    {
+      "byte_offset": 1012,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 13,
+      "value_byte_length": 12,
+      "raw_value": "ScoreAddItem",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "d005f9ecf6deaa400427526204a4430c999ef894e46ed95d5506ff683981d94a"
+      }
+    },
+    {
+      "byte_offset": 1026,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 5,
+      "value_byte_length": 4,
+      "raw_value": "ctor",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "d005f9ecf6deaa400427526204a4430c999ef894e46ed95d5506ff683981d94a"
+      }
+    },
+    {
+      "byte_offset": 1032,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 12,
+      "value_byte_length": 11,
+      "raw_value": "get_percent",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "d005f9ecf6deaa400427526204a4430c999ef894e46ed95d5506ff683981d94a"
+      }
+    },
+    {
+      "byte_offset": 1045,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 4,
+      "value_byte_length": 3,
+      "raw_value": "run",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "d005f9ecf6deaa400427526204a4430c999ef894e46ed95d5506ff683981d94a"
+      }
+    },
+    {
+      "byte_offset": 1063,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 15,
+      "value_byte_length": 14,
+      "raw_value": "destroy_object",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "d005f9ecf6deaa400427526204a4430c999ef894e46ed95d5506ff683981d94a"
+      }
+    },
+    {
+      "byte_offset": 1341,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 13,
+      "value_byte_length": 12,
+      "raw_value": "USE_BACK_BTN",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "d005f9ecf6deaa400427526204a4430c999ef894e46ed95d5506ff683981d94a"
+      }
+    },
+    {
+      "byte_offset": 1490,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 5,
+      "value_byte_length": 4,
+      "raw_value": "soul",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 552,
+        "block_sha256": "d005f9ecf6deaa400427526204a4430c999ef894e46ed95d5506ff683981d94a"
+      }
+    }
+  ],
+  "observation_limits": {
+    "max_locator_bytes": 64,
+    "max_per_entry": 32,
+    "per_class_cap": 8
+  },
+  "warnings": [
+    "INSTRUCTION_SERIALIZATION_VARIANT",
+    "CONSTANT_OWNERSHIP_UNKNOWN",
+    "PROTO_OWNERSHIP_UNKNOWN",
+    "SEMANTIC_ROLE_UNVERIFIED",
+    "SOURCE_SEGMENTED_SERIALIZATION"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "raw-narrative-observation-2",
+  "extractor_commit": "bfd610abc6af1cbceaf96fe4833eabb1e6a43096",
+  "extractor_source_sha256": "daff2b52cd3f4c5e8a12d03cf4192c6fe2f5c810ce1477eaa0c04b57ae2891ff",
+  "game_version": "20260820220319",
+  "archive": "LT31.mpk",
+  "archive_sha256": "280639e8e0dd1980c2feae65beca7ba972ee89c0ef528d6405ad4657d10cfa96",
+  "mpkinfo_sha256": "4ae32cef07988376af946bb7befe2294e1e06aae466ef60740db89b34ac97ac3",
+  "entry_index": 874,
+  "entry_offset": 1996455,
+  "entry_stored_size": 11718,
+  "flags_raw": 62,
+  "block_sha256": "da4dce485d484610c7f239d6aa93de772153752708a1332c5c8e9b6f667acdce",
+  "container": {
+    "lua_version": "5.4",
+    "source_status": "EXACT",
+    "source_locator": "@Sunshine/AI/bt2code/output/u_newplay_horserob_thin_qifen.lua",
+    "source_segments": [
+      {
+        "value": "@Sunshine/AI/bt2code/output/u_newplay_horserob_thin_qifen.lua",
+        "truncated": false
+      }
+    ],
+    "source_reconstruction": null,
+    "source_truncated": false
+  },
+  "strings": [
+    {
+      "byte_offset": 6073,
+      "framing_tag_raw": 4,
+      "encoded_length": 6,
+      "value_byte_length": 5,
+      "short_value": "70276",
+      "value_truncated": false,
+      "framing_status": "FRAMED_PLAINTEXT"
+    }
+  ],
+  "references": [
+    {
+      "raw_value": "70276",
+      "value_truncated": false,
+      "byte_offset": 6073,
+      "source_kind": "block_string",
+      "pattern_kind": "TEXT_REF_CANDIDATE",
+      "confidence": "MEDIUM"
+    }
+  ],
+  "warnings": [
+    "INSTRUCTION_SERIALIZATION_VARIANT",
+    "CONSTANT_OWNERSHIP_UNKNOWN",
+    "PROTO_OWNERSHIP_UNKNOWN",
+    "SEMANTIC_ROLE_UNVERIFIED"
+  ]
+}

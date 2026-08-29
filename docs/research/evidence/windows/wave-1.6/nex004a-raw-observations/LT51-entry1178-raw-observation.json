@@ -1,0 +1,40 @@
+{
+  "schema_version": "raw-narrative-observation-2",
+  "extractor_commit": "bfd610abc6af1cbceaf96fe4833eabb1e6a43096",
+  "extractor_source_sha256": "daff2b52cd3f4c5e8a12d03cf4192c6fe2f5c810ce1477eaa0c04b57ae2891ff",
+  "game_version": "20260820220319",
+  "archive": "LT51.mpk",
+  "archive_sha256": "a98ebfeacf7c4a2da9776a0a786f562238c94107db596e1904e3c457e1bf9826",
+  "mpkinfo_sha256": "65a53cced2d9f6dea197197271a028b0526f71c712eb27e726c2cb62b6c6359d",
+  "entry_index": 1178,
+  "entry_offset": 12760804,
+  "entry_stored_size": 24873,
+  "flags_raw": 102,
+  "block_sha256": "8ae243670f404122c7af680564bd793178acee5d3bca2a26391fa8f3e13ec449",
+  "container": {
+    "lua_version": "5.4",
+    "source_status": "SEGMENTED_PARTIAL",
+    "source_locator": "@hexm/client/ui/windows/common/_player_float.lua",
+    "source_segments": [
+      {
+        "value": "@hexm/client/ui/windows/common",
+        "truncated": false
+      },
+      {
+        "value": "_player_float.lua",
+        "truncated": false
+      }
+    ],
+    "source_reconstruction": "PRINTABLE_RUN_JOIN",
+    "source_truncated": false
+  },
+  "strings": [],
+  "references": [],
+  "warnings": [
+    "INSTRUCTION_SERIALIZATION_VARIANT",
+    "CONSTANT_OWNERSHIP_UNKNOWN",
+    "PROTO_OWNERSHIP_UNKNOWN",
+    "SEMANTIC_ROLE_UNVERIFIED",
+    "SOURCE_SEGMENTED_SERIALIZATION"
+  ]
+}

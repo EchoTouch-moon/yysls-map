@@ -1,0 +1,72 @@
+{
+  "schema_version": "nex004b-blind-manifest-1",
+  "selection_rule": "metadata-only: exclude known pilot/evidence entries; stored_size in [512, 1048576]; sort by sha256('{arch}:{idx}:{offset}:{size}:{flags}'); take first N per archive",
+  "excluded_known": {
+    "LT71": [
+      1768,
+      1631
+    ],
+    "LT51": [
+      1178
+    ],
+    "LT31": [
+      874
+    ]
+  },
+  "entries": {
+    "LT71": [
+      {
+        "index": 534,
+        "offset": 9921044,
+        "stored_size": 3899,
+        "flags_raw": 142
+      },
+      {
+        "index": 2766,
+        "offset": 5889189,
+        "stored_size": 1666,
+        "flags_raw": 142
+      },
+      {
+        "index": 1490,
+        "offset": 6804106,
+        "stored_size": 2073,
+        "flags_raw": 142
+      },
+      {
+        "index": 165,
+        "offset": 10036502,
+        "stored_size": 729,
+        "flags_raw": 142
+      }
+    ],
+    "LT51": [
+      {
+        "index": 861,
+        "offset": 3466031,
+        "stored_size": 2334,
+        "flags_raw": 102
+      },
+      {
+        "index": 873,
+        "offset": 3984935,
+        "stored_size": 859,
+        "flags_raw": 102
+      }
+    ],
+    "LT31": [
+      {
+        "index": 552,
+        "offset": 1185098,
+        "stored_size": 7008,
+        "flags_raw": 62
+      },
+      {
+        "index": 2876,
+        "offset": 8399515,
+        "stored_size": 2018,
+        "flags_raw": 62
+      }
+    ]
+  }
+}
