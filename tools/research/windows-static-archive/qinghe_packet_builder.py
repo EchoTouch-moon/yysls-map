@@ -156,6 +156,20 @@ def load_frozen_engine(engine_commit):
     return mod, hashlib.sha256(blob).hexdigest()
 
 
+def select_candidates(new, existing_keys):
+    """Frozen policy §1.b/c: entries already covered by processed records
+    (pool a) are excluded FIRST; only then is the pool split into
+    Qinghe-source candidates and large-family candidates, with TOP 4
+    large-family taken by size desc (sha256("{arch}:{idx}") tie-break).
+    Dedup after truncation would starve the top-4 of fresh candidates."""
+    pool = [c for c in new if (c["archive"], c["index"]) not in existing_keys]
+    qh_all = [c for c in pool if c["qinghe"]]
+    large_only = [c for c in pool if not c["qinghe"]]
+    large_only.sort(key=lambda x: (-x["size"],
+                                   hashlib.sha256(f"{x['archive']}:{x['index']}".encode()).hexdigest()))
+    return qh_all + large_only[:4]
+
+
 def discover_new(archive_dir, engine_commit, builder_commit, game_version,
                  existing_keys):
     """Find + run the frozen engine on new candidates (qinghe-source + large family)."""
@@ -191,15 +205,7 @@ def discover_new(archive_dir, engine_commit, builder_commit, game_version,
                 new.append({"archive": arch, "index": idx, "size": e["size"],
                             "offset": e["offset"], "flags": e["flags"],
                             "family": fam, "qinghe": qh})
-    # frozen policy: pool = all Qinghe-source + TOP 4 large-family (size desc,
-    # sha256 tie-break)
-    qh_all = [c for c in new if c["qinghe"]]
-    large_only = [c for c in new if not c["qinghe"]]
-    large_only.sort(key=lambda x: (-x["size"],
-                                   hashlib.sha256(f"{x['archive']}:{x['index']}".encode()).hexdigest()))
-    to_run = qh_all + large_only[:4]
-    # never re-run entries already covered by loaded records
-    to_run = [c for c in to_run if (c["archive"], c["index"]) not in existing_keys]
+    to_run = select_candidates(new, existing_keys)
     # run frozen engine on new candidates
     recs = []
     for c in sorted(to_run, key=lambda x: (-x["size"], x["archive"], x["index"])):
@@ -690,6 +696,25 @@ def selftest():
     assert all(s <= MAX_CLUSTER_ENTRIES for s in sizes), sizes
     assert sum(sizes) == 10, sizes
     assert sizes == [1, 4, 5], sizes
+
+    # selection order: existing-covered entries must be excluded BEFORE the
+    # large-family TOP-4 truncation (frozen policy §1.c).  Reviewer repro:
+    # sizes [existing=100, 90, 80, 70, 60] -> old code yielded [90,80,70];
+    # the frozen policy yields [90,80,70,60].
+    def cand(arch, idx, size, qh=False):
+        return {"archive": arch, "index": idx, "size": size,
+                "offset": 0, "flags": 0, "family": "MSD_ST", "qinghe": qh}
+
+    pool = [cand("LT71", 1, 100), cand("LT71", 2, 90), cand("LT71", 3, 80),
+            cand("LT71", 4, 70), cand("LT71", 5, 60)]
+    got = select_candidates(pool, existing_keys={("LT71", 1)})
+    assert [(c["index"], c["size"]) for c in got] == \
+        [(2, 90), (3, 80), (4, 70), (5, 60)], got
+    # qinghe-source candidates are also deduped against existing records
+    got2 = select_candidates([cand("LT31", 9, 500, qh=True),
+                              cand("LT31", 10, 500, qh=True)],
+                             existing_keys={("LT31", 9)})
+    assert [c["index"] for c in got2] == [10], got2
 
     # verify_provenance on a synthetic archive dir
     import tempfile
