@@ -116,7 +116,10 @@ python probe_archive_mapping.py samples/main_Resources.mpkinfo E:\yysls\Resource
 - 2026-08-28 baseline drift：LT31/LT51/LT71 patch 文件被 launcher 重写（count/sha256 变化，已重新冻结为 WIN16-AF-017..022）；H-NEX-003U 的逐 entry 计数对应更新前文件集，不直接可比
 - NEX-004A Raw Narrative Observation Normalizer：DONE（Gate = **RAW_NORMALIZATION_PASS**；4 pilot 记录完整 provenance + 哈希与 ledger 吻合；目标 7/7 恢复；RAW ≠ canonical）
 - H-NEX-004A Provenance & Encoding Hardening：DONE（schema v2；两阶段 provenance freeze；UTF-8-safe 输出；byte cap；taxonomy 修正；fail-closed）
-- 下一阶段（NEX-004B Structural Discovery / canonical 更新）：WAITING_FOR_LEAD_AUTHORIZATION
+- NEX-004B Structural Discovery：DONE（Gate = **GENERALIZATION_PARTIAL**；观测引擎泛化至 24 个归档内块并冻结于 `204c97f0d1a6039860f49a9c4b9232c51ae8d8fa`；4 regression + 8 blind 记录；canonical：NONE）
+- NEX-004C Holdout Selection：DONE（Gate = **GENERALIZATION_PARTIAL**；C0 盲选 + C1 12 holdout 记录；manifest schema v2）
+- NEX-005 Qinghe Structural Evidence Packet：DONE（Gate = **QINGHE_EVIDENCE_PACKET_PASS**；P0 选择策略冻结；12 entries / 5-8 clusters；优先级信号 ≠ canonical 事实）
+- 2026-08-29 PR #1 review 修复 + baseline drift：归档再次被重写（`patching_version.txt` → `20260829165912`，全部 24 条记录重新用冻结引擎 204c97f 生成）；三项 P1 修复——holdout selector 的 `source_locator_sha256` 改为哈希实际 source bytes（v1 误哈希分数键，manifest 重新冻结为 schema `nex004c-holdout-manifest-2`）；packet builder 新增对归档的真实复验（mpkinfo 不变量 + archive/mpkinfo/block sha256 + entry 元数据 + extractor blob 校验，fail-closed）；cluster 5 条上限改为硬约束（超限分块 + 写文件前断言）
 
 ## W-R03 关键结论
 

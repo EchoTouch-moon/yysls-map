@@ -36,6 +36,7 @@ ENGINE_COMMIT = "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa"
 ARCHIVES = ["LT71", "LT51", "LT31"]
 SELECT_N = 12
 CLUSTER_OBS_CAP = 60
+MAX_CLUSTER_ENTRIES = 5
 
 KNOWN = {
     "LT71": [1768, 1631],
@@ -240,8 +241,20 @@ def sub_split_key(record):
     return cleaned or "unclassified"
 
 
+def _chunk(members, base_id):
+    """Deterministically split members into chunks of <= MAX_CLUSTER_ENTRIES."""
+    if len(members) <= MAX_CLUSTER_ENTRIES:
+        return [(base_id, members)]
+    out = []
+    for i in range(0, len(members), MAX_CLUSTER_ENTRIES):
+        suffix = "" if i == 0 else f"#{i // MAX_CLUSTER_ENTRIES + 1}"
+        out.append((f"{base_id}{suffix}", members[i:i + MAX_CLUSTER_ENTRIES]))
+    return out
+
+
 def cluster_entries(selected):
-    """Priority assignment + §3a sub-split / fallback / merge rules."""
+    """Priority assignment + §3a sub-split / fallback / merge rules.
+    Every resulting cluster carries <= MAX_CLUSTER_ENTRIES entries."""
     clusters = {cid: [] for cid, _ in CLUSTER_ORDER}
     others = []
     for s, size, h, r, reasons in selected:
@@ -253,30 +266,45 @@ def cluster_entries(selected):
                 break
         if not placed:
             others.append((r, reasons))
-    # §3a.a: sub-split any cluster with >5 entries by source sub-path
+    # §3a.a: sub-split any cluster with >5 entries by source sub-path,
+    # then chunk any group still over the cap (same sub-path can exceed it).
     final = {}
     for cid, members in clusters.items():
         if not members:
             continue
-        if len(members) <= 5:
-            final[cid] = members
-            continue
-        by_key = {}
-        for m in members:
-            key = sub_split_key(m[0]) or cid
-            by_key.setdefault(key, []).append(m)
-        for key, group in sorted(by_key.items(), key=lambda kv: (-len(kv[1]), kv[0])):
-            final[f"{cid}/{key}" if key != cid else cid] = group
-    # §3a.b: fallback OTHER
+        groups = [(cid, members)]
+        if len(members) > MAX_CLUSTER_ENTRIES:
+            by_key = {}
+            for m in members:
+                key = sub_split_key(m[0]) or cid
+                by_key.setdefault(key, []).append(m)
+            groups = [(f"{cid}/{key}" if key != cid else cid, group)
+                      for key, group in
+                      sorted(by_key.items(), key=lambda kv: (-len(kv[1]), kv[0]))]
+        for gid, group in groups:
+            for cid2, chunk in _chunk(group, gid):
+                final[cid2] = chunk
+    # §3a.b: fallback OTHER (chunked too)
     if others:
-        final["OTHER"] = others
-    # §3a.c: merge smallest into FAMILY_ST until <=8 clusters total
+        for cid, chunk in _chunk(others, "OTHER"):
+            final[cid] = chunk
+    # §3a.c: merge smallest into FAMILY_ST until <=8 clusters total;
+    # re-chunk afterwards so the merged cluster also respects the cap.
     if len(final) > 8:
-        fam_st = final.pop("FAMILY_ST", [])
+        fam_st = []
+        for cid in [c for c in final
+                    if c == "FAMILY_ST" or c.startswith("FAMILY_ST#")]:
+            fam_st += final.pop(cid)
         while len(final) >= 8:
             smallest = min(final.items(), key=lambda kv: len(kv[1]))[0]
             fam_st += final.pop(smallest)
-        final["FAMILY_ST"] = fam_st
+        for cid, chunk in _chunk(fam_st, "FAMILY_ST"):
+            final[cid] = chunk
+    over = {cid: len(m) for cid, m in final.items()
+            if len(m) > MAX_CLUSTER_ENTRIES}
+    if over:
+        raise SystemExit(f"FAIL: cluster cap ({MAX_CLUSTER_ENTRIES}) "
+                         f"violated: {over}")
     return final
 
 
@@ -349,6 +377,9 @@ def build(archive_dir, records_dirs, out_dir, engine_commit, builder_commit,
     verified_engine, verified_engine_src = verify_identity(selected, ENGINE_COMMIT)
     if verified_engine != engine_commit:
         raise SystemExit("FAIL: engine commit mismatch (record identity != arg)")
+    # H2: substantive re-verification against the current archive state
+    verify_provenance(selected, archive_dir, game_version)
+    verify_extractor_blob(verified_engine, verified_engine_src)
 
     # clustering with §3a rules
     clusters = cluster_entries(selected)
@@ -466,8 +497,9 @@ def _src_sha():
         return hashlib.sha256(f.read()).hexdigest()
 
 
-def _git_source_sha(commit):
-    """Return the SHA-256 of this file at `commit`, or fail closed."""
+def _git_file_sha(commit, abspath):
+    """Return the SHA-256 of `abspath` as of `commit`, or fail closed."""
+    rel = None
     try:
         root = subprocess.run(
             ["git", "rev-parse", "--show-toplevel"],
@@ -475,15 +507,93 @@ def _git_source_sha(commit):
             check=True,
             text=True,
         ).stdout.strip()
-        rel = os.path.relpath(os.path.abspath(__file__), root).replace(os.sep, "/")
+        rel = os.path.relpath(abspath, root).replace(os.sep, "/")
         blob = subprocess.run(
             ["git", "show", f"{commit}:{rel}"],
             capture_output=True,
             check=True,
         ).stdout
     except (OSError, subprocess.CalledProcessError) as exc:
-        raise SystemExit(f"FAIL: builder commit/source unavailable: {commit}") from exc
+        raise SystemExit(f"FAIL: source blob unavailable at {commit}:{rel}") from exc
     return hashlib.sha256(blob).hexdigest()
+
+
+def _git_source_sha(commit):
+    """Return the SHA-256 of this file at `commit`, or fail closed."""
+    return _git_file_sha(commit, os.path.abspath(__file__))
+
+
+def sha256_stream(path, chunk=1 << 20):
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        while True:
+            b = f.read(chunk)
+            if not b:
+                break
+            h.update(b)
+    return h.hexdigest()
+
+
+def verify_provenance(selected, archive_dir, game_version):
+    """Substantive re-verification against archive_dir (fail closed).
+
+    Every selected record must match the CURRENT archive state: game_version,
+    mpkinfo/archive file digests, per-entry metadata (offset/size/flags) and
+    the block SHA-256 recomputed from the archive.  Records generated before
+    a baseline drift are rejected here, not repackaged."""
+    digests = {}
+    infos = {}
+    for _s, _size, _h, r, _reasons in selected:
+        arch = r["archive"].replace(".mpk", "")
+        idx = r["entry_index"]
+        tag = f"{arch}[{idx}]"
+        if r.get("game_version") != game_version:
+            raise SystemExit(
+                f"FAIL: {tag} game_version {r.get('game_version')!r} != "
+                f"current {game_version!r} (stale record; regenerate)")
+        mpkinfo_path = os.path.join(archive_dir, arch + ".mpkinfo")
+        archive_path = os.path.join(archive_dir, arch + ".mpk")
+        if arch not in digests:
+            if not (os.path.isfile(mpkinfo_path) and os.path.isfile(archive_path)):
+                raise SystemExit(f"FAIL: archive files missing for {arch} in {archive_dir}")
+            head = open(mpkinfo_path, "rb").read(8)
+            if len(head) != 8:
+                raise SystemExit(f"FAIL: mpkinfo truncated for {arch}")
+            version, count = struct.unpack("<II", head)
+            if version != 3 or os.path.getsize(mpkinfo_path) != 8 + count * 20 + 16:
+                raise SystemExit(f"FAIL: mpkinfo invariant failed for {arch}")
+            infos[arch] = (mpkinfo_path, count)
+            digests[arch] = {"mpkinfo": sha256_stream(mpkinfo_path),
+                             "archive": sha256_stream(archive_path)}
+        if r.get("mpkinfo_sha256") != digests[arch]["mpkinfo"]:
+            raise SystemExit(f"FAIL: {tag} mpkinfo_sha256 mismatch "
+                             "(archive drifted; regenerate records)")
+        if r.get("archive_sha256") != digests[arch]["archive"]:
+            raise SystemExit(f"FAIL: {tag} archive_sha256 mismatch "
+                             "(archive drifted; regenerate records)")
+        mpkinfo_path, count = infos[arch]
+        e = entry_metadata(mpkinfo_path, idx, count)
+        if e is None:
+            raise SystemExit(f"FAIL: {tag} entry metadata unavailable")
+        if (e["offset"], e["size"], e["flags"]) != (
+                r["entry_offset"], r["entry_stored_size"], r["flags_raw"]):
+            raise SystemExit(f"FAIL: {tag} entry metadata mismatch "
+                             "(index drifted; regenerate records)")
+        blk = block_of(archive_path, e)
+        if blk is None:
+            raise SystemExit(f"FAIL: {tag} block read failed")
+        if hashlib.sha256(blk).hexdigest() != r.get("block_sha256"):
+            raise SystemExit(f"FAIL: {tag} block_sha256 mismatch")
+
+
+def verify_extractor_blob(engine_commit, expected_sha):
+    """Verify the extractor source blob at engine_commit hashes to the
+    recorded extractor_source_sha256 (not merely 64 hex chars)."""
+    engine_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               "discovery_engine.py")
+    if _git_file_sha(engine_commit, engine_path) != expected_sha:
+        raise SystemExit(f"FAIL: extractor blob at {engine_commit} != "
+                         "recorded extractor_source_sha256")
 
 
 def verify_builder_identity(builder_commit):
@@ -527,6 +637,58 @@ def selftest():
         raise AssertionError("expected SystemExit")
     except SystemExit:
         pass
+
+    def qh_rec(i):
+        return {"archive": "LT71", "entry_index": i, "entry_offset": 0,
+                "entry_stored_size": 100, "flags_raw": 0,
+                "container": {"source_locator":
+                              "@hexm/client/storyline_data/wanfa/MSD_ST/ZDQ/dq_1.lua"},
+                "observations": [{"pattern_kind": "REGION_REF_CANDIDATE",
+                                  "raw_value": "EXPANSION_QINGHE",
+                                  "byte_offset": 0}],
+                "warnings": []}
+
+    def plain_rec(i):
+        return {"archive": "LT71", "entry_index": 100 + i, "entry_offset": 0,
+                "entry_stored_size": 100, "flags_raw": 0,
+                "container": {"source_locator": f"@hexm/client/ui/common_{i}.lua"},
+                "observations": [], "warnings": []}
+
+    # cluster cap: reviewer repro — 6 QH_EXPANSION sharing one sub-path
+    # plus 4 singletons must NOT pass as [6,1,1,1,1].
+    sel = [(0, 100, "", qh_rec(i), []) for i in range(6)] + \
+          [(0, 100, "", plain_rec(i), []) for i in range(4)]
+    got = cluster_entries(sel)
+    sizes = sorted(len(v) for v in got.values())
+    assert all(s <= MAX_CLUSTER_ENTRIES for s in sizes), sizes
+    assert sum(sizes) == 10, sizes
+    assert sizes == [1, 4, 5], sizes
+
+    # verify_provenance on a synthetic archive dir
+    import tempfile
+    block = b"BLKDATA"
+    mpkinfo_bytes = struct.pack("<II", 3, 1) + \
+        struct.pack("<IIIII", 0xAA, 0xBB, 0, len(block), 7) + b"\x00" * 16
+    mpk_bytes = block
+    rec_ok = {"archive": "LT31.mpk", "entry_index": 0, "entry_offset": 0,
+              "entry_stored_size": len(block), "flags_raw": 7,
+              "block_sha256": hashlib.sha256(block).hexdigest(),
+              "mpkinfo_sha256": hashlib.sha256(mpkinfo_bytes).hexdigest(),
+              "archive_sha256": hashlib.sha256(mpk_bytes).hexdigest(),
+              "game_version": "V1"}
+    with tempfile.TemporaryDirectory() as td:
+        open(os.path.join(td, "LT31.mpkinfo"), "wb").write(mpkinfo_bytes)
+        open(os.path.join(td, "LT31.mpk"), "wb").write(mpk_bytes)
+        verify_provenance([(0, 0, "", rec_ok, [])], td, "V1")
+        for bad, gv in [(dict(rec_ok, block_sha256="0" * 64), "V1"),
+                        (dict(rec_ok, entry_offset=1), "V1"),
+                        (dict(rec_ok, mpkinfo_sha256="1" * 64), "V1"),
+                        (dict(rec_ok), "V2")]:
+            try:
+                verify_provenance([(0, 0, "", bad, [])], td, gv)
+                raise AssertionError("expected SystemExit")
+            except SystemExit:
+                pass
     return True
 
 

@@ -22,6 +22,10 @@ FROZEN SELECTION POLICY (must not be changed after holdout results are seen):
                            archive, entry_index, entry_offset, stored_size,
                            flags_raw, source_family, source_locator_sha256,
                            selection_score.
+                           source_locator_sha256 = sha256 of the Lua
+                           source-name BYTES read from the block (schema v2
+                           fix: v1 hashed the score key instead, committing
+                           to nothing — manifest re-frozen 2026-08-29).
   * Fail closed          : version/size/bounds checks; <6 candidates in either
                            family -> non-zero exit, no manifest.
 
@@ -38,7 +42,7 @@ import sys
 
 LUA_SIG = b"\x1bLua"
 LUAC_DATA_STD = bytes([0x19, 0x93, 0x0D, 0x0A, 0x1A, 0x0A])
-MANIFEST_SCHEMA = "nex004c-holdout-manifest-1"
+MANIFEST_SCHEMA = "nex004c-holdout-manifest-2"
 FAMILY_A = "storyline_data"
 FAMILY_B = "MSD_ST"
 EXCLUDED = {
@@ -75,38 +79,41 @@ def entry_metadata(mpkinfo_path, index, count):
     return {"f0": f0, "f1": f1, "offset": off, "size": size, "flags": flags}
 
 
+def source_family_of_blk(blk):
+    """Classify the bounded Lua source region; return (family, src_bytes)."""
+    sig = blk.find(LUA_SIG)
+    if sig < 0 or blk[sig + 4] != 0x54 or blk[sig + 5] != 0:
+        return None, None
+    if blk[sig + 6:sig + 12] != LUAC_DATA_STD:
+        return None, None
+    if list(blk[sig + 12:sig + 15]) != [4, 8, 8]:
+        return None, None
+    L, n = load_unsigned(blk, 0x20)
+    if L is None or L < 2:
+        return None, None
+    slen = L - 1
+    src = blk[0x21:0x21 + slen]
+    if len(src) != slen:
+        return None, None
+    text = src.decode("utf-8", errors="replace")
+    if FAMILY_B in text:
+        return "MSD_ST", src
+    if FAMILY_A in text:
+        return "storyline_data", src
+    return None, None
+
+
 def source_family(archive_path, entry):
-    """Read the bounded Lua source region ONLY; return family or None."""
+    """Read the bounded Lua source region ONLY; return (family, src_bytes)."""
     st = os.path.getsize(archive_path)
     if entry["offset"] + entry["size"] > st:
-        return None
+        return None, None
     with open(archive_path, "rb") as f:
         f.seek(entry["offset"])
         blk = f.read(entry["size"])
     if len(blk) != entry["size"]:
-        return None
-    sig = blk.find(LUA_SIG)
-    if sig < 0 or blk[sig + 4] != 0x54 or blk[sig + 5] != 0:
-        return None
-    if blk[sig + 6:sig + 12] != LUAC_DATA_STD:
-        return None
-    if list(blk[sig + 12:sig + 15]) != [4, 8, 8]:
-        return None
-    L, n = load_unsigned(blk, 0x20)
-    if L is None or L < 2:
-        return None
-    slen = L - 1
-    src = blk[0x21:0x21 + slen]
-    if len(src) != slen:
-        return None
-    text = src.decode("utf-8", errors="replace")
-    has_a = FAMILY_A in text
-    has_b = FAMILY_B in text
-    if has_b:
-        return "MSD_ST"
-    if has_a:
-        return "storyline_data"
-    return None
+        return None, None
+    return source_family_of_blk(blk)
 
 
 def select(archive_dir, output_path):
@@ -124,13 +131,13 @@ def select(archive_dir, output_path):
             e = entry_metadata(mpkinfo_path, idx, count)
             if e is None:
                 continue
-            fam = source_family(archive_path, e)
+            fam, src = source_family(archive_path, e)
             if fam is None:
                 continue
             key = f"{arch}:{idx}:{e['offset']}:{e['size']}:{e['flags']}"
             score = int(hashlib.sha256(key.encode()).hexdigest()[:8], 16)
-            # source locator hash (path is NOT revealed)
-            loc_hash = hashlib.sha256(key.encode()).hexdigest()
+            # commitment to the actual source name (path is NOT revealed)
+            loc_hash = hashlib.sha256(src).hexdigest()
             candidates.append({
                 "archive": arch, "entry_index": idx,
                 "entry_offset": e["offset"], "stored_size": e["size"],
@@ -152,6 +159,7 @@ def select(archive_dir, output_path):
                    "CJK payload, framed payloads, known target values; "
                    "excludes all previous pilot/evidence/blind entries"),
         "selection": "selection_score = int(sha256(archive:index:offset:size:flags)[:8],16); lowest 6 per family",
+        "source_locator_sha256_def": "sha256 of the Lua source-name bytes read from the block (locator commitment; path not revealed)",
         "holdout_a": sel_a,
         "holdout_b": sel_b,
         "source_path_not_revealed": True,
@@ -171,28 +179,26 @@ def selftest():
     # family detection on synthetic sources
     hdr = LUA_SIG + bytes([0x54, 0x00]) + LUAC_DATA_STD + bytes([4, 8, 8])
     tail11 = bytes([0x78, 0x56, 0x00, 0x01, 0x00, 0x00, 0x00, 0x28, 0x77, 0x40, 0x01])
-    import tempfile
-    def fam(src_bytes, vint):
-        blk = b"\xf2\xe8\x00\x00\xf6\x03" + hdr + tail11 + bytes([vint]) + src_bytes
-        return source_family_of_blk(blk)
-    def source_family_of_blk(blk):
-        L, n = load_unsigned(blk, 0x20)
-        slen = L - 1
-        src = blk[0x21:0x21 + slen]
-        text = src.decode("utf-8", errors="replace")
-        has_a = FAMILY_A in text
-        has_b = FAMILY_B in text
-        if has_b:
-            return "MSD_ST"
-        if has_a:
-            return "storyline_data"
-        return None
-    s1 = b"@hexm/client/storyline_data/x.lua"           # 34 bytes -> varint 35=0xA3
-    s2 = b"@hexm/client/storyline_data/wanfa/MSD_ST/ZDQ/dq_610900.lua"  # 58 bytes -> 59=0xBB
-    s3 = b"@hexm/client/ui/common.lua"                   # 25 bytes -> 26=0x9A
-    assert fam(s1, 0xA3) == "storyline_data", fam(s1, 0xA3)
-    assert fam(s2, 0xBB) == "MSD_ST", fam(s2, 0xBB)
-    assert fam(s3, 0x9A) is None
+
+    def blk_of(src_bytes, vint):
+        return b"\xf2\xe8\x00\x00\xf6\x03" + hdr + tail11 + bytes([vint]) + src_bytes
+
+    s1 = b"@hexm/client/storyline_data/x.lua"
+    s2 = b"@hexm/client/storyline_data/wanfa/MSD_ST/ZDQ/dq_610900.lua"
+    s3 = b"@hexm/client/ui/common.lua"
+
+    def vint(src):
+        return bytes([len(src) + 1 | 0x80])
+
+    fam1, src1 = source_family_of_blk(blk_of(s1, vint(s1)[0]))
+    fam2, src2 = source_family_of_blk(blk_of(s2, vint(s2)[0]))
+    fam3, _ = source_family_of_blk(blk_of(s3, vint(s3)[0]))
+    assert fam1 == "storyline_data" and src1 == s1, (fam1, src1)
+    assert fam2 == "MSD_ST" and src2 == s2, (fam2, src2)
+    assert fam3 is None
+    # locator commitment must hash the actual source bytes, not the score key
+    assert hashlib.sha256(src1).hexdigest() != \
+        hashlib.sha256(b"LT31:0:0:0:0").hexdigest()
     return True
 
 
