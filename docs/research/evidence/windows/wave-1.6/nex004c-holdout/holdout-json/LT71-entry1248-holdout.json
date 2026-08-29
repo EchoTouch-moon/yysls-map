@@ -2,19 +2,19 @@
   "schema_version": "raw-structural-observation-1",
   "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
   "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
-  "game_version": "20260820220319",
+  "game_version": "20260829165912",
   "archive": "LT71.mpk",
-  "archive_sha256": "42c9d32837a808c14fbe94dd161d6a011f21d6bf2378a91ca3e592ae76174b60",
-  "mpkinfo_sha256": "f5f8f15770689c257d83298e599d9961dacfbc311c1662dcdc322f98782cfcdb",
-  "entry_index": 2471,
-  "entry_offset": 4274273,
-  "entry_stored_size": 2033,
+  "archive_sha256": "74b0db1a3ca320fe03ef4ad5414b6e3d916c405f416ac274a018a26c988b3426",
+  "mpkinfo_sha256": "ed5b2f2e648dda43e30e185f4b8f5982ccc8b7b0910b491acbf18b9c21a981f6",
+  "entry_index": 1248,
+  "entry_offset": 4895949,
+  "entry_stored_size": 8248,
   "flags_raw": 142,
-  "block_sha256": "fe3e7eda7409bdf8bde34501319bfce66cbb1d19501b7848181ac751427581d8",
+  "block_sha256": "dff05859453dd4274b3172194cb4631345a6df3042eb11a7199eb8068855f25e",
   "container": {
     "lua_version": "5.4",
     "source_status": "SEGMENTED_PARTIAL",
-    "source_locator": "@hexm/client/storyline_data/7task/bujianshan/p0_jiuguan_dianxue.",
+    "source_locator": "@hexm/client/storyline_data/wanfa/MSD_ST/BSYT/\"xiaohai_jihe.lua",
     "source_segments": [
       {
         "value": "@hexm/client/storyline_data",
@@ -22,17 +22,22 @@
         "offset": 33
       },
       {
-        "value": "7task/bujianshan/p0_jiuguan_dianxue.lua",
+        "value": "wanfa/MSD_ST/BSYT",
         "truncated": false,
-        "offset": 63
+        "offset": 64
+      },
+      {
+        "value": "\"xiaohai_jihe.lua",
+        "truncated": false,
+        "offset": 84
       }
     ],
     "source_reconstruction": "PRINTABLE_RUN_JOIN",
-    "source_truncated": true
+    "source_truncated": false
   },
   "observations": [
     {
-      "byte_offset": 202,
+      "byte_offset": 823,
       "framing_tag_raw": "0x4",
       "encoded_length": 12,
       "value_byte_length": 11,
@@ -46,12 +51,31 @@
         "schema_version": "raw-structural-observation-1",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
         "archive": "LT71.mpk",
-        "entry_index": 2471,
-        "block_sha256": "fe3e7eda7409bdf8bde34501319bfce66cbb1d19501b7848181ac751427581d8"
+        "entry_index": 1248,
+        "block_sha256": "dff05859453dd4274b3172194cb4631345a6df3042eb11a7199eb8068855f25e"
       }
     },
     {
-      "byte_offset": 279,
+      "byte_offset": 837,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 17,
+      "value_byte_length": 16,
+      "raw_value": "aPY60vEjZDiMQ4qo",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1248,
+        "block_sha256": "dff05859453dd4274b3172194cb4631345a6df3042eb11a7199eb8068855f25e"
+      }
+    },
+    {
+      "byte_offset": 1391,
       "framing_tag_raw": "0x4",
       "encoded_length": 14,
       "value_byte_length": 13,
@@ -65,16 +89,16 @@
         "schema_version": "raw-structural-observation-1",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
         "archive": "LT71.mpk",
-        "entry_index": 2471,
-        "block_sha256": "fe3e7eda7409bdf8bde34501319bfce66cbb1d19501b7848181ac751427581d8"
+        "entry_index": 1248,
+        "block_sha256": "dff05859453dd4274b3172194cb4631345a6df3042eb11a7199eb8068855f25e"
       }
     },
     {
-      "byte_offset": 294,
+      "byte_offset": 1406,
       "framing_tag_raw": "0x4",
       "encoded_length": 14,
       "value_byte_length": 13,
-      "raw_value": "autoStartList",
+      "raw_value": "get_variables",
       "value_truncated": false,
       "discovery_rule_id": "R4",
       "discovery_method": "FRAMED_STRING_SCAN",
@@ -84,35 +108,92 @@
         "schema_version": "raw-structural-observation-1",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
         "archive": "LT71.mpk",
-        "entry_index": 2471,
-        "block_sha256": "fe3e7eda7409bdf8bde34501319bfce66cbb1d19501b7848181ac751427581d8"
+        "entry_index": 1248,
+        "block_sha256": "dff05859453dd4274b3172194cb4631345a6df3042eb11a7199eb8068855f25e"
       }
     },
     {
-      "byte_offset": 411,
+      "byte_offset": 1442,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 4,
+      "value_byte_length": 3,
+      "raw_value": "Int",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1248,
+        "block_sha256": "dff05859453dd4274b3172194cb4631345a6df3042eb11a7199eb8068855f25e"
+      }
+    },
+    {
+      "byte_offset": 1485,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 4,
+      "value_byte_length": 3,
+      "raw_value": "Str",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1248,
+        "block_sha256": "dff05859453dd4274b3172194cb4631345a6df3042eb11a7199eb8068855f25e"
+      }
+    },
+    {
+      "byte_offset": 1761,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 11,
+      "value_byte_length": 10,
+      "raw_value": "central_id",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT71.mpk",
+        "entry_index": 1248,
+        "block_sha256": "dff05859453dd4274b3172194cb4631345a6df3042eb11a7199eb8068855f25e"
+      }
+    },
+    {
+      "byte_offset": 1794,
       "framing_tag_raw": "0x4",
       "encoded_length": 7,
       "value_byte_length": 6,
-      "raw_value": "nodeID",
+      "raw_value": "小稞",
       "value_truncated": false,
-      "discovery_rule_id": "R4",
+      "discovery_rule_id": "R5",
       "discovery_method": "FRAMED_STRING_SCAN",
-      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
-      "confidence": "LOW",
+      "pattern_kind": "SHORT_CJK_TERM_CANDIDATE",
+      "confidence": "MEDIUM",
       "provenance": {
         "schema_version": "raw-structural-observation-1",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
         "archive": "LT71.mpk",
-        "entry_index": 2471,
-        "block_sha256": "fe3e7eda7409bdf8bde34501319bfce66cbb1d19501b7848181ac751427581d8"
+        "entry_index": 1248,
+        "block_sha256": "dff05859453dd4274b3172194cb4631345a6df3042eb11a7199eb8068855f25e"
       }
     },
     {
-      "byte_offset": 437,
+      "byte_offset": 1802,
       "framing_tag_raw": "0x4",
-      "encoded_length": 8,
-      "value_byte_length": 7,
-      "raw_value": "__out__",
+      "encoded_length": 13,
+      "value_byte_length": 12,
+      "raw_value": "switch_up_on",
       "value_truncated": false,
       "discovery_rule_id": "R4",
       "discovery_method": "FRAMED_STRING_SCAN",
@@ -122,65 +203,8 @@
         "schema_version": "raw-structural-observation-1",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
         "archive": "LT71.mpk",
-        "entry_index": 2471,
-        "block_sha256": "fe3e7eda7409bdf8bde34501319bfce66cbb1d19501b7848181ac751427581d8"
-      }
-    },
-    {
-      "byte_offset": 508,
-      "framing_tag_raw": "0x4",
-      "encoded_length": 5,
-      "value_byte_length": 4,
-      "raw_value": "Type",
-      "value_truncated": false,
-      "discovery_rule_id": "R4",
-      "discovery_method": "FRAMED_STRING_SCAN",
-      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
-      "confidence": "LOW",
-      "provenance": {
-        "schema_version": "raw-structural-observation-1",
-        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "archive": "LT71.mpk",
-        "entry_index": 2471,
-        "block_sha256": "fe3e7eda7409bdf8bde34501319bfce66cbb1d19501b7848181ac751427581d8"
-      }
-    },
-    {
-      "byte_offset": 704,
-      "framing_tag_raw": "0x4",
-      "encoded_length": 16,
-      "value_byte_length": 15,
-      "raw_value": "b_trigger_check",
-      "value_truncated": false,
-      "discovery_rule_id": "R4",
-      "discovery_method": "FRAMED_STRING_SCAN",
-      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
-      "confidence": "LOW",
-      "provenance": {
-        "schema_version": "raw-structural-observation-1",
-        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "archive": "LT71.mpk",
-        "entry_index": 2471,
-        "block_sha256": "fe3e7eda7409bdf8bde34501319bfce66cbb1d19501b7848181ac751427581d8"
-      }
-    },
-    {
-      "byte_offset": 1073,
-      "framing_tag_raw": "0x4",
-      "encoded_length": 8,
-      "value_byte_length": 7,
-      "raw_value": "kit_tag",
-      "value_truncated": false,
-      "discovery_rule_id": "R4",
-      "discovery_method": "FRAMED_STRING_SCAN",
-      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
-      "confidence": "LOW",
-      "provenance": {
-        "schema_version": "raw-structural-observation-1",
-        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "archive": "LT71.mpk",
-        "entry_index": 2471,
-        "block_sha256": "fe3e7eda7409bdf8bde34501319bfce66cbb1d19501b7848181ac751427581d8"
+        "entry_index": 1248,
+        "block_sha256": "dff05859453dd4274b3172194cb4631345a6df3042eb11a7199eb8068855f25e"
       }
     }
   ],

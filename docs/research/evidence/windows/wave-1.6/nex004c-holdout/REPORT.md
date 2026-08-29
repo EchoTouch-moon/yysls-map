@@ -82,3 +82,39 @@ manifest 每条仅含：archive / entry_index / entry_offset / stored_size / fla
 
 1. 更强的非 payload 采样先验（如 entry size ≥ 10KB 的 storyline_data family 条目），重新做一轮 narrative-relevant holdout；或
 2. 接受 PARTIAL 结论，转向 Windows+Mac 合并（NEX-006）与 CANONICAL_CANDIDATE 讨论（holdout 结果不阻塞 RAW/STRUCTURAL observations 的既有成果）。
+
+## 9. Addendum（2026-08-29）：manifest 重新冻结（schema v2）+ 记录再生成
+
+两个独立原因触发了本次重新冻结；**冻结的选择政策本身未变**（同一 allowed prior / forbidden signals / exclusion / determinism 规则，在观察结果未见的前提下应用）：
+
+1. **P1 修复（PR #1 review）**：schema v1 的 `source_locator_sha256` 实际哈希的是分数键 `archive:index:offset:size:flags`，而非 source bytes——即 manifest 对 locator 未形成任何承诺。修复为哈希从块中读出的实际 Lua source-name bytes（路径仍不泄露）。**schema 版本 → `nex004c-holdout-manifest-2`**，manifest 增加 `source_locator_sha256_def` 字段。这是对承诺定义的修正，不是对选择规则的更改。
+2. **第二次 baseline drift**：launcher 再次重写归档（`patching_version.txt`: `20260820220319` → `20260829165912`），旧 12 个 holdout 索引对应的块内容不再有效。全部记录用**冻结引擎 `204c97f`**（blob sha256 `6be80797…`）对当前归档重新生成。
+
+**新 holdout 集（12，全部不同于旧集）**：
+
+| pool | 条目 |
+| --- | --- |
+| A（storyline_data） | LT31[2602], LT71[2574], LT51[829], LT31[1580], LT31[2586], LT51[2882] |
+| B（MSD_ST） | LT31[566], LT31[131], LT51[2986], LT31[1616], LT71[1248], LT51[3047] |
+
+**重生成记录的观测概况**（12/12，game_version `20260829165912`，extractor_commit `204c97f`，extractor_source_sha256 `6be80797…`）：
+
+| entry | stored_size | obs | SHORT_CJK | TEXT_REF | 备注 |
+| --- | --- | --- | --- | --- | --- |
+| LT31[2602] | 1140 | 8 | 0 | 0 | 仅 IDENTIFIER_TOKEN |
+| LT71[2574] | 869 | 8 | 0 | 0 | 仅 IDENTIFIER_TOKEN |
+| LT51[829] | 828 | 8 | 0 | 0 | 仅 IDENTIFIER_TOKEN |
+| LT31[1580] | 977 | 8 | 0 | 0 | 仅 IDENTIFIER_TOKEN |
+| LT31[2586] | 1769 | 8 | 0 | 0 | 仅 IDENTIFIER_TOKEN |
+| LT51[2882] | 884 | 8 | 0 | 0 | 仅 IDENTIFIER_TOKEN |
+| LT31[566] | 3015 | 10 | **1** | **1** | MSD_ST 数据脚本 |
+| LT31[131] | 6984 | 8 | 0 | 0 | 仅 IDENTIFIER_TOKEN |
+| LT51[2986] | 6712 | 9 | **1** | 0 | MSD_ST 数据脚本 |
+| LT31[1616] | 1609 | 8 | 0 | 0 | 仅 IDENTIFIER_TOKEN |
+| LT71[1248] | 8248 | 9 | **1** | 0 | MSD_ST 数据脚本 |
+| LT51[3047] | 1789 | 8 | 0 | 0 | 仅 IDENTIFIER_TOKEN |
+
+**复评结论**：3/12 条目携带 SHORT_CJK_TERM_CANDIDATE（集中于较大的 MSD_ST 数据脚本），与 §5 的既有结论一致（小型模块多无叙事 payload，数据脚本命中率更高）。Coverage 仍为 1 个 distinct specific family（R5）→ **Gate 维持 GENERALIZATION_PARTIAL**。§3-§4 的逐条表格对应旧（20260820220319）快照，作为历史记录保留，不再对应当前 manifest。
+
+- 工具修复提交：`40fe8de`（locator hash + 实质 provenance 校验）；`47266d4`（frozen engine blob 装载 + 去重）。
+- 无 canonical 写入；无内容导出；路径未泄露（仅字节承诺哈希）。

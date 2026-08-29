@@ -1,129 +1,130 @@
 {
-  "schema_version": "nex004c-holdout-manifest-1",
+  "schema_version": "nex004c-holdout-manifest-2",
   "policy": "source family prior only (storyline_data / MSD_ST); forbidden signals unused: dq_*, EXPANSION_*, numeric refs, CJK payload, framed payloads, known target values; excludes all previous pilot/evidence/blind entries",
   "selection": "selection_score = int(sha256(archive:index:offset:size:flags)[:8],16); lowest 6 per family",
+  "source_locator_sha256_def": "sha256 of the Lua source-name bytes read from the block (locator commitment; path not revealed)",
   "holdout_a": [
     {
       "archive": "LT31",
-      "entry_index": 1087,
-      "entry_offset": 6330629,
-      "stored_size": 1467,
+      "entry_index": 2602,
+      "entry_offset": 7431098,
+      "stored_size": 1140,
       "flags_raw": 62,
       "source_family": "storyline_data",
-      "source_locator_sha256": "00678f1cf8e5872dd89ed0187cb14024e2a93468015bfa304d45608ff8156e0e",
-      "selection_score": 6786844
+      "source_locator_sha256": "97dba24b04c8e701584e86e020e04c1adb7e52de012f7e2ca656defac62fee95",
+      "selection_score": 2373675
+    },
+    {
+      "archive": "LT71",
+      "entry_index": 2574,
+      "entry_offset": 5216943,
+      "stored_size": 869,
+      "flags_raw": 142,
+      "source_family": "storyline_data",
+      "source_locator_sha256": "7a82b5d5a53b8997a5b0b49fc6343ebf152bfdf0b6d85400a3be97d1e928f72b",
+      "selection_score": 2397286
     },
     {
       "archive": "LT51",
-      "entry_index": 1280,
-      "entry_offset": 6134955,
-      "stored_size": 923,
+      "entry_index": 829,
+      "entry_offset": 5698555,
+      "stored_size": 828,
       "flags_raw": 102,
       "source_family": "storyline_data",
-      "source_locator_sha256": "0079e0c205754d93129c5775f80da269b88631023f23c4c8064eda61ff3b2428",
-      "selection_score": 7987394
+      "source_locator_sha256": "61d27aa44ef9f712c8710a3aed76b1434dfcb64ade9d3fef44059ba092863172",
+      "selection_score": 4610694
+    },
+    {
+      "archive": "LT31",
+      "entry_index": 1580,
+      "entry_offset": 7409219,
+      "stored_size": 977,
+      "flags_raw": 62,
+      "source_family": "storyline_data",
+      "source_locator_sha256": "2f4188b09eb74b5736d582a22d9e73b4e0a0b30a46b1d057ac38cc9713886f77",
+      "selection_score": 11873630
+    },
+    {
+      "archive": "LT31",
+      "entry_index": 2586,
+      "entry_offset": 7425901,
+      "stored_size": 1769,
+      "flags_raw": 62,
+      "source_family": "storyline_data",
+      "source_locator_sha256": "ca4a8186b4e43888df9796c97c27c762140f03338558347fd2683e77bf87d49b",
+      "selection_score": 14941351
     },
     {
       "archive": "LT51",
-      "entry_index": 1272,
-      "entry_offset": 4492591,
-      "stored_size": 951,
+      "entry_index": 2882,
+      "entry_offset": 4745251,
+      "stored_size": 884,
       "flags_raw": 102,
       "source_family": "storyline_data",
-      "source_locator_sha256": "00f9039fe4b1949c6d24c1909658b1679597bceea04170e5e0fc097f138023d3",
-      "selection_score": 16319391
-    },
-    {
-      "archive": "LT71",
-      "entry_index": 2471,
-      "entry_offset": 4274273,
-      "stored_size": 2033,
-      "flags_raw": 142,
-      "source_family": "storyline_data",
-      "source_locator_sha256": "0110a3ca774b1cd53c3825055d5e40086a009398d6f5bc74143212f688b9dc13",
-      "selection_score": 17867722
-    },
-    {
-      "archive": "LT71",
-      "entry_index": 2415,
-      "entry_offset": 4037387,
-      "stored_size": 4972,
-      "flags_raw": 142,
-      "source_family": "storyline_data",
-      "source_locator_sha256": "014d5490d778857f5ba0e40fb04e6d7f5a879577c51ccd0b3cff3f7564532f6d",
-      "selection_score": 21845136
-    },
-    {
-      "archive": "LT71",
-      "entry_index": 886,
-      "entry_offset": 5267157,
-      "stored_size": 12168,
-      "flags_raw": 142,
-      "source_family": "storyline_data",
-      "source_locator_sha256": "01536bbd5edcce394167976ccb6745bfaa5b194dd75e45c6918abfd007958a46",
-      "selection_score": 22244285
+      "source_locator_sha256": "6c738ec179fa5ad0d1a721815d382b8ce6fbe59a1fa83f685f8e4117805772c1",
+      "selection_score": 17948740
     }
   ],
   "holdout_b": [
     {
       "archive": "LT31",
-      "entry_index": 1702,
-      "entry_offset": 7233432,
-      "stored_size": 2118,
+      "entry_index": 566,
+      "entry_offset": 7275325,
+      "stored_size": 3015,
       "flags_raw": 62,
       "source_family": "MSD_ST",
-      "source_locator_sha256": "00708af8bc66c503ff63d89cb9cd1ebfedc0a7de8a7ab8bd3ef916cdb467c075",
-      "selection_score": 7375608
+      "source_locator_sha256": "2cccc05b96de1647bce76e40faadfc1d9a3c99cb50eff6a0e3f57ee4f078d0cf",
+      "selection_score": 10653722
     },
     {
       "archive": "LT31",
-      "entry_index": 2382,
-      "entry_offset": 7361905,
-      "stored_size": 4279,
+      "entry_index": 131,
+      "entry_offset": 7291536,
+      "stored_size": 6984,
       "flags_raw": 62,
       "source_family": "MSD_ST",
-      "source_locator_sha256": "01f9accca8d19e799a0303672ceea5e283c56db24b432d70bcb690b8c73d1c13",
-      "selection_score": 33139916
+      "source_locator_sha256": "175869956e44d93c3e1e3462ad5053fbf7ed5ed8a015a5c0ead52d622bb67fed",
+      "selection_score": 15545140
+    },
+    {
+      "archive": "LT51",
+      "entry_index": 2986,
+      "entry_offset": 5785999,
+      "stored_size": 6712,
+      "flags_raw": 102,
+      "source_family": "MSD_ST",
+      "source_locator_sha256": "b8a9fa21e1156bcef60c083837848c4dba8acc14e9ff4d0a14d72dc71ef9ab36",
+      "selection_score": 25677296
     },
     {
       "archive": "LT31",
-      "entry_index": 1583,
+      "entry_index": 1616,
       "entry_offset": 7227531,
       "stored_size": 1609,
       "flags_raw": 62,
       "source_family": "MSD_ST",
-      "source_locator_sha256": "032451a568514af16aaef6435a6c2fb346bf21ce73682a9086575a8791b5e35b",
-      "selection_score": 52711845
+      "source_locator_sha256": "bb500658387e797183e404923f7b0b3776fd22a94ae3dbc1d3cddce14f859668",
+      "selection_score": 26604198
     },
     {
       "archive": "LT71",
-      "entry_index": 1068,
-      "entry_offset": 4698218,
-      "stored_size": 13099,
+      "entry_index": 1248,
+      "entry_offset": 4895949,
+      "stored_size": 8248,
       "flags_raw": 142,
       "source_family": "MSD_ST",
-      "source_locator_sha256": "04d2b604d5367483bfa2368451d3fc919312fd97e02f10eaae3775566848a90d",
-      "selection_score": 80918020
+      "source_locator_sha256": "1a32584d0354b575051eca27704d352803c5d3e362215c7276994ef84f557055",
+      "selection_score": 29376853
     },
     {
-      "archive": "LT31",
-      "entry_index": 659,
-      "entry_offset": 7229971,
-      "stored_size": 1528,
-      "flags_raw": 62,
+      "archive": "LT51",
+      "entry_index": 3047,
+      "entry_offset": 5862481,
+      "stored_size": 1789,
+      "flags_raw": 102,
       "source_family": "MSD_ST",
-      "source_locator_sha256": "09a253b493d315a59ccbb56f98e3a4831f22829b096b6801e0cf66ca6c3e031e",
-      "selection_score": 161633204
-    },
-    {
-      "archive": "LT71",
-      "entry_index": 824,
-      "entry_offset": 4545492,
-      "stored_size": 1663,
-      "flags_raw": 142,
-      "source_family": "MSD_ST",
-      "source_locator_sha256": "0bc21f23c24d946406f54179279cb0c58b242a9ceb82337044c1489ffe00f277",
-      "selection_score": 197271331
+      "source_locator_sha256": "fe8cae3f2100736f545ee934b2db50b78631f9c3e70e718698e9a568d3074273",
+      "selection_score": 38850875
     }
   ],
   "source_path_not_revealed": true

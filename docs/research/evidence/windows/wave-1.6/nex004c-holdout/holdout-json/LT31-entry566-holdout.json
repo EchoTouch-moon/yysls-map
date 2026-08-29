@@ -2,19 +2,19 @@
   "schema_version": "raw-structural-observation-1",
   "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
   "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
-  "game_version": "20260820220319",
+  "game_version": "20260829165912",
   "archive": "LT31.mpk",
-  "archive_sha256": "280639e8e0dd1980c2feae65beca7ba972ee89c0ef528d6405ad4657d10cfa96",
-  "mpkinfo_sha256": "4ae32cef07988376af946bb7befe2294e1e06aae466ef60740db89b34ac97ac3",
-  "entry_index": 1583,
-  "entry_offset": 7227531,
-  "entry_stored_size": 1609,
+  "archive_sha256": "b404de7775a7e18876bbc4da732ee997509b09eb26f4fe4affee961ba1abea87",
+  "mpkinfo_sha256": "2d07b95700bc44e3e931b469c85e86b738c6da259b1b029b66f95f3ce2e5604b",
+  "entry_index": 566,
+  "entry_offset": 7275325,
+  "entry_stored_size": 3015,
   "flags_raw": 62,
-  "block_sha256": "1cb47af8a3dcb98cc009bc99e7620d01fc730e4377782b268ab198c78646a534",
+  "block_sha256": "ac5da7a1008f1795cbc4b0a3324ff7a8be6fea4e1ee2b8809bcc471fca2541af",
   "container": {
     "lua_version": "5.4",
     "source_status": "SEGMENTED_PARTIAL",
-    "source_locator": "@hexm/client/storyline_data/wanfa/MSD_ST/JTY/!task_3540024.lua/`",
+    "source_locator": "@hexm/client/storyline_data/wanfa/MSD_ST/SmallTheater/13610.lua",
     "source_segments": [
       {
         "value": "@hexm/client/storyline_data",
@@ -22,19 +22,14 @@
         "offset": 33
       },
       {
-        "value": "wanfa/MSD_ST/JTY",
+        "value": "wanfa/MSD_ST/SmallTheater",
         "truncated": false,
         "offset": 64
       },
       {
-        "value": "!task_3540024.lua",
+        "value": "13610.lua",
         "truncated": false,
-        "offset": 83
-      },
-      {
-        "value": "`",
-        "truncated": false,
-        "offset": 106
+        "offset": 93
       }
     ],
     "source_reconstruction": "PRINTABLE_RUN_JOIN",
@@ -42,7 +37,7 @@
   },
   "observations": [
     {
-      "byte_offset": 200,
+      "byte_offset": 308,
       "framing_tag_raw": "0x4",
       "encoded_length": 12,
       "value_byte_length": 11,
@@ -56,12 +51,31 @@
         "schema_version": "raw-structural-observation-1",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
         "archive": "LT31.mpk",
-        "entry_index": 1583,
-        "block_sha256": "1cb47af8a3dcb98cc009bc99e7620d01fc730e4377782b268ab198c78646a534"
+        "entry_index": 566,
+        "block_sha256": "ac5da7a1008f1795cbc4b0a3324ff7a8be6fea4e1ee2b8809bcc471fca2541af"
       }
     },
     {
-      "byte_offset": 279,
+      "byte_offset": 322,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 17,
+      "value_byte_length": 16,
+      "raw_value": "aUAMmARcy3fI4D2P",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 566,
+        "block_sha256": "ac5da7a1008f1795cbc4b0a3324ff7a8be6fea4e1ee2b8809bcc471fca2541af"
+      }
+    },
+    {
+      "byte_offset": 428,
       "framing_tag_raw": "0x4",
       "encoded_length": 14,
       "value_byte_length": 13,
@@ -75,12 +89,107 @@
         "schema_version": "raw-structural-observation-1",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
         "archive": "LT31.mpk",
-        "entry_index": 1583,
-        "block_sha256": "1cb47af8a3dcb98cc009bc99e7620d01fc730e4377782b268ab198c78646a534"
+        "entry_index": 566,
+        "block_sha256": "ac5da7a1008f1795cbc4b0a3324ff7a8be6fea4e1ee2b8809bcc471fca2541af"
       }
     },
     {
-      "byte_offset": 294,
+      "byte_offset": 443,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 14,
+      "value_byte_length": 13,
+      "raw_value": "get_variables",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 566,
+        "block_sha256": "ac5da7a1008f1795cbc4b0a3324ff7a8be6fea4e1ee2b8809bcc471fca2541af"
+      }
+    },
+    {
+      "byte_offset": 487,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 6,
+      "value_byte_length": 5,
+      "raw_value": "Float",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 566,
+        "block_sha256": "ac5da7a1008f1795cbc4b0a3324ff7a8be6fea4e1ee2b8809bcc471fca2541af"
+      }
+    },
+    {
+      "byte_offset": 514,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 4,
+      "value_byte_length": 3,
+      "raw_value": "Str",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 566,
+        "block_sha256": "ac5da7a1008f1795cbc4b0a3324ff7a8be6fea4e1ee2b8809bcc471fca2541af"
+      }
+    },
+    {
+      "byte_offset": 535,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 8,
+      "value_byte_length": 7,
+      "raw_value": "Vector3",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 566,
+        "block_sha256": "ac5da7a1008f1795cbc4b0a3324ff7a8be6fea4e1ee2b8809bcc471fca2541af"
+      }
+    },
+    {
+      "byte_offset": 641,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 13,
+      "value_byte_length": 12,
+      "raw_value": "传送配置",
+      "value_truncated": false,
+      "discovery_rule_id": "R5",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "SHORT_CJK_TERM_CANDIDATE",
+      "confidence": "MEDIUM",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 566,
+        "block_sha256": "ac5da7a1008f1795cbc4b0a3324ff7a8be6fea4e1ee2b8809bcc471fca2541af"
+      }
+    },
+    {
+      "byte_offset": 655,
       "framing_tag_raw": "0x4",
       "encoded_length": 14,
       "value_byte_length": 13,
@@ -94,103 +203,27 @@
         "schema_version": "raw-structural-observation-1",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
         "archive": "LT31.mpk",
-        "entry_index": 1583,
-        "block_sha256": "1cb47af8a3dcb98cc009bc99e7620d01fc730e4377782b268ab198c78646a534"
+        "entry_index": 566,
+        "block_sha256": "ac5da7a1008f1795cbc4b0a3324ff7a8be6fea4e1ee2b8809bcc471fca2541af"
       }
     },
     {
-      "byte_offset": 435,
-      "framing_tag_raw": "0x4",
-      "encoded_length": 7,
-      "value_byte_length": 6,
-      "raw_value": "nodeID",
+      "byte_offset": 93,
+      "framing_tag_raw": null,
+      "encoded_length": null,
+      "value_byte_length": 5,
+      "raw_value": "13610",
       "value_truncated": false,
-      "discovery_rule_id": "R4",
-      "discovery_method": "FRAMED_STRING_SCAN",
-      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
-      "confidence": "LOW",
+      "discovery_rule_id": "R3",
+      "discovery_method": "SOURCE_PATH_SCAN",
+      "pattern_kind": "TEXT_REF_CANDIDATE",
+      "confidence": "MEDIUM",
       "provenance": {
         "schema_version": "raw-structural-observation-1",
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
         "archive": "LT31.mpk",
-        "entry_index": 1583,
-        "block_sha256": "1cb47af8a3dcb98cc009bc99e7620d01fc730e4377782b268ab198c78646a534"
-      }
-    },
-    {
-      "byte_offset": 461,
-      "framing_tag_raw": "0x4",
-      "encoded_length": 8,
-      "value_byte_length": 7,
-      "raw_value": "__out__",
-      "value_truncated": false,
-      "discovery_rule_id": "R4",
-      "discovery_method": "FRAMED_STRING_SCAN",
-      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
-      "confidence": "LOW",
-      "provenance": {
-        "schema_version": "raw-structural-observation-1",
-        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "archive": "LT31.mpk",
-        "entry_index": 1583,
-        "block_sha256": "1cb47af8a3dcb98cc009bc99e7620d01fc730e4377782b268ab198c78646a534"
-      }
-    },
-    {
-      "byte_offset": 536,
-      "framing_tag_raw": "0x4",
-      "encoded_length": 5,
-      "value_byte_length": 4,
-      "raw_value": "Type",
-      "value_truncated": false,
-      "discovery_rule_id": "R4",
-      "discovery_method": "FRAMED_STRING_SCAN",
-      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
-      "confidence": "LOW",
-      "provenance": {
-        "schema_version": "raw-structural-observation-1",
-        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "archive": "LT31.mpk",
-        "entry_index": 1583,
-        "block_sha256": "1cb47af8a3dcb98cc009bc99e7620d01fc730e4377782b268ab198c78646a534"
-      }
-    },
-    {
-      "byte_offset": 916,
-      "framing_tag_raw": "0x4",
-      "encoded_length": 10,
-      "value_byte_length": 9,
-      "raw_value": "coop_sync",
-      "value_truncated": false,
-      "discovery_rule_id": "R4",
-      "discovery_method": "FRAMED_STRING_SCAN",
-      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
-      "confidence": "LOW",
-      "provenance": {
-        "schema_version": "raw-structural-observation-1",
-        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "archive": "LT31.mpk",
-        "entry_index": 1583,
-        "block_sha256": "1cb47af8a3dcb98cc009bc99e7620d01fc730e4377782b268ab198c78646a534"
-      }
-    },
-    {
-      "byte_offset": 928,
-      "framing_tag_raw": "0x4",
-      "encoded_length": 11,
-      "value_byte_length": 10,
-      "raw_value": "target_pos",
-      "value_truncated": false,
-      "discovery_rule_id": "R4",
-      "discovery_method": "FRAMED_STRING_SCAN",
-      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
-      "confidence": "LOW",
-      "provenance": {
-        "schema_version": "raw-structural-observation-1",
-        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "archive": "LT31.mpk",
-        "entry_index": 1583,
-        "block_sha256": "1cb47af8a3dcb98cc009bc99e7620d01fc730e4377782b268ab198c78646a534"
+        "entry_index": 566,
+        "block_sha256": "ac5da7a1008f1795cbc4b0a3324ff7a8be6fea4e1ee2b8809bcc471fca2541af"
       }
     }
   ],

@@ -2,29 +2,29 @@
   "schema_version": "raw-structural-observation-1",
   "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
   "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
-  "game_version": "20260820220319",
+  "game_version": "20260829165912",
   "archive": "LT31.mpk",
-  "archive_sha256": "280639e8e0dd1980c2feae65beca7ba972ee89c0ef528d6405ad4657d10cfa96",
-  "mpkinfo_sha256": "4ae32cef07988376af946bb7befe2294e1e06aae466ef60740db89b34ac97ac3",
+  "archive_sha256": "b404de7775a7e18876bbc4da732ee997509b09eb26f4fe4affee961ba1abea87",
+  "mpkinfo_sha256": "2d07b95700bc44e3e931b469c85e86b738c6da259b1b029b66f95f3ce2e5604b",
   "entry_index": 2876,
-  "entry_offset": 8399515,
-  "entry_stored_size": 2018,
+  "entry_offset": 7705651,
+  "entry_stored_size": 1902,
   "flags_raw": 62,
-  "block_sha256": "d3dd5f926c9d7abd2300a79d30aeb9214fd0579db41a967ef8cd4adc97a626ce",
+  "block_sha256": "b0598872056d0bab3d35e5929edc8732c17ee2a00c2bc4eff80d78923fa6c6a8",
   "container": {
     "lua_version": "5.4",
     "source_status": "SEGMENTED_PARTIAL",
-    "source_locator": "@hexm/client/ui/generated_view/home_hud_boss_blood_heicaishen_it",
+    "source_locator": "@hexm/client/storyline_data/9wanfa/zujian/wby/minganxian_guochan",
     "source_segments": [
       {
-        "value": "@hexm/client/ui/generated_view/home_hud_boss_blood_heicaishen_it",
-        "truncated": true,
+        "value": "@hexm/client/storyline_data",
+        "truncated": false,
         "offset": 33
       },
       {
-        "value": "|.lua",
+        "value": "9wanfa/zujian/wby/minganxian_guochang.lua",
         "truncated": false,
-        "offset": 102
+        "offset": 63
       }
     ],
     "source_reconstruction": "PRINTABLE_RUN_JOIN",
@@ -32,87 +32,11 @@
   },
   "observations": [
     {
-      "byte_offset": 582,
-      "framing_tag_raw": "0x4",
-      "encoded_length": 8,
-      "value_byte_length": 7,
-      "raw_value": "require",
-      "value_truncated": false,
-      "discovery_rule_id": "R4",
-      "discovery_method": "FRAMED_STRING_SCAN",
-      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
-      "confidence": "LOW",
-      "provenance": {
-        "schema_version": "raw-structural-observation-1",
-        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "archive": "LT31.mpk",
-        "entry_index": 2876,
-        "block_sha256": "d3dd5f926c9d7abd2300a79d30aeb9214fd0579db41a967ef8cd4adc97a626ce"
-      }
-    },
-    {
-      "byte_offset": 716,
-      "framing_tag_raw": "0x5",
-      "encoded_length": 6,
-      "value_byte_length": 5,
-      "raw_value": "class",
-      "value_truncated": false,
-      "discovery_rule_id": "R4",
-      "discovery_method": "FRAMED_STRING_SCAN",
-      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
-      "confidence": "LOW",
-      "provenance": {
-        "schema_version": "raw-structural-observation-1",
-        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "archive": "LT31.mpk",
-        "entry_index": 2876,
-        "block_sha256": "d3dd5f926c9d7abd2300a79d30aeb9214fd0579db41a967ef8cd4adc97a626ce"
-      }
-    },
-    {
-      "byte_offset": 762,
-      "framing_tag_raw": "0x6",
-      "encoded_length": 17,
-      "value_byte_length": 16,
-      "raw_value": "NODES_INDEX_PATH",
-      "value_truncated": false,
-      "discovery_rule_id": "R4",
-      "discovery_method": "FRAMED_STRING_SCAN",
-      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
-      "confidence": "LOW",
-      "provenance": {
-        "schema_version": "raw-structural-observation-1",
-        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "archive": "LT31.mpk",
-        "entry_index": 2876,
-        "block_sha256": "d3dd5f926c9d7abd2300a79d30aeb9214fd0579db41a967ef8cd4adc97a626ce"
-      }
-    },
-    {
-      "byte_offset": 893,
-      "framing_tag_raw": "0x4",
-      "encoded_length": 14,
-      "value_byte_length": 13,
-      "raw_value": "particle_4397",
-      "value_truncated": false,
-      "discovery_rule_id": "R4",
-      "discovery_method": "FRAMED_STRING_SCAN",
-      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
-      "confidence": "LOW",
-      "provenance": {
-        "schema_version": "raw-structural-observation-1",
-        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
-        "archive": "LT31.mpk",
-        "entry_index": 2876,
-        "block_sha256": "d3dd5f926c9d7abd2300a79d30aeb9214fd0579db41a967ef8cd4adc97a626ce"
-      }
-    },
-    {
-      "byte_offset": 927,
+      "byte_offset": 241,
       "framing_tag_raw": "0x4",
       "encoded_length": 12,
       "value_byte_length": 11,
-      "raw_value": "root_attach",
+      "raw_value": "_reload_all",
       "value_truncated": false,
       "discovery_rule_id": "R4",
       "discovery_method": "FRAMED_STRING_SCAN",
@@ -123,15 +47,15 @@
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
         "archive": "LT31.mpk",
         "entry_index": 2876,
-        "block_sha256": "d3dd5f926c9d7abd2300a79d30aeb9214fd0579db41a967ef8cd4adc97a626ce"
+        "block_sha256": "b0598872056d0bab3d35e5929edc8732c17ee2a00c2bc4eff80d78923fa6c6a8"
       }
     },
     {
-      "byte_offset": 966,
+      "byte_offset": 255,
       "framing_tag_raw": "0x4",
-      "encoded_length": 9,
-      "value_byte_length": 8,
-      "raw_value": "vx_par_1",
+      "encoded_length": 17,
+      "value_byte_length": 16,
+      "raw_value": "aQLU5J5M3yNQrrTO",
       "value_truncated": false,
       "discovery_rule_id": "R4",
       "discovery_method": "FRAMED_STRING_SCAN",
@@ -142,15 +66,15 @@
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
         "archive": "LT31.mpk",
         "entry_index": 2876,
-        "block_sha256": "d3dd5f926c9d7abd2300a79d30aeb9214fd0579db41a967ef8cd4adc97a626ce"
+        "block_sha256": "b0598872056d0bab3d35e5929edc8732c17ee2a00c2bc4eff80d78923fa6c6a8"
       }
     },
     {
-      "byte_offset": 998,
+      "byte_offset": 376,
       "framing_tag_raw": "0x4",
-      "encoded_length": 6,
-      "value_byte_length": 5,
-      "raw_value": "ANIMS",
+      "encoded_length": 14,
+      "value_byte_length": 13,
+      "raw_value": "NodeGraphData",
       "value_truncated": false,
       "discovery_rule_id": "R4",
       "discovery_method": "FRAMED_STRING_SCAN",
@@ -161,15 +85,91 @@
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
         "archive": "LT31.mpk",
         "entry_index": 2876,
-        "block_sha256": "d3dd5f926c9d7abd2300a79d30aeb9214fd0579db41a967ef8cd4adc97a626ce"
+        "block_sha256": "b0598872056d0bab3d35e5929edc8732c17ee2a00c2bc4eff80d78923fa6c6a8"
       }
     },
     {
-      "byte_offset": 1005,
+      "byte_offset": 391,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 14,
+      "value_byte_length": 13,
+      "raw_value": "autoStartList",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 2876,
+        "block_sha256": "b0598872056d0bab3d35e5929edc8732c17ee2a00c2bc4eff80d78923fa6c6a8"
+      }
+    },
+    {
+      "byte_offset": 508,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 7,
+      "value_byte_length": 6,
+      "raw_value": "nodeID",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 2876,
+        "block_sha256": "b0598872056d0bab3d35e5929edc8732c17ee2a00c2bc4eff80d78923fa6c6a8"
+      }
+    },
+    {
+      "byte_offset": 534,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 8,
+      "value_byte_length": 7,
+      "raw_value": "__out__",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 2876,
+        "block_sha256": "b0598872056d0bab3d35e5929edc8732c17ee2a00c2bc4eff80d78923fa6c6a8"
+      }
+    },
+    {
+      "byte_offset": 605,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 5,
+      "value_byte_length": 4,
+      "raw_value": "Type",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 2876,
+        "block_sha256": "b0598872056d0bab3d35e5929edc8732c17ee2a00c2bc4eff80d78923fa6c6a8"
+      }
+    },
+    {
+      "byte_offset": 829,
       "framing_tag_raw": "0x4",
       "encoded_length": 11,
       "value_byte_length": 10,
-      "raw_value": "EMPTY_LIST",
+      "raw_value": "time_scale",
       "value_truncated": false,
       "discovery_rule_id": "R4",
       "discovery_method": "FRAMED_STRING_SCAN",
@@ -180,7 +180,7 @@
         "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
         "archive": "LT31.mpk",
         "entry_index": 2876,
-        "block_sha256": "d3dd5f926c9d7abd2300a79d30aeb9214fd0579db41a967ef8cd4adc97a626ce"
+        "block_sha256": "b0598872056d0bab3d35e5929edc8732c17ee2a00c2bc4eff80d78923fa6c6a8"
       }
     }
   ],

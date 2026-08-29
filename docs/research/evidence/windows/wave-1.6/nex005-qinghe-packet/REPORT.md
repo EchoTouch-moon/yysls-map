@@ -91,3 +91,38 @@ per-entry             = archive / entry_index / entry_offset / stored_size / blo
 
 **NEX-006 — Native Evidence × Narrative Research Reconciliation**：逐 claim 对照（Mac claim ↔ Windows EvidenceCluster ↔ canonical v0.1），输出 SUPPORTED / PARTIALLY_SUPPORTED / CONFLICT / UNRESOLVED，不直接写 canonical。
 
+## 9. Addendum（2026-08-29）：PR #1 review 修复后重建（drift + hardened provenance）
+
+触发原因：
+
+1. **PR #1 review（3×P1 + 1×P2）**——builder 侧修复：
+   - `verify_provenance`：对每条入选记录**基于当前归档目录重新验证**（不再只查字段形状）：mpkinfo 版本/尺寸不变量、streaming 重算 `mpkinfo_sha256` / `archive_sha256`、entry 元数据三元组 `(offset, stored_size, flags)` 逐条比对、重读块并重算 `block_sha256`、`game_version` 一致性；任一不符 → fail closed（不写文件）。
+   - `verify_extractor_blob`：`extractor_source_sha256` 必须等于 `git show <extractor_commit>:discovery_engine.py` 的 blob sha256（本次 = `6be80797…`）。
+   - **cluster 5 条上限改为硬保证**：超限组按序分块（`#2`、`#3`…），写文件前对全部集群断言 `≤ 5`，否则 fail closed。reviewer 复现的 `[6,1,1,1,1]` 输入在 selftest 中断言通过（分成 5+1）。
+   - `discover_new` 改为**从 `ENGINE_COMMIT` 的 git blob 逐字节装载冻结引擎**（临时文件保持 `extractor_source_sha256` = blob sha 恒定），并跳过已有记录覆盖的条目，杜绝重复入选。
+2. **第二次 baseline drift**（`patching_version.txt` → `20260829165912`）：全部 24 条输入记录（4 regression + 8 blind + 12 holdout）用冻结引擎 `204c97f` 对当前归档重新生成；holdout manifest 同步重新冻结（schema v2，详见 nex004c REPORT §9）。
+
+**重建结果（确定性重跑，冻结选择政策未变）**：
+
+| cluster | 条目 |
+| --- | --- |
+| QH_SOURCE/guanqia/qinghe_end_task | LT71[502], LT51[2597], LT71[318], LT51[86], LT51[322] |
+| QH_SOURCE/guanqia/qinghe_end_task#2 | LT31[2415]（6 条组按新硬上限分块） |
+| QH_SOURCE/guanqia/qinghe_end_boss_fight | LT71[1919] |
+| QH_SOURCE/guanqia/qinghe_end_boss_fight/bxx | LT51[2232] |
+| QH_SOURCE/task | LT51[1943] |
+| QH_SOURCE/task/lizehao | LT31[972] |
+| NODE_GRAPH | LT71[1248], LT31[566]（holdout 集中的 MSD_ST 数据脚本，兼有 SHORT_CJK） |
+
+与旧快照的差异均为 drift 后果：入选集合/成员变化源于归档字节变化后的确定性重跑；旧 §4-§6 的逐条对照对应 20260820220319 快照，保留为历史。
+
+```text
+builder_commit          = 3a43aa8（hardened builder；verify_builder_identity 对照通过）
+builder_source_sha256   = SHA256(qinghe_packet_builder.py @ 3a43aa8)
+extractor_commit        = 204c97f（输入记录一致 + blob 校验）
+extractor_source_sha256 = 6be80797…（= git blob sha，verify_extractor_blob 通过）
+game_version            = 20260829165912（当前 patching_version.txt）
+per-entry               = archive / entry_index / entry_offset / stored_size / block_sha256（对当前归档重算吻合）
+```
+
+**Gate 复评**：入选 12 条、7 clusters（∈[5,8]）、每 cluster ≤5、provenance 全链对当前归档实测吻合、零 canonical 写入 → **维持 QINGHE_EVIDENCE_PACKET_PASS**。原 §6 中"与先前运行逐项一致"的核对对象已因 drift 作废；本 addendum 的核对对象 = 当前冻结工件集 ↔ 当前归档状态。
