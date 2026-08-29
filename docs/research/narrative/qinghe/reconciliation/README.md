@@ -44,6 +44,8 @@ wholesale merge/cherry-pick。父级 `README.md` 仅追加 NEX-006 索引；`hid
 
 - [qinghe-part1-evidence-map.md](qinghe-part1-evidence-map.md)：10 条原子 claim、四态统计、7-cluster 完整去向、evidence-role 能力边界。
 - [windows-followup-evidence-list.md](windows-followup-evidence-list.md)：按 P0/P1 排序的定向补证任务，逐项写明输入、成功/失败判据与人工 fallback 门。
+- [mac-validation-report.md](mac-validation-report.md)：H-NEX-006 Mac 确定性检查与公开来源 replay，明确 Mac scope 已穷尽及 Windows native evidence 边界。
+- [Windows handoff](../../../../execution/H-NEX-006_WINDOWS_HANDOFF.md)：可直接交给 Windows 的 baseline gate、依赖图、7-job 执行约束与回传契约。
 
 ## 4. 冻结与解释规则
 
