@@ -5,6 +5,7 @@
 > Status: **DONE — MAC_SCOPE_EXHAUSTED**
 > Audit date: 2026-08-30
 > Input reconciliation: NEX-006 @ `e98f8d08f38dab52a2d1f4852e12a68f27945fd2`
+> H-NEX-006 content freeze: `8d81422bb4bfcd0655d243ed2e1c66c36fdaaad9`
 
 ## 1. 结论
 

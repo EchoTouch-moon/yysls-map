@@ -10,6 +10,7 @@
 
 | input | required identity |
 | --- | --- |
+| H-NEX-006 handoff content freeze | `8d81422bb4bfcd0655d243ed2e1c66c36fdaaad9` |
 | NEX-006 reconciliation | `e98f8d08f38dab52a2d1f4852e12a68f27945fd2` |
 | Mac input | `cd50bd24779fd47b808bc270a12c617cd9977be9` |
 | Windows packet builder | `6c47256be6f42b33826341bf217469be03d4c7ab` |
@@ -18,6 +19,9 @@
 | manifest SHA-256 | `4d5a1397786be70c71b5ba81ea2282bfe4cf246d24ed3e01adc00ff3c5c80f9c` |
 | canonical SHA-256 | `4b1919f0b8d86ffac66b77d0e2f02c9e1a824e02ecd9a87e170889c134ece1ec` |
 | expected game snapshot | `20260829165912` |
+
+Windows 应 checkout 一个包含 handoff content freeze 的干净 branch tip；后续 provenance-only commit
+不改变本任务的 job/constraint 语义。若该 commit 不可解析，返回 `PROVENANCE_INCOMPLETE`。
 
 Authoritative task details：
 
