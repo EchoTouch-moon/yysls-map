@@ -139,9 +139,27 @@ def load_existing(records_dirs):
     return recs
 
 
-def discover_new(archive_dir, engine_commit, builder_commit, game_version):
+def load_frozen_engine(engine_commit):
+    """Load the engine source from the git blob at engine_commit, byte for
+    byte (temp file keeps the blob sha stable for extractor_source_sha256)."""
+    import importlib.util
+    import tempfile
+    rel = "tools/research/windows-static-archive/discovery_engine.py"
+    blob = subprocess.run(["git", "show", f"{engine_commit}:{rel}"],
+                          capture_output=True, check=True).stdout
+    fd, path = tempfile.mkstemp(suffix=".py")
+    with os.fdopen(fd, "wb") as f:
+        f.write(blob)
+    spec = importlib.util.spec_from_file_location("discovery_engine_frozen", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod, hashlib.sha256(blob).hexdigest()
+
+
+def discover_new(archive_dir, engine_commit, builder_commit, game_version,
+                 existing_keys):
     """Find + run the frozen engine on new candidates (qinghe-source + large family)."""
-    import discovery_engine as de
+    de, frozen_sha = load_frozen_engine(engine_commit)
     new = []
     scanned_keys = set()
     for arch in ARCHIVES:
@@ -180,12 +198,18 @@ def discover_new(archive_dir, engine_commit, builder_commit, game_version):
     large_only.sort(key=lambda x: (-x["size"],
                                    hashlib.sha256(f"{x['archive']}:{x['index']}".encode()).hexdigest()))
     to_run = qh_all + large_only[:4]
-    # run engine on new candidates
+    # never re-run entries already covered by loaded records
+    to_run = [c for c in to_run if (c["archive"], c["index"]) not in existing_keys]
+    # run frozen engine on new candidates
     recs = []
     for c in sorted(to_run, key=lambda x: (-x["size"], x["archive"], x["index"])):
         r = de.discover(archive_dir, c["archive"] + ".mpk",
                         c["archive"] + ".mpkinfo", c["index"], game_version,
                         engine_commit, None)
+        got = r.get("extractor_source_sha256")
+        if got != frozen_sha:
+            raise SystemExit(f"FAIL: frozen engine source sha mismatch "
+                             f"({got} != {frozen_sha})")
         recs.append(r)
     return recs
 
@@ -361,7 +385,10 @@ def build(archive_dir, records_dirs, out_dir, engine_commit, builder_commit,
           game_version):
     verify_builder_identity(builder_commit)
     existing = load_existing(records_dirs)
-    new = discover_new(archive_dir, engine_commit, builder_commit, game_version)
+    existing_keys = {(r["archive"].replace(".mpk", ""), r["entry_index"])
+                     for r in existing}
+    new = discover_new(archive_dir, engine_commit, builder_commit,
+                       game_version, existing_keys)
     all_recs = existing + new
     scored = []
     for r in all_recs:
