@@ -126,3 +126,25 @@ per-entry               = archive / entry_index / entry_offset / stored_size / b
 ```
 
 **Gate 复评**：入选 12 条、7 clusters（∈[5,8]）、每 cluster ≤5、provenance 全链对当前归档实测吻合、零 canonical 写入 → **维持 QINGHE_EVIDENCE_PACKET_PASS**。原 §6 中"与先前运行逐项一致"的核对对象已因 drift 作废；本 addendum 的核对对象 = 当前冻结工件集 ↔ 当前归档状态。
+
+## 10. Addendum（2026-08-30）：复审新 P1 修复——候选去重先于 top-4 截断
+
+复审指出 `discover_new` 先执行 `large_only[:4]` 再排除已有记录覆盖的条目，与冻结政策 §1.c（"排除 a/b 已含"**先于**"取前 4"）顺序相反；当已有记录进入原始 top-4 时，会吞掉新大文件候选名额。
+
+**修复**（`6c47256`）：提取纯函数 `select_candidates(new, existing_keys)`——先在全候选池上过滤 `existing_keys`，再拆分 Qinghe-source / large-family 并取 top-4。selftest 补入评审复现用例（`[100(existing),90,80,70,60]` → `[90,80,70,60]`，而非旧实现的 `[90,80,70]`）及 Qinghe 候选去重用例。
+
+**实际影响评估**（对当前归档重新扫描，`game_version=20260829165912`）：
+
+- 候选池：26 Qinghe-source + 107 large-family；已记录条目 16 个（4 regression + 12 holdout）。
+- 原始 large top-4 = LT31[75]（54354B）、LT51[2682]（53975B）、LT71[2419]（45917B）、LT71[1990]（39054B）——**均不在已记录集合中**（已记录的最大条目仅 8248B）；因此本次运行旧实现并未吞掉名额，修复前后 `to_run` 完全相同（各 30 条），**入选 12 条与 7 clusters 逐位一致**。修复属消除潜在违规 + selftest 回归覆盖；若未来 drift 使已记录条目进入 top-4，正确顺序即生效。
+- 工件按新 `builder_commit` 重建（provenance 完整性要求）；除 `builder_commit` / `builder_source_sha256` 字段外无字节差异。
+
+```text
+builder_commit          = 6c47256be6f42b33826341bf217469be03d4c7ab
+builder_source_sha256   = 2c0112b8c01d42d35b914799a37c11d93a3752d41ae2e02a38fcb1d946261847
+extractor_commit        = 204c97f（不变；输入记录一致 + blob 校验）
+extractor_source_sha256 = 6be80797…（不变）
+game_version            = 20260829165912（不变）
+```
+
+**Gate 复评**：选择集不变、7 clusters（∈[5,8]）、每 cluster ≤5、provenance 全链实测吻合、零 canonical 写入 → **维持 QINGHE_EVIDENCE_PACKET_PASS**。§9 中 `builder_commit = 3a43aa8` 的 provenance 块由本节取代。
