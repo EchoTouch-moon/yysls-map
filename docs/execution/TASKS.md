@@ -23,6 +23,9 @@
 | W16-E0-MAC | Narrative research expansion — Mac track | Mac | Ready | `research/wave-1.6-mac-narrative` (suggested) | W15-D | claim/evidence ledger + reconciliation review | See `docs/execution/WAVE_1_6_DUAL_MACHINE_TASKS.md` M-00..M-08 |
 | W16-E0-WIN | Game evidence acquisition — Windows track | Windows | Ready | evidence-only / optional `research/windows-evidence-tooling` | W15-D | native UI/task observations + evidence ledger | See W-00..W-05; raw evidence separated from canonical conclusions |
 | W16-E05 | Local asset feasibility | Windows + Mac Lead | Ready, read-only | research only | W16-E0-WIN | installation inventory, optional metadata probe | No bypass of encryption/DRM/anti-cheat; extractor not approved |
+| NEX-006 | Native evidence × narrative reconciliation | Mac / Lead | Review complete; PR open | `codex/nex-006-reconciliation` | NEX-005 + W16-E0-MAC | 10 claim evidence map + seven Windows follow-ups | PR #2 CI green; canonical frozen |
+| H-NEX-006-MAC | Reconciliation validation hardening — Mac lane | Mac / Lead | Done | `codex/hnex-006-dual-platform-validation` | NEX-006 | deterministic verifier + public-source replay | `MAC_SCOPE_EXHAUSTED`; no status promotion |
+| H-NEX-006-WIN | Targeted native-evidence recheck — Windows lane | Windows | Ready | local Windows evidence branch | H-NEX-006-MAC | seven job results + run manifest | static-first; baseline drift fail-closed; manual fallback gated |
 | W16-E1 | Narrative Model v0.2 proposal | Mac + Lead | Waiting | TBD | W16-E0-MAC, W16-E0-WIN, W16-E05 | proposal review; no migration yet | Must preserve frozen canonical v0.1 |
 | W16-E2 | `又见新来燕` deep-dive pilot | Mac + Lead | Waiting | TBD | evidence join | six-layer narrative review | Depth before breadth; do not expand whole chapter before pilot signoff |
 | W16-E3 | Reading UX v2 | Mac / Web | Waiting | TBD | W16-E1, W16-E2 | UX proposal then implementation gates | 明潮/暗涌 + inline character recall + event archive unification |
