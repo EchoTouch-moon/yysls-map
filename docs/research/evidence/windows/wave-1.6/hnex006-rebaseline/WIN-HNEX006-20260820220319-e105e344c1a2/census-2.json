@@ -1,0 +1,4610 @@
+{
+  "census_id": "census-2",
+  "core_sha256_set": {
+    "Patch/LT31.mpk": "b404de7775a7e18876bbc4da732ee997509b09eb26f4fe4affee961ba1abea87",
+    "Patch/LT31.mpkinfo": "2d07b95700bc44e3e931b469c85e86b738c6da259b1b029b66f95f3ce2e5604b",
+    "Patch/LT51.mpk": "808a7d85b0160e1bf7691af7869db09ad37e13213e1838aa03b4765b15301870",
+    "Patch/LT51.mpkinfo": "013b6b83447536a58b4c5c17f0fa1c88acf68d8e91bbd46188c436e67cf3d603",
+    "Patch/LT71.mpk": "74b0db1a3ca320fe03ef4ad5414b6e3d916c405f416ac274a018a26c988b3426",
+    "Patch/LT71.mpkinfo": "ed5b2f2e648dda43e30e185f4b8f5982ccc8b7b0910b491acbf18b9c21a981f6",
+    "Patch/patching_version.txt": "f7fc3e4fb5b46d78c24d40a107b90dbf9169d4ebe6ba639976d499b44be4da76"
+  },
+  "files": [
+    {
+      "mtime_utc": "2026-08-29T12:55:25Z",
+      "path": "Patch/CanCompactSize.tag",
+      "role": "metadata-only",
+      "size": 1
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:21Z",
+      "path": "Patch/LT1.mpk",
+      "role": "metadata-only",
+      "size": 15238867
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:14Z",
+      "path": "Patch/LT1.mpkinfo",
+      "role": "metadata-only",
+      "size": 60984
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/LT101.mpk",
+      "role": "metadata-only",
+      "size": 14642162
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/LT101.mpkinfo",
+      "role": "metadata-only",
+      "size": 59444
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:22Z",
+      "path": "Patch/LT102.mpk",
+      "role": "metadata-only",
+      "size": 16379495
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:18Z",
+      "path": "Patch/LT102.mpkinfo",
+      "role": "metadata-only",
+      "size": 45104
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:20Z",
+      "path": "Patch/LT11.mpk",
+      "role": "metadata-only",
+      "size": 17419473
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:09Z",
+      "path": "Patch/LT11.mpkinfo",
+      "role": "metadata-only",
+      "size": 59044
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:26Z",
+      "path": "Patch/LT111.mpk",
+      "role": "metadata-only",
+      "size": 16884317
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:20Z",
+      "path": "Patch/LT111.mpkinfo",
+      "role": "metadata-only",
+      "size": 60324
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:25Z",
+      "path": "Patch/LT112.mpk",
+      "role": "metadata-only",
+      "size": 14595221
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:18Z",
+      "path": "Patch/LT112.mpkinfo",
+      "role": "metadata-only",
+      "size": 46504
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:25Z",
+      "path": "Patch/LT12.mpk",
+      "role": "metadata-only",
+      "size": 13002662
+    },
+    {
+      "mtime_utc": "2026-08-28T15:04:59Z",
+      "path": "Patch/LT12.mpkinfo",
+      "role": "metadata-only",
+      "size": 45544
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:22Z",
+      "path": "Patch/LT121.mpk",
+      "role": "metadata-only",
+      "size": 13433443
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:14Z",
+      "path": "Patch/LT121.mpkinfo",
+      "role": "metadata-only",
+      "size": 60564
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:22Z",
+      "path": "Patch/LT122.mpk",
+      "role": "metadata-only",
+      "size": 17701175
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:19Z",
+      "path": "Patch/LT122.mpkinfo",
+      "role": "metadata-only",
+      "size": 46284
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:20Z",
+      "path": "Patch/LT131.mpk",
+      "role": "metadata-only",
+      "size": 15889536
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:12Z",
+      "path": "Patch/LT131.mpkinfo",
+      "role": "metadata-only",
+      "size": 60204
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:21Z",
+      "path": "Patch/LT132.mpk",
+      "role": "metadata-only",
+      "size": 13854409
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:22Z",
+      "path": "Patch/LT132.mpkinfo",
+      "role": "metadata-only",
+      "size": 45044
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:24Z",
+      "path": "Patch/LT141.mpk",
+      "role": "metadata-only",
+      "size": 13808606
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:16Z",
+      "path": "Patch/LT141.mpkinfo",
+      "role": "metadata-only",
+      "size": 58324
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:17Z",
+      "path": "Patch/LT142.mpk",
+      "role": "metadata-only",
+      "size": 16233955
+    },
+    {
+      "mtime_utc": "2026-08-28T15:04:59Z",
+      "path": "Patch/LT142.mpkinfo",
+      "role": "metadata-only",
+      "size": 45524
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:25Z",
+      "path": "Patch/LT151.mpk",
+      "role": "metadata-only",
+      "size": 15314490
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:01Z",
+      "path": "Patch/LT151.mpkinfo",
+      "role": "metadata-only",
+      "size": 60384
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:18Z",
+      "path": "Patch/LT152.mpk",
+      "role": "metadata-only",
+      "size": 15907941
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:11Z",
+      "path": "Patch/LT152.mpkinfo",
+      "role": "metadata-only",
+      "size": 45824
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:17Z",
+      "path": "Patch/LT161.mpk",
+      "role": "metadata-only",
+      "size": 15356741
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:12Z",
+      "path": "Patch/LT161.mpkinfo",
+      "role": "metadata-only",
+      "size": 59844
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:16Z",
+      "path": "Patch/LT162.mpk",
+      "role": "metadata-only",
+      "size": 16540803
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:23Z",
+      "path": "Patch/LT162.mpkinfo",
+      "role": "metadata-only",
+      "size": 44824
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:24Z",
+      "path": "Patch/LT171.mpk",
+      "role": "metadata-only",
+      "size": 4983008
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:12Z",
+      "path": "Patch/LT171.mpkinfo",
+      "role": "metadata-only",
+      "size": 15304
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:24Z",
+      "path": "Patch/LT172.mpk",
+      "role": "metadata-only",
+      "size": 14711661
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:21Z",
+      "path": "Patch/LT172.mpkinfo",
+      "role": "metadata-only",
+      "size": 47124
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:19Z",
+      "path": "Patch/LT181.mpk",
+      "role": "metadata-only",
+      "size": 4123607
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:21Z",
+      "path": "Patch/LT181.mpkinfo",
+      "role": "metadata-only",
+      "size": 15284
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:23Z",
+      "path": "Patch/LT182.mpk",
+      "role": "metadata-only",
+      "size": 15740343
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:20Z",
+      "path": "Patch/LT182.mpkinfo",
+      "role": "metadata-only",
+      "size": 45064
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:11Z",
+      "path": "Patch/LT191.mpk",
+      "role": "metadata-only",
+      "size": 5980512
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:21Z",
+      "path": "Patch/LT191.mpkinfo",
+      "role": "metadata-only",
+      "size": 12744
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:15Z",
+      "path": "Patch/LT192.mpk",
+      "role": "metadata-only",
+      "size": 13579560
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:15Z",
+      "path": "Patch/LT192.mpkinfo",
+      "role": "metadata-only",
+      "size": 45444
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:17Z",
+      "path": "Patch/LT2.mpk",
+      "role": "metadata-only",
+      "size": 13614804
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:17Z",
+      "path": "Patch/LT2.mpkinfo",
+      "role": "metadata-only",
+      "size": 46124
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:23Z",
+      "path": "Patch/LT201.mpk",
+      "role": "metadata-only",
+      "size": 3098528
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:13Z",
+      "path": "Patch/LT201.mpkinfo",
+      "role": "metadata-only",
+      "size": 11124
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:26Z",
+      "path": "Patch/LT202.mpk",
+      "role": "metadata-only",
+      "size": 14319517
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:23Z",
+      "path": "Patch/LT202.mpkinfo",
+      "role": "metadata-only",
+      "size": 45804
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:07Z",
+      "path": "Patch/LT21.mpk",
+      "role": "metadata-only",
+      "size": 16818518
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:19Z",
+      "path": "Patch/LT21.mpkinfo",
+      "role": "metadata-only",
+      "size": 59164
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:11Z",
+      "path": "Patch/LT211.mpk",
+      "role": "metadata-only",
+      "size": 5684832
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:02Z",
+      "path": "Patch/LT211.mpkinfo",
+      "role": "metadata-only",
+      "size": 10084
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/LT212.mpk",
+      "role": "metadata-only",
+      "size": 12337292
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/LT212.mpkinfo",
+      "role": "metadata-only",
+      "size": 44784
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/LT22.mpk",
+      "role": "metadata-only",
+      "size": 11565452
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/LT22.mpkinfo",
+      "role": "metadata-only",
+      "size": 44384
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:22Z",
+      "path": "Patch/LT221.mpk",
+      "role": "metadata-only",
+      "size": 2557189
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:25Z",
+      "path": "Patch/LT221.mpkinfo",
+      "role": "metadata-only",
+      "size": 6664
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:09Z",
+      "path": "Patch/LT222.mpk",
+      "role": "metadata-only",
+      "size": 17137192
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:17Z",
+      "path": "Patch/LT222.mpkinfo",
+      "role": "metadata-only",
+      "size": 45184
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:25Z",
+      "path": "Patch/LT231.mpk",
+      "role": "metadata-only",
+      "size": 6996743
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:16Z",
+      "path": "Patch/LT231.mpkinfo",
+      "role": "metadata-only",
+      "size": 6944
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:03Z",
+      "path": "Patch/LT232.mpk",
+      "role": "metadata-only",
+      "size": 8699122
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:17Z",
+      "path": "Patch/LT232.mpkinfo",
+      "role": "metadata-only",
+      "size": 10944
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:19Z",
+      "path": "Patch/LT241.mpk",
+      "role": "metadata-only",
+      "size": 1950947
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:12Z",
+      "path": "Patch/LT241.mpkinfo",
+      "role": "metadata-only",
+      "size": 5144
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:16Z",
+      "path": "Patch/LT242.mpk",
+      "role": "metadata-only",
+      "size": 6369747
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:14Z",
+      "path": "Patch/LT242.mpkinfo",
+      "role": "metadata-only",
+      "size": 9764
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:14Z",
+      "path": "Patch/LT251.mpk",
+      "role": "metadata-only",
+      "size": 992243
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:17Z",
+      "path": "Patch/LT251.mpkinfo",
+      "role": "metadata-only",
+      "size": 3304
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:08Z",
+      "path": "Patch/LT252.mpk",
+      "role": "metadata-only",
+      "size": 4392739
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:14Z",
+      "path": "Patch/LT252.mpkinfo",
+      "role": "metadata-only",
+      "size": 7484
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:24Z",
+      "path": "Patch/LT261.mpk",
+      "role": "metadata-only",
+      "size": 4024089
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:24Z",
+      "path": "Patch/LT261.mpkinfo",
+      "role": "metadata-only",
+      "size": 1124
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:19Z",
+      "path": "Patch/LT262.mpk",
+      "role": "metadata-only",
+      "size": 4029782
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:04Z",
+      "path": "Patch/LT262.mpkinfo",
+      "role": "metadata-only",
+      "size": 7124
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:44Z",
+      "path": "Patch/LT271.mpk",
+      "role": "metadata-only",
+      "size": 139166
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:46Z",
+      "path": "Patch/LT271.mpkinfo",
+      "role": "metadata-only",
+      "size": 904
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:12Z",
+      "path": "Patch/LT272.mpk",
+      "role": "metadata-only",
+      "size": 1773471
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:14Z",
+      "path": "Patch/LT272.mpkinfo",
+      "role": "metadata-only",
+      "size": 5924
+    },
+    {
+      "mtime_utc": "2026-08-28T15:04:59Z",
+      "path": "Patch/LT282.mpk",
+      "role": "metadata-only",
+      "size": 3079198
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:02Z",
+      "path": "Patch/LT282.mpkinfo",
+      "role": "metadata-only",
+      "size": 5344
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:13Z",
+      "path": "Patch/LT292.mpk",
+      "role": "metadata-only",
+      "size": 1904924
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:20Z",
+      "path": "Patch/LT292.mpkinfo",
+      "role": "metadata-only",
+      "size": 4144
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:17Z",
+      "path": "Patch/LT302.mpk",
+      "role": "metadata-only",
+      "size": 1801414
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:11Z",
+      "path": "Patch/LT302.mpkinfo",
+      "role": "metadata-only",
+      "size": 4044
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:13Z",
+      "path": "Patch/LT31.mpk",
+      "role": "core-input",
+      "sha256": "b404de7775a7e18876bbc4da732ee997509b09eb26f4fe4affee961ba1abea87",
+      "size": 18728918
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:14Z",
+      "path": "Patch/LT31.mpkinfo",
+      "role": "core-input",
+      "sha256": "2d07b95700bc44e3e931b469c85e86b738c6da259b1b029b66f95f3ce2e5604b",
+      "size": 61244
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:11Z",
+      "path": "Patch/LT312.mpk",
+      "role": "metadata-only",
+      "size": 1031071
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:18Z",
+      "path": "Patch/LT312.mpkinfo",
+      "role": "metadata-only",
+      "size": 2164
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:22Z",
+      "path": "Patch/LT32.mpk",
+      "role": "metadata-only",
+      "size": 15454298
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:18Z",
+      "path": "Patch/LT32.mpkinfo",
+      "role": "metadata-only",
+      "size": 45344
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:00Z",
+      "path": "Patch/LT322.mpk",
+      "role": "metadata-only",
+      "size": 446607
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:17Z",
+      "path": "Patch/LT322.mpkinfo",
+      "role": "metadata-only",
+      "size": 1524
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:46Z",
+      "path": "Patch/LT332.mpk",
+      "role": "metadata-only",
+      "size": 209055
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:46Z",
+      "path": "Patch/LT332.mpkinfo",
+      "role": "metadata-only",
+      "size": 724
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:18Z",
+      "path": "Patch/LT41.mpk",
+      "role": "metadata-only",
+      "size": 12852105
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:03Z",
+      "path": "Patch/LT41.mpkinfo",
+      "role": "metadata-only",
+      "size": 58844
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:25Z",
+      "path": "Patch/LT42.mpk",
+      "role": "metadata-only",
+      "size": 11699295
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:26Z",
+      "path": "Patch/LT42.mpkinfo",
+      "role": "metadata-only",
+      "size": 46744
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:09Z",
+      "path": "Patch/LT51.mpk",
+      "role": "core-input",
+      "sha256": "808a7d85b0160e1bf7691af7869db09ad37e13213e1838aa03b4765b15301870",
+      "size": 12305686
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:16Z",
+      "path": "Patch/LT51.mpkinfo",
+      "role": "core-input",
+      "sha256": "013b6b83447536a58b4c5c17f0fa1c88acf68d8e91bbd46188c436e67cf3d603",
+      "size": 61684
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:26Z",
+      "path": "Patch/LT52.mpk",
+      "role": "metadata-only",
+      "size": 12685605
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:19Z",
+      "path": "Patch/LT52.mpkinfo",
+      "role": "metadata-only",
+      "size": 45824
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:21Z",
+      "path": "Patch/LT61.mpk",
+      "role": "metadata-only",
+      "size": 17863533
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:25Z",
+      "path": "Patch/LT61.mpkinfo",
+      "role": "metadata-only",
+      "size": 60024
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:13Z",
+      "path": "Patch/LT62.mpk",
+      "role": "metadata-only",
+      "size": 16153464
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:05Z",
+      "path": "Patch/LT62.mpkinfo",
+      "role": "metadata-only",
+      "size": 45364
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/LT71.mpk",
+      "role": "core-input",
+      "sha256": "74b0db1a3ca320fe03ef4ad5414b6e3d916c405f416ac274a018a26c988b3426",
+      "size": 11045539
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/LT71.mpkinfo",
+      "role": "core-input",
+      "sha256": "ed5b2f2e648dda43e30e185f4b8f5982ccc8b7b0910b491acbf18b9c21a981f6",
+      "size": 58164
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:20Z",
+      "path": "Patch/LT72.mpk",
+      "role": "metadata-only",
+      "size": 13538537
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:18Z",
+      "path": "Patch/LT72.mpkinfo",
+      "role": "metadata-only",
+      "size": 46564
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:19Z",
+      "path": "Patch/LT81.mpk",
+      "role": "metadata-only",
+      "size": 17666863
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:03Z",
+      "path": "Patch/LT81.mpkinfo",
+      "role": "metadata-only",
+      "size": 61384
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:19Z",
+      "path": "Patch/LT82.mpk",
+      "role": "metadata-only",
+      "size": 15496214
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:19Z",
+      "path": "Patch/LT82.mpkinfo",
+      "role": "metadata-only",
+      "size": 46344
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:24Z",
+      "path": "Patch/LT91.mpk",
+      "role": "metadata-only",
+      "size": 17653205
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:18Z",
+      "path": "Patch/LT91.mpkinfo",
+      "role": "metadata-only",
+      "size": 61084
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:06Z",
+      "path": "Patch/LT92.mpk",
+      "role": "metadata-only",
+      "size": 12431451
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:17Z",
+      "path": "Patch/LT92.mpkinfo",
+      "role": "metadata-only",
+      "size": 45484
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:30Z",
+      "path": "Patch/MpkCached_common_bjs.mpkinfo",
+      "role": "metadata-only",
+      "size": 324984
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:15Z",
+      "path": "Patch/MpkCached_common_hexi.mpkinfo",
+      "role": "metadata-only",
+      "size": 350564
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/MpkCached_common_jiangnan.mpkinfo",
+      "role": "metadata-only",
+      "size": 400724
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:37Z",
+      "path": "Patch/MpkCached_common_kaifeng.0.mpkinfo",
+      "role": "metadata-only",
+      "size": 623584
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/MpkCached_common_kaifeng.1.mpkinfo",
+      "role": "metadata-only",
+      "size": 1164
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/MpkCached_common_kaifeng.2.mpkinfo",
+      "role": "metadata-only",
+      "size": 623584
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/MpkCached_common_kaifeng.3.mpkinfo",
+      "role": "metadata-only",
+      "size": 197
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:11Z",
+      "path": "Patch/MpkCached_common_pkg.0.mpkinfo",
+      "role": "metadata-only",
+      "size": 5149804
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/MpkCached_common_pkg.1.mpkinfo",
+      "role": "metadata-only",
+      "size": 841884
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/MpkCached_common_pkg.2.mpkinfo",
+      "role": "metadata-only",
+      "size": 5149804
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/MpkCached_common_pkg.3.mpkinfo",
+      "role": "metadata-only",
+      "size": 481
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/MpkCached_common_qingzhou.mpkinfo",
+      "role": "metadata-only",
+      "size": 211424
+    },
+    {
+      "mtime_utc": "2026-08-29T17:14:03Z",
+      "path": "Patch/Patch.mpkdb",
+      "role": "metadata-only",
+      "size": 90587136
+    },
+    {
+      "mtime_utc": "2026-08-29T17:14:14Z",
+      "path": "Patch/Patch.mpkdb-shm",
+      "role": "metadata-only",
+      "size": 32768
+    },
+    {
+      "mtime_utc": "2026-08-29T17:14:14Z",
+      "path": "Patch/Patch.mpkdb-wal",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-08-29T17:14:03Z",
+      "path": "Patch/Patch.mpkdb.backup",
+      "role": "metadata-only",
+      "size": 90587136
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:19Z",
+      "path": "Patch/Patch1.mpk",
+      "role": "metadata-only",
+      "size": 703953668
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch10.mpk",
+      "role": "metadata-only",
+      "size": 535178507
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:37Z",
+      "path": "Patch/Patch100.mpk",
+      "role": "metadata-only",
+      "size": 528772783
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:36Z",
+      "path": "Patch/Patch10004.mpk",
+      "role": "metadata-only",
+      "size": 470741
+    },
+    {
+      "mtime_utc": "2026-08-26T14:40:47Z",
+      "path": "Patch/Patch1001.mpk",
+      "role": "metadata-only",
+      "size": 22932542
+    },
+    {
+      "mtime_utc": "2026-08-26T14:40:46Z",
+      "path": "Patch/Patch1001.mpkinfo",
+      "role": "metadata-only",
+      "size": 284
+    },
+    {
+      "mtime_utc": "2026-08-28T15:09:26Z",
+      "path": "Patch/Patch1002.mpk",
+      "role": "metadata-only",
+      "size": 26985334
+    },
+    {
+      "mtime_utc": "2026-08-28T15:09:25Z",
+      "path": "Patch/Patch1002.mpkinfo",
+      "role": "metadata-only",
+      "size": 684
+    },
+    {
+      "mtime_utc": "2026-03-23T05:45:36Z",
+      "path": "Patch/Patch1003.mpk",
+      "role": "metadata-only",
+      "size": 30419521
+    },
+    {
+      "mtime_utc": "2026-03-23T05:45:35Z",
+      "path": "Patch/Patch1003.mpkinfo",
+      "role": "metadata-only",
+      "size": 464
+    },
+    {
+      "mtime_utc": "2026-07-24T14:54:54Z",
+      "path": "Patch/Patch1004.mpk",
+      "role": "metadata-only",
+      "size": 23385796
+    },
+    {
+      "mtime_utc": "2026-07-24T14:54:52Z",
+      "path": "Patch/Patch1004.mpkinfo",
+      "role": "metadata-only",
+      "size": 544
+    },
+    {
+      "mtime_utc": "2026-06-07T14:55:29Z",
+      "path": "Patch/Patch1005.mpk",
+      "role": "metadata-only",
+      "size": 28273495
+    },
+    {
+      "mtime_utc": "2026-06-07T14:55:28Z",
+      "path": "Patch/Patch1005.mpkinfo",
+      "role": "metadata-only",
+      "size": 744
+    },
+    {
+      "mtime_utc": "2026-08-11T14:59:40Z",
+      "path": "Patch/Patch1006.mpk",
+      "role": "metadata-only",
+      "size": 30095112
+    },
+    {
+      "mtime_utc": "2026-08-11T14:59:38Z",
+      "path": "Patch/Patch1006.mpkinfo",
+      "role": "metadata-only",
+      "size": 384
+    },
+    {
+      "mtime_utc": "2026-08-19T15:13:00Z",
+      "path": "Patch/Patch1007.mpk",
+      "role": "metadata-only",
+      "size": 21596388
+    },
+    {
+      "mtime_utc": "2026-08-18T13:57:37Z",
+      "path": "Patch/Patch1007.mpkinfo",
+      "role": "metadata-only",
+      "size": 404
+    },
+    {
+      "mtime_utc": "2026-08-19T15:12:55Z",
+      "path": "Patch/Patch1008.mpk",
+      "role": "metadata-only",
+      "size": 15735543
+    },
+    {
+      "mtime_utc": "2026-08-19T15:12:55Z",
+      "path": "Patch/Patch1008.mpkinfo",
+      "role": "metadata-only",
+      "size": 244
+    },
+    {
+      "mtime_utc": "2026-03-23T05:45:37Z",
+      "path": "Patch/Patch1009.mpk",
+      "role": "metadata-only",
+      "size": 19174107
+    },
+    {
+      "mtime_utc": "2026-03-23T05:45:36Z",
+      "path": "Patch/Patch1009.mpkinfo",
+      "role": "metadata-only",
+      "size": 484
+    },
+    {
+      "mtime_utc": "2026-08-28T15:08:15Z",
+      "path": "Patch/Patch101.mpk",
+      "role": "metadata-only",
+      "size": 653238453
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1010.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1011.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1012.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1013.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1014.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1015.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1016.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1017.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1018.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1019.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:53Z",
+      "path": "Patch/Patch102.mpk",
+      "role": "metadata-only",
+      "size": 460351066
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1020.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1021.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1022.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1023.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1024.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1025.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1026.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1027.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1028.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1029.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:28Z",
+      "path": "Patch/Patch103.mpk",
+      "role": "metadata-only",
+      "size": 410900767
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1030.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1031.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1032.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1033.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1034.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1035.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1036.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1037.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1038.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1039.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:02Z",
+      "path": "Patch/Patch104.mpk",
+      "role": "metadata-only",
+      "size": 473008510
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch1040.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:15Z",
+      "path": "Patch/Patch105.mpk",
+      "role": "metadata-only",
+      "size": 457271506
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:08Z",
+      "path": "Patch/Patch106.mpk",
+      "role": "metadata-only",
+      "size": 485346076
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:24Z",
+      "path": "Patch/Patch107.mpk",
+      "role": "metadata-only",
+      "size": 445459133
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:41Z",
+      "path": "Patch/Patch108.mpk",
+      "role": "metadata-only",
+      "size": 487300317
+    },
+    {
+      "mtime_utc": "2026-08-28T15:06:43Z",
+      "path": "Patch/Patch109.mpk",
+      "role": "metadata-only",
+      "size": 530459618
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch11.mpk",
+      "role": "metadata-only",
+      "size": 566913781
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:20Z",
+      "path": "Patch/Patch110.mpk",
+      "role": "metadata-only",
+      "size": 466054848
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch11000.mpk",
+      "role": "metadata-only",
+      "size": 6410012
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch11010.mpk",
+      "role": "metadata-only",
+      "size": 7735746
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:08Z",
+      "path": "Patch/Patch111.mpk",
+      "role": "metadata-only",
+      "size": 420832591
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:23Z",
+      "path": "Patch/Patch112.mpk",
+      "role": "metadata-only",
+      "size": 470875116
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:08Z",
+      "path": "Patch/Patch113.mpk",
+      "role": "metadata-only",
+      "size": 520183480
+    },
+    {
+      "mtime_utc": "2026-08-28T15:08:27Z",
+      "path": "Patch/Patch114.mpk",
+      "role": "metadata-only",
+      "size": 561767805
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:37Z",
+      "path": "Patch/Patch115.mpk",
+      "role": "metadata-only",
+      "size": 498227123
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:39Z",
+      "path": "Patch/Patch116.mpk",
+      "role": "metadata-only",
+      "size": 527889488
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:43Z",
+      "path": "Patch/Patch117.mpk",
+      "role": "metadata-only",
+      "size": 528265325
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:52Z",
+      "path": "Patch/Patch118.mpk",
+      "role": "metadata-only",
+      "size": 476956282
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:41Z",
+      "path": "Patch/Patch119.mpk",
+      "role": "metadata-only",
+      "size": 496470103
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch12.mpk",
+      "role": "metadata-only",
+      "size": 610637271
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:35Z",
+      "path": "Patch/Patch120.mpk",
+      "role": "metadata-only",
+      "size": 501244789
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:33Z",
+      "path": "Patch/Patch12000.mpk",
+      "role": "metadata-only",
+      "size": 7543945
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:40Z",
+      "path": "Patch/Patch12010.mpk",
+      "role": "metadata-only",
+      "size": 9116953
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:40Z",
+      "path": "Patch/Patch12020.mpk",
+      "role": "metadata-only",
+      "size": 9232986
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:41Z",
+      "path": "Patch/Patch12030.mpk",
+      "role": "metadata-only",
+      "size": 9171862
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:29Z",
+      "path": "Patch/Patch12040.mpk",
+      "role": "metadata-only",
+      "size": 9151861
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:42Z",
+      "path": "Patch/Patch12050.mpk",
+      "role": "metadata-only",
+      "size": 7402318
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:37Z",
+      "path": "Patch/Patch12060.mpk",
+      "role": "metadata-only",
+      "size": 9220101
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:40Z",
+      "path": "Patch/Patch12070.mpk",
+      "role": "metadata-only",
+      "size": 9135127
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:08Z",
+      "path": "Patch/Patch121.mpk",
+      "role": "metadata-only",
+      "size": 454422892
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:12Z",
+      "path": "Patch/Patch122.mpk",
+      "role": "metadata-only",
+      "size": 555907466
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:33Z",
+      "path": "Patch/Patch123.mpk",
+      "role": "metadata-only",
+      "size": 476598835
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:32Z",
+      "path": "Patch/Patch124.mpk",
+      "role": "metadata-only",
+      "size": 462201509
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:01Z",
+      "path": "Patch/Patch125.mpk",
+      "role": "metadata-only",
+      "size": 415815319
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:34Z",
+      "path": "Patch/Patch126.mpk",
+      "role": "metadata-only",
+      "size": 492133314
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:52Z",
+      "path": "Patch/Patch127.mpk",
+      "role": "metadata-only",
+      "size": 528438077
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:48Z",
+      "path": "Patch/Patch128.mpk",
+      "role": "metadata-only",
+      "size": 536088217
+    },
+    {
+      "mtime_utc": "2026-08-28T15:06:41Z",
+      "path": "Patch/Patch129.mpk",
+      "role": "metadata-only",
+      "size": 579241371
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch13.mpk",
+      "role": "metadata-only",
+      "size": 491775253
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:04Z",
+      "path": "Patch/Patch130.mpk",
+      "role": "metadata-only",
+      "size": 505173306
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:39Z",
+      "path": "Patch/Patch13004.mpk",
+      "role": "metadata-only",
+      "size": 234042
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:54Z",
+      "path": "Patch/Patch131.mpk",
+      "role": "metadata-only",
+      "size": 529887053
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:55Z",
+      "path": "Patch/Patch132.mpk",
+      "role": "metadata-only",
+      "size": 484991360
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:06Z",
+      "path": "Patch/Patch133.mpk",
+      "role": "metadata-only",
+      "size": 534986185
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:32Z",
+      "path": "Patch/Patch134.mpk",
+      "role": "metadata-only",
+      "size": 534968300
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:04Z",
+      "path": "Patch/Patch135.mpk",
+      "role": "metadata-only",
+      "size": 546975691
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:07Z",
+      "path": "Patch/Patch136.mpk",
+      "role": "metadata-only",
+      "size": 537243729
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:44Z",
+      "path": "Patch/Patch137.mpk",
+      "role": "metadata-only",
+      "size": 521955681
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:29Z",
+      "path": "Patch/Patch138.mpk",
+      "role": "metadata-only",
+      "size": 488254256
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:17Z",
+      "path": "Patch/Patch139.mpk",
+      "role": "metadata-only",
+      "size": 467236747
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch14.mpk",
+      "role": "metadata-only",
+      "size": 485992858
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:48Z",
+      "path": "Patch/Patch140.mpk",
+      "role": "metadata-only",
+      "size": 495711641
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch14000.mpk",
+      "role": "metadata-only",
+      "size": 4110444
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch14010.mpk",
+      "role": "metadata-only",
+      "size": 4154411
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:07Z",
+      "path": "Patch/Patch141.mpk",
+      "role": "metadata-only",
+      "size": 507489211
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:26Z",
+      "path": "Patch/Patch142.mpk",
+      "role": "metadata-only",
+      "size": 566072890
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:54Z",
+      "path": "Patch/Patch143.mpk",
+      "role": "metadata-only",
+      "size": 561252338
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:57Z",
+      "path": "Patch/Patch144.mpk",
+      "role": "metadata-only",
+      "size": 506175226
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:51Z",
+      "path": "Patch/Patch145.mpk",
+      "role": "metadata-only",
+      "size": 484767326
+    },
+    {
+      "mtime_utc": "2026-08-28T15:06:54Z",
+      "path": "Patch/Patch146.mpk",
+      "role": "metadata-only",
+      "size": 535676944
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:51Z",
+      "path": "Patch/Patch147.mpk",
+      "role": "metadata-only",
+      "size": 467708164
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:21Z",
+      "path": "Patch/Patch148.mpk",
+      "role": "metadata-only",
+      "size": 528689721
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:16Z",
+      "path": "Patch/Patch149.mpk",
+      "role": "metadata-only",
+      "size": 561375899
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch15.mpk",
+      "role": "metadata-only",
+      "size": 612461505
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:55Z",
+      "path": "Patch/Patch150.mpk",
+      "role": "metadata-only",
+      "size": 565259955
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:37Z",
+      "path": "Patch/Patch15000.mpk",
+      "role": "metadata-only",
+      "size": 7408927
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:33Z",
+      "path": "Patch/Patch15010.mpk",
+      "role": "metadata-only",
+      "size": 7574919
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:33Z",
+      "path": "Patch/Patch15020.mpk",
+      "role": "metadata-only",
+      "size": 7664132
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:33Z",
+      "path": "Patch/Patch15030.mpk",
+      "role": "metadata-only",
+      "size": 7433070
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:34Z",
+      "path": "Patch/Patch15040.mpk",
+      "role": "metadata-only",
+      "size": 7410912
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:25Z",
+      "path": "Patch/Patch151.mpk",
+      "role": "metadata-only",
+      "size": 548569658
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:10Z",
+      "path": "Patch/Patch152.mpk",
+      "role": "metadata-only",
+      "size": 541306224
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:36Z",
+      "path": "Patch/Patch153.mpk",
+      "role": "metadata-only",
+      "size": 463241888
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:58Z",
+      "path": "Patch/Patch154.mpk",
+      "role": "metadata-only",
+      "size": 491882392
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:33Z",
+      "path": "Patch/Patch155.mpk",
+      "role": "metadata-only",
+      "size": 486930946
+    },
+    {
+      "mtime_utc": "2026-08-28T15:08:09Z",
+      "path": "Patch/Patch156.mpk",
+      "role": "metadata-only",
+      "size": 498119168
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:48Z",
+      "path": "Patch/Patch157.mpk",
+      "role": "metadata-only",
+      "size": 507782139
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:01Z",
+      "path": "Patch/Patch158.mpk",
+      "role": "metadata-only",
+      "size": 445677800
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:56Z",
+      "path": "Patch/Patch159.mpk",
+      "role": "metadata-only",
+      "size": 486223797
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch16.mpk",
+      "role": "metadata-only",
+      "size": 577204290
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:17Z",
+      "path": "Patch/Patch160.mpk",
+      "role": "metadata-only",
+      "size": 473287067
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:07Z",
+      "path": "Patch/Patch16004.mpk",
+      "role": "metadata-only",
+      "size": 9879276
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:00Z",
+      "path": "Patch/Patch16014.mpk",
+      "role": "metadata-only",
+      "size": 11631422
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:00Z",
+      "path": "Patch/Patch16024.mpk",
+      "role": "metadata-only",
+      "size": 2748109
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:43Z",
+      "path": "Patch/Patch161.mpk",
+      "role": "metadata-only",
+      "size": 493318377
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:40Z",
+      "path": "Patch/Patch162.mpk",
+      "role": "metadata-only",
+      "size": 575739370
+    },
+    {
+      "mtime_utc": "2026-08-28T15:08:21Z",
+      "path": "Patch/Patch163.mpk",
+      "role": "metadata-only",
+      "size": 509610886
+    },
+    {
+      "mtime_utc": "2026-08-28T15:08:00Z",
+      "path": "Patch/Patch164.mpk",
+      "role": "metadata-only",
+      "size": 892506821
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:06Z",
+      "path": "Patch/Patch165.mpk",
+      "role": "metadata-only",
+      "size": 499609837
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:10Z",
+      "path": "Patch/Patch166.mpk",
+      "role": "metadata-only",
+      "size": 618794960
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:04Z",
+      "path": "Patch/Patch167.mpk",
+      "role": "metadata-only",
+      "size": 476110055
+    },
+    {
+      "mtime_utc": "2026-08-28T15:08:23Z",
+      "path": "Patch/Patch168.mpk",
+      "role": "metadata-only",
+      "size": 571054916
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:52Z",
+      "path": "Patch/Patch169.mpk",
+      "role": "metadata-only",
+      "size": 501243755
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17.mpk",
+      "role": "metadata-only",
+      "size": 591324491
+    },
+    {
+      "mtime_utc": "2026-08-28T15:06:59Z",
+      "path": "Patch/Patch170.mpk",
+      "role": "metadata-only",
+      "size": 526778547
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17000.mpk",
+      "role": "metadata-only",
+      "size": 10372709
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17010.mpk",
+      "role": "metadata-only",
+      "size": 15889156
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17020.mpk",
+      "role": "metadata-only",
+      "size": 11569434
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17030.mpk",
+      "role": "metadata-only",
+      "size": 15140609
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17040.mpk",
+      "role": "metadata-only",
+      "size": 17919382
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17050.mpk",
+      "role": "metadata-only",
+      "size": 15098879
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17060.mpk",
+      "role": "metadata-only",
+      "size": 14235704
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17070.mpk",
+      "role": "metadata-only",
+      "size": 10472297
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17080.mpk",
+      "role": "metadata-only",
+      "size": 14323372
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17090.mpk",
+      "role": "metadata-only",
+      "size": 12659288
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:28Z",
+      "path": "Patch/Patch171.mpk",
+      "role": "metadata-only",
+      "size": 481558079
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17100.mpk",
+      "role": "metadata-only",
+      "size": 13112205
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:09Z",
+      "path": "Patch/Patch17110.mpk",
+      "role": "metadata-only",
+      "size": 15248396
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17120.mpk",
+      "role": "metadata-only",
+      "size": 14964750
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17130.mpk",
+      "role": "metadata-only",
+      "size": 12162770
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:25Z",
+      "path": "Patch/Patch17140.mpk",
+      "role": "metadata-only",
+      "size": 11286062
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17150.mpk",
+      "role": "metadata-only",
+      "size": 12879847
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17160.mpk",
+      "role": "metadata-only",
+      "size": 9031944
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17170.mpk",
+      "role": "metadata-only",
+      "size": 18907921
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17180.mpk",
+      "role": "metadata-only",
+      "size": 14758635
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17190.mpk",
+      "role": "metadata-only",
+      "size": 11477214
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:30Z",
+      "path": "Patch/Patch172.mpk",
+      "role": "metadata-only",
+      "size": 523649096
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch17200.mpk",
+      "role": "metadata-only",
+      "size": 17117116
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17210.mpk",
+      "role": "metadata-only",
+      "size": 15080756
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17220.mpk",
+      "role": "metadata-only",
+      "size": 12821696
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17230.mpk",
+      "role": "metadata-only",
+      "size": 11848035
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17240.mpk",
+      "role": "metadata-only",
+      "size": 22425431
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17250.mpk",
+      "role": "metadata-only",
+      "size": 9627931
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17260.mpk",
+      "role": "metadata-only",
+      "size": 15858825
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17270.mpk",
+      "role": "metadata-only",
+      "size": 13590639
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:19Z",
+      "path": "Patch/Patch17280.mpk",
+      "role": "metadata-only",
+      "size": 18337360
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17290.mpk",
+      "role": "metadata-only",
+      "size": 15087436
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:19Z",
+      "path": "Patch/Patch173.mpk",
+      "role": "metadata-only",
+      "size": 647219776
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17300.mpk",
+      "role": "metadata-only",
+      "size": 10193020
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17310.mpk",
+      "role": "metadata-only",
+      "size": 17964538
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17320.mpk",
+      "role": "metadata-only",
+      "size": 11524268
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17330.mpk",
+      "role": "metadata-only",
+      "size": 16946118
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17340.mpk",
+      "role": "metadata-only",
+      "size": 14888014
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:19Z",
+      "path": "Patch/Patch17350.mpk",
+      "role": "metadata-only",
+      "size": 18862034
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch17360.mpk",
+      "role": "metadata-only",
+      "size": 15502711
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17370.mpk",
+      "role": "metadata-only",
+      "size": 16910735
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17380.mpk",
+      "role": "metadata-only",
+      "size": 15907597
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch17390.mpk",
+      "role": "metadata-only",
+      "size": 17439572
+    },
+    {
+      "mtime_utc": "2026-08-28T15:06:51Z",
+      "path": "Patch/Patch174.mpk",
+      "role": "metadata-only",
+      "size": 495844929
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17400.mpk",
+      "role": "metadata-only",
+      "size": 9584507
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17410.mpk",
+      "role": "metadata-only",
+      "size": 16471041
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17420.mpk",
+      "role": "metadata-only",
+      "size": 11746096
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17430.mpk",
+      "role": "metadata-only",
+      "size": 16404158
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17440.mpk",
+      "role": "metadata-only",
+      "size": 14100477
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17450.mpk",
+      "role": "metadata-only",
+      "size": 15899305
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17460.mpk",
+      "role": "metadata-only",
+      "size": 17800176
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17470.mpk",
+      "role": "metadata-only",
+      "size": 14380602
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:22Z",
+      "path": "Patch/Patch17480.mpk",
+      "role": "metadata-only",
+      "size": 13152338
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:25Z",
+      "path": "Patch/Patch17490.mpk",
+      "role": "metadata-only",
+      "size": 11548798
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:12Z",
+      "path": "Patch/Patch175.mpk",
+      "role": "metadata-only",
+      "size": 587871820
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17500.mpk",
+      "role": "metadata-only",
+      "size": 10781537
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:17Z",
+      "path": "Patch/Patch17510.mpk",
+      "role": "metadata-only",
+      "size": 3725012
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:19Z",
+      "path": "Patch/Patch17520.mpk",
+      "role": "metadata-only",
+      "size": 5128524
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17530.mpk",
+      "role": "metadata-only",
+      "size": 7921748
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:26Z",
+      "path": "Patch/Patch17540.mpk",
+      "role": "metadata-only",
+      "size": 7388649
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17550.mpk",
+      "role": "metadata-only",
+      "size": 6961805
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17560.mpk",
+      "role": "metadata-only",
+      "size": 5649994
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17570.mpk",
+      "role": "metadata-only",
+      "size": 4743714
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:19Z",
+      "path": "Patch/Patch17580.mpk",
+      "role": "metadata-only",
+      "size": 5591167
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:24Z",
+      "path": "Patch/Patch17590.mpk",
+      "role": "metadata-only",
+      "size": 4392287
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:06Z",
+      "path": "Patch/Patch176.mpk",
+      "role": "metadata-only",
+      "size": 507256921
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17600.mpk",
+      "role": "metadata-only",
+      "size": 4312425
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17610.mpk",
+      "role": "metadata-only",
+      "size": 1953314
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17620.mpk",
+      "role": "metadata-only",
+      "size": 3163254
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17630.mpk",
+      "role": "metadata-only",
+      "size": 1815214
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17640.mpk",
+      "role": "metadata-only",
+      "size": 1835980
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch17650.mpk",
+      "role": "metadata-only",
+      "size": 1474165
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch17660.mpk",
+      "role": "metadata-only",
+      "size": 1417609
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17670.mpk",
+      "role": "metadata-only",
+      "size": 1403680
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch17680.mpk",
+      "role": "metadata-only",
+      "size": 1184567
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:19Z",
+      "path": "Patch/Patch177.mpk",
+      "role": "metadata-only",
+      "size": 545663633
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:14Z",
+      "path": "Patch/Patch178.mpk",
+      "role": "metadata-only",
+      "size": 789233555
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:50Z",
+      "path": "Patch/Patch179.mpk",
+      "role": "metadata-only",
+      "size": 491566558
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch18.mpk",
+      "role": "metadata-only",
+      "size": 506941225
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:39Z",
+      "path": "Patch/Patch180.mpk",
+      "role": "metadata-only",
+      "size": 689728013
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch18000.mpk",
+      "role": "metadata-only",
+      "size": 10274592
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch18010.mpk",
+      "role": "metadata-only",
+      "size": 10173630
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18020.mpk",
+      "role": "metadata-only",
+      "size": 10168402
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18030.mpk",
+      "role": "metadata-only",
+      "size": 9973962
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch18040.mpk",
+      "role": "metadata-only",
+      "size": 10269553
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18050.mpk",
+      "role": "metadata-only",
+      "size": 9984508
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch18060.mpk",
+      "role": "metadata-only",
+      "size": 10105121
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch18070.mpk",
+      "role": "metadata-only",
+      "size": 10164717
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch18080.mpk",
+      "role": "metadata-only",
+      "size": 10227787
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18090.mpk",
+      "role": "metadata-only",
+      "size": 10141573
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:19Z",
+      "path": "Patch/Patch181.mpk",
+      "role": "metadata-only",
+      "size": 552944327
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18100.mpk",
+      "role": "metadata-only",
+      "size": 10302455
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:23Z",
+      "path": "Patch/Patch18110.mpk",
+      "role": "metadata-only",
+      "size": 10080815
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18120.mpk",
+      "role": "metadata-only",
+      "size": 10023656
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18130.mpk",
+      "role": "metadata-only",
+      "size": 10018616
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18140.mpk",
+      "role": "metadata-only",
+      "size": 10024700
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch18150.mpk",
+      "role": "metadata-only",
+      "size": 10150891
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch18160.mpk",
+      "role": "metadata-only",
+      "size": 7952163
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:15Z",
+      "path": "Patch/Patch18170.mpk",
+      "role": "metadata-only",
+      "size": 10375559
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch18180.mpk",
+      "role": "metadata-only",
+      "size": 10141368
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch18190.mpk",
+      "role": "metadata-only",
+      "size": 10245821
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:25Z",
+      "path": "Patch/Patch182.mpk",
+      "role": "metadata-only",
+      "size": 524984199
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18200.mpk",
+      "role": "metadata-only",
+      "size": 10142789
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:15Z",
+      "path": "Patch/Patch18210.mpk",
+      "role": "metadata-only",
+      "size": 10162767
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch18220.mpk",
+      "role": "metadata-only",
+      "size": 10100851
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18230.mpk",
+      "role": "metadata-only",
+      "size": 10377750
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:19Z",
+      "path": "Patch/Patch18240.mpk",
+      "role": "metadata-only",
+      "size": 10270991
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch18250.mpk",
+      "role": "metadata-only",
+      "size": 5087018
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch18260.mpk",
+      "role": "metadata-only",
+      "size": 4794848
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch18270.mpk",
+      "role": "metadata-only",
+      "size": 4543994
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:15Z",
+      "path": "Patch/Patch18280.mpk",
+      "role": "metadata-only",
+      "size": 4284435
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18290.mpk",
+      "role": "metadata-only",
+      "size": 3884201
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:25Z",
+      "path": "Patch/Patch183.mpk",
+      "role": "metadata-only",
+      "size": 514754442
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18300.mpk",
+      "role": "metadata-only",
+      "size": 4365097
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18310.mpk",
+      "role": "metadata-only",
+      "size": 4441926
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch18320.mpk",
+      "role": "metadata-only",
+      "size": 3972864
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch18330.mpk",
+      "role": "metadata-only",
+      "size": 3620043
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:16Z",
+      "path": "Patch/Patch18340.mpk",
+      "role": "metadata-only",
+      "size": 3272956
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18350.mpk",
+      "role": "metadata-only",
+      "size": 3572298
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch18360.mpk",
+      "role": "metadata-only",
+      "size": 3124155
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18370.mpk",
+      "role": "metadata-only",
+      "size": 3231479
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18380.mpk",
+      "role": "metadata-only",
+      "size": 3293330
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch18390.mpk",
+      "role": "metadata-only",
+      "size": 3071937
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:23Z",
+      "path": "Patch/Patch184.mpk",
+      "role": "metadata-only",
+      "size": 495093580
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:19Z",
+      "path": "Patch/Patch18400.mpk",
+      "role": "metadata-only",
+      "size": 3199583
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch18410.mpk",
+      "role": "metadata-only",
+      "size": 3039783
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch18420.mpk",
+      "role": "metadata-only",
+      "size": 2895374
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:22Z",
+      "path": "Patch/Patch18430.mpk",
+      "role": "metadata-only",
+      "size": 3085340
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:19Z",
+      "path": "Patch/Patch18440.mpk",
+      "role": "metadata-only",
+      "size": 2897974
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch18450.mpk",
+      "role": "metadata-only",
+      "size": 2924218
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:32Z",
+      "path": "Patch/Patch185.mpk",
+      "role": "metadata-only",
+      "size": 577714182
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:15Z",
+      "path": "Patch/Patch186.mpk",
+      "role": "metadata-only",
+      "size": 544650395
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:50Z",
+      "path": "Patch/Patch187.mpk",
+      "role": "metadata-only",
+      "size": 519899285
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:30Z",
+      "path": "Patch/Patch188.mpk",
+      "role": "metadata-only",
+      "size": 532710715
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:15Z",
+      "path": "Patch/Patch189.mpk",
+      "role": "metadata-only",
+      "size": 558340114
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:41Z",
+      "path": "Patch/Patch19.mpk",
+      "role": "metadata-only",
+      "size": 540805739
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:15Z",
+      "path": "Patch/Patch190.mpk",
+      "role": "metadata-only",
+      "size": 550795835
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:41Z",
+      "path": "Patch/Patch19004.mpk",
+      "role": "metadata-only",
+      "size": 130173
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:53Z",
+      "path": "Patch/Patch191.mpk",
+      "role": "metadata-only",
+      "size": 500590584
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:32Z",
+      "path": "Patch/Patch192.mpk",
+      "role": "metadata-only",
+      "size": 548368044
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:13Z",
+      "path": "Patch/Patch193.mpk",
+      "role": "metadata-only",
+      "size": 561242639
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:21Z",
+      "path": "Patch/Patch194.mpk",
+      "role": "metadata-only",
+      "size": 482508667
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch195.mpk",
+      "role": "metadata-only",
+      "size": 599724388
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:20Z",
+      "path": "Patch/Patch196.mpk",
+      "role": "metadata-only",
+      "size": 551742275
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch197.mpk",
+      "role": "metadata-only",
+      "size": 654970468
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:45Z",
+      "path": "Patch/Patch198.mpk",
+      "role": "metadata-only",
+      "size": 518419987
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:26Z",
+      "path": "Patch/Patch199.mpk",
+      "role": "metadata-only",
+      "size": 505748861
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:19Z",
+      "path": "Patch/Patch2.mpk",
+      "role": "metadata-only",
+      "size": 370323495
+    },
+    {
+      "mtime_utc": "2026-08-28T15:08:19Z",
+      "path": "Patch/Patch20.mpk",
+      "role": "metadata-only",
+      "size": 575604124
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:59Z",
+      "path": "Patch/Patch200.mpk",
+      "role": "metadata-only",
+      "size": 538829113
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:40Z",
+      "path": "Patch/Patch20000.mpk",
+      "role": "metadata-only",
+      "size": 4668644
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch2001.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:41Z",
+      "path": "Patch/Patch20010.mpk",
+      "role": "metadata-only",
+      "size": 3992931
+    },
+    {
+      "mtime_utc": "2026-08-29T12:37:12Z",
+      "path": "Patch/Patch2002.mpk",
+      "role": "metadata-only",
+      "size": 218726
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch2003.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch2004.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T05:44:57Z",
+      "path": "Patch/Patch2005.mpk",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:11Z",
+      "path": "Patch/Patch201.mpk",
+      "role": "metadata-only",
+      "size": 334852302
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch202.mpk",
+      "role": "metadata-only",
+      "size": 144874581
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:41Z",
+      "path": "Patch/Patch203.mpk",
+      "role": "metadata-only",
+      "size": 127014235
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch204.mpk",
+      "role": "metadata-only",
+      "size": 138399862
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:42Z",
+      "path": "Patch/Patch205.mpk",
+      "role": "metadata-only",
+      "size": 99447709
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:23Z",
+      "path": "Patch/Patch206.mpk",
+      "role": "metadata-only",
+      "size": 100111479
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:45Z",
+      "path": "Patch/Patch207.mpk",
+      "role": "metadata-only",
+      "size": 76028426
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:15Z",
+      "path": "Patch/Patch208.mpk",
+      "role": "metadata-only",
+      "size": 131776032
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:05Z",
+      "path": "Patch/Patch209.mpk",
+      "role": "metadata-only",
+      "size": 160700304
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:34Z",
+      "path": "Patch/Patch21.mpk",
+      "role": "metadata-only",
+      "size": 450875081
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:27Z",
+      "path": "Patch/Patch210.mpk",
+      "role": "metadata-only",
+      "size": 155457980
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:40Z",
+      "path": "Patch/Patch21000.mpk",
+      "role": "metadata-only",
+      "size": 6154150
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:37Z",
+      "path": "Patch/Patch21010.mpk",
+      "role": "metadata-only",
+      "size": 8327396
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:40Z",
+      "path": "Patch/Patch21020.mpk",
+      "role": "metadata-only",
+      "size": 6568064
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:41Z",
+      "path": "Patch/Patch21030.mpk",
+      "role": "metadata-only",
+      "size": 6622140
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:24Z",
+      "path": "Patch/Patch211.mpk",
+      "role": "metadata-only",
+      "size": 96335725
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch212.mpk",
+      "role": "metadata-only",
+      "size": 137218631
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch213.mpk",
+      "role": "metadata-only",
+      "size": 169625276
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:11Z",
+      "path": "Patch/Patch214.mpk",
+      "role": "metadata-only",
+      "size": 169909056
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:17Z",
+      "path": "Patch/Patch215.mpk",
+      "role": "metadata-only",
+      "size": 167717978
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:05Z",
+      "path": "Patch/Patch216.mpk",
+      "role": "metadata-only",
+      "size": 120400674
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:43Z",
+      "path": "Patch/Patch217.mpk",
+      "role": "metadata-only",
+      "size": 180361130
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch218.mpk",
+      "role": "metadata-only",
+      "size": 103258739
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:17Z",
+      "path": "Patch/Patch219.mpk",
+      "role": "metadata-only",
+      "size": 69045683
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:48Z",
+      "path": "Patch/Patch22.mpk",
+      "role": "metadata-only",
+      "size": 555013228
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch220.mpk",
+      "role": "metadata-only",
+      "size": 116287379
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:45Z",
+      "path": "Patch/Patch22004.mpk",
+      "role": "metadata-only",
+      "size": 150746
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:33Z",
+      "path": "Patch/Patch221.mpk",
+      "role": "metadata-only",
+      "size": 142556430
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:42Z",
+      "path": "Patch/Patch222.mpk",
+      "role": "metadata-only",
+      "size": 130431212
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:49Z",
+      "path": "Patch/Patch223.mpk",
+      "role": "metadata-only",
+      "size": 109382398
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:39Z",
+      "path": "Patch/Patch224.mpk",
+      "role": "metadata-only",
+      "size": 124909115
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:35Z",
+      "path": "Patch/Patch225.mpk",
+      "role": "metadata-only",
+      "size": 84845190
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:05Z",
+      "path": "Patch/Patch226.mpk",
+      "role": "metadata-only",
+      "size": 146803048
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:00Z",
+      "path": "Patch/Patch227.mpk",
+      "role": "metadata-only",
+      "size": 115181160
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:48Z",
+      "path": "Patch/Patch228.mpk",
+      "role": "metadata-only",
+      "size": 166082896
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:02Z",
+      "path": "Patch/Patch229.mpk",
+      "role": "metadata-only",
+      "size": 94793644
+    },
+    {
+      "mtime_utc": "2026-08-28T15:06:49Z",
+      "path": "Patch/Patch23.mpk",
+      "role": "metadata-only",
+      "size": 584883744
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:34Z",
+      "path": "Patch/Patch230.mpk",
+      "role": "metadata-only",
+      "size": 64115614
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch23000.mpk",
+      "role": "metadata-only",
+      "size": 4015071
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:43Z",
+      "path": "Patch/Patch231.mpk",
+      "role": "metadata-only",
+      "size": 77678908
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:40Z",
+      "path": "Patch/Patch232.mpk",
+      "role": "metadata-only",
+      "size": 129408964
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:14Z",
+      "path": "Patch/Patch233.mpk",
+      "role": "metadata-only",
+      "size": 78577771
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:30Z",
+      "path": "Patch/Patch234.mpk",
+      "role": "metadata-only",
+      "size": 150196720
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:46Z",
+      "path": "Patch/Patch235.mpk",
+      "role": "metadata-only",
+      "size": 91912556
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:00Z",
+      "path": "Patch/Patch236.mpk",
+      "role": "metadata-only",
+      "size": 105290659
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:08Z",
+      "path": "Patch/Patch237.mpk",
+      "role": "metadata-only",
+      "size": 171626437
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:00Z",
+      "path": "Patch/Patch238.mpk",
+      "role": "metadata-only",
+      "size": 92310348
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:01Z",
+      "path": "Patch/Patch239.mpk",
+      "role": "metadata-only",
+      "size": 129359725
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:52Z",
+      "path": "Patch/Patch24.mpk",
+      "role": "metadata-only",
+      "size": 470201708
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:34Z",
+      "path": "Patch/Patch240.mpk",
+      "role": "metadata-only",
+      "size": 194632386
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:44Z",
+      "path": "Patch/Patch24000.mpk",
+      "role": "metadata-only",
+      "size": 5017163
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch24010.mpk",
+      "role": "metadata-only",
+      "size": 5123855
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:04Z",
+      "path": "Patch/Patch241.mpk",
+      "role": "metadata-only",
+      "size": 162504020
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch242.mpk",
+      "role": "metadata-only",
+      "size": 166391007
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:28Z",
+      "path": "Patch/Patch243.mpk",
+      "role": "metadata-only",
+      "size": 189848132
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/Patch244.mpk",
+      "role": "metadata-only",
+      "size": 146594560
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:44Z",
+      "path": "Patch/Patch245.mpk",
+      "role": "metadata-only",
+      "size": 97779626
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:30Z",
+      "path": "Patch/Patch246.mpk",
+      "role": "metadata-only",
+      "size": 125661624
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:55Z",
+      "path": "Patch/Patch247.mpk",
+      "role": "metadata-only",
+      "size": 145448580
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:43Z",
+      "path": "Patch/Patch248.mpk",
+      "role": "metadata-only",
+      "size": 128869457
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:17Z",
+      "path": "Patch/Patch249.mpk",
+      "role": "metadata-only",
+      "size": 151264568
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:43Z",
+      "path": "Patch/Patch25.mpk",
+      "role": "metadata-only",
+      "size": 545517156
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:31Z",
+      "path": "Patch/Patch250.mpk",
+      "role": "metadata-only",
+      "size": 156244072
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:46Z",
+      "path": "Patch/Patch25004.mpk",
+      "role": "metadata-only",
+      "size": 279731
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:38Z",
+      "path": "Patch/Patch251.mpk",
+      "role": "metadata-only",
+      "size": 131103539
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:16Z",
+      "path": "Patch/Patch252.mpk",
+      "role": "metadata-only",
+      "size": 117956816
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:00Z",
+      "path": "Patch/Patch253.mpk",
+      "role": "metadata-only",
+      "size": 160884215
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:55Z",
+      "path": "Patch/Patch254.mpk",
+      "role": "metadata-only",
+      "size": 122351603
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:39Z",
+      "path": "Patch/Patch255.mpk",
+      "role": "metadata-only",
+      "size": 133227266
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:47Z",
+      "path": "Patch/Patch256.mpk",
+      "role": "metadata-only",
+      "size": 139769217
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:32Z",
+      "path": "Patch/Patch257.mpk",
+      "role": "metadata-only",
+      "size": 87498390
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:14Z",
+      "path": "Patch/Patch258.mpk",
+      "role": "metadata-only",
+      "size": 159565383
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:10Z",
+      "path": "Patch/Patch259.mpk",
+      "role": "metadata-only",
+      "size": 161308730
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:43Z",
+      "path": "Patch/Patch26.mpk",
+      "role": "metadata-only",
+      "size": 473491717
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:13Z",
+      "path": "Patch/Patch260.mpk",
+      "role": "metadata-only",
+      "size": 166744604
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch26000.mpk",
+      "role": "metadata-only",
+      "size": 8012009
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/Patch26010.mpk",
+      "role": "metadata-only",
+      "size": 859237
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:22Z",
+      "path": "Patch/Patch261.mpk",
+      "role": "metadata-only",
+      "size": 117916138
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:48Z",
+      "path": "Patch/Patch262.mpk",
+      "role": "metadata-only",
+      "size": 157727679
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:47Z",
+      "path": "Patch/Patch263.mpk",
+      "role": "metadata-only",
+      "size": 142149984
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:56Z",
+      "path": "Patch/Patch264.mpk",
+      "role": "metadata-only",
+      "size": 172617651
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:01Z",
+      "path": "Patch/Patch265.mpk",
+      "role": "metadata-only",
+      "size": 109967397
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:59Z",
+      "path": "Patch/Patch266.mpk",
+      "role": "metadata-only",
+      "size": 130180474
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:48Z",
+      "path": "Patch/Patch267.mpk",
+      "role": "metadata-only",
+      "size": 152563075
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:22Z",
+      "path": "Patch/Patch268.mpk",
+      "role": "metadata-only",
+      "size": 130466884
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:04Z",
+      "path": "Patch/Patch269.mpk",
+      "role": "metadata-only",
+      "size": 152173762
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:23Z",
+      "path": "Patch/Patch27.mpk",
+      "role": "metadata-only",
+      "size": 461942797
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:36Z",
+      "path": "Patch/Patch270.mpk",
+      "role": "metadata-only",
+      "size": 95883071
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:46Z",
+      "path": "Patch/Patch27000.mpk",
+      "role": "metadata-only",
+      "size": 7876010
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:47Z",
+      "path": "Patch/Patch27010.mpk",
+      "role": "metadata-only",
+      "size": 7770655
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:59Z",
+      "path": "Patch/Patch271.mpk",
+      "role": "metadata-only",
+      "size": 87509892
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:48Z",
+      "path": "Patch/Patch272.mpk",
+      "role": "metadata-only",
+      "size": 158656923
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:50Z",
+      "path": "Patch/Patch273.mpk",
+      "role": "metadata-only",
+      "size": 159173088
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:37Z",
+      "path": "Patch/Patch274.mpk",
+      "role": "metadata-only",
+      "size": 102129638
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:31Z",
+      "path": "Patch/Patch275.mpk",
+      "role": "metadata-only",
+      "size": 127286871
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:46Z",
+      "path": "Patch/Patch276.mpk",
+      "role": "metadata-only",
+      "size": 192299030
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:48Z",
+      "path": "Patch/Patch277.mpk",
+      "role": "metadata-only",
+      "size": 155784349
+    },
+    {
+      "mtime_utc": "2026-08-28T15:06:47Z",
+      "path": "Patch/Patch278.mpk",
+      "role": "metadata-only",
+      "size": 104102420
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:19Z",
+      "path": "Patch/Patch279.mpk",
+      "role": "metadata-only",
+      "size": 117782264
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:26Z",
+      "path": "Patch/Patch28.mpk",
+      "role": "metadata-only",
+      "size": 546086985
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:49Z",
+      "path": "Patch/Patch280.mpk",
+      "role": "metadata-only",
+      "size": 193023487
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:18Z",
+      "path": "Patch/Patch281.mpk",
+      "role": "metadata-only",
+      "size": 221600412
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:27Z",
+      "path": "Patch/Patch282.mpk",
+      "role": "metadata-only",
+      "size": 224504128
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:37Z",
+      "path": "Patch/Patch283.mpk",
+      "role": "metadata-only",
+      "size": 170138350
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:46Z",
+      "path": "Patch/Patch284.mpk",
+      "role": "metadata-only",
+      "size": 243164491
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:31Z",
+      "path": "Patch/Patch285.mpk",
+      "role": "metadata-only",
+      "size": 179737123
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:20Z",
+      "path": "Patch/Patch286.mpk",
+      "role": "metadata-only",
+      "size": 97656867
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:06Z",
+      "path": "Patch/Patch287.mpk",
+      "role": "metadata-only",
+      "size": 144459018
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:28Z",
+      "path": "Patch/Patch288.mpk",
+      "role": "metadata-only",
+      "size": 162494215
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:40Z",
+      "path": "Patch/Patch289.mpk",
+      "role": "metadata-only",
+      "size": 190282401
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:33Z",
+      "path": "Patch/Patch29.mpk",
+      "role": "metadata-only",
+      "size": 598933661
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:44Z",
+      "path": "Patch/Patch290.mpk",
+      "role": "metadata-only",
+      "size": 196124477
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:14Z",
+      "path": "Patch/Patch291.mpk",
+      "role": "metadata-only",
+      "size": 159336861
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:11Z",
+      "path": "Patch/Patch292.mpk",
+      "role": "metadata-only",
+      "size": 149469431
+    },
+    {
+      "mtime_utc": "2026-08-28T15:06:46Z",
+      "path": "Patch/Patch293.mpk",
+      "role": "metadata-only",
+      "size": 174878273
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:12Z",
+      "path": "Patch/Patch294.mpk",
+      "role": "metadata-only",
+      "size": 151355078
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:35Z",
+      "path": "Patch/Patch295.mpk",
+      "role": "metadata-only",
+      "size": 183774808
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:25Z",
+      "path": "Patch/Patch296.mpk",
+      "role": "metadata-only",
+      "size": 209111091
+    },
+    {
+      "mtime_utc": "2026-08-28T15:06:52Z",
+      "path": "Patch/Patch297.mpk",
+      "role": "metadata-only",
+      "size": 240098270
+    },
+    {
+      "mtime_utc": "2026-08-28T15:06:39Z",
+      "path": "Patch/Patch298.mpk",
+      "role": "metadata-only",
+      "size": 200990342
+    },
+    {
+      "mtime_utc": "2026-08-28T15:06:38Z",
+      "path": "Patch/Patch299.mpk",
+      "role": "metadata-only",
+      "size": 161969132
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:19Z",
+      "path": "Patch/Patch3.mpk",
+      "role": "metadata-only",
+      "size": 495000793
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:02Z",
+      "path": "Patch/Patch30.mpk",
+      "role": "metadata-only",
+      "size": 510949721
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:03Z",
+      "path": "Patch/Patch300.mpk",
+      "role": "metadata-only",
+      "size": 222176014
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:22Z",
+      "path": "Patch/Patch31.mpk",
+      "role": "metadata-only",
+      "size": 585025486
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:56Z",
+      "path": "Patch/Patch32.mpk",
+      "role": "metadata-only",
+      "size": 459496680
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:14Z",
+      "path": "Patch/Patch33.mpk",
+      "role": "metadata-only",
+      "size": 458838786
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:13Z",
+      "path": "Patch/Patch34.mpk",
+      "role": "metadata-only",
+      "size": 451076142
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:18Z",
+      "path": "Patch/Patch35.mpk",
+      "role": "metadata-only",
+      "size": 515051071
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:21Z",
+      "path": "Patch/Patch36.mpk",
+      "role": "metadata-only",
+      "size": 527477768
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:24Z",
+      "path": "Patch/Patch37.mpk",
+      "role": "metadata-only",
+      "size": 488647805
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:30Z",
+      "path": "Patch/Patch38.mpk",
+      "role": "metadata-only",
+      "size": 488458379
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:43Z",
+      "path": "Patch/Patch39.mpk",
+      "role": "metadata-only",
+      "size": 446969550
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch4.mpk",
+      "role": "metadata-only",
+      "size": 507691045
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:41Z",
+      "path": "Patch/Patch40.mpk",
+      "role": "metadata-only",
+      "size": 520084787
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:22Z",
+      "path": "Patch/Patch41.mpk",
+      "role": "metadata-only",
+      "size": 513507882
+    },
+    {
+      "mtime_utc": "2026-08-28T15:08:10Z",
+      "path": "Patch/Patch42.mpk",
+      "role": "metadata-only",
+      "size": 492562397
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:03Z",
+      "path": "Patch/Patch43.mpk",
+      "role": "metadata-only",
+      "size": 453800437
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:41Z",
+      "path": "Patch/Patch44.mpk",
+      "role": "metadata-only",
+      "size": 531490240
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:22Z",
+      "path": "Patch/Patch45.mpk",
+      "role": "metadata-only",
+      "size": 513506365
+    },
+    {
+      "mtime_utc": "2026-08-28T15:06:45Z",
+      "path": "Patch/Patch46.mpk",
+      "role": "metadata-only",
+      "size": 495414514
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:27Z",
+      "path": "Patch/Patch47.mpk",
+      "role": "metadata-only",
+      "size": 554009430
+    },
+    {
+      "mtime_utc": "2026-08-28T15:08:25Z",
+      "path": "Patch/Patch48.mpk",
+      "role": "metadata-only",
+      "size": 626870765
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:15Z",
+      "path": "Patch/Patch49.mpk",
+      "role": "metadata-only",
+      "size": 548110372
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch5.mpk",
+      "role": "metadata-only",
+      "size": 553414188
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:37Z",
+      "path": "Patch/Patch50.mpk",
+      "role": "metadata-only",
+      "size": 512314521
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:04Z",
+      "path": "Patch/Patch51.mpk",
+      "role": "metadata-only",
+      "size": 492783979
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:03Z",
+      "path": "Patch/Patch52.mpk",
+      "role": "metadata-only",
+      "size": 579408234
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:35Z",
+      "path": "Patch/Patch53.mpk",
+      "role": "metadata-only",
+      "size": 521627308
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:31Z",
+      "path": "Patch/Patch54.mpk",
+      "role": "metadata-only",
+      "size": 528078882
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:50Z",
+      "path": "Patch/Patch55.mpk",
+      "role": "metadata-only",
+      "size": 471837052
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:38Z",
+      "path": "Patch/Patch56.mpk",
+      "role": "metadata-only",
+      "size": 511618437
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:26Z",
+      "path": "Patch/Patch57.mpk",
+      "role": "metadata-only",
+      "size": 537984369
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:45Z",
+      "path": "Patch/Patch58.mpk",
+      "role": "metadata-only",
+      "size": 563591443
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:48Z",
+      "path": "Patch/Patch59.mpk",
+      "role": "metadata-only",
+      "size": 457544571
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch6.mpk",
+      "role": "metadata-only",
+      "size": 549590362
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:54Z",
+      "path": "Patch/Patch60.mpk",
+      "role": "metadata-only",
+      "size": 464534681
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:20Z",
+      "path": "Patch/Patch61.mpk",
+      "role": "metadata-only",
+      "size": 508143754
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:46Z",
+      "path": "Patch/Patch62.mpk",
+      "role": "metadata-only",
+      "size": 503112402
+    },
+    {
+      "mtime_utc": "2026-08-28T15:08:17Z",
+      "path": "Patch/Patch63.mpk",
+      "role": "metadata-only",
+      "size": 474454795
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:00Z",
+      "path": "Patch/Patch64.mpk",
+      "role": "metadata-only",
+      "size": 475673997
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:06Z",
+      "path": "Patch/Patch65.mpk",
+      "role": "metadata-only",
+      "size": 459222955
+    },
+    {
+      "mtime_utc": "2026-08-28T16:41:21Z",
+      "path": "Patch/Patch66.mpk",
+      "role": "metadata-only",
+      "size": 589585767
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:08Z",
+      "path": "Patch/Patch67.mpk",
+      "role": "metadata-only",
+      "size": 489685686
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:52Z",
+      "path": "Patch/Patch68.mpk",
+      "role": "metadata-only",
+      "size": 472349804
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:54Z",
+      "path": "Patch/Patch69.mpk",
+      "role": "metadata-only",
+      "size": 409572731
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch7.mpk",
+      "role": "metadata-only",
+      "size": 551742563
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:36Z",
+      "path": "Patch/Patch70.mpk",
+      "role": "metadata-only",
+      "size": 526345973
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:29Z",
+      "path": "Patch/Patch71.mpk",
+      "role": "metadata-only",
+      "size": 458400400
+    },
+    {
+      "mtime_utc": "2026-08-28T16:37:48Z",
+      "path": "Patch/Patch72.mpk",
+      "role": "metadata-only",
+      "size": 423418770
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:10Z",
+      "path": "Patch/Patch73.mpk",
+      "role": "metadata-only",
+      "size": 451351458
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:18Z",
+      "path": "Patch/Patch74.mpk",
+      "role": "metadata-only",
+      "size": 462240578
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:39Z",
+      "path": "Patch/Patch75.mpk",
+      "role": "metadata-only",
+      "size": 573542441
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:21Z",
+      "path": "Patch/Patch76.mpk",
+      "role": "metadata-only",
+      "size": 536565630
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:50Z",
+      "path": "Patch/Patch77.mpk",
+      "role": "metadata-only",
+      "size": 514988451
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:57Z",
+      "path": "Patch/Patch78.mpk",
+      "role": "metadata-only",
+      "size": 511300786
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:49Z",
+      "path": "Patch/Patch79.mpk",
+      "role": "metadata-only",
+      "size": 496568836
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch8.mpk",
+      "role": "metadata-only",
+      "size": 522244688
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:38Z",
+      "path": "Patch/Patch80.mpk",
+      "role": "metadata-only",
+      "size": 446199791
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:41Z",
+      "path": "Patch/Patch81.mpk",
+      "role": "metadata-only",
+      "size": 511019087
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:58Z",
+      "path": "Patch/Patch82.mpk",
+      "role": "metadata-only",
+      "size": 489414129
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:10Z",
+      "path": "Patch/Patch83.mpk",
+      "role": "metadata-only",
+      "size": 463864005
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:59Z",
+      "path": "Patch/Patch84.mpk",
+      "role": "metadata-only",
+      "size": 525427953
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:28Z",
+      "path": "Patch/Patch85.mpk",
+      "role": "metadata-only",
+      "size": 456887149
+    },
+    {
+      "mtime_utc": "2026-08-28T16:39:35Z",
+      "path": "Patch/Patch86.mpk",
+      "role": "metadata-only",
+      "size": 552005225
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:28Z",
+      "path": "Patch/Patch87.mpk",
+      "role": "metadata-only",
+      "size": 478356948
+    },
+    {
+      "mtime_utc": "2026-08-28T16:38:02Z",
+      "path": "Patch/Patch88.mpk",
+      "role": "metadata-only",
+      "size": 525276697
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:46Z",
+      "path": "Patch/Patch89.mpk",
+      "role": "metadata-only",
+      "size": 440218309
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/Patch9.mpk",
+      "role": "metadata-only",
+      "size": 527108990
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:30Z",
+      "path": "Patch/Patch90.mpk",
+      "role": "metadata-only",
+      "size": 722924669
+    },
+    {
+      "mtime_utc": "2026-08-29T17:27:58Z",
+      "path": "Patch/Patch901.mpk",
+      "role": "metadata-only",
+      "size": 987711
+    },
+    {
+      "mtime_utc": "2026-08-29T12:34:55Z",
+      "path": "Patch/Patch902.mpk",
+      "role": "metadata-only",
+      "size": 1663961
+    },
+    {
+      "mtime_utc": "2026-08-29T12:35:44Z",
+      "path": "Patch/Patch903.mpk",
+      "role": "metadata-only",
+      "size": 4378
+    },
+    {
+      "mtime_utc": "2026-08-29T12:16:58Z",
+      "path": "Patch/Patch904.mpk",
+      "role": "metadata-only",
+      "size": 311701
+    },
+    {
+      "mtime_utc": "2026-08-29T12:34:59Z",
+      "path": "Patch/Patch905.mpk",
+      "role": "metadata-only",
+      "size": 480993
+    },
+    {
+      "mtime_utc": "2026-08-29T12:34:54Z",
+      "path": "Patch/Patch906.mpk",
+      "role": "metadata-only",
+      "size": 1350023
+    },
+    {
+      "mtime_utc": "2026-08-29T12:03:04Z",
+      "path": "Patch/Patch907.mpk",
+      "role": "metadata-only",
+      "size": 59170
+    },
+    {
+      "mtime_utc": "2026-08-29T12:33:09Z",
+      "path": "Patch/Patch908.mpk",
+      "role": "metadata-only",
+      "size": 675485
+    },
+    {
+      "mtime_utc": "2026-08-29T12:17:01Z",
+      "path": "Patch/Patch909.mpk",
+      "role": "metadata-only",
+      "size": 1310046
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:23Z",
+      "path": "Patch/Patch91.mpk",
+      "role": "metadata-only",
+      "size": 546961454
+    },
+    {
+      "mtime_utc": "2026-08-29T12:34:54Z",
+      "path": "Patch/Patch910.mpk",
+      "role": "metadata-only",
+      "size": 106957
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:17Z",
+      "path": "Patch/Patch92.mpk",
+      "role": "metadata-only",
+      "size": 507766248
+    },
+    {
+      "mtime_utc": "2026-08-28T16:36:10Z",
+      "path": "Patch/Patch93.mpk",
+      "role": "metadata-only",
+      "size": 566873109
+    },
+    {
+      "mtime_utc": "2026-08-28T16:40:56Z",
+      "path": "Patch/Patch94.mpk",
+      "role": "metadata-only",
+      "size": 493552917
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:56Z",
+      "path": "Patch/Patch95.mpk",
+      "role": "metadata-only",
+      "size": 516602167
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:54Z",
+      "path": "Patch/Patch96.mpk",
+      "role": "metadata-only",
+      "size": 522154011
+    },
+    {
+      "mtime_utc": "2026-08-28T15:07:08Z",
+      "path": "Patch/Patch97.mpk",
+      "role": "metadata-only",
+      "size": 543253380
+    },
+    {
+      "mtime_utc": "2026-08-28T16:35:39Z",
+      "path": "Patch/Patch98.mpk",
+      "role": "metadata-only",
+      "size": 536044074
+    },
+    {
+      "mtime_utc": "2026-08-28T15:08:03Z",
+      "path": "Patch/Patch99.mpk",
+      "role": "metadata-only",
+      "size": 657416957
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:37Z",
+      "path": "Patch/TinyFiles_common_bjs.0.mpkinfo",
+      "role": "metadata-only",
+      "size": 610464
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:35Z",
+      "path": "Patch/TinyFiles_common_bjs.1.mpkinfo",
+      "role": "metadata-only",
+      "size": 24
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:37Z",
+      "path": "Patch/TinyFiles_common_bjs.2.mpkinfo",
+      "role": "metadata-only",
+      "size": 610464
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:40Z",
+      "path": "Patch/TinyFiles_common_bjs.3.mpkinfo",
+      "role": "metadata-only",
+      "size": 141
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:39Z",
+      "path": "Patch/TinyFiles_common_hexi.0.mpkinfo",
+      "role": "metadata-only",
+      "size": 1002724
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:40Z",
+      "path": "Patch/TinyFiles_common_hexi.1.mpkinfo",
+      "role": "metadata-only",
+      "size": 44
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:39Z",
+      "path": "Patch/TinyFiles_common_hexi.2.mpkinfo",
+      "role": "metadata-only",
+      "size": 1002724
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:39Z",
+      "path": "Patch/TinyFiles_common_hexi.3.mpkinfo",
+      "role": "metadata-only",
+      "size": 141
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/TinyFiles_common_jiangnan.mpkinfo",
+      "role": "metadata-only",
+      "size": 429904
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:32Z",
+      "path": "Patch/TinyFiles_common_kaifeng.0.mpkinfo",
+      "role": "metadata-only",
+      "size": 1897544
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:30Z",
+      "path": "Patch/TinyFiles_common_kaifeng.1.mpkinfo",
+      "role": "metadata-only",
+      "size": 44
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/TinyFiles_common_kaifeng.2.mpkinfo",
+      "role": "metadata-only",
+      "size": 1897544
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/TinyFiles_common_kaifeng.3.mpkinfo",
+      "role": "metadata-only",
+      "size": 173
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:23Z",
+      "path": "Patch/TinyFiles_common_pkg.0.mpkinfo",
+      "role": "metadata-only",
+      "size": 9429684
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:20Z",
+      "path": "Patch/TinyFiles_common_pkg.1.mpkinfo",
+      "role": "metadata-only",
+      "size": 535184
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:23Z",
+      "path": "Patch/TinyFiles_common_pkg.2.mpkinfo",
+      "role": "metadata-only",
+      "size": 9429684
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:00Z",
+      "path": "Patch/TinyFiles_common_pkg.3.mpkinfo",
+      "role": "metadata-only",
+      "size": 377
+    },
+    {
+      "mtime_utc": "2026-08-28T16:04:16Z",
+      "path": "Patch/TinyFiles_common_qingzhou.mpkinfo",
+      "role": "metadata-only",
+      "size": 290784
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:40Z",
+      "path": "Patch/TinyFiles_mid_bjs.mpkinfo",
+      "role": "metadata-only",
+      "size": 2324
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:33Z",
+      "path": "Patch/TinyFiles_mid_hexi.mpkinfo",
+      "role": "metadata-only",
+      "size": 3904
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:48Z",
+      "path": "Patch/TinyFiles_mid_jiangnan.mpkinfo",
+      "role": "metadata-only",
+      "size": 5824
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:37Z",
+      "path": "Patch/TinyFiles_mid_kaifeng.mpkinfo",
+      "role": "metadata-only",
+      "size": 8244
+    },
+    {
+      "mtime_utc": "2026-08-28T15:05:18Z",
+      "path": "Patch/TinyFiles_mid_pkg.mpkinfo",
+      "role": "metadata-only",
+      "size": 436304
+    },
+    {
+      "mtime_utc": "2026-08-28T15:03:49Z",
+      "path": "Patch/TinyFiles_mid_qingzhou.mpkinfo",
+      "role": "metadata-only",
+      "size": 3164
+    },
+    {
+      "mtime_utc": "2026-08-22T15:13:44Z",
+      "path": "Patch/bg2_patchlist_mid_bjs.txt",
+      "role": "metadata-only",
+      "size": 13773
+    },
+    {
+      "mtime_utc": "2026-08-22T15:13:37Z",
+      "path": "Patch/bg2_patchlist_mid_cutscene.txt",
+      "role": "metadata-only",
+      "size": 44589
+    },
+    {
+      "mtime_utc": "2026-08-22T15:13:10Z",
+      "path": "Patch/bg2_patchlist_mid_hexi.txt",
+      "role": "metadata-only",
+      "size": 19109
+    },
+    {
+      "mtime_utc": "2026-08-22T15:13:48Z",
+      "path": "Patch/bg2_patchlist_mid_jiangnan.txt",
+      "role": "metadata-only",
+      "size": 336237
+    },
+    {
+      "mtime_utc": "2026-08-22T15:13:03Z",
+      "path": "Patch/bg2_patchlist_mid_kaifeng.txt",
+      "role": "metadata-only",
+      "size": 25833
+    },
+    {
+      "mtime_utc": "2026-08-22T15:14:37Z",
+      "path": "Patch/bg2_patchlist_mid_pkg.txt",
+      "role": "metadata-only",
+      "size": 3612641
+    },
+    {
+      "mtime_utc": "2026-08-22T15:13:14Z",
+      "path": "Patch/bg2_patchlist_mid_pve.txt",
+      "role": "metadata-only",
+      "size": 159145
+    },
+    {
+      "mtime_utc": "2026-08-22T15:20:24Z",
+      "path": "Patch/bg2_patchlist_mid_pvp.txt",
+      "role": "metadata-only",
+      "size": 39389
+    },
+    {
+      "mtime_utc": "2026-08-22T15:12:52Z",
+      "path": "Patch/bg2_patchlist_mid_qingzhou.txt",
+      "role": "metadata-only",
+      "size": 47481
+    },
+    {
+      "mtime_utc": "2026-08-22T15:11:29Z",
+      "path": "Patch/bg2_patchlist_mid_waiguan.txt",
+      "role": "metadata-only",
+      "size": 105349
+    },
+    {
+      "mtime_utc": "2026-08-29T17:14:14Z",
+      "path": "Patch/bg_patch.lock",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-08-26T14:47:25Z",
+      "path": "Patch/bg_patchlist_mid_bjs.txt",
+      "role": "metadata-only",
+      "size": 14681
+    },
+    {
+      "mtime_utc": "2026-08-26T14:45:41Z",
+      "path": "Patch/bg_patchlist_mid_cutscene.txt",
+      "role": "metadata-only",
+      "size": 64601
+    },
+    {
+      "mtime_utc": "2026-08-26T14:43:42Z",
+      "path": "Patch/bg_patchlist_mid_hexi.txt",
+      "role": "metadata-only",
+      "size": 15589
+    },
+    {
+      "mtime_utc": "2026-08-26T14:48:04Z",
+      "path": "Patch/bg_patchlist_mid_jiangnan.txt",
+      "role": "metadata-only",
+      "size": 359161
+    },
+    {
+      "mtime_utc": "2026-08-26T14:42:59Z",
+      "path": "Patch/bg_patchlist_mid_kaifeng.txt",
+      "role": "metadata-only",
+      "size": 21805
+    },
+    {
+      "mtime_utc": "2026-08-26T15:23:49Z",
+      "path": "Patch/bg_patchlist_mid_pkg.txt",
+      "role": "metadata-only",
+      "size": 1504721
+    },
+    {
+      "mtime_utc": "2026-08-26T14:44:49Z",
+      "path": "Patch/bg_patchlist_mid_pve.txt",
+      "role": "metadata-only",
+      "size": 26705
+    },
+    {
+      "mtime_utc": "2026-08-26T14:42:00Z",
+      "path": "Patch/bg_patchlist_mid_qingzhou.txt",
+      "role": "metadata-only",
+      "size": 38481
+    },
+    {
+      "mtime_utc": "2026-08-26T14:40:48Z",
+      "path": "Patch/bg_patchlist_mid_waiguan.txt",
+      "role": "metadata-only",
+      "size": 77733
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:26Z",
+      "path": "Patch/essential.txt",
+      "role": "metadata-only",
+      "size": 5668
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:21Z",
+      "path": "Patch/extra_version",
+      "role": "metadata-only",
+      "size": 64
+    },
+    {
+      "mtime_utc": "2026-07-24T15:19:33Z",
+      "path": "Patch/fenbao_patch.lock",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-06-08T05:36:29Z",
+      "path": "Patch/fenbao_size.tag",
+      "role": "metadata-only",
+      "size": 217
+    },
+    {
+      "mtime_utc": "2026-08-29T17:12:46Z",
+      "path": "Patch/fenbao_sizes.tag",
+      "role": "metadata-only",
+      "size": 243
+    },
+    {
+      "mtime_utc": "2026-08-29T17:14:09Z",
+      "path": "Patch/filebox_type.tag",
+      "role": "metadata-only",
+      "size": 1
+    },
+    {
+      "mtime_utc": "2026-03-23T03:26:54Z",
+      "path": "Patch/first_udid",
+      "role": "metadata-only",
+      "size": 32
+    },
+    {
+      "mtime_utc": "2026-08-29T17:14:04Z",
+      "path": "Patch/game.lock",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T03:27:00Z",
+      "path": "Patch/hexip2.tag",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T03:27:00Z",
+      "path": "Patch/hexip3.tag",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T03:27:00Z",
+      "path": "Patch/hexip4.tag",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T03:27:00Z",
+      "path": "Patch/hexip5.tag",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-03-23T03:27:00Z",
+      "path": "Patch/hexip6.tag",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-06-07T14:54:40Z",
+      "path": "Patch/patch_config.json",
+      "role": "metadata-only",
+      "size": 176
+    },
+    {
+      "mtime_utc": "2026-08-29T17:14:14Z",
+      "path": "Patch/patching_version.txt",
+      "role": "core-input",
+      "sha256": "f7fc3e4fb5b46d78c24d40a107b90dbf9169d4ebe6ba639976d499b44be4da76",
+      "size": 14
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:54Z",
+      "path": "Patch/patchlist_mid_bjs.txt",
+      "role": "metadata-only",
+      "size": 2258397
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:53Z",
+      "path": "Patch/patchlist_mid_cutscene.txt",
+      "role": "metadata-only",
+      "size": 1126709
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:54Z",
+      "path": "Patch/patchlist_mid_hexi.txt",
+      "role": "metadata-only",
+      "size": 3318841
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:54Z",
+      "path": "Patch/patchlist_mid_jiangnan.txt",
+      "role": "metadata-only",
+      "size": 1414805
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:56Z",
+      "path": "Patch/patchlist_mid_kaifeng.txt",
+      "role": "metadata-only",
+      "size": 4492757
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:12Z",
+      "path": "Patch/patchlist_mid_pkg.txt",
+      "role": "metadata-only",
+      "size": 27471525
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:56Z",
+      "path": "Patch/patchlist_mid_pve.txt",
+      "role": "metadata-only",
+      "size": 4660545
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:53Z",
+      "path": "Patch/patchlist_mid_pvp.txt",
+      "role": "metadata-only",
+      "size": 1605681
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:53Z",
+      "path": "Patch/patchlist_mid_qingzhou.txt",
+      "role": "metadata-only",
+      "size": 806877
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:54Z",
+      "path": "Patch/patchlist_mid_waiguan.txt",
+      "role": "metadata-only",
+      "size": 3147149
+    },
+    {
+      "mtime_utc": "2026-08-29T17:14:04Z",
+      "path": "Patch/patchmd5_publish_win64_formal_lowlow_o_usual.txt",
+      "role": "metadata-only",
+      "size": 888
+    },
+    {
+      "mtime_utc": "2026-06-07T14:34:37Z",
+      "path": "Patch/pcfenbao_inited.tag",
+      "role": "metadata-only",
+      "size": 0
+    },
+    {
+      "mtime_utc": "2026-08-29T17:14:04Z",
+      "path": "Patch/pkgversion",
+      "role": "metadata-only",
+      "size": 12
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:54Z",
+      "path": "Patch/sub_patchlist_mid_bjs.txt",
+      "role": "metadata-only",
+      "size": 2258397
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:53Z",
+      "path": "Patch/sub_patchlist_mid_bjs_fb.txt",
+      "role": "metadata-only",
+      "size": 43797
+    },
+    {
+      "mtime_utc": "2026-08-23T13:30:12Z",
+      "path": "Patch/sub_patchlist_mid_bjs_fb2.txt",
+      "role": "metadata-only",
+      "size": 6281
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:53Z",
+      "path": "Patch/sub_patchlist_mid_cutscene.txt",
+      "role": "metadata-only",
+      "size": 1126709
+    },
+    {
+      "mtime_utc": "2026-08-28T15:02:38Z",
+      "path": "Patch/sub_patchlist_mid_hexd.txt",
+      "role": "metadata-only",
+      "size": 165
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:54Z",
+      "path": "Patch/sub_patchlist_mid_hexi.txt",
+      "role": "metadata-only",
+      "size": 3318841
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:53Z",
+      "path": "Patch/sub_patchlist_mid_hexi_fb.txt",
+      "role": "metadata-only",
+      "size": 124401
+    },
+    {
+      "mtime_utc": "2026-08-23T13:30:12Z",
+      "path": "Patch/sub_patchlist_mid_hexi_fb2.txt",
+      "role": "metadata-only",
+      "size": 14209
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:54Z",
+      "path": "Patch/sub_patchlist_mid_jiangnan.txt",
+      "role": "metadata-only",
+      "size": 1414805
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:54Z",
+      "path": "Patch/sub_patchlist_mid_jiangnan_fb.txt",
+      "role": "metadata-only",
+      "size": 19637
+    },
+    {
+      "mtime_utc": "2026-08-23T13:30:12Z",
+      "path": "Patch/sub_patchlist_mid_jiangnan_fb2.txt",
+      "role": "metadata-only",
+      "size": 221
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:56Z",
+      "path": "Patch/sub_patchlist_mid_kaifeng.txt",
+      "role": "metadata-only",
+      "size": 4492757
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:53Z",
+      "path": "Patch/sub_patchlist_mid_kaifeng_fb.txt",
+      "role": "metadata-only",
+      "size": 67433
+    },
+    {
+      "mtime_utc": "2026-08-23T13:30:12Z",
+      "path": "Patch/sub_patchlist_mid_kaifeng_fb2.txt",
+      "role": "metadata-only",
+      "size": 637
+    },
+    {
+      "mtime_utc": "2026-06-07T14:34:58Z",
+      "path": "Patch/sub_patchlist_mid_legacy.txt",
+      "role": "metadata-only",
+      "size": 65
+    },
+    {
+      "mtime_utc": "2026-07-24T13:05:32Z",
+      "path": "Patch/sub_patchlist_mid_legacy_fb.txt",
+      "role": "metadata-only",
+      "size": 65
+    },
+    {
+      "mtime_utc": "2026-08-11T14:17:13Z",
+      "path": "Patch/sub_patchlist_mid_legacy_fb2.txt",
+      "role": "metadata-only",
+      "size": 65
+    },
+    {
+      "mtime_utc": "2026-08-29T12:55:12Z",
+      "path": "Patch/sub_patchlist_mid_pkg.txt",
+      "role": "metadata-only",
+      "size": 27471525
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:55Z",
+      "path": "Patch/sub_patchlist_mid_pkg_fb.txt",
+      "role": "metadata-only",
+      "size": 2685305
+    },
+    {
+      "mtime_utc": "2026-08-23T13:30:12Z",
+      "path": "Patch/sub_patchlist_mid_pkg_fb2.txt",
+      "role": "metadata-only",
+      "size": 1208293
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:56Z",
+      "path": "Patch/sub_patchlist_mid_pve.txt",
+      "role": "metadata-only",
+      "size": 4660545
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:53Z",
+      "path": "Patch/sub_patchlist_mid_pvp.txt",
+      "role": "metadata-only",
+      "size": 1605681
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:53Z",
+      "path": "Patch/sub_patchlist_mid_qingzhou.txt",
+      "role": "metadata-only",
+      "size": 806877
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:53Z",
+      "path": "Patch/sub_patchlist_mid_qingzhou_fb.txt",
+      "role": "metadata-only",
+      "size": 26885
+    },
+    {
+      "mtime_utc": "2026-08-23T13:30:12Z",
+      "path": "Patch/sub_patchlist_mid_qingzhou_fb2.txt",
+      "role": "metadata-only",
+      "size": 297
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:54Z",
+      "path": "Patch/sub_patchlist_mid_waiguan.txt",
+      "role": "metadata-only",
+      "size": 3147149
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:54Z",
+      "path": "Patch/sub_patchlist_mid_world.txt",
+      "role": "metadata-only",
+      "size": 564165
+    },
+    {
+      "mtime_utc": "2026-08-28T15:02:43Z",
+      "path": "Patch/sub_patchlist_subitems_mid_cutscene.txt",
+      "role": "metadata-only",
+      "size": 1731077
+    },
+    {
+      "mtime_utc": "2026-08-29T12:54:56Z",
+      "path": "Patch/sub_patchlist_subitems_mid_pve.txt",
+      "role": "metadata-only",
+      "size": 9348005
+    },
+    {
+      "mtime_utc": "2026-08-28T15:02:42Z",
+      "path": "Patch/sub_patchlist_subitems_mid_pvp.txt",
+      "role": "metadata-only",
+      "size": 3106281
+    },
+    {
+      "mtime_utc": "2026-08-28T15:02:39Z",
+      "path": "Patch/sub_patchlist_subitems_mid_waiguan.txt",
+      "role": "metadata-only",
+      "size": 7135641
+    },
+    {
+      "mtime_utc": "2026-08-28T15:02:43Z",
+      "path": "Patch/sub_patchlist_subitems_mid_world.txt",
+      "role": "metadata-only",
+      "size": 958961
+    },
+    {
+      "mtime_utc": "2026-08-28T15:09:03Z",
+      "path": "Patch/weekly.tag",
+      "role": "metadata-only",
+      "size": 10
+    },
+    {
+      "mtime_utc": "2026-08-29T17:13:58Z",
+      "path": "Patch/winpatch.lock",
+      "role": "metadata-only",
+      "size": 0
+    }
+  ],
+  "manifest_sha256": "e105e344c1a2fa61b627d5bff1a3efbfc6157c0b087086633f633ef74a235eaa",
+  "patch_dir": "E:\\yysls\\yysls_fast\\LocalData\\Patch",
+  "patching_version": "20260820220319",
+  "patching_version_sha256": "f7fc3e4fb5b46d78c24d40a107b90dbf9169d4ebe6ba639976d499b44be4da76",
+  "timestamp_utc": "2026-08-30T02:53:01Z"
+}

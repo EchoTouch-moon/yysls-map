@@ -1,0 +1,132 @@
+{
+  "archive_dir": "E:\\yysls\\yysls_fast\\LocalData\\Patch",
+  "blind_count": 30,
+  "builder_blob_sha256": "2c0112b8c01d42d35b914799a37c11d93a3752d41ae2e02a38fcb1d946261847",
+  "builder_commit": "6c47256be6f42b33826341bf217469be03d4c7ab",
+  "engine_blob_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+  "engine_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+  "failures": [],
+  "files": {
+    "LT31-entry131-discovery.json": "3415a56c2dea75b148253046224d0012a2cd96f4588ff9fefd3fb9e2ad24764f",
+    "LT31-entry1538-discovery.json": "083cf01e2ca5fd107ab4ac07f54d642ebe6a758071de559d775db147fe42f166",
+    "LT31-entry1580-discovery.json": "ffe2cde9e3e0f37f3d2b8a2a03d5bb33870c527ea2dcb9a5b4e06793a4de5248",
+    "LT31-entry1616-discovery.json": "9ccbb4b7cf9b338a35150b548146f532b3d43ae471fcc938eb2b4a047c1ad43d",
+    "LT31-entry2264-discovery.json": "e77498eed94ef4993df550be512fd99e8b4a60839c52706915a192e279f2081e",
+    "LT31-entry2415-discovery.json": "15d4231f9b1d20cbf9158fa461e13ee310f6dd750f143ac7336b98b3fc0421d4",
+    "LT31-entry2471-discovery.json": "4a4a23cdd75674ae3eb206a4b3e6ed123ac032ada26bb48a58875fbed65c8d52",
+    "LT31-entry2586-discovery.json": "2d72c982bfaacd08afdaf4d0b5a906319602a9401cc8ab7e48a58c1b924f3c8a",
+    "LT31-entry2602-discovery.json": "65b6d9f8e446b1605189564c8ecf32d55d16c95eedb2de4c8f918308cd161938",
+    "LT31-entry2631-discovery.json": "72892fa12ce3564f72fc6d5f773d7739d815a2b1ddf4ab6629a2b84f9bbafde5",
+    "LT31-entry566-discovery.json": "3c3f88740ac4120140e80d404918bbe0af96400d7378b63e78ae6bf73f8284e1",
+    "LT31-entry75-discovery.json": "fe1d5d7ffbc98627b3cb350e801b47e9a6c5a3bbf16fb1ef72f504cf04f0d422",
+    "LT31-entry836-discovery.json": "e11c01874bffc7d0c2b7aa26d029502bd548a47dc8b8e3d00b1f2fde2ddd82a4",
+    "LT31-entry874-discovery.json": "6d98cd42becb959fefd61b2daab91edfab66c636289fae2a2991dac1676a1348",
+    "LT31-entry945-discovery.json": "0406516128b0d652f624c6da7bb6580a795907f0550321211aa8e990cdaee3fb",
+    "LT31-entry972-discovery.json": "16170795b60266d31f59212d62face2697f8716f680c6454a7255d0a270c37ae",
+    "LT51-entry1178-discovery.json": "8135bb9eb2425de22f47a7cc30718cd42b396ec975f5daf0b16549408e96deb9",
+    "LT51-entry1611-discovery.json": "dc90a68184d71ac545df4172f1a4be048d93cc2872f5a1a3d818ed09624dfe99",
+    "LT51-entry1943-discovery.json": "6a2d37089c98d6ee8bcf0f06b353f589e21401f72182fc4f6edfe53de47e50c0",
+    "LT51-entry1984-discovery.json": "06dabfb7630650b3a207ce3f1e7e1258339390d6bff6c0321fd0296f7540dceb",
+    "LT51-entry2232-discovery.json": "3889695d3dfa0eebae123e5944246aad2cc464663434a001ab1b2c8ccfe7665d",
+    "LT51-entry2597-discovery.json": "1e5f0b394f13c6756cf22f1fa05cb150b072791ebdc731347ff204e8c56a9e64",
+    "LT51-entry2682-discovery.json": "5e9f025d3686aefd9ffa9363f21cd5ee42b69de355075b06ff20b23d6e4cc9bf",
+    "LT51-entry2882-discovery.json": "a6c5d339875440511dc023f1aae4f7b65a6b9c716a2e2d1a5b674339054adea4",
+    "LT51-entry2986-discovery.json": "3f6b618fd351d01a3a605698ee49b21df9f5baef62d0191e764340a4dee4f329",
+    "LT51-entry3015-discovery.json": "618ae6c4a5b2c185a9ffd5a6f90e904791dd528d04bc0128ef334bc4f54eda09",
+    "LT51-entry3047-discovery.json": "4ece4c2fb0d8bb0ffdee30359b37f3c3e2468f02eece2bd610cc46d0add65569",
+    "LT51-entry322-discovery.json": "ac6f19016a69afea2946742c4b40d19f3aa116c51890f38d41b9a670f536c38e",
+    "LT51-entry523-discovery.json": "a5a0e92ac675d9bc22a989c75f871064ef3646588cc16a7201d3a180913fcdc3",
+    "LT51-entry669-discovery.json": "dda5590a16f946f3fcc33f5b783853345b9d2e49cf209f291a931a47a6bae7f8",
+    "LT51-entry829-discovery.json": "1d765b3e5c5e5dbbab76033e412c1da25a8a0d4bccb57f3ea0c4b976bcf76542",
+    "LT51-entry86-discovery.json": "6c38eab9119a3e540ad31eed7e9dea416749f755bf7bd6d11e16845f4a19db78",
+    "LT51-entry889-discovery.json": "80e8496fc257fe754ec481a83a80894f54b81710bc270bed779ac0e813c5c76a",
+    "LT71-entry1248-discovery.json": "b7ee1ea32ca934c13eb06776d7a4b6386f8da4821128bfeb6895b8dd3812b8ea",
+    "LT71-entry1631-discovery.json": "be4bd68041fa7d0c021efb150ea69e1d1ba42c57179bb98857a4aca8b82c3886",
+    "LT71-entry1768-discovery.json": "5bbca0524ae1892b22c00cd4831df87e8f704acd092de0e686d0534963a3d585",
+    "LT71-entry1919-discovery.json": "b328338d60a9ea083ff9bd15ce63deb825502e9e7c9edf54e30a3e37ec86b40b",
+    "LT71-entry1990-discovery.json": "19ab86d6f6e2407eb2dd3796d34c6b97f1709f08b986a0c11c468b43cbee06bf",
+    "LT71-entry2085-discovery.json": "b277de3ba4f42f938d9484fb4eb411edffc2687f550f1cd5e1d2871cd9101f5c",
+    "LT71-entry2231-discovery.json": "4ac533dd12519b096f6a677459b289bc953412926e2baf587388c475ff0022df",
+    "LT71-entry2419-discovery.json": "03da0ae49554f5246787070cd08c1b5ea234747fc06237d8068bbfa14bb30042",
+    "LT71-entry2436-discovery.json": "62e143f76f1ccf11f4f319d7665f51691594e5324d09ec5789f1a4cf3c59f001",
+    "LT71-entry253-discovery.json": "8413d8ab689c4be656a4d8b6e45016cc5b8ad1f46fad8dda6ba4f68fb07ec78b",
+    "LT71-entry2574-discovery.json": "853fc2e44d780110afec08fd43f24613226a4d73f80c4fc5c0351fe7527cf3c3",
+    "LT71-entry318-discovery.json": "6b00ac581c4eab31b5577dc4c001654580c9bed67a8beaec64712739454eff8f",
+    "LT71-entry502-discovery.json": "4b8b9e69e2e2c9d82b767fbbbc07158a88cc4978d1eb8fcab09c85397fad9159",
+    "holdout-manifest.json": "46e1c1b89fb78db09c81edf24e9e3b684fa3bbd61a73d5a4df6c3376c02e6498"
+  },
+  "game_version": "20260820220319",
+  "holdout_entries": [
+    {
+      "archive": "LT31",
+      "entry_index": 131
+    },
+    {
+      "archive": "LT31",
+      "entry_index": 566
+    },
+    {
+      "archive": "LT31",
+      "entry_index": 1580
+    },
+    {
+      "archive": "LT31",
+      "entry_index": 1616
+    },
+    {
+      "archive": "LT31",
+      "entry_index": 2586
+    },
+    {
+      "archive": "LT31",
+      "entry_index": 2602
+    },
+    {
+      "archive": "LT51",
+      "entry_index": 829
+    },
+    {
+      "archive": "LT51",
+      "entry_index": 2882
+    },
+    {
+      "archive": "LT51",
+      "entry_index": 2986
+    },
+    {
+      "archive": "LT51",
+      "entry_index": 3047
+    },
+    {
+      "archive": "LT71",
+      "entry_index": 1248
+    },
+    {
+      "archive": "LT71",
+      "entry_index": 2574
+    }
+  ],
+  "manifest_sha256": "353bfc58d4f88f0ea6f88066a0d8431d2ec50b917fba1543550418c91e26d8aa",
+  "regression_entries": [
+    {
+      "archive": "LT31",
+      "entry_index": 874
+    },
+    {
+      "archive": "LT51",
+      "entry_index": 1178
+    },
+    {
+      "archive": "LT71",
+      "entry_index": 1631
+    },
+    {
+      "archive": "LT71",
+      "entry_index": 1768
+    }
+  ],
+  "schema": "hnex006r-records-manifest-1",
+  "selector_blob_sha256": "46e336cef5b646a632bdb41df5c30676103ee18c8a5ace0b47529642ca2de5f9",
+  "selector_commit": "6c47256be6f42b33826341bf217469be03d4c7ab",
+  "selector_manifest_schema": "nex004c-holdout-manifest-2"
+}

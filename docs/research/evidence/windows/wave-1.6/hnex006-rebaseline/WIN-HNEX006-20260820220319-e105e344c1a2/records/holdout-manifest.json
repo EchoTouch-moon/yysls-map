@@ -1,0 +1,131 @@
+{
+  "schema_version": "nex004c-holdout-manifest-2",
+  "policy": "source family prior only (storyline_data / MSD_ST); forbidden signals unused: dq_*, EXPANSION_*, numeric refs, CJK payload, framed payloads, known target values; excludes all previous pilot/evidence/blind entries",
+  "selection": "selection_score = int(sha256(archive:index:offset:size:flags)[:8],16); lowest 6 per family",
+  "source_locator_sha256_def": "sha256 of the Lua source-name bytes read from the block (locator commitment; path not revealed)",
+  "holdout_a": [
+    {
+      "archive": "LT31",
+      "entry_index": 2602,
+      "entry_offset": 7431098,
+      "stored_size": 1140,
+      "flags_raw": 62,
+      "source_family": "storyline_data",
+      "source_locator_sha256": "97dba24b04c8e701584e86e020e04c1adb7e52de012f7e2ca656defac62fee95",
+      "selection_score": 2373675
+    },
+    {
+      "archive": "LT71",
+      "entry_index": 2574,
+      "entry_offset": 5216943,
+      "stored_size": 869,
+      "flags_raw": 142,
+      "source_family": "storyline_data",
+      "source_locator_sha256": "7a82b5d5a53b8997a5b0b49fc6343ebf152bfdf0b6d85400a3be97d1e928f72b",
+      "selection_score": 2397286
+    },
+    {
+      "archive": "LT51",
+      "entry_index": 829,
+      "entry_offset": 5698555,
+      "stored_size": 828,
+      "flags_raw": 102,
+      "source_family": "storyline_data",
+      "source_locator_sha256": "61d27aa44ef9f712c8710a3aed76b1434dfcb64ade9d3fef44059ba092863172",
+      "selection_score": 4610694
+    },
+    {
+      "archive": "LT31",
+      "entry_index": 1580,
+      "entry_offset": 7409219,
+      "stored_size": 977,
+      "flags_raw": 62,
+      "source_family": "storyline_data",
+      "source_locator_sha256": "2f4188b09eb74b5736d582a22d9e73b4e0a0b30a46b1d057ac38cc9713886f77",
+      "selection_score": 11873630
+    },
+    {
+      "archive": "LT31",
+      "entry_index": 2586,
+      "entry_offset": 7425901,
+      "stored_size": 1769,
+      "flags_raw": 62,
+      "source_family": "storyline_data",
+      "source_locator_sha256": "ca4a8186b4e43888df9796c97c27c762140f03338558347fd2683e77bf87d49b",
+      "selection_score": 14941351
+    },
+    {
+      "archive": "LT51",
+      "entry_index": 2882,
+      "entry_offset": 4745251,
+      "stored_size": 884,
+      "flags_raw": 102,
+      "source_family": "storyline_data",
+      "source_locator_sha256": "6c738ec179fa5ad0d1a721815d382b8ce6fbe59a1fa83f685f8e4117805772c1",
+      "selection_score": 17948740
+    }
+  ],
+  "holdout_b": [
+    {
+      "archive": "LT31",
+      "entry_index": 566,
+      "entry_offset": 7275325,
+      "stored_size": 3015,
+      "flags_raw": 62,
+      "source_family": "MSD_ST",
+      "source_locator_sha256": "2cccc05b96de1647bce76e40faadfc1d9a3c99cb50eff6a0e3f57ee4f078d0cf",
+      "selection_score": 10653722
+    },
+    {
+      "archive": "LT31",
+      "entry_index": 131,
+      "entry_offset": 7291536,
+      "stored_size": 6984,
+      "flags_raw": 62,
+      "source_family": "MSD_ST",
+      "source_locator_sha256": "175869956e44d93c3e1e3462ad5053fbf7ed5ed8a015a5c0ead52d622bb67fed",
+      "selection_score": 15545140
+    },
+    {
+      "archive": "LT51",
+      "entry_index": 2986,
+      "entry_offset": 5785999,
+      "stored_size": 6712,
+      "flags_raw": 102,
+      "source_family": "MSD_ST",
+      "source_locator_sha256": "b8a9fa21e1156bcef60c083837848c4dba8acc14e9ff4d0a14d72dc71ef9ab36",
+      "selection_score": 25677296
+    },
+    {
+      "archive": "LT31",
+      "entry_index": 1616,
+      "entry_offset": 7227531,
+      "stored_size": 1609,
+      "flags_raw": 62,
+      "source_family": "MSD_ST",
+      "source_locator_sha256": "bb500658387e797183e404923f7b0b3776fd22a94ae3dbc1d3cddce14f859668",
+      "selection_score": 26604198
+    },
+    {
+      "archive": "LT71",
+      "entry_index": 1248,
+      "entry_offset": 4895949,
+      "stored_size": 8248,
+      "flags_raw": 142,
+      "source_family": "MSD_ST",
+      "source_locator_sha256": "1a32584d0354b575051eca27704d352803c5d3e362215c7276994ef84f557055",
+      "selection_score": 29376853
+    },
+    {
+      "archive": "LT51",
+      "entry_index": 3047,
+      "entry_offset": 5862481,
+      "stored_size": 1789,
+      "flags_raw": 102,
+      "source_family": "MSD_ST",
+      "source_locator_sha256": "fe8cae3f2100736f545ee934b2db50b78631f9c3e70e718698e9a568d3074273",
+      "selection_score": 38850875
+    }
+  ],
+  "source_path_not_revealed": true
+}

@@ -1,0 +1,199 @@
+{
+  "schema_version": "raw-structural-observation-1",
+  "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+  "extractor_source_sha256": "6be80797f44a818b44fc445380533e35de7e4d09b46d1800d55a846c2f681ba3",
+  "game_version": "20260820220319",
+  "archive": "LT31.mpk",
+  "archive_sha256": "b404de7775a7e18876bbc4da732ee997509b09eb26f4fe4affee961ba1abea87",
+  "mpkinfo_sha256": "2d07b95700bc44e3e931b469c85e86b738c6da259b1b029b66f95f3ce2e5604b",
+  "entry_index": 972,
+  "entry_offset": 7036507,
+  "entry_stored_size": 2014,
+  "flags_raw": 62,
+  "block_sha256": "9ebeb021ff7de726a300bbe91fc51ca1883e418104a23c9c8423c665f061ab81",
+  "container": {
+    "lua_version": "5.4",
+    "source_status": "SEGMENTED_PARTIAL",
+    "source_locator": "@hexm/client/storyline_data/;task/lizehao/qinghejianzhang_moonli",
+    "source_segments": [
+      {
+        "value": "@hexm/client/storyline_data",
+        "truncated": false,
+        "offset": 33
+      },
+      {
+        "value": ";task/lizehao/qinghejianzhang_moonlight.lua",
+        "truncated": false,
+        "offset": 63
+      }
+    ],
+    "source_reconstruction": "PRINTABLE_RUN_JOIN",
+    "source_truncated": true
+  },
+  "observations": [
+    {
+      "byte_offset": 255,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 12,
+      "value_byte_length": 11,
+      "raw_value": "_reload_all",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 972,
+        "block_sha256": "9ebeb021ff7de726a300bbe91fc51ca1883e418104a23c9c8423c665f061ab81"
+      }
+    },
+    {
+      "byte_offset": 269,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 17,
+      "value_byte_length": 16,
+      "raw_value": "Zq3L78gMakzELgCY",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 972,
+        "block_sha256": "9ebeb021ff7de726a300bbe91fc51ca1883e418104a23c9c8423c665f061ab81"
+      }
+    },
+    {
+      "byte_offset": 346,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 14,
+      "value_byte_length": 13,
+      "raw_value": "NodeGraphData",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 972,
+        "block_sha256": "9ebeb021ff7de726a300bbe91fc51ca1883e418104a23c9c8423c665f061ab81"
+      }
+    },
+    {
+      "byte_offset": 361,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 14,
+      "value_byte_length": 13,
+      "raw_value": "get_variables",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 972,
+        "block_sha256": "9ebeb021ff7de726a300bbe91fc51ca1883e418104a23c9c8423c665f061ab81"
+      }
+    },
+    {
+      "byte_offset": 393,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 4,
+      "value_byte_length": 3,
+      "raw_value": "Str",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 972,
+        "block_sha256": "9ebeb021ff7de726a300bbe91fc51ca1883e418104a23c9c8423c665f061ab81"
+      }
+    },
+    {
+      "byte_offset": 413,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 14,
+      "value_byte_length": 13,
+      "raw_value": "autoStartList",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 972,
+        "block_sha256": "9ebeb021ff7de726a300bbe91fc51ca1883e418104a23c9c8423c665f061ab81"
+      }
+    },
+    {
+      "byte_offset": 496,
+      "framing_tag_raw": "0x4",
+      "encoded_length": 7,
+      "value_byte_length": 6,
+      "raw_value": "nodeID",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 972,
+        "block_sha256": "9ebeb021ff7de726a300bbe91fc51ca1883e418104a23c9c8423c665f061ab81"
+      }
+    },
+    {
+      "byte_offset": 574,
+      "framing_tag_raw": "0x8",
+      "encoded_length": 13,
+      "value_byte_length": 12,
+      "raw_value": "is_only_once",
+      "value_truncated": false,
+      "discovery_rule_id": "R4",
+      "discovery_method": "FRAMED_STRING_SCAN",
+      "pattern_kind": "IDENTIFIER_TOKEN_CANDIDATE",
+      "confidence": "LOW",
+      "provenance": {
+        "schema_version": "raw-structural-observation-1",
+        "extractor_commit": "204c97f0d1a6039860f49a9c4b9232c51ae8d8fa",
+        "archive": "LT31.mpk",
+        "entry_index": 972,
+        "block_sha256": "9ebeb021ff7de726a300bbe91fc51ca1883e418104a23c9c8423c665f061ab81"
+      }
+    }
+  ],
+  "observation_limits": {
+    "max_locator_bytes": 64,
+    "max_per_entry": 32,
+    "per_class_cap": 8
+  },
+  "warnings": [
+    "INSTRUCTION_SERIALIZATION_VARIANT",
+    "CONSTANT_OWNERSHIP_UNKNOWN",
+    "PROTO_OWNERSHIP_UNKNOWN",
+    "SEMANTIC_ROLE_UNVERIFIED",
+    "SOURCE_SEGMENTED_SERIALIZATION"
+  ]
+}

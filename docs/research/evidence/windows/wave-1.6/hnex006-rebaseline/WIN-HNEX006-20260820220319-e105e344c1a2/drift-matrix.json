@@ -1,0 +1,615 @@
+{
+  "clusters": [
+    {
+      "cluster_id": "NODE_GRAPH",
+      "identical": true,
+      "new_entries": [
+        "LT31.mpk[566]",
+        "LT71.mpk[1248]"
+      ],
+      "old_entries": [
+        "LT31.mpk[566]",
+        "LT71.mpk[1248]"
+      ]
+    },
+    {
+      "cluster_id": "QH_SOURCE/guanqia/qinghe_end_boss_fight",
+      "identical": true,
+      "new_entries": [
+        "LT71.mpk[1919]"
+      ],
+      "old_entries": [
+        "LT71.mpk[1919]"
+      ]
+    },
+    {
+      "cluster_id": "QH_SOURCE/guanqia/qinghe_end_boss_fight/bxx",
+      "identical": true,
+      "new_entries": [
+        "LT51.mpk[2232]"
+      ],
+      "old_entries": [
+        "LT51.mpk[2232]"
+      ]
+    },
+    {
+      "cluster_id": "QH_SOURCE/guanqia/qinghe_end_task",
+      "identical": true,
+      "new_entries": [
+        "LT51.mpk[2597]",
+        "LT51.mpk[322]",
+        "LT51.mpk[86]",
+        "LT71.mpk[318]",
+        "LT71.mpk[502]"
+      ],
+      "old_entries": [
+        "LT51.mpk[2597]",
+        "LT51.mpk[322]",
+        "LT51.mpk[86]",
+        "LT71.mpk[318]",
+        "LT71.mpk[502]"
+      ]
+    },
+    {
+      "cluster_id": "QH_SOURCE/guanqia/qinghe_end_task#2",
+      "identical": true,
+      "new_entries": [
+        "LT31.mpk[2415]"
+      ],
+      "old_entries": [
+        "LT31.mpk[2415]"
+      ]
+    },
+    {
+      "cluster_id": "QH_SOURCE/task",
+      "identical": true,
+      "new_entries": [
+        "LT51.mpk[1943]"
+      ],
+      "old_entries": [
+        "LT51.mpk[1943]"
+      ]
+    },
+    {
+      "cluster_id": "QH_SOURCE/task/lizehao",
+      "identical": true,
+      "new_entries": [
+        "LT31.mpk[972]"
+      ],
+      "old_entries": [
+        "LT31.mpk[972]"
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 75,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT31.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 131,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 8,
+      "observation_count_old": 8,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 552,
+      "in_new": false,
+      "in_old": true
+    },
+    {
+      "archive": "LT31.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 566,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 10,
+      "observation_count_old": 10,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 836,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT31.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 874,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 9,
+      "observation_count_old": 9,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 945,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 972,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 1538,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT31.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 1580,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 8,
+      "observation_count_old": 8,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT31.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 1616,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 8,
+      "observation_count_old": 8,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 2264,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 2415,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 2471,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT31.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 2586,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 8,
+      "observation_count_old": 8,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT31.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 2602,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 8,
+      "observation_count_old": 8,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 2631,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT31.mpk",
+      "entry_index": 2876,
+      "in_new": false,
+      "in_old": true
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 86,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 322,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 523,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 669,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT51.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 829,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 8,
+      "observation_count_old": 8,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 861,
+      "in_new": false,
+      "in_old": true
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 873,
+      "in_new": false,
+      "in_old": true
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 889,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT51.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 1178,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 8,
+      "observation_count_old": 8,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 1611,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 1943,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 1984,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 2232,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 2597,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 2682,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT51.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 2882,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 8,
+      "observation_count_old": 8,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT51.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 2986,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 9,
+      "observation_count_old": 9,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT51.mpk",
+      "entry_index": 3015,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT51.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 3047,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 8,
+      "observation_count_old": 8,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 165,
+      "in_new": false,
+      "in_old": true
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 253,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 318,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 502,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 534,
+      "in_new": false,
+      "in_old": true
+    },
+    {
+      "archive": "LT71.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 1248,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 9,
+      "observation_count_old": 9,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 1490,
+      "in_new": false,
+      "in_old": true
+    },
+    {
+      "archive": "LT71.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 1631,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 8,
+      "observation_count_old": 8,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT71.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 1768,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 8,
+      "observation_count_old": 8,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 1919,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 1990,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 2085,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 2231,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 2419,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 2436,
+      "in_new": true,
+      "in_old": false
+    },
+    {
+      "archive": "LT71.mpk",
+      "block_sha256_equal": true,
+      "entry_index": 2574,
+      "in_new": true,
+      "in_old": true,
+      "new_game_version": "20260820220319",
+      "observation_count_new": 8,
+      "observation_count_old": 8,
+      "old_game_version": "20260829165912"
+    },
+    {
+      "archive": "LT71.mpk",
+      "entry_index": 2766,
+      "in_new": false,
+      "in_old": true
+    }
+  ],
+  "matrix_sha256": "daefcf7fd9724d7b33ca4346f96e0d4cf7ec004a81bc308a7795ceb4e7e1fba5",
+  "new_snapshot": {
+    "game_version": "20260820220319",
+    "manifest_sha256": "ae961dedc166e11385b00a9187b41f9eb0b01c5a3fcaf73cc1412f28c4457a73",
+    "packet_sha256": "d75cb284b15d482ef3da514720a42a00ea4b6b24e5c25bca30115bc24a5c5cdf",
+    "record_count": 46
+  },
+  "old_snapshot": {
+    "game_version": "20260829165912",
+    "manifest_sha256": "4d5a1397786be70c71b5ba81ea2282bfe4cf246d24ed3e01adc00ff3c5c80f9c",
+    "packet_sha256": "8c1e4b5ae6d05ef52ccdc3cb6412bb50007e1532f1bfe2aad174d3c7100ef9a7",
+    "record_count": 24
+  },
+  "policy": "old artifacts are diff inputs only; no old locator, record, or manifest was used as new evidence or as an expected result by the rebuild pipeline",
+  "schema": "hnex006r-drift-matrix-1",
+  "selection_ranks": [
+    {
+      "new": "LT71.mpk[1248]",
+      "new_score": 6,
+      "old": "LT71.mpk[1248]",
+      "old_score": 6,
+      "rank": 0,
+      "same_entry": true
+    },
+    {
+      "new": "LT71.mpk[502]",
+      "new_score": 6,
+      "old": "LT71.mpk[502]",
+      "old_score": 6,
+      "rank": 1,
+      "same_entry": true
+    },
+    {
+      "new": "LT31.mpk[566]",
+      "new_score": 6,
+      "old": "LT31.mpk[566]",
+      "old_score": 6,
+      "rank": 2,
+      "same_entry": true
+    },
+    {
+      "new": "LT51.mpk[1943]",
+      "new_score": 6,
+      "old": "LT51.mpk[1943]",
+      "old_score": 6,
+      "rank": 3,
+      "same_entry": true
+    },
+    {
+      "new": "LT51.mpk[2597]",
+      "new_score": 6,
+      "old": "LT51.mpk[2597]",
+      "old_score": 6,
+      "rank": 4,
+      "same_entry": true
+    },
+    {
+      "new": "LT51.mpk[2232]",
+      "new_score": 6,
+      "old": "LT51.mpk[2232]",
+      "old_score": 6,
+      "rank": 5,
+      "same_entry": true
+    },
+    {
+      "new": "LT71.mpk[1919]",
+      "new_score": 6,
+      "old": "LT71.mpk[1919]",
+      "old_score": 6,
+      "rank": 6,
+      "same_entry": true
+    },
+    {
+      "new": "LT71.mpk[318]",
+      "new_score": 6,
+      "old": "LT71.mpk[318]",
+      "old_score": 6,
+      "rank": 7,
+      "same_entry": true
+    },
+    {
+      "new": "LT31.mpk[972]",
+      "new_score": 6,
+      "old": "LT31.mpk[972]",
+      "old_score": 6,
+      "rank": 8,
+      "same_entry": true
+    },
+    {
+      "new": "LT51.mpk[86]",
+      "new_score": 6,
+      "old": "LT51.mpk[86]",
+      "old_score": 6,
+      "rank": 9,
+      "same_entry": true
+    },
+    {
+      "new": "LT51.mpk[322]",
+      "new_score": 6,
+      "old": "LT51.mpk[322]",
+      "old_score": 6,
+      "rank": 10,
+      "same_entry": true
+    },
+    {
+      "new": "LT31.mpk[2415]",
+      "new_score": 6,
+      "old": "LT31.mpk[2415]",
+      "old_score": 6,
+      "rank": 11,
+      "same_entry": true
+    }
+  ],
+  "summary": {
+    "cluster_layout_identical": true,
+    "game_version_changed": true,
+    "records_block_diverged": 0,
+    "records_block_identical": 16,
+    "records_compared": 16,
+    "records_new_only": 30,
+    "records_old_only": 8,
+    "selection_membership_equal": true,
+    "selection_order_equal": true,
+    "selection_scores_equal": true
+  }
+}
